@@ -4,6 +4,7 @@ import PublicLayout from "../Layouts/PublicLayout";
 import Login from "../Pages/Public/Auth/Login";
 import Signup from "../Pages/Public/Auth/Signup";
 import ResetPassword from "../Pages/Public/Auth/ResetPassword";
+import NotFound from "../Pages/Error/NotFound";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                 element: <ResetPassword />
             },
         ]
+    },
+    {
+        path: "*",
+        element: <NotFound />
     }
 ])
 

@@ -112,7 +112,7 @@ const Form = ({ mode }) => {
                             />
                         </div>
                         <Button type='submit' className='bg-secondary mt-5' fullWidth>
-                            Sign in
+                        Send Recovery Email
                         </Button>
                     </div>
             }

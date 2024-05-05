@@ -101,7 +101,7 @@ const Form = ({ mode }) => {
                         }
                     </form>
                     :
-                    <div>
+                    <form onSubmit={formHandler} >
                         <div className='mt-5'>
                             <Input
                                 variant='outlined'
@@ -114,7 +114,7 @@ const Form = ({ mode }) => {
                         <Button type='submit' className='bg-secondary mt-5' fullWidth>
                         Send Recovery Email
                         </Button>
-                    </div>
+                    </form>
             }
         </div>
     );

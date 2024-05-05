@@ -17,67 +17,105 @@ const Form = ({ mode }) => {
     }
     return (
         <div className="w-[457px] h-auto p-5 flex flex-col justify-center">
-            <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">{mode === 'signup' ? 'Create an account' : 'Sign in'} to Cuboid</h1>
-            <Social method={mode} />
-            <div className="flex items-center gap-2 mt-5">
-                <div className="divider" />
-                <span>or</span>
-                <div className="divider" />
-            </div>
-            <form onSubmit={formHandler} className='mt-7'>
-                <div>
-                    <Input
-                        variant='outlined'
-                        label='Email address'
-                        type='email'
-                        name='email'
-                        required
-                    />
-                </div>
+            {
+                mode === 'reset' ?
+                    <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">Forgot Password?</h1>
+                    :
+                    <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">{mode === 'signup' ? 'Create an account' : 'Sign in'} to Cuboid</h1>
+            }
 
-                {
-                    mode === 'signup' && (
-                        <div className="flex mt-5 gap-2 justify-between">
-                            <div>
-                                <Input
-                                    variant='outlined'
-                                    label='First name'
-                                    type='text'
-                                    name='firstName'
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <Input
-                                    variant='outlined'
-                                    label='Last name'
-                                    type='text'
-                                    name='lastName'
-                                    required
-                                />
-                            </div>
+            {
+                mode !== 'reset' ? <>
+                    <Social method={mode} />
+                    <div className="flex items-center gap-2 mt-5">
+                        <div className="divider" />
+                        <span>or</span>
+                        <div className="divider" />
+                    </div>
+                </>
+                    :
+                    <p className="w-96 text-zinc-700 text-sm font-normal  leading-normal">No worriest! Just enter your email and we’ll send you a reset password link.</p>
+            }
+
+            {
+                mode !== 'reset' ?
+                    <form onSubmit={formHandler} className='mt-7'>
+                        <div>
+                            <Input
+                                variant='outlined'
+                                label='Email address'
+                                type='email'
+                                name='email'
+                                required
+                            />
                         </div>
-                    )
-                }
-                <div className='mt-5'>
-                    <Input
-                        variant='outlined'
-                        label='Password'
-                        name='password'
-                        required
-                        type={showPassword ? 'text' : 'password'}
-                        icon={<FontAwesomeIcon icon={faEye} onClick={() => setShowPassword(!showPassword)} />}
-                    />
-                </div>
-                <div className="flex mt-5 items-center justify-between">
-                    <Link to={'/reset-password'}>
-                        <p className=" text-sm font-medium">Forgot password?</p>
-                    </Link>
-                    <Button type='submit' className='bg-secondary'>
-                        Sign in
-                    </Button>
-                </div>
-            </form>
+
+                        {
+                            mode === 'signup' && (
+                                <div className="flex mt-5 gap-2 justify-between">
+                                    <div>
+                                        <Input
+                                            variant='outlined'
+                                            label='First name'
+                                            type='text'
+                                            name='firstName'
+                                            required
+                                        />
+                                    </div>
+                                    <div>
+                                        <Input
+                                            variant='outlined'
+                                            label='Last name'
+                                            type='text'
+                                            name='lastName'
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        }
+                        <div className='mt-5'>
+                            <Input
+                                variant='outlined'
+                                label='Password'
+                                name='password'
+                                required
+                                type={showPassword ? 'text' : 'password'}
+                                icon={<FontAwesomeIcon icon={faEye} onClick={() => setShowPassword(!showPassword)} />}
+                            />
+                        </div>
+                        {
+                            mode === "signup" ?
+                                <Button type='submit' className='bg-secondary mt-5' fullWidth>
+                                    Sign Up
+                                </Button>
+                                :
+                                <div className="flex mt-5 items-center justify-between">
+                                    <Link to={'/reset-password'}>
+                                        <p className=" text-sm font-medium">Forgot password?</p>
+                                    </Link>
+                                    <Button type='submit' className='bg-secondary '>
+                                        Sign In
+                                    </Button>
+                                </div>
+                        }
+                    </form>
+                    :
+                    <div>
+                        <div className='mt-5'>
+                            <Input
+                                variant='outlined'
+                                label='Email address'
+                                type='email'
+                                name='email'
+                                required
+                            />
+                        </div>
+                        <Button type='submit' className='bg-secondary mt-5' fullWidth>
+                            Sign in
+                        </Button>
+                    </div>
+            }
         </div>
     );
 };

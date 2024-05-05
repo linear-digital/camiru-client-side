@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
+import { Progress } from 'antd';
 
 const Form = ({ mode }) => {
     const [showPassword, setShowPassword] = React.useState(false);
+    const [percent, setPercent] = React.useState(0);
     const formHandler = (e) => {
         e.preventDefault();
         // get all the inputs
@@ -85,6 +87,21 @@ const Form = ({ mode }) => {
                             />
                         </div>
                         {
+                            mode === 'signup' &&
+                            <div>
+                                <Progress
+                                    percent={100}
+                                    showInfo={false}
+                                    strokeColor=""
+                                    className='mt-1'
+                                />
+                                <div className="flex mt-1 justify-between">
+                                    <p className="text-zinc-500 text-xs font-normal leading-none">Your password is great. Nice work!</p>
+                                    <p className="text-right text-zinc-500 text-xs font-normal leading-none">Strong</p>
+                                </div>
+                            </div>
+                        }
+                        {
                             mode === "signup" ?
                                 <Button type='submit' className='bg-secondary mt-5' fullWidth>
                                     Sign Up
@@ -112,7 +129,7 @@ const Form = ({ mode }) => {
                             />
                         </div>
                         <Button type='submit' className='bg-secondary mt-5' fullWidth>
-                        Send Recovery Email
+                            Send Recovery Email
                         </Button>
                     </form>
             }

@@ -10,7 +10,7 @@ const PublicLayout = () => {
             <div className=" col-span-3 pt-20 pb-10 bg-primary pl-[64px] h-full flex flex-col justify-between">
                 <div>
                     <LogoWhite className='max-w-[224px]' />
-                    <h1 class="mt-14 text-white text-4xl font-medium  leading-[48px]">
+                    <h1 className="mt-14 text-white text-4xl font-medium  leading-[48px]">
                         Camiru Content GoesHere as one line sentence
                     </h1>
                 </div>

@@ -17,7 +17,7 @@ const Form = ({ mode }) => {
     }
     return (
         <div className="w-[457px] h-auto p-5 flex flex-col justify-center">
-            <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">Sign in to Cuboid</h1>
+            <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">{mode === 'signup' ? 'Create an account' : 'Sign in'} to Cuboid</h1>
             <Social method={mode} />
             <div className="flex items-center gap-2 mt-5">
                 <div className="divider" />

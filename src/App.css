@@ -22,3 +22,8 @@
     background-color: var(--primary);
     color: var(--white);
 }
+.divider {
+    background-color: #DCDBDD;
+    height: 1px;
+    width: 100%;
+}

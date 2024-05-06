@@ -5,6 +5,8 @@ import Login from "../Pages/Public/Auth/Login";
 import Signup from "../Pages/Public/Auth/Signup";
 import ResetPassword from "../Pages/Public/Auth/ResetPassword";
 import NotFound from "../Pages/Error/NotFound";
+import UserLayout from "../Pages/User/UserLayout";
+import Profile from "../Pages/User/Profile";
 
 
 const router = createBrowserRouter([
@@ -26,6 +28,24 @@ const router = createBrowserRouter([
                 element: <ResetPassword />
             },
         ]
+    },
+    {
+        path: "/dashboard",
+        element: <UserLayout />,
+        children: [
+            {
+                index: true,
+                element: <Profile />
+            },
+            {
+                path: "profile",
+                element: <Profile />
+            },
+            {
+                path: "rooms",
+                element: <NotFound />
+            }
+        ],
     },
     {
         path: "*",

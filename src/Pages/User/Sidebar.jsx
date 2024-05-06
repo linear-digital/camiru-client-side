@@ -4,7 +4,7 @@ import { links } from '../../util/links';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Bell, Classrooms, Home } from '../../util/icons';
+import { Bell } from '../../util/icons';
 import { useLocation } from 'react-router-dom';
 
 const Sidebar = () => {
@@ -12,7 +12,7 @@ const Sidebar = () => {
     return (
         <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-10 flex flex-col justify-between'>
             <div>
-                <Logo className={'max-w-[224px] mx-auto'} />
+                <Logo to={'/dashboard'} className={'max-w-[224px] mx-auto'} />
                 <h3 className='text-gray-700 ml-8 mt-7'>MAIN MENU</h3>
                 <ul className='mt-5 w-full'>
                     {

@@ -1,12 +1,12 @@
 import { Image } from 'antd';
 import React from 'react';
 import { Button } from '../../Components/Buttons/Buttons';
-
+import Element from '../../assets/profile-element.png'
 const Profile = () => {
     return (
         <div className='grid grid-cols-10 h-full w-full'>
             <div className='col-span-7'></div>
-            <div className='col-span-3 h-full w-full pt-[110px] pl-[60px]'
+            <div className='col-span-3 h-full w-full pt-[110px] pl-[60px] relative'
                 style={{
                     background: 'rgba(21, 172, 222, 0.05)',
                 }}
@@ -40,7 +40,11 @@ const Profile = () => {
                     </div>
                 </section>
                 <Button type={"error"} className={"mt-14"}> SignOut</Button>
+                <img src={Element} alt="" 
+                    className='absolute bottom-0 right-[60px] max-w-[490px]'
+                />
             </div>
+
         </div>
     );
 };

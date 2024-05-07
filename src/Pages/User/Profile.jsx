@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '../../Components/Buttons/Buttons';
 import Element from '../../assets/profile-element.png'
 import { Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 const Profile = () => {
     return (
         <div className='grid grid-cols-10 h-full w-full'>
@@ -23,26 +24,26 @@ const Profile = () => {
                 <h1 className="mt-10 text-slate-950 text-2xl font-black">Wellcome, Khalid Sin</h1>
                 <p className="text-gray-600 text-sm font-light mt-2 leading-tight">Fill in the data for profile. It will take a couple of minutes. </p>
                 <section className='mt-10 flex flex-col gap-3'>
-                    <div className="flex items-center gap-4">
+                    <Link to={"/dashboard/profile"} className="flex items-center gap-4">
                         <Dot className={"bg-amber-400"} />
                         <h4>
                             <div className="text-black text-lg font-normal">Personal Data</div>
                         </h4>
-                    </div>
-                    <div className="flex items-center gap-4">
+                    </Link>
+                    <Link to={"/dashboard/profile/contacts"} className="flex items-center gap-4">
                         <Dot className={"bg-red-500"} />
                         <h4>
                             <div className="text-black text-lg font-normal">Contacts</div>
                         </h4>
-                    </div>
-                    <div className="flex items-center gap-4">
+                    </Link>
+                    <Link to={"/dashboard/profile/address"} className="flex items-center gap-4">
                         <Dot className={"bg-green-500"} />
                         <h4>
                             <div className="text-black text-lg font-normal">Address</div>
                         </h4>
-                    </div>
+                    </Link>
                 </section>
-                <Button type={"error"} className={"mt-14"}> SignOut</Button>
+                <Button variant={"error"} className={"mt-14"}> SignOut</Button>
                 <img src={Element} alt=""
                     className='absolute bottom-0 right-[60px] max-w-[490px] opacity-40 -z-10'
                 />

@@ -2,25 +2,25 @@ import { Button as MButton } from "@material-tailwind/react"
 import { useState } from "react"
 import { useEffect } from "react"
 
-export const Button = ({ children, className, type, ...props }) => {
+export const Button = ({ children, className, variant, ...props }) => {
     const [types, setType] = useState('primary')
     useEffect(() => {
-        if (type === 'primary') {
+        if (variant === 'primary') {
             setType('bg-primary text-white')
         }
-        else if (type === 'secondary') {
+        else if (variant === 'secondary') {
             setType('bg-secondary text-white')
         }
-        else if (type === 'accent') {
+        else if (variant === 'accent') {
             setType('bg-accent text-white')
         }
-        else if (type === 'error') {
+        else if (variant === 'error') {
             setType('bg-error text-white')
         }
-        else if (type === 'success') {
+        else if (variant === 'success') {
             setType('bg-green-500 text-white')
         }
-        else if (type === 'white') {
+        else if (variant === 'white') {
             setType('bg-white text-primary')
         }
         else {

@@ -1,14 +1,13 @@
 import React from 'react';
 import { Dot } from '../Profile';
 import { Input } from '@material-tailwind/react';
-import { Button } from '@material-tailwind/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import { faHome } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { Link } from 'react-router-dom';
+import { Button } from '../../../Components/Buttons/Buttons';
 
 const Contacts = () => {
     return (
@@ -84,12 +83,11 @@ const Contacts = () => {
                 </div>
             </form>
             <div className="flex gap-5">
-                <Link to={'/dashboard/profile'}>
-                    <Button variant='fill' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>
-                        Go Back <FontAwesomeIcon icon={faArrowRightLong} />
-                    </Button>
-                </Link>
-                <Button variant='fill' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>
+
+                <Button variant='secondary' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>
+                    Save
+                </Button>
+                <Button variant='white' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>
                     Go Next <FontAwesomeIcon icon={faArrowRightLong} />
                 </Button>
             </div>

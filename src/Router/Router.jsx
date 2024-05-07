@@ -7,6 +7,8 @@ import ResetPassword from "../Pages/Public/Auth/ResetPassword";
 import NotFound from "../Pages/Error/NotFound";
 import UserLayout from "../Pages/User/UserLayout";
 import Profile from "../Pages/User/Profile";
+import PersonalData from "../Pages/User/_UI/PersonalData";
+import Contacts from "../Pages/User/_UI/Contacts";
 
 
 const router = createBrowserRouter([
@@ -39,7 +41,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <Profile />
+                element: <Profile />,
+                children: [
+                    {
+                        index: true,
+                        element: <PersonalData />
+                    },
+                    {
+                        path: "contacts",
+                        element: <Contacts />
+                    }
+                ]
             },
         ],
     },

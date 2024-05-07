@@ -6,16 +6,19 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import { Progress } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const Form = ({ mode }) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [percent, setPercent] = React.useState(0);
+    const navigate = useNavigate();
     const formHandler = (e) => {
         e.preventDefault();
         // get all the inputs
         const target = new FormData(e.target);
         const data = Object.fromEntries(target.entries())
         console.log(data);
+        navigate('/dashboard/profile');
     }
     return (
         <div className="w-[457px] h-auto p-5 flex flex-col justify-center">

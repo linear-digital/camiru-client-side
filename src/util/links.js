@@ -53,7 +53,7 @@ export const links = [
     {
         id: 9,
         name: 'Configuration',
-        path: '/dashboard/settings',
+        path: '/dashboard/profile',
         icon: Settings
     },
 ]

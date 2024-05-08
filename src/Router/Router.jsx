@@ -9,6 +9,7 @@ import UserLayout from "../Pages/User/UserLayout";
 import Profile from "../Pages/User/Profile";
 import PersonalData from "../Pages/User/_UI/PersonalData";
 import Contacts from "../Pages/User/_UI/Contacts";
+import Address from "../Pages/User/_UI/Adress";
 
 
 const router = createBrowserRouter([
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
                     {
                         path: "contacts",
                         element: <Contacts />
+                    },
+                    {
+                        path: "address",
+                        element: <Address />
                     }
                 ]
             },

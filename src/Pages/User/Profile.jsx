@@ -6,11 +6,11 @@ import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const Profile = () => {
     return (
-        <div className='grid grid-cols-10 h-full w-full'>
-            <div className='col-span-7 w-full h-full overflow-y-auto flex justify-center'>
+        <div className='grid grid-cols-9 h-full w-full'>
+            <div className='col-span-6 w-full h-full overflow-y-auto flex justify-center'>
                 <Outlet />
             </div>
-            <div className='col-span-3 h-full w-full pt-[110px] pl-[60px] relative'
+            <div className='col-span-3 h-full w-full pt-[110px] pl-[50px] relative'
                 style={{
                     background: 'rgba(21, 172, 222, 0.05)',
                 }}
@@ -21,7 +21,7 @@ const Profile = () => {
                         className='rounded-full overflow-hidden w-full h-full'
                     />
                 </div>
-                <h1 className="mt-10 text-slate-950 text-2xl font-black">Wellcome, Khalid Sin</h1>
+                <h1 className="mt-10 text-slate-950 text-xl font-black">Wellcome, Khalid Sin</h1>
                 <p className="text-gray-600 text-sm font-light mt-2 leading-tight">Fill in the data for profile. It will take a couple of minutes. </p>
                 <section className='mt-10 flex flex-col gap-3'>
                     <Link to={"/dashboard/profile"} className="flex items-center gap-4">

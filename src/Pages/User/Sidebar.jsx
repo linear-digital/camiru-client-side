@@ -10,11 +10,11 @@ import { useLocation } from 'react-router-dom';
 const Sidebar = () => {
     const location = useLocation();
     return (
-        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-8 flex flex-col justify-between'>
+        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto'>
             <div>
-                <Logo to={'/dashboard'} className={'max-w-[204px] mx-auto'} />
+                <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
                 <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>
-                <ul className='mt-5 w-full'>
+                <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
                         links.map((link) => {
                             return <NavigationCard link={link} key={link.id} active={location.pathname === link.path} />

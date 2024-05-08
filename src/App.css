@@ -32,3 +32,15 @@
     height: 1px;
     width: 100%;
 }
+
+::-webkit-scrollbar {
+    width: 3px;
+    background-color: wheat;
+}
+
+/* Scrollbar height */ 
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 10px;
+    height: 100px;
+}

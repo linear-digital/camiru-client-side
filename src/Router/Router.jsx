@@ -5,11 +5,12 @@ import Login from "../Pages/Public/Auth/Login";
 import Signup from "../Pages/Public/Auth/Signup";
 import ResetPassword from "../Pages/Public/Auth/ResetPassword";
 import NotFound from "../Pages/Error/NotFound";
-import UserLayout from "../Pages/User/UserLayout";
 import Profile from "../Pages/User/Profile";
 import PersonalData from "../Pages/User/_UI/PersonalData";
 import Contacts from "../Pages/User/_UI/Contacts";
 import Address from "../Pages/User/_UI/Adress";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import UserLayout from "../Layouts/UserLayout";
 
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Profile />
+                element: <Dashboard />
             },
             {
                 path: "profile",

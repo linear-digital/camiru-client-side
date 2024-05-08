@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
 const Sidebar = () => {
     const location = useLocation();
     return (
-        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto'>
+        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
             <div>
                 <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
                 <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>

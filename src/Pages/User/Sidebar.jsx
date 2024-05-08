@@ -10,10 +10,10 @@ import { useLocation } from 'react-router-dom';
 const Sidebar = () => {
     const location = useLocation();
     return (
-        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-10 flex flex-col justify-between'>
+        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-8 flex flex-col justify-between'>
             <div>
-                <Logo to={'/dashboard'} className={'max-w-[224px] mx-auto'} />
-                <h3 className='text-gray-700 ml-8 mt-7'>MAIN MENU</h3>
+                <Logo to={'/dashboard'} className={'max-w-[204px] mx-auto'} />
+                <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>
                 <ul className='mt-5 w-full'>
                     {
                         links.map((link) => {
@@ -42,7 +42,7 @@ export default Sidebar;
 
 export const NavigationCard = ({ link, active }) => {
     return <li className='mb-1 w-full'>
-        <Link to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center gap-6 relative h-[57px] rounded`}>
+        <Link to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded`}>
             {
                 active &&
                 <span className='float-left'>
@@ -52,7 +52,7 @@ export const NavigationCard = ({ link, active }) => {
             <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
                 {link.icon &&
                     <span>
-                        <link.icon className={`text-lg ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                        <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
 
                     </span>
                 }

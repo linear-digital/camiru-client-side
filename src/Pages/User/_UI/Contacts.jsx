@@ -86,9 +86,11 @@ const Contacts = () => {
                 <Button variant='secondary' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>
                     Save
                 </Button>
+                <Link to={'/dashboard/profile/address'}>
                 <Button variant='white' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>
                     Go Next <FontAwesomeIcon icon={faArrowRightLong} />
                 </Button>
+                </Link>
             </div>
         </div>
     );

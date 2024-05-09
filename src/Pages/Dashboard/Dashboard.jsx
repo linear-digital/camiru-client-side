@@ -3,6 +3,8 @@ import React from 'react';
 import { Button } from '../../Components/Buttons/Buttons';
 import StatisticCard from './_UI/StatisticCard';
 import Attendance from './_UI/Attendance';
+import AbsentStudentList from './_UI/AbsentStudentList';
+import StapManagement from './_UI/StapManagement';
 
 const Dashboard = () => {
     return (
@@ -42,6 +44,10 @@ const Dashboard = () => {
                         />
                     </div>
                     <Attendance />
+                    <div className="grid grid-cols-2 mt-10 gap-10">
+                        <StapManagement />
+                        <AbsentStudentList />
+                    </div>
                 </div>
                 <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
 

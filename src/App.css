@@ -48,3 +48,12 @@
     border-radius: 10px;
     height: 100px;
 }
+
+.btn-secondary{
+    background-color: var(--accent);
+    border: none;
+}
+.btn-secondary:hover{
+    background-color: var(--accent);
+    border: none;
+}

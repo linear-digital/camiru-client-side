@@ -7,6 +7,7 @@ import AbsentStudentList from './_UI/AbsentStudentList';
 import StapManagement from './_UI/StapManagement';
 import DownloadCustomReport from './_UI/DownloadCustomReport';
 import RecentMedia from './_UI/RecentMedia';
+import NotificationSec from './_UI/Sidebar/NotificationSec';
 
 const Dashboard = () => {
     return (
@@ -54,7 +55,7 @@ const Dashboard = () => {
                     <RecentMedia />
                 </div>
                 <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
-
+                    <NotificationSec />
                 </div>
             </section>
         </Card>

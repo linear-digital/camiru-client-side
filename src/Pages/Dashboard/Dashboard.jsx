@@ -9,6 +9,7 @@ import DownloadCustomReport from './_UI/DownloadCustomReport';
 import RecentMedia from './_UI/RecentMedia';
 import NotificationSec from './_UI/Sidebar/NotificationSec';
 import Messages from './_UI/Sidebar/Messages';
+import RecentActivity from './_UI/Sidebar/RecentActivity';
 
 const Dashboard = () => {
     return (
@@ -58,6 +59,7 @@ const Dashboard = () => {
                 <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
                     <NotificationSec />
                     <Messages />
+                    <RecentActivity />
                 </div>
             </section>
         </Card>

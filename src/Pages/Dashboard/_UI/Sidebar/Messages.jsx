@@ -26,7 +26,7 @@ export const MessageCard = () => {
     return <div className='flex items-center gap-3'>
         <Avatar shape="square" size={37} icon={<UserOutlined />} />
         <div>
-            <h5 className="text-slate-900 text-[11.06px] font-bold ">Samantha William</h5>
+        <h5 className="text-gray-900 text-[11.06px] font-bold ">Samantha William</h5>
             <p className="text-slate-400 mt-1 text-[11.06px] font-normal ">Lorem ipsum dolor sit amet...</p>
         </div>
     </div>

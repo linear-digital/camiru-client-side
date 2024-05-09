@@ -43,7 +43,7 @@ const Dashboard = () => {
                     </div>
                     <Attendance />
                 </div>
-                <div className="min-w-[300px] max-w-[300px]  shadow-lg p-5 rounded-md">
+                <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
 
                 </div>
             </section>

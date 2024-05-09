@@ -13,7 +13,6 @@ const UserLayout = () => {
                 {
                     !location.pathname.includes('profile') && <Navbar />
                 }
-
                 <Outlet />
             </section>
         </main>

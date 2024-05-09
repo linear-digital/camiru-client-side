@@ -5,6 +5,7 @@ import StatisticCard from './_UI/StatisticCard';
 import Attendance from './_UI/Attendance';
 import AbsentStudentList from './_UI/AbsentStudentList';
 import StapManagement from './_UI/StapManagement';
+import DownloadCustomReport from './_UI/DownloadCustomReport';
 
 const Dashboard = () => {
     return (
@@ -48,6 +49,7 @@ const Dashboard = () => {
                         <StapManagement />
                         <AbsentStudentList />
                     </div>
+                    <DownloadCustomReport />
                 </div>
                 <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
 

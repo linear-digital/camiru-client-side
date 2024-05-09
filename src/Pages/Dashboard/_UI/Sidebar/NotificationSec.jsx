@@ -4,7 +4,7 @@ import { UserOutlined } from '@ant-design/icons';
 const NotificationSec = () => {
     return (
         <div className='poppins w-full py-5'>
-            <h1 className="w-[121px] h-[17px] text-primary text-lg font-bold leading-[17.09px]">Notificaion</h1>
+            <h1 className=" text-primary text-lg font-bold leading-[17.09px]">Notificaion</h1>
             <div className='mt-8 grid'>
 
                 <NotificationRow

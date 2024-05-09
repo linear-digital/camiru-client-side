@@ -8,6 +8,7 @@ import StapManagement from './_UI/StapManagement';
 import DownloadCustomReport from './_UI/DownloadCustomReport';
 import RecentMedia from './_UI/RecentMedia';
 import NotificationSec from './_UI/Sidebar/NotificationSec';
+import Messages from './_UI/Sidebar/Messages';
 
 const Dashboard = () => {
     return (
@@ -56,6 +57,7 @@ const Dashboard = () => {
                 </div>
                 <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
                     <NotificationSec />
+                    <Messages />
                 </div>
             </section>
         </Card>

@@ -6,6 +6,7 @@ import Attendance from './_UI/Attendance';
 import AbsentStudentList from './_UI/AbsentStudentList';
 import StapManagement from './_UI/StapManagement';
 import DownloadCustomReport from './_UI/DownloadCustomReport';
+import RecentMedia from './_UI/RecentMedia';
 
 const Dashboard = () => {
     return (
@@ -50,6 +51,7 @@ const Dashboard = () => {
                         <AbsentStudentList />
                     </div>
                     <DownloadCustomReport />
+                    <RecentMedia />
                 </div>
                 <div className="min-w-[350px] max-w-[350px]  shadow-lg p-5 rounded-md">
 

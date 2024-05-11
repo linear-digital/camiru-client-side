@@ -2,6 +2,7 @@ import React from 'react';
 import Filter from './Filter';
 import { Image } from 'antd';
 import ProfileCard from './ProfileCard';
+import Table from './Table';
 
 
 const Checkin = () => {
@@ -12,6 +13,7 @@ const Checkin = () => {
                 desc={"Select your class to checkout the reports"}
             />
             <ProfileCard />
+            <Table />
         </div>
     );
 };

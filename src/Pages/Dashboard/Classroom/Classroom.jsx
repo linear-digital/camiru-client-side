@@ -97,6 +97,15 @@ const ClassRoom = () => {
             <section className='mt-10'>
                 <Table />
             </section>
+            <section className='flex justify-between items-center mt-20'>
+                <div>
+                    <h1 className="w-40 text-primary text-2xl font-bold ">Stuff</h1>
+                    <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Upcoming Student list donw bellow</p>
+                </div>
+            </section>
+            <section className='mt-10'>
+                <Table />
+            </section>
         </main>
     );
 };

@@ -48,25 +48,30 @@ export default function Table() {
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(res => setContacts(res.data))
     }, [])
+    const [selected, setSelected] = useState([]);
+
     return (
         <Card className="h-full w-full  rounded-none shadow-none">
             <table className="w-full min-w-max table-auto text-left">
                 <thead>
                     <tr>
                         <th
-                            className="border-b border-blue-gray-100  p-2"
+                            className="border-b border-blue-gray-100  p-3"
                         >
-                            <Checkbox className="" />
+                            <Checkbox className="" 
+                            checked={selected.length === contacts.length}
+                            onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
+                            />
                         </th>
                         {TABLE_HEAD.map((head) => (
                             <th
                                 key={head}
-                                className="border-b border-blue-gray-100  p-2"
+                                className="border-b border-blue-gray-100  p-3"
                             >
                                 <Typography
                                     variant="small"
                                     color="blue-gray"
-                                    className="font-normal leading-none opacity-70 text-start"
+                                    className="font-normal leading-none opacity-70 text-start text-sm"
                                 >
                                     {head}
                                 </Typography>
@@ -77,12 +82,16 @@ export default function Table() {
                 <tbody>
                     {contacts.map((user, index) => {
                         const isLast = index === contacts.length - 1;
-                        const classes = isLast ? "p-2" : "p-2 border-b border-blue-gray-50  ";
+                        const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id} >
+                            <tr key={user.id} 
+                            className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
+                            >
                                 <td className={classes}>
-                                    <Checkbox />
+                                    <Checkbox checked={selected.includes(user.id)} 
+                                    onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
+                                    />
                                 </td>
                                 <td className={classes}>
                                     <Typography
@@ -112,12 +121,12 @@ export default function Table() {
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <button className="w-[109.53px] text-xs h-[30.72px]  bg-[#def4eb] text-[#3DD598] rounded-md" >
+                                    <button className="w-[100.53px] text-xs h-[25px]  bg-[#def4eb] text-[#3DD598] rounded-md" >
                                         Send Message
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <button className=" text-xs btn btn-link  rounded-md  font-normal text-primary" >
+                                    <button className=" text-xs  btn-link  rounded-md  font-normal text-primary" >
                                         Send Message
                                     </button>
                                 </td>

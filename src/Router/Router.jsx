@@ -14,6 +14,7 @@ import UserLayout from "../Layouts/UserLayout";
 import All_Contacts from "../Pages/Dashboard/All-Contacts/All_Contacts";
 import ClassRoom from "../Pages/Dashboard/Classroom/Classroom";
 import Classroom_roster from "../Pages/Dashboard/ClassRoomRoster/Classroom_roster";
+import Checkin from "../Pages/Dashboard/Checkin/Checkin";
 
 
 const router = createBrowserRouter([
@@ -51,9 +52,14 @@ const router = createBrowserRouter([
             {
                 path: "rooms",
                 element: <ClassRoom />
-            },{
+            },
+            {
                 path: "rooms-roster",
                 element: <Classroom_roster />
+            },
+            {
+                path: "checkin",
+                element: <Checkin />
             },
             {
                 path: "profile",

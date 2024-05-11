@@ -12,17 +12,22 @@ import { CheckIn, ReportIcon } from "../../../util/icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
+import Loader from "../../../Components/Loader";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
 export default function Table() {
     const [contacts, setContacts] = useState([]);
+
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(res => setContacts(res.data))
     }, [])
     const [selected, setSelected] = useState([]);
     const [option, setOption] = useState("Toddlers");
+    if (contacts.length === 0) {
+        return <Loader />
+    }
     return (
         <Card className="h-full w-full  rounded-none shadow-none">
             <table className="w-full min-w-max table-auto text-left">

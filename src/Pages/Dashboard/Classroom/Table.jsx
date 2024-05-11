@@ -8,6 +8,10 @@ import { Checkbox } from "antd";
 import { Dropdown } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { CheckIn, ReportIcon } from "../../../util/icons";
+import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
+import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
+import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
@@ -95,76 +99,7 @@ export default function Table() {
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <Dropdown
-                                        className='option-classroom'
-                                        menu={{
-                                            items: [
-                                                {
-                                                    label: <button
-                                                        className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
-                                                        onClick={() => setOption("Infants")}
-                                                    >
-                                                        Infants
-                                                    </button>,
-                                                    key: '0',
-                                                },
-                                                {
-                                                    type: 'divider',
-                                                },
-                                                {
-                                                    label: <button
-                                                        className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
-                                                        onClick={() => setOption("Toddlers")}
-                                                    >
-                                                        Toddlers
-                                                    </button>,
-                                                    key: '1',
-                                                },
-                                                {
-                                                    type: 'divider',
-                                                },
-                                                {
-                                                    label: <button
-                                                        className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
-                                                        onClick={() => setOption("Pre-K")}
-                                                    >
-                                                        Pre-K
-                                                    </button>,
-                                                    key: '2',
-                                                },
-                                                {
-                                                    type: 'divider',
-                                                },
-                                                {
-                                                    label: <button
-                                                        className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
-                                                        onClick={() => setOption("After Schoolers")}>
-                                                        After Schoolers
-                                                    </button>,
-                                                    key: '3',
-                                                },
-                                                {
-                                                    type: 'divider',
-                                                },
-                                                {
-                                                    label: <button
-                                                        className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
-                                                        onClick={() => setOption("Floating Staff")}>
-                                                        Floating Staff
-                                                    </button>,
-                                                    key: '4',
-                                                }
-                                            ],
-                                        }}
-                                        trigger={['click']}
-                                    >
-                                        <button className="btn btn-yellow btn-sm">
-                                            <span className=" text-[10px] font-medium tracking-tight">
-                                                Action
-                                            </span>
-                                            <FontAwesomeIcon icon={faChevronDown} className="text-[12px]"/>
-                                        </button>
-                                    </Dropdown>
+                                    <ActionButton />
                                 </td>
                             </tr>
                         );
@@ -172,5 +107,88 @@ export default function Table() {
                 </tbody>
             </table>
         </Card>
+    );
+}
+
+const ActionButton = () => {
+    const [option, setOption] = useState("Check in");
+    return (
+        <Dropdown
+            className='option-classroom'
+            menu={{
+                items: [
+                    {
+                        label: <button
+                            className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            onClick={() => setOption("Check in")}
+                        >
+                          <CheckIn />  Check in
+                        </button>,
+                        key: '1',
+                    },
+                    {
+                        type: 'divider',
+                    },
+                    {
+                        label: <button
+                            className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            onClick={() => setOption("View User")}
+                        >
+                          <FontAwesomeIcon icon={faUser}/>
+                            View User
+                        </button>,
+                        key: '2',
+                    },
+                    {
+                        type: 'divider',
+                    },
+                    {
+                        label: <button
+                            className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            onClick={() => setOption("Reports")}
+                        >
+                          <ReportIcon />
+                          Reports
+                        </button>,
+                        key: '3',
+                    },
+                    {
+                        type: 'divider',
+                    },
+                    {
+                        label: <button
+                            className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            onClick={() => setOption("Schedule Absence")}
+                        >
+                          <FontAwesomeIcon icon={faCalendarDays}/>
+                          Schedule Absence
+                        </button>,
+                        key: '4',
+                    },
+                    {
+                        type: 'divider',
+                    },
+                    {
+                        label: <button
+                            className={`${option === "Graduate" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            onClick={() => setOption("Graduate")}
+                        >
+                          <FontAwesomeIcon icon={faGraduationCap}/>
+                          Graduate
+                        </button>,
+                        key: '4',
+                    },
+                ],
+            }}
+            trigger={['click']}
+        >
+            <button className="btn btn-yellow btn-sm">
+                <span className="text-[10px] font-medium tracking-tight">
+                    Action
+                </span>
+                <FontAwesomeIcon icon={faChevronDown} className="text-[12px]" />
+            </button>
+        </Dropdown>
+
     );
 }

@@ -5,7 +5,10 @@ import axios from "axios"
 import { useState } from "react";
 import moment from 'moment';
 import { Checkbox } from "antd";
-const TABLE_HEAD = ["Members", "Registration Date", "Class", "Send Message", "Action"];
+import { Dropdown } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
 export default function Table() {
@@ -15,7 +18,7 @@ export default function Table() {
             .then(res => setContacts(res.data))
     }, [])
     const [selected, setSelected] = useState([]);
-
+    const [option, setOption] = useState("Toddlers");
     return (
         <Card className="h-full w-full  rounded-none shadow-none">
             <table className="w-full min-w-max table-auto text-left">
@@ -24,9 +27,9 @@ export default function Table() {
                         <th
                             className="border-b border-blue-gray-100  p-3"
                         >
-                            <Checkbox className="" 
-                            checked={selected.length === contacts.length}
-                            onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
+                            <Checkbox className=""
+                                checked={selected.length === contacts.length}
+                                onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
                             />
                         </th>
                         {TABLE_HEAD.map((head) => (
@@ -51,12 +54,12 @@ export default function Table() {
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id} 
-                            className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
+                            <tr key={user.id}
+                                className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
                             >
                                 <td className={classes}>
-                                    <Checkbox checked={selected.includes(user.id)} 
-                                    onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
+                                    <Checkbox checked={selected.includes(user.id)}
+                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
                                     />
                                 </td>
                                 <td className={classes}>
@@ -83,18 +86,85 @@ export default function Table() {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        <div className="text-red-600 text-xs font-bold  leading-normal">Infants</div>
+                                        28Y 7M
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <button className="w-[100.53px] text-xs h-[25px]  bg-[#def4eb] text-[#3DD598] rounded-md" >
-                                        Send Message
+                                    <button className="btn btn-sm btn-secondary text-[10px] px-5">
+                                        Clock in
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <button className=" text-xs  btn-link  rounded-md  font-normal text-primary" >
-                                        Send Message
-                                    </button>
+                                    <Dropdown
+                                        className='option-classroom'
+                                        menu={{
+                                            items: [
+                                                {
+                                                    label: <button
+                                                        className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
+                                                        onClick={() => setOption("Infants")}
+                                                    >
+                                                        Infants
+                                                    </button>,
+                                                    key: '0',
+                                                },
+                                                {
+                                                    type: 'divider',
+                                                },
+                                                {
+                                                    label: <button
+                                                        className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
+                                                        onClick={() => setOption("Toddlers")}
+                                                    >
+                                                        Toddlers
+                                                    </button>,
+                                                    key: '1',
+                                                },
+                                                {
+                                                    type: 'divider',
+                                                },
+                                                {
+                                                    label: <button
+                                                        className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
+                                                        onClick={() => setOption("Pre-K")}
+                                                    >
+                                                        Pre-K
+                                                    </button>,
+                                                    key: '2',
+                                                },
+                                                {
+                                                    type: 'divider',
+                                                },
+                                                {
+                                                    label: <button
+                                                        className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
+                                                        onClick={() => setOption("After Schoolers")}>
+                                                        After Schoolers
+                                                    </button>,
+                                                    key: '3',
+                                                },
+                                                {
+                                                    type: 'divider',
+                                                },
+                                                {
+                                                    label: <button
+                                                        className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
+                                                        onClick={() => setOption("Floating Staff")}>
+                                                        Floating Staff
+                                                    </button>,
+                                                    key: '4',
+                                                }
+                                            ],
+                                        }}
+                                        trigger={['click']}
+                                    >
+                                        <button className="btn btn-yellow btn-sm">
+                                            <span className=" text-[10px] font-medium tracking-tight">
+                                                Action
+                                            </span>
+                                            <FontAwesomeIcon icon={faChevronDown} className="text-[12px]"/>
+                                        </button>
+                                    </Dropdown>
                                 </td>
                             </tr>
                         );

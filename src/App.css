@@ -6,6 +6,7 @@
     --secondary: #F8AD47;
     --accent: #98C931;
     --white: #ffffffe8;
+    --yellow: #FFBB3B;
 }
 
 /* Fonts  */
@@ -49,15 +50,28 @@
     height: 100px;
 }
 
-.btn-secondary{
+.btn-secondary {
     background-color: var(--accent);
     border: none;
 }
-.btn-secondary:hover{
+
+.btn-secondary:hover {
     background-color: var(--accent);
     border: none;
 }
-:where(.css-dev-only-do-not-override-1okl62o).ant-checkbox-checked .ant-checkbox-inner{
+
+.btn-yellow {
+    background-color: var(--yellow);
+    border: none;
+    color: white;
+}
+
+.btn-yellow:hover {
+    background-color: var(--yellow);
+    border: none;
+}
+
+:where(.css-dev-only-do-not-override-1okl62o).ant-checkbox-checked .ant-checkbox-inner {
     background-color: var(--primary) !important;
     border: var(--primary) !important;
     /* color: #15acde40; */

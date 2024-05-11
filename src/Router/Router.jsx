@@ -12,6 +12,7 @@ import Address from "../Pages/User/_UI/Adress";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import UserLayout from "../Layouts/UserLayout";
 import All_Contacts from "../Pages/Dashboard/All-Contacts/All_Contacts";
+import ClassRoom from "../Pages/Dashboard/Classroom/Classroom";
 
 
 const router = createBrowserRouter([
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
             {
                 path: "contacts",
                 element: <All_Contacts />
+            },
+            {
+                path: "rooms",
+                element: <ClassRoom />
             },
             {
                 path: "profile",

@@ -15,7 +15,8 @@ import All_Contacts from "../Pages/Dashboard/All-Contacts/All_Contacts";
 import ClassRoom from "../Pages/Dashboard/Classroom/Classroom";
 import Classroom_roster from "../Pages/Dashboard/ClassRoomRoster/Classroom_roster";
 import Checkin from "../Pages/Dashboard/Checkin/Checkin";
-
+import { Outlet } from "react-router-dom";
+import UserProfile from '../Pages/Dashboard/User/Profile/Profile'
 
 const router = createBrowserRouter([
     {
@@ -61,6 +62,18 @@ const router = createBrowserRouter([
                 path: "checkin",
                 element: <Checkin />
             },
+            {
+                path: "user",
+                element: <Outlet />,
+                children: [
+                    {
+                        path: "profile",
+                        element: <UserProfile />
+                    }
+                ]
+            },
+
+
             {
                 path: "profile",
                 element: <Profile />,

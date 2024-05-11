@@ -7,7 +7,6 @@ import { useState } from 'react';
 
 const Filter = ({ name, desc }) => {
     const [option, setOption] = useState("Infants");
-    const [reportType, setReportType] = useState("Daily Reports");
     return (
         <section className='flex justify-between items-center'>
             <div>

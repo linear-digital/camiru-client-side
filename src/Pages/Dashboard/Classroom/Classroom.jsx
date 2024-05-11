@@ -16,7 +16,7 @@ const ClassRoom = () => {
         <main className='p-10 bg-white rounded-lg poppins'>
             <section className='flex justify-between items-center'>
                 <div>
-                    <h1 className="w-40 text-primary text-2xl font-bold ">Classroom</h1>
+                    <h1 className=" text-primary text-2xl font-bold ">Classroom</h1>
                     <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Select your class to checkout the reports</p>
                 </div>
                 <div className='flex gap-10 items-center'>
@@ -99,7 +99,7 @@ const ClassRoom = () => {
             </section>
             <section className='flex justify-between items-center mt-20'>
                 <div>
-                    <h1 className="w-40 text-primary text-2xl font-bold ">Stuff</h1>
+                    <h1 className=" text-primary text-2xl font-bold ">Stuff</h1>
                     <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Upcoming Student list donw bellow</p>
                 </div>
             </section>

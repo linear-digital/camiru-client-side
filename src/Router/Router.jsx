@@ -11,6 +11,7 @@ import Contacts from "../Pages/User/_UI/Contacts";
 import Address from "../Pages/User/_UI/Adress";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import UserLayout from "../Layouts/UserLayout";
+import All_Contacts from "../Pages/Dashboard/All-Contacts/All_Contacts";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <Dashboard />
+            },
+            {
+                path: "contacts",
+                element: <All_Contacts />
             },
             {
                 path: "profile",

@@ -10,6 +10,9 @@ const Profile = () => {
                 desc={"Checkout Roxie Word and take your action !!"}
             />
             <ProfileCard />
+            <section className='mt-10'>
+
+            </section>
         </div>
     );
 };

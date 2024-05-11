@@ -8,8 +8,10 @@ import Table from './Table';
 import { Dropdown } from 'antd';
 import { Space } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
+import { useState } from 'react';
 
 const ClassRoom = () => {
+    const [option, setOption] = useState("Toddlers");
     return (
         <main className='p-10 bg-white rounded-lg poppins'>
             <section className='flex justify-between items-center'>
@@ -21,10 +23,14 @@ const ClassRoom = () => {
                     <div className="text-primary text-xs font-semibold ">21th December, 2022</div>
 
                     <Dropdown
+                        className='option-classroom'
                         menu={{
                             items: [
                                 {
-                                    label: <button>
+                                    label: <button
+                                        className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption("Infants")}
+                                    >
                                         Infants
                                     </button>,
                                     key: '0',
@@ -33,7 +39,10 @@ const ClassRoom = () => {
                                     type: 'divider',
                                 },
                                 {
-                                    label: <button>
+                                    label: <button
+                                        className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption("Toddlers")}
+                                    >
                                         Toddlers
                                     </button>,
                                     key: '1',
@@ -42,7 +51,10 @@ const ClassRoom = () => {
                                     type: 'divider',
                                 },
                                 {
-                                    label: <button>
+                                    label: <button
+                                        className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption("Pre-K")}
+                                    >
                                         Pre-K
                                     </button>,
                                     key: '2',
@@ -51,7 +63,9 @@ const ClassRoom = () => {
                                     type: 'divider',
                                 },
                                 {
-                                    label: <button>
+                                    label: <button
+                                        className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption("After Schoolers")}>
                                         After Schoolers
                                     </button>,
                                     key: '3',
@@ -60,15 +74,21 @@ const ClassRoom = () => {
                                     type: 'divider',
                                 },
                                 {
-                                    label: '3rd menu item',
+                                    label: <button
+                                        className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption("Floating Staff")}>
+                                        Floating Staff
+                                    </button>,
                                     key: '4',
-                                },
+                                }
                             ],
                         }}
                         trigger={['click']}
                     >
                         <button className="w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
-                            <span className="  font-medium tracking-tight">Add Profile</span>
+                            <span className=" text-xs font-medium tracking-tight">
+                                {option}
+                            </span>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </button>
                     </Dropdown>

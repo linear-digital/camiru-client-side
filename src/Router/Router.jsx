@@ -21,6 +21,7 @@ import Enrollment from "../Pages/Dashboard/User/Profile/_UI/Enrollment";
 import Address_Contact from "../Pages/Dashboard/User/Profile/_UI/Address_Contact";
 import ScheduleAbsence from "../Pages/Dashboard/User/Profile/_UI/ScheduleAbsence";
 import Report from "../Pages/Dashboard/User/Profile/_UI/Report";
+import Development_evidence from "../Pages/Dashboard/User/Profile/_UI/Development_evidence";
 
 const router = createBrowserRouter([
     {
@@ -89,6 +90,10 @@ const router = createBrowserRouter([
                             {
                                 path: "report",
                                 element: <Report />
+                            },
+                            {
+                                path: "development-evidence",
+                                element: <Development_evidence />
                             }
                         ]
                     },

@@ -5,8 +5,7 @@ import React from 'react';
 import { useState } from 'react';
 
 const Address_Contact = () => {
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
-    const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
+
     return (
         <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
             <div className="flex gap-10">

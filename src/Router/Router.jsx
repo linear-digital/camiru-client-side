@@ -20,6 +20,7 @@ import UserProfile from '../Pages/Dashboard/User/Profile/Profile'
 import Enrollment from "../Pages/Dashboard/User/Profile/_UI/Enrollment";
 import Address_Contact from "../Pages/Dashboard/User/Profile/_UI/Address_Contact";
 import ScheduleAbsence from "../Pages/Dashboard/User/Profile/_UI/ScheduleAbsence";
+import Report from "../Pages/Dashboard/User/Profile/_UI/Report";
 
 const router = createBrowserRouter([
     {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
                             {
                                 path: "schedule-absence",
                                 element: <ScheduleAbsence />
+                            },
+                            {
+                                path: "report",
+                                element: <Report />
                             }
                         ]
                     },

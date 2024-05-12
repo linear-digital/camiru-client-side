@@ -5,8 +5,10 @@ const Enrollment = () => {
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
     return (
-        <div className='w-full border pl-[84px] py-[55px] rounded-lg poppins'>
-            <div className="w-[116.87px] text-slate-900 text-2xl font-bold ">Enrollment</div>
+        <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
+            <h1 className="text-slate-900 text-2xl font-bold ">
+                Enrollment
+            </h1>
             <div className='mt-10'>
 
                 <Row

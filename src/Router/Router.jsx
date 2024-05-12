@@ -18,6 +18,7 @@ import Checkin from "../Pages/Dashboard/Checkin/Checkin";
 import { Outlet } from "react-router-dom";
 import UserProfile from '../Pages/Dashboard/User/Profile/Profile'
 import Enrollment from "../Pages/Dashboard/User/Profile/_UI/Enrollment";
+import Address_Contact from "../Pages/Dashboard/User/Profile/_UI/Address_Contact";
 
 const router = createBrowserRouter([
     {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
                             {
                                 path: "enrollment",
                                 element: <Enrollment />
+                            },
+                            {
+                                path: "details",
+                                element: <Address_Contact />
                             }
                         ]
                     },

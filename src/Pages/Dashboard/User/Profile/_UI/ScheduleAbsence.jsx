@@ -15,13 +15,13 @@ const ScheduleAbsence = () => {
             </div>
             <section className='flex items-start'>
                 <div className='mt-10'>
-                    <div className="grid grid-cols-5 gap-10 mb-8 items-center">
+                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
                         <div className="col-span-1 justify-end flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Classroom
                             </h4>
                         </div>
-                        <div className="col-span-4 flex items-center gap-3">
+                        <div className="col-span-3 flex items-center gap-3">
                             <div className="w-[300px] h-[31.50px] bg-slate-50 rounded-sm border border-slate-300/opacity-50 grid grid-cols-8" >
                                 <div className='col-span-3 border-r px-1'>
                                     <select
@@ -44,13 +44,13 @@ const ScheduleAbsence = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-5 gap-10 mb-8 items-center">
+                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
                         <div className="col-span-1 justify-end flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Reason
                             </h4>
                         </div>
-                        <div className="col-span-4 flex items-center gap-3">
+                        <div className="col-span-3 flex items-center gap-3">
                             <div className="w-[300px] h-[31.50px] bg-slate-50 rounded-sm border border-slate-300/opacity-50 grid grid-cols-8" >
                                 <div className='col-span-3 border-r px-1'>
                                     <select
@@ -84,13 +84,13 @@ const ScheduleAbsence = () => {
                         </div>
                     </div>
                     {/* Start Date  */}
-                    <div className="grid grid-cols-5 gap-10 mb-8 items-center">
+                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
                         <div className="col-span-1 justify-end flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Start Date
                             </h4>
                         </div>
-                        <div className="col-span-4 flex items-center gap-3">
+                        <div className="col-span-3 flex items-center gap-3">
                             <label htmlFor='calendar' className="w-[300px] h-[31.50px] bg-slate-50 rounded-sm border border-slate-300/opacity-50 text-xs text-gray-600 flex items-center justify-start px-4" >
                                 <input type="date" className='w-full h-full bg-slate-50 border-none outline-none ' id='calendar'
 
@@ -100,13 +100,13 @@ const ScheduleAbsence = () => {
                         </div>
                     </div>
                     {/* End Date  */}
-                    <div className="grid grid-cols-5 gap-10 mb-8 items-center">
+                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
                         <div className="col-span-1 justify-end flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 End Date
                             </h4>
                         </div>
-                        <div className="col-span-4 flex items-center gap-3">
+                        <div className="col-span-3 flex items-center gap-3">
                             <label htmlFor='calendar' className="w-[300px] h-[31.50px] bg-slate-50 rounded-sm border border-slate-300/opacity-50 text-xs text-gray-600 flex items-center justify-start px-4" >
                                 <input type="date" className='w-full h-full bg-slate-50 border-none outline-none ' id='calendar'
 
@@ -116,13 +116,13 @@ const ScheduleAbsence = () => {
                         </div>
                     </div>
                     {/* Note   */}
-                    <div className="grid grid-cols-5 gap-10 mb-8 items-start">
+                    <div className="grid grid-cols-4 gap-10 mb-8 items-start">
                         <div className="col-span-1 justify-end flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Note
                             </h4>
                         </div>
-                        <div className="col-span-4 flex items-center gap-3">
+                        <div className="col-span-3 flex items-center gap-3">
                             <textarea name="" id="" className='w-[300px] border outline-none text-xs p-3 h-[131px]'
                                 placeholder='Type note here'
                             >
@@ -131,11 +131,11 @@ const ScheduleAbsence = () => {
 
                         </div>
                     </div>
-                    <div className="grid grid-cols-5 gap-10 mt-5 items-start">
+                    <div className="grid grid-cols-4 gap-10 mt-5 items-start">
                         <div className="col-span-1 justify-end flex items-center">
 
                         </div>
-                        <div className="col-span-4">
+                        <div className="col-span-3">
                             <button
                                 className=' bg-[#c6f2eccd] text-xs px-5  w-[135px] font-semibold text-[#24a899] h-[30px] rounded-md'
                             >

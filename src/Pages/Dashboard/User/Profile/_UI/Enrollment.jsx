@@ -244,13 +244,13 @@ const Enrollment = ({ edit }) => {
 export default Enrollment;
 
 const Row = ({ title, desc, }) => {
-    return <div className="grid grid-cols-5 gap-10 mb-8">
+    return <div className="grid grid-cols-4 gap-10 mb-8 w-full">
         <div className="col-span-1 justify-end flex items-center">
             <h4 className="text-zinc-700 text-sm font-semibold">
                 {title}
             </h4>
         </div>
-        <div className="col-span-4 flex items-center">
+        <div className="col-span-3 flex items-center">
             <h5 className="text-zinc-700 text-sm font-normal ">{desc}</h5>
         </div>
     </div>

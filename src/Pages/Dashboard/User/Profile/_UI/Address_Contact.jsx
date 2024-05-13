@@ -148,13 +148,13 @@ const Address_Contact = ({ edit }) => {
                     </div>
                     :
                     <div className='mt-10'>
-                        <div className="grid grid-cols-5 gap-10 mb-8 items-start">
+                        <div className="grid grid-cols-4 gap-10 mb-8 items-start">
                             <div className="col-span-1 justify-end flex items-center">
                                 <h4 className="text-zinc-700 text-sm font-semibold">
                                     Parents
                                 </h4>
                             </div>
-                            <div className="col-span-4 flex items-center gap-3">
+                            <div className="col-span-3 flex items-center gap-3">
                                 <Gurdian
                                     name={"Father"}
                                     phone={"+001234567"}
@@ -167,13 +167,13 @@ const Address_Contact = ({ edit }) => {
                                 />
                             </div>
                         </div>
-                        <div className="grid grid-cols-5 gap-10 mb-8 items-start">
+                        <div className="grid grid-cols-4 gap-10 mb-8 items-start">
                             <div className="col-span-1 justify-end flex items-center">
                                 <h4 className="text-zinc-700 text-sm font-semibold">
                                     Guardians
                                 </h4>
                             </div>
-                            <div className="col-span-4 flex items-center gap-3">
+                            <div className="col-span-3 flex items-center gap-3">
                                 <Gurdian
                                     name={"Grand Father"}
                                     phone={"+001234567"}
@@ -217,13 +217,13 @@ const Address_Contact = ({ edit }) => {
 export default Address_Contact;
 
 const Row = ({ title, desc }) => {
-    return <div className="grid grid-cols-5 gap-10 mb-8">
+    return <div className="grid grid-cols-4 gap-10 mb-8">
         <div className="col-span-1 justify-end flex items-center">
             <h4 className="text-zinc-700 text-sm font-semibold">
                 {title}
             </h4>
         </div>
-        <div className="col-span-4 flex items-center">
+        <div className="col-span-3 flex items-center">
             <h5 className="text-zinc-700 text-sm font-normal ">{desc}</h5>
         </div>
     </div>

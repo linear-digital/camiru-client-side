@@ -79,11 +79,19 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 path: "enrollment",
-                                element: <Enrollment />
+                                element: <Enrollment />,
+                            },
+                            {
+                                path: "enrollment/edit",
+                                element: <Enrollment edit={true} />,
                             },
                             {
                                 path: "details",
                                 element: <Address_Contact />
+                            },
+                            {
+                                path: "details/edit",
+                                element: <Address_Contact edit={true} />
                             },
                             {
                                 path: "schedule-absence",
@@ -107,7 +115,7 @@ const router = createBrowserRouter([
                             }
                         ]
                     },
-                   
+
 
                 ]
             },

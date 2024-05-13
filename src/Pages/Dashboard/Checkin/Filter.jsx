@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 const Filter = ({ name, desc }) => {
-    const [option, setOption] = useState("Infants");
+  
     const [mode, setMode] = useState("view");
     const location = useLocation();
     const isIncluded = (path) => {
@@ -38,76 +38,7 @@ const Filter = ({ name, desc }) => {
             {
                 mode === "filter" ?
                     <div className='flex gap-5 items-center'>
-                        <Dropdown
-                            className='option-classroom'
-                            menu={{
-                                items: [
-                                    {
-                                        label: <button
-                                            className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
-                                            onClick={() => setOption("Infants")}
-                                        >
-                                            Infants
-                                        </button>,
-                                        key: '0',
-                                    },
-                                    {
-                                        type: 'divider',
-                                    },
-                                    {
-                                        label: <button
-                                            className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
-                                            onClick={() => setOption("Toddlers")}
-                                        >
-                                            Toddlers
-                                        </button>,
-                                        key: '1',
-                                    },
-                                    {
-                                        type: 'divider',
-                                    },
-                                    {
-                                        label: <button
-                                            className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
-                                            onClick={() => setOption("Pre-K")}
-                                        >
-                                            Pre-K
-                                        </button>,
-                                        key: '2',
-                                    },
-                                    {
-                                        type: 'divider',
-                                    },
-                                    {
-                                        label: <button
-                                            className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
-                                            onClick={() => setOption("After Schoolers")}>
-                                            After Schoolers
-                                        </button>,
-                                        key: '3',
-                                    },
-                                    {
-                                        type: 'divider',
-                                    },
-                                    {
-                                        label: <button
-                                            className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
-                                            onClick={() => setOption("Yearly Reports")}>
-                                            Floating Staff
-                                        </button>,
-                                        key: '4',
-                                    }
-                                ],
-                            }}
-                            trigger={['click']}
-                        >
-                            <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
-                                <span className=" text-xs font-medium tracking-tight">
-                                    {option}
-                                </span>
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </button>
-                        </Dropdown>
+                       <ClassRoomSelector />
                         <div className="flex items-center gap-3">
                             <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
                                 Nov 21 , 2024
@@ -131,10 +62,10 @@ const Filter = ({ name, desc }) => {
                             Mark As Graduate
                             <FontAwesomeIcon icon={faSquareCheck} />
                         </Link>
-                        <button className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
+                        <Link to={isIncluded("edit") ? `${location.pathname}` : `${location.pathname}/edit`} className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
                             Advance Edit Page
                             <FontAwesomeIcon icon={faPen} className='text-[#FFBB3B]' />
-                        </button>
+                        </Link>
                     </div>
                         : null
             }
@@ -143,3 +74,77 @@ const Filter = ({ name, desc }) => {
 };
 
 export default Filter;
+
+export const ClassRoomSelector = () => {
+    const [option, setOption] = useState("Infants");
+    return <Dropdown
+        className='option-classroom'
+        menu={{
+            items: [
+                {
+                    label: <button
+                        className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
+                        onClick={() => setOption("Infants")}
+                    >
+                        Infants
+                    </button>,
+                    key: '0',
+                },
+                {
+                    type: 'divider',
+                },
+                {
+                    label: <button
+                        className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
+                        onClick={() => setOption("Toddlers")}
+                    >
+                        Toddlers
+                    </button>,
+                    key: '1',
+                },
+                {
+                    type: 'divider',
+                },
+                {
+                    label: <button
+                        className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
+                        onClick={() => setOption("Pre-K")}
+                    >
+                        Pre-K
+                    </button>,
+                    key: '2',
+                },
+                {
+                    type: 'divider',
+                },
+                {
+                    label: <button
+                        className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
+                        onClick={() => setOption("After Schoolers")}>
+                        After Schoolers
+                    </button>,
+                    key: '3',
+                },
+                {
+                    type: 'divider',
+                },
+                {
+                    label: <button
+                        className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
+                        onClick={() => setOption("Yearly Reports")}>
+                        Floating Staff
+                    </button>,
+                    key: '4',
+                }
+            ],
+        }}
+        trigger={['click']}
+    >
+        <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+            <span className=" text-xs font-medium tracking-tight">
+                {option}
+            </span>
+            <FontAwesomeIcon icon={faChevronDown} />
+        </button>
+    </Dropdown>
+}

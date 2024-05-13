@@ -76,3 +76,16 @@
     border: var(--primary) !important;
     /* color: #15acde40; */
 }
+
+.enroll .MuiInputBase-root {
+    height: 30px;
+    font-size: 11px !important;
+    width: 80px;
+    border: #187A82 1px solid !important;
+    outline: none !important;
+}
+.enroll .MuiSvgIcon-root {
+    width: 14px !important;
+    height: 14px !important;
+    color: #187A82 !important;
+}

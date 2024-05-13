@@ -16,7 +16,7 @@ const Graduate = () => {
                 <h1 className="mt-5 opacity-95 text-gray-900 text-[43.95px] font-bold">Graduated</h1>
                 <h5 className="mt-5 opacity-95 text-stone-500 text-[25.11px] font-normal ">You mark Roxie Word as graduated</h5>
                 <Link to={'/dashboard'}>
-                    <Button variant="filled" color="red" className='rounded-3xl flex items-center bg-[#F8234F] gap-2 mt-5'>
+                    <Button variant="filled" color="red" className='rounded-3xl flex items-center bg-[#F8234F] gap-2 mt-5 text-xs'>
                         <div style={{ width: 30.87, height: 30.73, background: 'white' }}
                             className='rounded-full flex justify-center items-center text-black'
                         >

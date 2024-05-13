@@ -48,7 +48,6 @@ const Profile = () => {
                 {
                     !isGraduate && <Sidebar />
                 }
-
                 <Outlet />
             </section>
         </div>

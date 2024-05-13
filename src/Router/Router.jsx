@@ -23,6 +23,7 @@ import ScheduleAbsence from "../Pages/Dashboard/User/Profile/_UI/ScheduleAbsence
 import Report from "../Pages/Dashboard/User/Profile/_UI/Report";
 import Development_evidence from "../Pages/Dashboard/User/Profile/_UI/Development_evidence";
 import HealthLog from "../Pages/Dashboard/User/Profile/_UI/HealthLog";
+import Graduate from "../Pages/Dashboard/User/Graduate";
 
 const router = createBrowserRouter([
     {
@@ -99,9 +100,14 @@ const router = createBrowserRouter([
                             {
                                 path: "health-log",
                                 element: <HealthLog />
+                            },
+                            {
+                                path: "graduate",
+                                element: <Graduate />
                             }
                         ]
                     },
+                   
 
                 ]
             },

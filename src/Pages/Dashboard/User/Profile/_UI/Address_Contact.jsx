@@ -3,18 +3,20 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card } from '@material-tailwind/react';
 import React from 'react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const Address_Contact = ({ edit }) => {
-
+    const location = useLocation();
     return (
         <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
             <div className="flex gap-10">
                 <h1 className="text-slate-900 text-2xl font-bold ">Address & Contact</h1>
                 {
-                    !edit && <button className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
-                        Edit Profile Information
+                    !edit && <Link to={location.pathname.includes("edit") ? `${location.pathname}` : `${location.pathname}/edit`} className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
+                        Advance Edit Page
                         <FontAwesomeIcon icon={faPen} className='text-[#FFBB3B]' />
-                    </button>
+                    </Link>
                 }
             </div>
             {

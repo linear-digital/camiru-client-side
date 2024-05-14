@@ -84,8 +84,33 @@
     border: #187A82 1px solid !important;
     outline: none !important;
 }
+
 .enroll .MuiSvgIcon-root {
     width: 14px !important;
     height: 14px !important;
     color: #187A82 !important;
+}
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* @media screen and (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+} */
+
+
+@media only screen and (max-width: 1500px) {
+    .media-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .media-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }

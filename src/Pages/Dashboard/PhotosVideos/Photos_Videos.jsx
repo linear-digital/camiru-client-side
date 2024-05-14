@@ -38,7 +38,7 @@ const Photos_Videos = () => {
                     </button>
                 </div>
             </div>
-            <div className="grid grid-cols-4 mt-10 gap-5">
+            <div className="grid media-grid mt-10 gap-5">
                 <ImageCard />
                 <ImageCard />
                 <ImageCard />

@@ -13,3 +13,16 @@ const Avater = () => {
 };
 
 export default Avater;
+
+export const UserAvater = ({ className, url }) => {
+    return (
+        <div className={`avatar overflow-hidden ${className}`}>
+            <div
+                className="h-full w-full">
+                <img src={url ? url : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}
+                    className='w-full h-full object-cover'
+                />
+            </div>
+        </div>
+    )
+}

@@ -47,7 +47,7 @@ export const links = [
     {
         id: 8,
         name: 'Messaging',
-        path: '/dashboard/messaging',
+        path: '/dashboard/messages',
         icon: Messaging
     },
     {

@@ -25,6 +25,7 @@ import Development_evidence from "../Pages/Dashboard/User/Profile/_UI/Developmen
 import HealthLog from "../Pages/Dashboard/User/Profile/_UI/HealthLog";
 import Graduate from "../Pages/Dashboard/User/Graduate";
 import Photos_Videos from "../Pages/Dashboard/PhotosVideos/Photos_Videos";
+import Messages from "../Pages/Dashboard/Messages/Messages";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
             {
                 path: "contacts",
                 element: <All_Contacts />
+            },
+            {
+                path: "messages",
+                element: <Messages />
             },
             {
                 path: "rooms",

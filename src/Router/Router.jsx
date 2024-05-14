@@ -24,6 +24,7 @@ import Report from "../Pages/Dashboard/User/Profile/_UI/Report";
 import Development_evidence from "../Pages/Dashboard/User/Profile/_UI/Development_evidence";
 import HealthLog from "../Pages/Dashboard/User/Profile/_UI/HealthLog";
 import Graduate from "../Pages/Dashboard/User/Graduate";
+import Photos_Videos from "../Pages/Dashboard/PhotosVideos/Photos_Videos";
 
 const router = createBrowserRouter([
     {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path: "rooms",
                 element: <ClassRoom />
+            },
+            {
+                path: "media",
+                element: <Photos_Videos />
             },
             {
                 path: "rooms-roster",

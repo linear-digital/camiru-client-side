@@ -1,6 +1,5 @@
-import { Avatar } from 'antd';
+
 import React from 'react';
-import { UserOutlined } from '@ant-design/icons';
 
 const RecentActivity = () => {
     return (

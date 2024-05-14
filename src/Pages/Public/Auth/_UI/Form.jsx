@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Form = ({ mode }) => {
     const [showPassword, setShowPassword] = React.useState(false);
-    const [percent, setPercent] = React.useState(0);
     const navigate = useNavigate();
     const formHandler = (e) => {
         e.preventDefault();
@@ -18,7 +17,7 @@ const Form = ({ mode }) => {
         const target = new FormData(e.target);
         const data = Object.fromEntries(target.entries())
         console.log(data);
-        navigate('/dashboard/profile');
+        navigate('/dashboard');
     }
     return (
         <div className="w-[457px] h-auto p-5 flex flex-col justify-center">

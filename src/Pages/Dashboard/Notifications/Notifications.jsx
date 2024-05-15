@@ -13,7 +13,6 @@ const tabs = [
 ]
 const Notifications = () => {
     const [active, setActive] = React.useState("updates")
-    
     return (
         <div className='p-10 bg-white rounded-lg h-full overflow-y-auto'>
             <h2 className=" text-cyan-700 text-2xl font-bold ">Notifications</h2>

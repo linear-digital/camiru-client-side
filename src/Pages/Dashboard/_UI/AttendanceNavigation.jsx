@@ -41,7 +41,7 @@ export default AttendanceNavigation;
 
 const AttCard = ({ title, path, active, onChange }) => {
     return <button onClick={() => onChange(path)}
-        className={`w-[75px] text-center py-2 text-xs border-b-[3px] ${active ? "border-primary" : "border-gray-200"}`}
+        className={`lg:w-[75px] w-[50px] text-center py-2 lg:text-xs text-[8px] border-b-[3px] ${active ? "border-primary" : "border-gray-200"}`}
     >
         {title}
     </button>

@@ -28,7 +28,7 @@ const Dashboard = () => {
                     </Button>
                 </div>
             </section>
-            <section className='flex mt-10 gap-10 w-full'>
+            <section className='lg:flex mt-10 gap-10 w-full'>
                 <div className="w-full">
                     <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-3">
                         <StatisticCard

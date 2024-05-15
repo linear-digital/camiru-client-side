@@ -9,14 +9,14 @@ import { faCalendar } from '@fortawesome/free-regular-svg-icons';
 const ScheduleAbsence = () => {
 
     return (
-        <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
+        <div className='w-full border lg:pl-[84px] px-5 py-[55px] rounded-xl poppins'>
             <div className="flex gap-10">
-                <h1 className="text-slate-900 text-2xl font-bold ">Schedule Absence</h1>
+                <h1 className="text-slate-900 lg:text-2xl text-xl font-bold ">Schedule Absence</h1>
             </div>
-            <section className='flex items-start'>
+            <section className='lg:flex items-start'>
                 <div className='mt-10'>
-                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
-                        <div className="col-span-1 justify-end flex items-center">
+                    <div className="lg:grid grid-cols-4 gap-10 mb-8 items-center">
+                        <div className="col-span-1 lg:justify-end lg:mb-0 mb-2 flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Classroom
                             </h4>
@@ -44,8 +44,8 @@ const ScheduleAbsence = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
-                        <div className="col-span-1 justify-end flex items-center">
+                    <div className="lg:grid grid-cols-4 gap-10 lg:mb-8 mb-5 items-center">
+                        <div className="col-span-1 lg:justify-end lg:mb-0 mb-2 flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Reason
                             </h4>
@@ -84,8 +84,8 @@ const ScheduleAbsence = () => {
                         </div>
                     </div>
                     {/* Start Date  */}
-                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
-                        <div className="col-span-1 justify-end flex items-center">
+                    <div className="lg:grid grid-cols-4 gap-10 lg:mb-8 mb-5 items-center">
+                        <div className="col-span-1 lg:justify-end lg:mb-0 mb-2 flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Start Date
                             </h4>
@@ -100,8 +100,8 @@ const ScheduleAbsence = () => {
                         </div>
                     </div>
                     {/* End Date  */}
-                    <div className="grid grid-cols-4 gap-10 mb-8 items-center">
-                        <div className="col-span-1 justify-end flex items-center">
+                    <div className="lg:grid grid-cols-4 gap-10 lg:mb-8 mb-5 items-center">
+                        <div className="col-span-1 lg:justify-end lg:mb-0 mb-2 flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 End Date
                             </h4>
@@ -116,8 +116,8 @@ const ScheduleAbsence = () => {
                         </div>
                     </div>
                     {/* Note   */}
-                    <div className="grid grid-cols-4 gap-10 mb-8 items-start">
-                        <div className="col-span-1 justify-end flex items-center">
+                    <div className="lg:grid grid-cols-4 gap-10 mb-8 items-start">
+                        <div className="col-span-1 lg:justify-end lg:mb-0 mb-2 flex items-center">
                             <h4 className="text-zinc-700 text-sm font-semibold">
                                 Note
                             </h4>
@@ -145,7 +145,7 @@ const ScheduleAbsence = () => {
                     </div>
 
                 </div>
-                <div className="w-[264px] h-[136.72px] bg-teal-300/20 rounded-[9.16px] flex justify-center items-center px-5" >
+                <div className="lg:w-[264px] w-full mt-5 lg:mt-0 h-[136.72px] bg-teal-300/20 rounded-[9.16px] flex justify-center items-center px-5" >
                     <p className="">
                         <span className="text-teal-600 text-[9.51px] font-normal ">Set planned absences in advance for a child or teacher.  
                         </span>

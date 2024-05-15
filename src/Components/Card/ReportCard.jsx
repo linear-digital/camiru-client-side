@@ -21,14 +21,14 @@ const ReportCard = ({ type, size }) => {
                     }
 
                     <div>
-                        <h4 className={`text-black ${size === "sm" ? "text-sm" : "text-base"} font-medium `}>
+                        <h4 className={`text-black ${size === "sm" ? "text-sm" : "lg:text-base text-xs"} font-medium `}>
                             Download Check in-out Reports
                         </h4>
                         {
                             size === "sm" ?
                                 <div className=" text-stone-500 text-xs font-medium mt-1">21 Dec, 2022</div>
                                 :
-                                <h5 className=" text-stone-500 text-sm font-medium ">4.5Mb</h5>
+                                <h5 className=" text-stone-500 lg:text-sm text-xs font-medium ">4.5Mb</h5>
                         }
                     </div>
                 </div>

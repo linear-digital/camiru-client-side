@@ -9,12 +9,11 @@ import ReportCard from '../../../../../Components/Card/ReportCard';
 const Report = () => {
 
     return (
-        <div className='w-full pl-[84px] pr-[50px] py-[55px] rounded-xl poppins bg-[#F1F6FA63]'>
-            <h1 className="text-slate-900 text-2xl font-bold ">
+        <div className='w-full lg:pl-[84px] lg:pr-[50px] px-2 lg:py-[55px] py-5 rounded-xl poppins bg-[#F1F6FA63]'>
+            <h1 className="text-slate-900 lg:text-2xl text-xl font-bold ">
                 Profile Reports
             </h1>
-            <div className='mt-10 flex flex-col gap-5'>
-
+            <div className='lg:mt-10 mt-5 flex flex-col gap-5'>
                 <ReportCard />
                 <ReportCard />
                 <ReportCard />

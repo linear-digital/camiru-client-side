@@ -97,11 +97,7 @@
     grid-template-columns: repeat(4, 1fr);
 }
 
-/* @media screen and (max-width: 768px) {
-    .media-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-} */
+
 .messageCard {
     background: var(--Gray-1, #E3EBF1);
 }
@@ -111,8 +107,26 @@
     color: white !important;
 }
 
+@media screen and (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-@media only screen and (max-width: 1500px) {
+
+@media only screen and (min-width: 1000px) {
+    .media-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .media-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1500px) {
     .media-grid {
         grid-template-columns: repeat(5, 1fr);
     }

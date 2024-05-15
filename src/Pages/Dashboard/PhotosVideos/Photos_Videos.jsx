@@ -11,13 +11,13 @@ import { Bars, Grids } from '../../../util/icons';
 const Photos_Videos = () => {
 
     return (
-        <div className='p-10 bg-white rounded-lg'>
-            <div className="flex justify-between items-center">
+        <div className='lg:p-10 p-5 bg-white rounded-lg'>
+            <div className="lg:flex justify-between items-center">
                 <div>
-                    <h3 className="text-zinc-800 text-2xl font-semibold ">Recent Photos & videos</h3>
+                    <h3 className="text-zinc-800 lg:text-2xl text-xl font-semibold ">Recent Photos & videos</h3>
                     <p className=" text-neutral-400 text-xs mt-1 font-normal">Uploading photos & Videos is the #1 way to engage parents.<br /></p>
                 </div>
-                <div className='flex gap-5 items-center'>
+                <div className='flex flex-wrap lg:gap-5 gap-3 mt-5 lg:mt-0 items-center'>
                     <ClassRoomSelector options={class_rooms}
                         color={"#FFBB3B"} border={"#FFBB3B"}
                     />

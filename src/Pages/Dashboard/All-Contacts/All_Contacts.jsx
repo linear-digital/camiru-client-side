@@ -14,22 +14,22 @@ const All_Contacts = () => {
                     <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Contacts</h1>
                     <p className=" text-neutral-400 lg:mt-2 mt-1 font-normal text-sm">Checkout your overview at a glance</p>
                 </div>
-                <div className='flex flex-wrap lg:gap-5 gap-3'>
-                    <div className='mt-2 w-full'>
+                <div className='flex flex-wrap lg:flex-nowrap lg:gap-5 gap-3'>
+                    <div className='mt-2 lg:mt-0 lg:w-auto w-full'>
                         <NavSearchbar variant={'borderd'} placeholder={"Search Contact"} />
                     </div>
-                    <button className="w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-amber-50 text-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs">
+                    <button className="min-w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-amber-50 text-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs">
                         <span className="  font-medium tracking-tight">Add Profile</span>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
-                    <button className="w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs">
+                    <button className="min-w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs">
                         <span className=" font-medium tracking-tight">Find Filter</span>
                         <FontAwesomeIcon icon={faChevronDown} className='text-amber-500' />
                     </button>
-                    <button className='w-[47px] h-[47px] bg-amber-50 rounded-xl flex justify-center items-center'>
+                    <button className='min-w-[47px] h-[47px] bg-amber-50 rounded-xl flex justify-center items-center'>
                         <FontAwesomeIcon icon={faBars} className='text-amber-600' />
                     </button>
-                    <button className='w-[47px] h-[47px] bg-amber-50 rounded-xl flex justify-center items-center'>
+                    <button className='min-w-[47px] h-[47px] bg-amber-50 rounded-xl flex justify-center items-center'>
                         <Square />
                     </button>
                 </div>

@@ -28,7 +28,7 @@ export default function HealthLog() {
         return <Loader />
     }
     return (
-        <div className='w-full px-8 py-5 rounded-xl poppins bg-[#F1F6FA63]'>
+        <div className='w-full lg:px-8 px-2 py-5 overflow-auto rounded-xl poppins bg-[#F1F6FA63]'>
             <table className="w-full min-w-max table-auto text-left">
                 <thead>
                     <tr>

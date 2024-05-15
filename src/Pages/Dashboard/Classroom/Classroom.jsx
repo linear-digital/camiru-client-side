@@ -1,91 +1,41 @@
 import React from 'react';
-import NavSearchbar from '../../../Components/Top_bar/NavSearchbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { Square } from '../../../util/icons';
 import Table from './Table';
 import { Dropdown } from 'antd';
-import { Space } from 'antd';
-import { DownOutlined } from '@ant-design/icons';
 import { useState } from 'react';
+import { class_rooms } from '../../../util/classrooms';
 
 const ClassRoom = () => {
     const [option, setOption] = useState("Toddlers");
     return (
-        <main className='p-10 bg-white rounded-lg poppins'>
-            <section className='flex justify-between items-center'>
+        <main className='lg:p-10 p-5 bg-white rounded-lg poppins'>
+            <section className='flex flex-col lg:flex-row lg:justify-between lg:items-center'>
                 <div>
-                    <h1 className=" text-primary text-2xl font-bold ">Classroom</h1>
-                    <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Select your class to checkout the reports</p>
+                    <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Classroom</h1>
+                    <p className=" text-neutral-400 mt-2 font-normal text-sm">Select your class to checkout the reports</p>
                 </div>
-                <div className='flex gap-10 items-center'>
+                <div className='flex gap-10 items-center mt-3 lg:mt-0'>
                     <div className="text-primary text-xs font-semibold ">21th December, 2022</div>
-
                     <Dropdown
                         className='option-classroom'
                         menu={{
                             items: [
-                                {
-                                    label: <button
-                                        className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setOption("Infants")}
-                                    >
-                                        Infants
-                                    </button>,
-                                    key: '0',
-                                },
-                                {
-                                    type: 'divider',
-                                },
-                                {
-                                    label: <button
-                                        className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setOption("Toddlers")}
-                                    >
-                                        Toddlers
-                                    </button>,
-                                    key: '1',
-                                },
-                                {
-                                    type: 'divider',
-                                },
-                                {
-                                    label: <button
-                                        className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setOption("Pre-K")}
-                                    >
-                                        Pre-K
-                                    </button>,
-                                    key: '2',
-                                },
-                                {
-                                    type: 'divider',
-                                },
-                                {
-                                    label: <button
-                                        className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setOption("After Schoolers")}>
-                                        After Schoolers
-                                    </button>,
-                                    key: '3',
-                                },
-                                {
-                                    type: 'divider',
-                                },
-                                {
-                                    label: <button
-                                        className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setOption("Floating Staff")}>
-                                        Floating Staff
-                                    </button>,
-                                    key: '4',
-                                }
+                                ...class_rooms?.map((item, index) => {
+                                    return {
+                                        label: <button
+                                            className={`${option === item ? "text-primary" : ""} w-full   text-start`}
+                                            onClick={() => setOption(item)}>
+                                            {item}
+                                        </button>,
+                                        key: index,
+                                    }
+                                })
                             ],
                         }}
                         trigger={['click']}
                     >
-                        <button className="w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                        <button className="w-[135px] lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                             <span className=" text-xs font-medium tracking-tight">
                                 {option}
                             </span>
@@ -94,16 +44,16 @@ const ClassRoom = () => {
                     </Dropdown>
                 </div>
             </section>
-            <section className='mt-10'>
+            <section className='lg:mt-10 mt-5 w-full'>
                 <Table />
             </section>
-            <section className='flex justify-between items-center mt-20'>
+            <section className='flex justify-between items-center lg:mt-20 mt-10'>
                 <div>
-                    <h1 className=" text-primary text-2xl font-bold ">Stuff</h1>
-                    <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Upcoming Student list donw bellow</p>
+                    <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Stuff</h1>
+                    <p className="text-neutral-400 mt-2 font-normal text-sm">Upcoming Student list donw bellow</p>
                 </div>
             </section>
-            <section className='mt-10'>
+            <section className='lg:mt-10 mt-5 w-full'>
                 <Table />
             </section>
         </main>

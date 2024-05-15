@@ -3,83 +3,39 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown } from 'antd';
 import React from 'react';
 import { useState } from 'react';
+import { class_rooms } from '../../../util/classrooms';
 
 const Filter = ({ name, desc }) => {
     const [option, setOption] = useState("Infants");
     const [reportType, setReportType] = useState("Daily Reports");
     return (
-        <section className='flex justify-between items-center'>
+        <section className='flex flex-col lg:flex-row justify-between lg:items-center'>
             <div>
-                <h1 className="text-primary text-2xl font-bold ">{name}</h1>
-                <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">
+                <h1 className="text-primary lg:text-2xl text-xl font-bold ">{name}</h1>
+                <p className=" text-neutral-400 mt-2 font-normal lg:text-sm text-xs">
                     {desc}
                 </p>
             </div>
-            <div className='flex gap-5 items-center'>
+            <div className='flex flex-wrap mt-5 lg:mt-0 gap-5 items-center'>
                 <Dropdown
                     className='option-classroom'
                     menu={{
                         items: [
-                            {
-                                label: <button
-                                    className={`${option === "Infants" ? "text-primary" : ""} w-full   text-start`}
-                                    onClick={() => setOption("Infants")}
-                                >
-                                    Infants
-                                </button>,
-                                key: '0',
-                            },
-                            {
-                                type: 'divider',
-                            },
-                            {
-                                label: <button
-                                    className={`${option === "Toddlers" ? "text-primary" : ""} w-full   text-start`}
-                                    onClick={() => setOption("Toddlers")}
-                                >
-                                   Toddlers
-                                </button>,
-                                key: '1',
-                            },
-                            {
-                                type: 'divider',
-                            },
-                            {
-                                label: <button
-                                    className={`${option === "Pre-K" ? "text-primary" : ""} w-full   text-start`}
-                                    onClick={() => setOption("Pre-K")}
-                                >
-                                   Pre-K
-                                </button>,
-                                key: '2',
-                            },
-                            {
-                                type: 'divider',
-                            },
-                            {
-                                label: <button
-                                    className={`${option === "After Schoolers" ? "text-primary" : ""} w-full   text-start`}
-                                    onClick={() => setOption("After Schoolers")}>
-                                   After Schoolers
-                                </button>,
-                                key: '3',
-                            },
-                            {
-                                type: 'divider',
-                            },
-                            {
-                                label: <button
-                                    className={`${option === "Floating Staff" ? "text-primary" : ""} w-full   text-start`}
-                                    onClick={() => setOption("Yearly Reports")}>
-                                    Floating Staff
-                                </button>,
-                                key: '4',
-                            }
+                            ...class_rooms?.map((item, index) => {
+                                return {
+                                    label: <button
+                                        className={`${option === item ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption(item)}>
+                                        {item}
+                                    </button>,
+                                    key: index,
+                                }
+                            })
                         ],
                     }}
                     trigger={['click']}
                 >
-                    <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                         <span className=" text-xs font-medium tracking-tight">
                             {option}
                         </span>
@@ -137,12 +93,12 @@ const Filter = ({ name, desc }) => {
                     }}
                     trigger={['click']}
                 >
-                    <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
+                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-500">
                         <span className=" font-medium tracking-tight">{reportType}</span>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
                 </Dropdown>
-                <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-600 font-semibold">
+                <button className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px]  bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-600 font-semibold">
                     Add People
                 </button>
             </div>

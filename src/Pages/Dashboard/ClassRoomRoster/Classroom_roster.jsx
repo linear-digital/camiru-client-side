@@ -15,19 +15,19 @@ const Classroom_roster = () => {
     const [option, setOption] = useState("Infants");
     const [reportType, setReportType] = useState("Daily Reports");
     return (
-        <main className='p-10 bg-white rounded-lg poppins'>
+        <main className='lg:p-10 p-5 bg-white rounded-lg poppins'>
             <Filter
                 name={"Classroom Rosters"}
                 desc={"Select your class to checkout the reports"}
             />
-            <section className='mt-10 mb-20'>
+            <section className='lg:mb-20 mb-10'>
                 <Table />
             </section>
             <Filter
                 name={"Upcoming"}
                 desc={"Upcoming Student list donw bellow"}
             />
-            <section className='mt-10 mb-20'>
+            <section className='lg:mb-20 mb-10'>
                 <Table />
             </section> 
              <Filter

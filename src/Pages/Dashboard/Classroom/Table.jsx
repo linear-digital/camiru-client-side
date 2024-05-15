@@ -25,12 +25,11 @@ export default function Table() {
             .then(res => setContacts(res.data))
     }, [])
     const [selected, setSelected] = useState([]);
-    const [option, setOption] = useState("Toddlers");
     if (contacts.length === 0) {
         return <Loader />
     }
     return (
-        <Card className="h-full w-full  rounded-none shadow-none">
+        <Card className="h-full w-full overflow-auto rounded-none shadow-none">
             <table className="w-full min-w-max table-auto text-left">
                 <thead>
                     <tr>
@@ -58,7 +57,7 @@ export default function Table() {
                         ))}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className="">
                     {contacts.map((user, index) => {
                         const isLast = index === contacts.length - 1;
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";

@@ -7,19 +7,21 @@ const Icons_panel = () => {
     return (
         <div className='flex items-center gap-5'>
             <button>
-                <Calendar />
+                <Calendar className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
             </button>
             <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button"> <Task /></div>
+                <div tabIndex={0} role="button">
+                    <Task className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
+                </div>
                 <div tabIndex={0} className="dropdown-content  z-[1] menu shadow rounded-box w-[495px] h-[600px] mt-2  bg-[#F1F6FA] border border-[#CBDFFF]">
-                    <ReportHistory />
+                    <ReportHistory className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
                 </div>
             </div>
             <button>
-                <Envelope />
+                <Envelope className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
             </button>
             <Link to={'/dashboard/notifications'}>
-                <Notification />
+                <Notification className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
             </Link>
         </div>
     );

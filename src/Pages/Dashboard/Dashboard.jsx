@@ -13,24 +13,24 @@ import RecentActivity from './_UI/Sidebar/RecentActivity';
 
 const Dashboard = () => {
     return (
-        <Card className='w-full bg-white h-auto inter p-10 min-h-[80vh]'>
-            <section className='flex justify-between items-center'>
+        <Card className='w-full bg-white h-auto inter lg:p-10 p-5 min-h-[80vh]'>
+            <section className='lg:flex justify-between items-center'>
                 <div>
-                    <h1 className="w-40 text-primary text-2xl font-bold ">Dashboard</h1>
-                    <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Checkout your overview at a glance</p>
+                    <h1 className="w-40 text-primary lg:text-2xl text-base font-bold ">Dashboard</h1>
+                    <p className="w-72 text-neutral-400 mt-2 font-normal lg:text-sm text-xs">Checkout your overview at a glance</p>
                 </div>
-                <div className='flex gap-5'>
-                    <Button variant={"accent"} className='rounded-3xl px-10'>
+                <div className='flex gap-5 mt-3 lg:mt-0'>
+                    <Button variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
                         Add Child
                     </Button>
-                    <Button variant={"accent"} className='rounded-3xl px-10 text-xs'>
+                    <Button variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
                         Add Classrooms
                     </Button>
                 </div>
             </section>
             <section className='flex mt-10 gap-10 w-full'>
                 <div className="w-full">
-                    <div className="grid grid-cols-4 gap-5">
+                    <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-3">
                         <StatisticCard
                             title={"Classrooms"}
                             value={"10"}
@@ -49,7 +49,7 @@ const Dashboard = () => {
                         />
                     </div>
                     <Attendance />
-                    <div className="grid grid-cols-2 mt-10 gap-10">
+                    <div className="grid lg:grid-cols-2 grid-cols-1 mt-10 gap-10">
                         <StapManagement />
                         <AbsentStudentList />
                     </div>

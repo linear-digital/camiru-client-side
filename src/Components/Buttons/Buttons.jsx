@@ -27,7 +27,7 @@ export const Button = ({ children, className, variant, ...props }) => {
             setType('bg-primary text-white')
         }
     }, [])
-    return <MButton variant="filled" {...props} className={`${className} border-none ${types}`} >
+    return <MButton size="sm" variant="filled" {...props} className={`${className} border-none ${types}`} >
         {children}
     </MButton>
 }

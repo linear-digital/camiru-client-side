@@ -8,7 +8,9 @@ const UserLayout = () => {
     const location = useLocation();
     return (
         <main className='w-full h-screen flex gap-10 bg-[#F1F6FA]'>
-            <Sidebar />
+            <div className='hidden lg:block'>
+                <Sidebar />
+            </div>
             <section className='w-full h-full overflow-y-auto'>
                 {
                     !location.pathname.includes('dashboard/profile') && <Navbar />

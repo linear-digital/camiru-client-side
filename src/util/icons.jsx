@@ -67,7 +67,7 @@ export const Bell = ({ className }) => {
 }
 
 export const Calendar = ({ className }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 31" fill="none">
+    return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 31" fill="none" className={className}>
         <rect x="1" y="3.90002" width="26.1" height="26.1" rx="2" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M19.85 1V6.8" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M8.2499 1V6.8" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -75,26 +75,26 @@ export const Calendar = ({ className }) => {
     </svg>
 }
 export const Task = ({ className }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 31 29" fill="none">
+    return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 31 29" fill="none" className={className}>
         <path d="M10.6499 13.05L14.9999 17.4L29.4999 2.89996" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M28.05 14.5V24.65C28.05 26.2516 26.7516 27.55 25.15 27.55H4.84995C3.24833 27.55 1.94995 26.2516 1.94995 24.65V4.34995C1.94995 2.74833 3.24833 1.44995 4.84995 1.44995H20.8" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
 }
 export const Envelope = ({ className }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 32 27" fill="none">
+    return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 32 27" fill="none" className={className}>
         <path fill-rule="evenodd" clip-rule="evenodd" d="M4.2501 1.8999H27.4501C29.0451 1.8999 30.3501 3.2049 30.3501 4.7999V22.1999C30.3501 23.7949 29.0451 25.0999 27.4501 25.0999H4.2501C2.6551 25.0999 1.3501 23.7949 1.3501 22.1999V4.7999C1.3501 3.2049 2.6551 1.8999 4.2501 1.8999Z" stroke="#FFBB3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M30.3501 4.79993L15.8501 14.9499L1.3501 4.79993" stroke="#FFBB3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
 }
 export const Notification = ({ className }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 34" fill="none">
+    return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 34" fill="none" className={className}>
         <path d="M24.3673 10.6355C24.3673 5.47333 20.1825 1.28857 15.0204 1.28857C9.85822 1.28857 5.67346 5.47333 5.67346 10.6355C5.67346 21.5402 1 24.6559 1 24.6559H29.0408C29.0408 24.6559 24.3673 21.5402 24.3673 10.6355" stroke="#5CD9CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M17.7155 30.887C17.1581 31.8478 16.1313 32.4393 15.0205 32.4393C13.9096 32.4393 12.8828 31.8478 12.3254 30.887" stroke="#5CD9CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
 }
 
 export const Square = ({ className }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+    return <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none" className={className}>
         <path d="M4.15838 10.4676H9.66833C9.91189 10.4676 10.1455 10.3708 10.3177 10.1986C10.4899 10.0264 10.5867 9.79281 10.5867 9.54926V4.0393C10.5867 3.79574 10.4899 3.56216 10.3177 3.38994C10.1455 3.21772 9.91189 3.12097 9.66833 3.12097H4.15838C3.91482 3.12097 3.68124 3.21772 3.50902 3.38994C3.3368 3.56216 3.24005 3.79574 3.24005 4.0393V9.54926C3.24005 9.79281 3.3368 10.0264 3.50902 10.1986C3.68124 10.3708 3.91482 10.4676 4.15838 10.4676ZM5.0767 4.95762H8.75001V8.63093H5.0767V4.95762Z" fill="#FFBB3B" />
         <path d="M13.3416 10.4676H18.8516C19.0951 10.4676 19.3287 10.3708 19.5009 10.1986C19.6731 10.0264 19.7699 9.79281 19.7699 9.54926V4.0393C19.7699 3.79574 19.6731 3.56216 19.5009 3.38994C19.3287 3.21772 19.0951 3.12097 18.8516 3.12097H13.3416C13.098 3.12097 12.8645 3.21772 12.6923 3.38994C12.52 3.56216 12.4233 3.79574 12.4233 4.0393V9.54926C12.4233 9.79281 12.52 10.0264 12.6923 10.1986C12.8645 10.3708 13.098 10.4676 13.3416 10.4676ZM14.2599 4.95762H17.9332V8.63093H14.2599V4.95762Z" fill="#FFBB3B" />
         <path d="M4.15838 19.6508H9.66833C9.91189 19.6508 10.1455 19.5541 10.3177 19.3818C10.4899 19.2096 10.5867 18.976 10.5867 18.7325V13.2225C10.5867 12.979 10.4899 12.7454 10.3177 12.5732C10.1455 12.401 9.91189 12.3042 9.66833 12.3042H4.15838C3.91482 12.3042 3.68124 12.401 3.50902 12.5732C3.3368 12.7454 3.24005 12.979 3.24005 13.2225V18.7325C3.24005 18.976 3.3368 19.2096 3.50902 19.3818C3.68124 19.5541 3.91482 19.6508 4.15838 19.6508ZM5.0767 14.1409H8.75001V17.8142H5.0767V14.1409Z" fill="#FFBB3B" />

@@ -7,17 +7,20 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Bell } from '../../util/icons';
 import { useLocation } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({ setOpen }) => {
     const location = useLocation();
+    const closeSidebar = () => {
+        setOpen && setOpen(false);
+    }
     return (
-        <div className='min-w-[289px] max-w-[300px] h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
+        <div className='lg:min-w-[289px] lg:max-w-[300px] w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
             <div>
                 <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
                 <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
                         links.map((link) => {
-                            return <NavigationCard link={link} key={link.id} active={location.pathname === link.path} />
+                            return <NavigationCard onClick={closeSidebar} link={link} key={link.id} active={location.pathname === link.path} />
                         })
                     }
                 </ul>
@@ -40,9 +43,9 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-export const NavigationCard = ({ link, active }) => {
+export const NavigationCard = ({ link, active, onClick }) => {
     return <li className='mb-1 w-full'>
-        <Link to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded`}>
+        <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded`}>
             {
                 active &&
                 <span className='float-left'>

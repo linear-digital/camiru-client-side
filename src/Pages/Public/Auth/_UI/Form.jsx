@@ -20,18 +20,18 @@ const Form = ({ mode }) => {
         navigate('/dashboard');
     }
     return (
-        <div className="w-[457px] h-auto p-5 flex flex-col justify-center">
+        <div className="lg:w-[457px] w-full h-auto p-5 flex flex-col justify-center">
             {
                 mode === 'reset' ?
-                    <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">Forgot Password?</h1>
+                    <h1 className="text-neutral-800 lg:text-2xl text-xl font-medium  leading-loose">Forgot Password?</h1>
                     :
-                    <h1 className="text-neutral-800 text-2xl font-medium  leading-loose">{mode === 'signup' ? 'Create an account' : 'Sign in'} to Cuboid</h1>
+                    <h1 className="text-neutral-800 lg:text-2xl text-xl font-medium  leading-loose">{mode === 'signup' ? 'Create an account' : 'Sign in'} to Cuboid</h1>
             }
 
             {
                 mode !== 'reset' ? <>
                     <Social method={mode} />
-                    <div className="flex items-center gap-2 mt-5">
+                    <div className="flex items-center gap-2 lg:mt-5 mt-2">
                         <div className="divider" />
                         <span>or</span>
                         <div className="divider" />
@@ -56,7 +56,7 @@ const Form = ({ mode }) => {
 
                         {
                             mode === 'signup' && (
-                                <div className="flex mt-5 gap-2 justify-between">
+                                <div className="lg:flex mt-5 gap-2 justify-between">
                                     <div>
                                         <Input
                                             variant='outlined'
@@ -66,7 +66,7 @@ const Form = ({ mode }) => {
                                             required
                                         />
                                     </div>
-                                    <div>
+                                    <div className='mt-5 lg:mt-0'>
                                         <Input
                                             variant='outlined'
                                             label='Last name'

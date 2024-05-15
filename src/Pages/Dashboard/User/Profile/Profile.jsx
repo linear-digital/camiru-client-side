@@ -38,7 +38,7 @@ const Profile = () => {
         }
     }, [location.pathname])
     return (
-        <div className='w-full p-10 bg-white'>
+        <div className='w-full lg:p-10 p-5 bg-white'>
             <Filter
                 name={pageName}
                 desc={"Checkout Roxie Word and take your action !!"}

@@ -15,7 +15,7 @@ const Enrollment = ({ edit }) => {
     const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
     const [status, setStatus] = useState("Active");
     if (edit) {
-        return <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
+        return <div className='w-full border lg:pl-[84px] pl-5 py-[55px] rounded-xl poppins'>
             <h1 className="text-slate-900 text-2xl font-bold ">
                 Enrollment
             </h1>
@@ -57,7 +57,7 @@ const Enrollment = ({ edit }) => {
                         }}
                         trigger={['click']}
                     >
-                        <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                        <button className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                             <span className=" text-xs font-medium tracking-tight">
                                 {status}
                             </span>
@@ -147,7 +147,7 @@ const Enrollment = ({ edit }) => {
                         }}
                         trigger={['click']}
                     >
-                        <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                        <button className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                             <span className=" text-xs font-medium tracking-tight">
                                 Morning
                             </span>
@@ -155,8 +155,8 @@ const Enrollment = ({ edit }) => {
                         </button>
                     </Dropdown>
                 </RowEdit>
-                <div className="grid grid-cols-5 gap-10 mb-8">
-                    <div className="col-span-1 justify-end flex items-center">
+                <div className="lg:grid grid-cols-5 gap-10 mb-8">
+                    <div className="col-span-1 mb-3 lg:mb-0 lg:justify-end flex items-center">
                         <h4 className="text-zinc-700 text-sm font-semibold">
                             Schedule
                         </h4>
@@ -197,8 +197,8 @@ const Enrollment = ({ edit }) => {
         </div >
     }
     return (
-        <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
-            <h1 className="text-slate-900 text-2xl font-bold ">
+        <div className='w-full border lg:pl-[84px] pl-14 py-[55px] rounded-xl poppins'>
+            <h1 className="text-slate-900 lg:text-2xl text-xl font-bold ">
                 Enrollment
             </h1>
             <div className='mt-10'>
@@ -222,13 +222,13 @@ const Enrollment = ({ edit }) => {
                     title={"Rotation"}
                     desc={"Afternoon"}
                 />
-                <div className="grid grid-cols-5 gap-10 mb-8">
+                <div className="grid grid-cols-5 lg:gap-10 gap-5 mb-8">
                     <div className="col-span-1 justify-end flex items-center">
                         <h4 className="text-zinc-700 text-sm font-semibold">
                             Schedule
                         </h4>
                     </div>
-                    <div className="col-span-4 flex items-center gap-2">
+                    <div className="lg:col-span-4 col-span-5 flex items-center flex-wrap gap-2">
                         {
                             days.map((day, index) => <button key={index} className={`text-[11px] ${selected.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
                                 {day}
@@ -244,7 +244,7 @@ const Enrollment = ({ edit }) => {
 export default Enrollment;
 
 const Row = ({ title, desc, }) => {
-    return <div className="grid grid-cols-4 gap-10 mb-8 w-full">
+    return <div className="grid grid-cols-4 lg:gap-10 gap-5 mb-8 w-full">
         <div className="col-span-1 justify-end flex items-center">
             <h4 className="text-zinc-700 text-sm font-semibold">
                 {title}
@@ -257,13 +257,13 @@ const Row = ({ title, desc, }) => {
 }
 
 const RowEdit = ({ title, desc, children }) => {
-    return <div className="grid grid-cols-5 gap-10 mb-8">
-        <div className="col-span-1 justify-end flex items-start">
+    return <div className="lg:grid grid-cols-5 gap-10 lg:mb-8 mb-4 w-full">
+        <div className="col-span-1 lg:justify-end flex items-start">
             <h4 className="text-zinc-700 text-sm font-semibold">
                 {title}
             </h4>
         </div>
-        <div className="col-span-4 flex items-center">
+        <div className="col-span-4 mt-2 lg:mt-0 flex items-center">
             {children}
         </div>
     </div>

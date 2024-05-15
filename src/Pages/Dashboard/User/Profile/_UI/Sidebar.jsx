@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 const Sidebar = () => {
     return (
-        <div className='min-w-[300px] max-w-[300px] px-4'>
+        <div className='min-w-[300px] hidden lg:block max-w-[300px] px-4'>
             <Item path={"enrollment"}
                 Icon={Enrollment}
                 name={"Enrollment"}

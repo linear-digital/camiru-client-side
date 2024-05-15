@@ -9,9 +9,9 @@ import { useLocation } from 'react-router-dom';
 const Address_Contact = ({ edit }) => {
     const location = useLocation();
     return (
-        <div className='w-full border pl-[84px] py-[55px] rounded-xl poppins'>
-            <div className="flex gap-10">
-                <h1 className="text-slate-900 text-2xl font-bold ">Address & Contact</h1>
+        <div className='w-full border pl-5 py-[55px] rounded-xl poppins'>
+            <div className="lg:flex gap-10">
+                <h1 className="text-slate-900 lg:text-2xl text-xl mb-3 lg:mb-0 font-bold ">Address & Contact</h1>
                 {
                     !edit && <Link to={location.pathname.includes("edit") ? `${location.pathname}` : `${location.pathname}/edit`} className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
                         Advance Edit Page
@@ -148,8 +148,8 @@ const Address_Contact = ({ edit }) => {
                     </div>
                     :
                     <div className='mt-10'>
-                        <div className="grid grid-cols-4 gap-10 mb-8 items-start">
-                            <div className="col-span-1 justify-end flex items-center">
+                        <div className="lg:grid grid-cols-4 gap-10 lg:mb-8 mb-5 items-start">
+                            <div className="col-span-1 lg:justify-end mb-3 lg:mb-0 flex items-center">
                                 <h4 className="text-zinc-700 text-sm font-semibold">
                                     Parents
                                 </h4>
@@ -167,13 +167,13 @@ const Address_Contact = ({ edit }) => {
                                 />
                             </div>
                         </div>
-                        <div className="grid grid-cols-4 gap-10 mb-8 items-start">
-                            <div className="col-span-1 justify-end flex items-center">
+                        <div className="lg:grid grid-cols-4 gap-10 mb-8 items-start">
+                            <div className="col-span-1 lg:justify-end mb-3 lg:mb-0 flex items-center">
                                 <h4 className="text-zinc-700 text-sm font-semibold">
                                     Guardians
                                 </h4>
                             </div>
-                            <div className="col-span-3 flex items-center gap-3">
+                            <div className="col-span-3 flex flex-wrap items-center gap-3">
                                 <Gurdian
                                     name={"Grand Father"}
                                     phone={"+001234567"}
@@ -217,8 +217,8 @@ const Address_Contact = ({ edit }) => {
 export default Address_Contact;
 
 const Row = ({ title, desc }) => {
-    return <div className="grid grid-cols-4 gap-10 mb-8">
-        <div className="col-span-1 justify-end flex items-center">
+    return <div className="grid lg:grid-cols-4 grid-cols-6 gap-10 lg:mb-8 mb-5">
+        <div className="lg:col-span-1 col-span-3 lg:justify-end flex items-center">
             <h4 className="text-zinc-700 text-sm font-semibold">
                 {title}
             </h4>
@@ -244,7 +244,7 @@ const Gurdian = ({ name, phone, email }) => {
 }
 
 const RowEdit = ({ title, desc, children }) => {
-    return <div className="grid grid-cols-5 gap-10 mb-8">
+    return <div className="lg:grid grid-cols-5 gap-10 mb-8">
         <div className="col-span-1 justify-end flex items-start">
             <h4 className="text-zinc-700 text-sm font-semibold">
                 {title}

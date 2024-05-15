@@ -26,6 +26,7 @@ import HealthLog from "../Pages/Dashboard/User/Profile/_UI/HealthLog";
 import Graduate from "../Pages/Dashboard/User/Graduate";
 import Photos_Videos from "../Pages/Dashboard/PhotosVideos/Photos_Videos";
 import Messages from "../Pages/Dashboard/Messages/Messages";
+import Notifications from "../Pages/Dashboard/Notifications/Notifications";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
             {
                 path: "messages",
                 element: <Messages />
+            },
+            {
+                path: "notifications",
+                element: <Notifications />
             },
             {
                 path: "rooms",

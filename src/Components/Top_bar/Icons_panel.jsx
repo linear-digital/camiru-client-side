@@ -1,6 +1,7 @@
 import React from 'react';
 import { Calendar, Envelope, Notification, Task } from '../../util/icons';
 import ReportHistory from './ReportHistory';
+import { Link } from 'react-router-dom';
 
 const Icons_panel = () => {
     return (
@@ -17,9 +18,9 @@ const Icons_panel = () => {
             <button>
                 <Envelope />
             </button>
-            <button>
+            <Link to={'/dashboard/notifications'}>
                 <Notification />
-            </button>
+            </Link>
         </div>
     );
 };

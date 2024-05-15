@@ -50,6 +50,9 @@ importers:
       '@mui/x-date-pickers':
         specifier: ^7.4.0
         version: 7.4.0(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@mui/material@5.15.17(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react@18.3.1))(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@types/react@18.3.1)(dayjs@1.11.11)(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@wavesurfer/react':
+        specifier: ^1.0.6
+        version: 1.0.6(react@18.3.1)(wavesurfer.js@7.7.14)
       antd:
         specifier: ^5.17.0
         version: 5.17.0(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -80,6 +83,9 @@ importers:
       use-react-countries:
         specifier: ^2.0.1
         version: 2.0.1(react@18.3.1)
+      wavesurfer-react:
+        specifier: ^3.0.2
+        version: 3.0.2(react@18.3.1)(wavesurfer.js@7.7.14)
     devDependencies:
       '@types/react':
         specifier: ^18.2.66
@@ -946,6 +952,12 @@ packages:
     resolution: {integrity: sha512-XFRbsGgpGxGzEV5i5+vRiro1bwcIaZDIdBRP16qwm+jP68ue/S8FJTBEgOeojtVDYrbSua3XFp71kC8VJE6v+g==}
     peerDependencies:
       vite: ^4 || ^5
+
+  '@wavesurfer/react@1.0.6':
+    resolution: {integrity: sha512-ooDSebxs2Z00S6h7nGrA8SSXmins6MnJF944MiUVrnVeaoNDDIgursBIXo3MtZ9QLN3Vlt3cNLU3u16vsZZCJg==}
+    peerDependencies:
+      react: ^18.2.0
+      wavesurfer.js: '>=7.7.14'
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -2574,6 +2586,15 @@ packages:
       terser:
         optional: true
 
+  wavesurfer-react@3.0.2:
+    resolution: {integrity: sha512-ATGbisSFrAPiPyOZKIMge7aFKnlu69Vy5XTpZ2H88hRJ64KcK+T3iNlzj/YOregj4HkYxWPzm1t4O617oAft+g==}
+    peerDependencies:
+      react: ^16 || ^17 || ^18 || ^19
+      wavesurfer.js: ^7
+
+  wavesurfer.js@7.7.14:
+    resolution: {integrity: sha512-sbd48yHnOVDEbZwsnD3dWzBj4SF2q2rsPysmPE8spoR2XwKVkU/POtZg/L0wPi6ypqXb7brQLftSeOovJNToPQ==}
+
   which-boxed-primitive@1.0.2:
     resolution: {integrity: sha512-bwZdv0AKLpplFY2KZRX6TvyuN7ojjr7lwkg6ml0roIy9YeuSr7JS372qlNW18UQYzgYK9ziGcerWqZOmEn9VNg==}
 
@@ -3400,6 +3421,11 @@ snapshots:
       vite: 5.2.11
     transitivePeerDependencies:
       - '@swc/helpers'
+
+  '@wavesurfer/react@1.0.6(react@18.3.1)(wavesurfer.js@7.7.14)':
+    dependencies:
+      react: 18.3.1
+      wavesurfer.js: 7.7.14
 
   acorn-jsx@5.3.2(acorn@8.11.3):
     dependencies:
@@ -5374,6 +5400,13 @@ snapshots:
       rollup: 4.17.2
     optionalDependencies:
       fsevents: 2.3.3
+
+  wavesurfer-react@3.0.2(react@18.3.1)(wavesurfer.js@7.7.14):
+    dependencies:
+      react: 18.3.1
+      wavesurfer.js: 7.7.14
+
+  wavesurfer.js@7.7.14: {}
 
   which-boxed-primitive@1.0.2:
     dependencies:

@@ -101,7 +101,9 @@
         grid-template-columns: repeat(2, 1fr);
     }
 } */
-
+.messageCard {
+    background: var(--Gray-1, #E3EBF1);
+}
 
 @media only screen and (max-width: 1500px) {
     .media-grid {

@@ -3,7 +3,7 @@ import { UserAvater } from '../../../Components/Card/Avater';
 
 const RecentChatCard = () => {
     return (
-        <div className='w-full flex items-center py-[10px] border-b gap-3 '>
+        <div className='w-full flex items-center py-[10px] border-b gap-3 cursor-pointer hover:shadow-lg'>
             <UserAvater
                 className={"rounded-xl overflow-hidden min-w-11 h-11"}
             />

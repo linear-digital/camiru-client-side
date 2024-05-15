@@ -93,6 +93,9 @@ const router = createBrowserRouter([
                         element: <UserProfile />,
                         children: [
                             {
+                                index: true,
+                                element: <Enrollment />,
+                            }, {
                                 path: "enrollment",
                                 element: <Enrollment />,
                             },

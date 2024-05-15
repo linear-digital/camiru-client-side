@@ -13,6 +13,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
+import { Link } from "react-router-dom";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
@@ -135,13 +136,13 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <button
+                        label: <Link to={'/dashboard/student/323/profile'}
                             className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
                           <FontAwesomeIcon icon={faUser}/>
                             View User
-                        </button>,
+                        </Link>,
                         key: '2',
                     },
                     {

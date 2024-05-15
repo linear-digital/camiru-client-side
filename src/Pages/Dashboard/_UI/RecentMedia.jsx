@@ -13,7 +13,7 @@ const RecentMedia = () => {
                     <p className=" text-neutral-400 text-xs mt-1 font-normal">Uploading photos & Videos is the #1 way to engage parents.<br /></p>
                 </div>
                 <button className="w-[150px] h-[22px] bg-orange-400 rounded-sm text-xs flex items-center gap-1 px-2" >
-                    <span className=" text-zinc-800 text-xs font-medium ">12th January, 2022</span>
+                    <span className=" text-zinc-800 text-[11px] font-medium ">12th January, 2022</span>
                     <FontAwesomeIcon icon={faCircleDown} />
                 </button>
             </div>

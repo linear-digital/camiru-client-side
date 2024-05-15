@@ -40,6 +40,7 @@
 
 ::-webkit-scrollbar {
     width: 3px;
+    height: 3px;
     background-color: wheat;
 }
 
@@ -47,7 +48,7 @@
 ::-webkit-scrollbar-thumb {
     background-color: var(--secondary);
     border-radius: 10px;
-    height: 100px;
+    height: 5px;
 }
 
 .btn-secondary {

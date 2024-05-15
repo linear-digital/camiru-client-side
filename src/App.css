@@ -105,6 +105,12 @@
     background: var(--Gray-1, #E3EBF1);
 }
 
+.absolute.bg-white {
+    background-color: #FFBB3B !important;
+    color: white !important;
+}
+
+
 @media only screen and (max-width: 1500px) {
     .media-grid {
         grid-template-columns: repeat(5, 1fr);

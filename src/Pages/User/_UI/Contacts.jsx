@@ -11,7 +11,7 @@ import { Button } from '../../../Components/Buttons/Buttons';
 
 const Contacts = () => {
     return (
-        <div className='w-[550px] h-auto pt-20'>
+        <div className='lg:w-[550px] w-full px-5 lg:px-0 h-auto pt-20'>
             <div className="flex items-center gap-2">
                 <Dot size={10} className={"bg-amber-400"} />
                 <hr className='w-[40px] border-gray-200 border-[1px]' />
@@ -21,7 +21,7 @@ const Contacts = () => {
             </div>
             <div className="mt-7 text-zinc-800 text-2xl font-bold leading-9">Profile info</div>
             <div className=" text-gray-600 text-sm font-light mt-4 leading-snug">Fill in the data for profile. It will take a couple of minutes. </div>
-            <form className='w-full p-7 border mt-5 rounded-md grid grid-cols-2 gap-2'>
+            <form className='w-full lg:p-7 p-4 border mt-5 rounded-md grid grid-cols-2 gap-2'>
                 <h1 className=" text-zinc-800 text-xl font-semibold  leading-7 col-span-2">Contacts</h1>
                 <p className="mt-2 text-gray-600 text-xs font-light  leading-none col-span-2">These contacts are used to inform about orders</p>
                 <div className='mt-5 col-span-2'>

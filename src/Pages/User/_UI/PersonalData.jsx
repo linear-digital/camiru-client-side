@@ -8,7 +8,7 @@ import { Button } from '../../../Components/Buttons/Buttons';
 
 const PersonalData = () => {
     return (
-        <div className='w-[550px] h-auto pt-20 outline-none' >
+        <div className='lg:w-[550px] w-full h-auto pt-20 outline-none px-5 lg:px-0' >
             <div className="flex items-center gap-2">
                 <Dot size={12} className={"bg-amber-400"} />
                 <hr className='w-[40px] border-gray-200 border-[1px]' />
@@ -18,10 +18,10 @@ const PersonalData = () => {
             </div>
             <div className="mt-10 text-zinc-800 text-2xl font-bold leading-9">Profile info</div>
             <div className=" text-gray-600 text-sm font-light mt-1 leading-snug">Fill in the data for profile. It will take a couple of minutes. </div>
-            <form className='w-full p-7 border mt-5 rounded-md grid grid-cols-2 gap-2'>
+            <form className='w-full lg:p-7 p-4 border mt-5 rounded-md grid grid-cols-2 gap-2'>
                 <h1 className=" text-zinc-800 text-base font-semibold  leading-7 col-span-2">Personal data</h1>
                 <p className="mt-1 text-gray-600 text-xs font-light  leading-none col-span-2">Specify exactly as in your passport</p>
-                <div className='mt-7 col-span-2'> 
+                <div className='mt-7 col-span-2'>
                     <Input
                         color='black'
                         variant="static"
@@ -38,7 +38,7 @@ const PersonalData = () => {
                         placeholder='Enter your last name'
                     />
                 </div>
-                <div className='mt-6 col-span-1'>
+                <div className='mt-6 lg:col-span-1 col-span-2'>
                     <Input
                         color='black'
                         variant="static"
@@ -46,7 +46,7 @@ const PersonalData = () => {
                         type='date'
                     />
                 </div>
-                <div className='mt-6 col-span-1'>
+                <div className='mt-6 lg:col-span-1 col-span-2'>
                     <Input
                         color='black'
                         variant="static"

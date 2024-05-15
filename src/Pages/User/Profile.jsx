@@ -6,7 +6,7 @@ import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const Profile = () => {
     return (
-        <div className='grid grid-cols-9 h-full w-full'>
+        <div className='lg:grid grid-cols-9 h-full w-full'>
             <div className='col-span-6 w-full h-full overflow-y-auto flex justify-center'>
                 <Outlet />
             </div>

@@ -3,7 +3,7 @@ import { PaperClip, Send } from '../../../util/icons';
 
 const ChatBottom = () => {
     return (
-        <div className='pt-5 border-t px-5'>
+        <div className='lg:pt-5 pt-2 border-t lg:px-5 p-1'>
             <div className="w-full h-14 bg-[#F1F6FA] rounded-xl border border-slate-200 flex items-center justify-between pr-5" >
                 <input type="text"
                     className='w-full h-full bg-transparent border-none outline-none text-sm pl-5'

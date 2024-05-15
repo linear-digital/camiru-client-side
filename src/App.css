@@ -106,10 +106,15 @@
     background-color: #FFBB3B !important;
     color: white !important;
 }
-
+.profile-history{
+    right: 0px !important;
+}
 @media screen and (max-width: 768px) {
     .media-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    .profile-history{
+        right: -100px !important;
     }
 }
 

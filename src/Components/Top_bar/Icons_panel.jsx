@@ -13,7 +13,8 @@ const Icons_panel = () => {
                 <div tabIndex={0} role="button">
                     <Task className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
                 </div>
-                <div tabIndex={0} className="dropdown-content  z-[1] menu shadow rounded-box w-[495px] h-[600px] mt-2  bg-[#F1F6FA] border border-[#CBDFFF]">
+                <div tabIndex={0} className="dropdown-content  z-10 menu shadow rounded-box lg:w-[495px] w-screen  h-[600px] mt-2  bg-[#F1F6FA] border border-[#CBDFFF] profile-history"
+                >
                     <ReportHistory className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
                 </div>
             </div>

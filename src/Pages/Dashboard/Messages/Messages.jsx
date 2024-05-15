@@ -6,8 +6,8 @@ import ChatBottom from './ChatBottom';
 
 const Messages = () => {
     return (
-        <div className='p-10 bg-white rounded-lg h-full flex'>
-            <Sidebar />
+        <div className='lg:p-10 p-5 bg-white rounded-lg h-full flex'>
+            {/* <Sidebar /> */}
             <section className='h-full w-full flex flex-col justify-between'>
                 <Topbar />
                 <ChatBox />

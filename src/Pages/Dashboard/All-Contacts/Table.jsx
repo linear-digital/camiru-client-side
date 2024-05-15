@@ -51,7 +51,7 @@ export default function Table() {
     const [selected, setSelected] = useState([]);
 
     return (
-        <Card className="h-full w-full  rounded-none shadow-none">
+        <Card className="h-full w-full overflow-auto rounded-none shadow-none">
             <table className="w-full min-w-max table-auto text-left">
                 <thead>
                     <tr>

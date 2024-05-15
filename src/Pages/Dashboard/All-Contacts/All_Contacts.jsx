@@ -8,14 +8,16 @@ import Table from './Table';
 
 const All_Contacts = () => {
     return (
-        <main className='p-10 bg-white rounded-lg'>
-            <section className='flex justify-between items-center'>
+        <main className='lg:p-10 p-5 bg-white rounded-lg'>
+            <section className='lg:flex justify-between items-center'>
                 <div>
-                    <h1 className="w-40 text-primary text-2xl font-bold ">Contacts</h1>
-                    <p className="w-72 text-neutral-400 mt-2 font-normal text-sm">Checkout your overview at a glance</p>
+                    <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Contacts</h1>
+                    <p className=" text-neutral-400 lg:mt-2 mt-1 font-normal text-sm">Checkout your overview at a glance</p>
                 </div>
-                <div className='flex gap-5'>
-                    <NavSearchbar variant={'borderd'} placeholder={"Search Contact"} />
+                <div className='flex flex-wrap lg:gap-5 gap-3'>
+                    <div className='mt-2 w-full'>
+                        <NavSearchbar variant={'borderd'} placeholder={"Search Contact"} />
+                    </div>
                     <button className="w-[135px] h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-amber-50 text-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs">
                         <span className="  font-medium tracking-tight">Add Profile</span>
                         <FontAwesomeIcon icon={faChevronDown} />

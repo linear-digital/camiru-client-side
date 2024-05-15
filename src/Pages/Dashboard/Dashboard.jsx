@@ -56,7 +56,7 @@ const Dashboard = () => {
                     <DownloadCustomReport />
                     <RecentMedia />
                 </div>
-                <div className="min-w-[287px] max-w-[300px]  shadow-lg p-5 rounded-md">
+                <div className="min-w-[287px] mt-5 lg:mt-0 lg:max-w-[300px]  shadow-lg p-5 rounded-md">
                     <NotificationSec />
                     <Messages />
                     <RecentActivity />

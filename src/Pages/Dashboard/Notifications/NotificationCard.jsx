@@ -14,7 +14,7 @@ const NotificationCard = () => {
                         <span className="text-slate-900 text-xs px-1 font-normal"> mentioned you at
                         </span>
                         <span className="text-amber-400 text-xs font-semibold ">
-                            Web Projects 2
+                            Web Projects 3
                         </span>
                     </h2>
                     <div className="text-[#6F96AA] text-xs font-normal">Monday, June 31 2020</div>

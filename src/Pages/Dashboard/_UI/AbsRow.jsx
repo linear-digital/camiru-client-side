@@ -14,7 +14,7 @@ const AbsRow = () => {
                 </div>
                 <div className=" text-black text-xs font-normal leading-relaxed tracking-tight">Md Jibon Hossain Rifat</div>
             </div>
-            <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs  px-6 text-[10px]'>
+            <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs  px-6 text-[10px] text-white'>
                 View
             </button>
         </div>

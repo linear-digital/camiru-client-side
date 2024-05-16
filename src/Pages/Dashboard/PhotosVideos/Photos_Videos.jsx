@@ -14,7 +14,7 @@ const Photos_Videos = () => {
         <div className='lg:p-10 p-5 bg-white rounded-lg'>
             <div className="lg:flex justify-between items-center">
                 <div>
-                    <h3 className="text-zinc-800 lg:text-2xl text-xl font-semibold ">Recent Photos & videos</h3>
+                    <h3 className="text-black/70 lg:text-2xl text-xl font-semibold ">Recent Photos & videos</h3>
                     <p className=" text-neutral-400 text-xs mt-1 font-normal">Uploading photos & Videos is the #1 way to engage parents.<br /></p>
                 </div>
                 <div className='flex flex-wrap lg:gap-5 gap-3 mt-5 lg:mt-0 items-center'>
@@ -32,7 +32,7 @@ const Photos_Videos = () => {
                     <button className='w-9 h-9 flex items-center justify-center rounded-md bg-[#FFBB3B33] border-none '>
                         <Grids />
                     </button>
-                    <button className="w-[150px] h-[36px] bg-orange-400 text-xs flex items-center gap-1 px-2 rounded" >
+                    <button className="w-[150px] h-[36px] bg-orange-400 text-xs flex items-center gap-1 px-2 rounded text-white" >
                         <span className=" text-zinc-800 text-xs font-medium ">12th January, 2022</span>
                         <FontAwesomeIcon icon={faCircleDown} />
                     </button>

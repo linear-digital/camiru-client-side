@@ -99,7 +99,7 @@ export default function Table() {
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <button className="btn btn-sm btn-secondary text-[10px] px-5">
+                                    <button className="btn btn-sm btn-secondary text-[10px] px-5 text-white">
                                         Clock in
                                     </button>
                                 </td>

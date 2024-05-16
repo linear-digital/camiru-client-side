@@ -15,7 +15,7 @@ const StapManagement = () => {
                         <FontAwesomeIcon icon={faRotateRight} />
                     </button>
                     <div className=" text-zinc-800 text-[7px] font-bold ">Last Refresh: 11:48:16</div>
-                    <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs  px-4 text-[10px]'>
+                    <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs  px-4 text-[10px] text-white'>
                         View Staff
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>

@@ -16,7 +16,7 @@ const DownloadCustomReport = () => {
                     <span className=" text-zinc-800 text-[10px] font-medium ">12th January, 2022</span>
                     <FontAwesomeIcon icon={faCircleDown} className='text-[10px'/>
                 </button>
-                <button className='btn btn-sm btn-secondary rounded-2xl text-xs px-5 lg:ml-5 mt-2 lg:mt-0'>Download</button>
+                <button className='btn btn-sm btn-secondary text-white rounded-2xl text-xs px-5 lg:ml-5 mt-2 lg:mt-0'>Download</button>
             </div>
         </div>
     );

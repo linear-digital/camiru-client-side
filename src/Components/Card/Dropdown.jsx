@@ -25,7 +25,6 @@ export const ClassRoomSelector = ({ options, bg, color, border }) => {
             ],
         }}
         trigger={['click']}
-        
     >
         <button className={`h-9 pl-[19px] pr-[18px] py-[12.59px] bg-[${bg}] border border-[${border ? border : "#FFBB3B"}] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-black/80 text-xs font-bold border-[#FFBB3B]` }>
             <span className=" text-xs font-medium tracking-tight">

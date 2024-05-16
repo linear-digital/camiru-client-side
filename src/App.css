@@ -10,7 +10,10 @@
 }
 
 /* Fonts  */
-
+body{
+    background-color: white;
+    color: black;
+}
 
 .poppins {
     font-family: "Poppins", sans-serif;

@@ -5,7 +5,7 @@ import RecentChatCard from './RecentChatCard';
 
 const Sidebar = () => {
     return (
-        <div className='min-w-[347px] max-w-[347px] h-full p-5 shadow overflow-hidden overflow-y-auto'>
+        <div className='min-w-[347px] hidden lg:block max-w-[347px] h-full p-5 shadow overflow-hidden overflow-y-auto'>
             <h3 className="w-24 h-7 text-slate-900 text-base font-bold">Messages</h3>
             <SearchBar />
             <Contacts />

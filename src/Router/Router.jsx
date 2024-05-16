@@ -28,6 +28,9 @@ import Photos_Videos from "../Pages/Dashboard/PhotosVideos/Photos_Videos";
 import Messages from "../Pages/Dashboard/Messages/Messages";
 import Notifications from "../Pages/Dashboard/Notifications/Notifications";
 import StaffList from "../Pages/Dashboard/Staffs/StaffList";
+import StaffRoster from "../Pages/Dashboard/Staffs/StaffRoster";
+import ScheduleTimeOff from "../Pages/Dashboard/User/Profile/_UI/ScheduleTimeOff";
+import TimeCard from "../Pages/Dashboard/User/Profile/_UI/TimeCard";
 
 const router = createBrowserRouter([
     {
@@ -83,14 +86,22 @@ const router = createBrowserRouter([
             },
             {
                 path: "checkin",
-                element: <Checkin />
+                element: <Checkin page="Student" />
+            },
+            {
+                path: "checkin-staff",
+                element: <Checkin page="Staff" />
             },
             {
                 path: "staffs",
                 element: <StaffList />
             },
             {
-                path: "student/:id",
+                path: "staffs-roster",
+                element: <StaffRoster />
+            },
+            {
+                path: ":role/:id",
                 element: <Outlet />,
                 children: [
                     {
@@ -113,12 +124,20 @@ const router = createBrowserRouter([
                                 element: <Address_Contact />
                             },
                             {
+                                path: "timecard",
+                                element: <TimeCard />
+                            },
+                            {
                                 path: "details/edit",
                                 element: <Address_Contact edit={true} />
                             },
                             {
                                 path: "schedule-absence",
                                 element: <ScheduleAbsence />
+                            },
+                            {
+                                path: "schedule-timeoff",
+                                element: <ScheduleTimeOff />
                             },
                             {
                                 path: "report",

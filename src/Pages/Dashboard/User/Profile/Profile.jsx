@@ -5,6 +5,8 @@ import Sidebar from './_UI/Sidebar';
 import { Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Filter from '../../Checkin/Filter';
+import { useParams } from 'react-router-dom';
+import StaffProfileCard from './_UI/StaffProfileCard';
 
 const Profile = () => {
     const location = useLocation();
@@ -26,6 +28,9 @@ const Profile = () => {
         else if (isIncluded('development-evidence')) {
             setPageName("Development Evidence")
         }
+        else if (isIncluded('timecard')) {
+            setPageName("Time Card")
+        }
         else {
             setPageName("Profile Overview")
         }
@@ -37,13 +42,20 @@ const Profile = () => {
             setIsGraduate(false)
         }
     }, [location.pathname])
+    const params = useParams()
     return (
         <div className='w-full lg:p-10 p-5 bg-white'>
             <Filter
                 name={pageName}
                 desc={"Checkout Roxie Word and take your action !!"}
             />
-            <ProfileCard />
+            {
+                params.role === "staff" ?
+                <StaffProfileCard />
+                :
+                <ProfileCard />
+            }
+           
             <section className='mt-10 flex items-start gap-5 '>
                 {
                     !isGraduate && <Sidebar />

@@ -109,6 +109,12 @@
 .profile-history{
     right: 0px !important;
 }
+
+.my-table tr td{
+    font-weight: 500 !important;
+    font-size: 11px;
+}
+
 @media screen and (max-width: 768px) {
     .media-grid {
         grid-template-columns: repeat(2, 1fr);

@@ -5,11 +5,11 @@ import ProfileCard from './ProfileCard';
 import Table from './Table';
 
 
-const Checkin = () => {
+const Checkin = ({ page }) => {
     return (
         <div className='bg-white p-10'>
             <Filter
-                name={"Student check In - Out Report"}
+                name={`${page} check In - Out Report`}
                 desc={"Select your class to checkout the reports"}
             />
             <ProfileCard />

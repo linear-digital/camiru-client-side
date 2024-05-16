@@ -13,7 +13,7 @@ const Sidebar = ({ setOpen }) => {
         setOpen && setOpen(false);
     }
     return (
-        <div className='lg:min-w-[289px] lg:max-w-[300px] w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
+        <div className='min-w-[250px] w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
             <div>
                 <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
                 <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>
@@ -56,10 +56,9 @@ export const NavigationCard = ({ link, active, onClick }) => {
                 {link.icon &&
                     <span>
                         <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
-
                     </span>
                 }
-                <div className={` h-5 ${active && "text-white"} text-sm font-normal `}>{link.name}</div>
+                <div className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</div>
             </div>
             {
                 !active && <span className='absolute right-7 text-blue-gray-600'>

@@ -15,21 +15,21 @@ const StapManagement = () => {
                         <FontAwesomeIcon icon={faRotateRight} />
                     </button>
                     <div className=" text-zinc-800 text-[7px] font-bold ">Last Refresh: 11:48:16</div>
-                    <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-sm  px-5 text-[10px]'>
+                    <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs  px-4 text-[10px]'>
                         View Staff
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
                 </div>
             </section>
-            <div className="overflow-x-auto mt-5">
-                <table className="table text-[10px]">
+            <div className="overflow-x-auto mt-5 ">
+                <table className="table text-[10px] ">
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>Class</th>
-                            <th>Students</th>
-                            <th>Teachers</th>
-                            <th>Absence</th>
+                            <th className='text-black'>Class</th>
+                            <th className='text-black'>Students</th>
+                            <th className='text-black'>Teachers</th>
+                            <th className='text-black'>Absence</th>
                         </tr>
                     </thead>
                     <tbody>

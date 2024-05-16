@@ -7,11 +7,11 @@ import { useLocation } from 'react-router-dom';
 const UserLayout = () => {
     const location = useLocation();
     return (
-        <main className='w-full h-screen flex gap-10 bg-[#F1F6FA]'>
-            <div className='hidden lg:block'>
+        <main className='w-full h-screen flex gap-5 bg-[#F1F6FA]'>
+            <div className='hidden lg:block max-w-[250px]'>
                 <Sidebar />
             </div>
-            <section className='w-full h-full overflow-y-auto'>
+            <section className='w-full max-w-full h-full overflow-auto'>
                 {
                     !location.pathname.includes('dashboard/profile') && <Navbar />
                 }

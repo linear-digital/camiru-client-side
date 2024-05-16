@@ -85,7 +85,7 @@ const Item = ({ active, path, Icon, name }) => {
         <Link to={path} className={` ${isActive ?
             "bg-[#C6F2EC] text-cyan-700 hover:bg-[#F2F6FC] hover:text-gray-400"
             : "bg-[#F2F6FC] text-gray-400 hover:text-cyan-700 hover:bg-[#C6F2EC]"} 
-          w-full h-[67px] mb-2 rounded-[50px] poppins flex items-center justify-start px-6 gap-3   font-medium cursor-pointer hover:border text-sm`}>
+          w-full h-[67px] mb-2 rounded-[50px] poppins flex items-center justify-start px-6 gap-3 text-gray-700  font-medium cursor-pointer hover:border text-sm`}>
             {Icon && <Icon />}  {name}
         </Link>
     )

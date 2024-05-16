@@ -72,7 +72,7 @@ const Attendance = () => {
                         title={"Present"}
                         desc={"51 Studnets"}
                     />
-                    <div className='flex flex-col justify-center  max-w-[200px] pl-5'>
+                    <div className='flex flex-col justify-center  max-w-[150px] pl-5'>
                         <div className='pl-2'>
                             <AttendanceChart />
                         </div>
@@ -114,15 +114,15 @@ export default Attendance;
 const AttCard = ({ title, desc, active, onChange, bg }) => {
     return <div className='flex lg:flex-row flex-col items-start gap-3 lg:w-auto w-full'>
         <span className='hidden lg:block'>
-            <Dot className={`${bg} mt-1`} size={11} />
+            <Dot className={`${bg} mt-1`} size={8} />
         </span>
         <div>
-            <h2 className="mb-2 text-neutral-600 text-sm font-extrabold flex items-center gap-3">
+            <h2 className="mb-2 text-neutral-600 text-xs font-extrabold flex items-center gap-3">
                 <span className='block lg:hidden'>
                     <Dot className={`${bg} mt-1`} size={11} />
                 </span>
                 {title}</h2>
-            <p className="h-3 text-stone-500 text-xs font-normal ">{desc}</p>
+            <p className=" text-stone-500 text-xs font-normal ">{desc}</p>
         </div>
     </div>
 }

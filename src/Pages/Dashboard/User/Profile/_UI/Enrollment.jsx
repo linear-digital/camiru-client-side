@@ -198,7 +198,7 @@ const Enrollment = ({ edit }) => {
     }
     return (
         <div className='w-full border lg:pl-[84px] pl-14 py-[55px] rounded-xl poppins'>
-            <h1 className="text-slate-900 lg:text-2xl text-xl font-bold ">
+            <h1 className="text-[#3A3D47] lg:text-2xl text-xl font-bold ">
                 Enrollment
             </h1>
             <div className='mt-10'>
@@ -224,7 +224,7 @@ const Enrollment = ({ edit }) => {
                 />
                 <div className="grid grid-cols-5 lg:gap-10 gap-5 mb-8">
                     <div className="col-span-1 justify-end flex items-center">
-                        <h4 className="text-zinc-700 text-sm font-semibold">
+                        <h4 className="text-[#3A3D47] text-sm font-semibold">
                             Schedule
                         </h4>
                     </div>
@@ -246,12 +246,12 @@ export default Enrollment;
 const Row = ({ title, desc, }) => {
     return <div className="grid grid-cols-4 lg:gap-10 gap-5 mb-8 w-full">
         <div className="col-span-1 justify-end flex items-center">
-            <h4 className="text-zinc-700 text-sm font-semibold">
+            <h4 className="text-[#3A3D47] text-sm font-semibold">
                 {title}
             </h4>
         </div>
         <div className="col-span-3 flex items-center">
-            <h5 className="text-zinc-700 text-sm font-normal ">{desc}</h5>
+            <h5 className="text-[#3A3D47] text-sm font-normal ">{desc}</h5>
         </div>
     </div>
 }
@@ -259,7 +259,7 @@ const Row = ({ title, desc, }) => {
 const RowEdit = ({ title, desc, children }) => {
     return <div className="lg:grid grid-cols-5 gap-10 lg:mb-8 mb-4 w-full">
         <div className="col-span-1 lg:justify-end flex items-start">
-            <h4 className="text-zinc-700 text-sm font-semibold">
+            <h4 className="text-[#3A3D47] text-sm font-semibold">
                 {title}
             </h4>
         </div>

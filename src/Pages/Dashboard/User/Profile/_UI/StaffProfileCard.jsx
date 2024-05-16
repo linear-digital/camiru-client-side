@@ -119,7 +119,7 @@ const StaffProfileCard = () => {
                     </div>
                     <div className='mt-5 lg:mt-0'>
                         <div className='flex flex-wrap gap-2 items-center w-full'>
-                            <div className="w-[193.92px] text-slate-900 lg:text-2xl text-xl font-bold ">About Me</div>
+                            <div className="lg:max-w-[300px] text-black/80 lg:text-2xl text-xl font-bold ">About Me</div>
                         </div>
                         <p className="lg:w-[391.19px] w-full mt-5 text-neutral-500 text-xs font-normal poppins">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipisc</p>
 

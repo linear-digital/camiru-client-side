@@ -6,17 +6,18 @@ import RecentChatCard from './RecentChatCard';
 const Sidebar = () => {
     return (
         <div className='min-w-[347px] hidden lg:block max-w-[347px] h-full p-5 shadow overflow-hidden overflow-y-auto'>
-            <h3 className="w-24 h-7 text-slate-900 text-base font-bold">Messages</h3>
+            <h3 className="text-black/70 text-base font-bold">Messages</h3>
             <SearchBar />
             <Contacts />
             <div className="mt-10 text-cyan-700 text-xs font-semibold ">Chats</div>
-            <div className='mt-5 h-fullh-full overflow-y-auto'>
+            <div className='mt-5 h-full overflow-y-auto'>
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
+
                 <RecentChatCard />
             </div>
         </div>

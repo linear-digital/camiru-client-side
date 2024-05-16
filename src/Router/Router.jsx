@@ -27,6 +27,7 @@ import Graduate from "../Pages/Dashboard/User/Graduate";
 import Photos_Videos from "../Pages/Dashboard/PhotosVideos/Photos_Videos";
 import Messages from "../Pages/Dashboard/Messages/Messages";
 import Notifications from "../Pages/Dashboard/Notifications/Notifications";
+import StaffList from "../Pages/Dashboard/Staffs/StaffList";
 
 const router = createBrowserRouter([
     {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: "checkin",
                 element: <Checkin />
+            },
+            {
+                path: "staffs",
+                element: <StaffList />
             },
             {
                 path: "student/:id",

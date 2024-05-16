@@ -5,13 +5,13 @@ import React from 'react';
 import { useState } from 'react';
 import { class_rooms } from '../../../util/classrooms';
 
-const Filter = ({ name, desc }) => {
+const Filter = ({ name, desc, color }) => {
     const [option, setOption] = useState("Infants");
     const [reportType, setReportType] = useState("Daily Reports");
     return (
         <section className='flex flex-col lg:flex-row justify-between lg:items-center'>
             <div>
-                <h1 className="text-primary lg:text-2xl text-xl font-bold ">{name}</h1>
+                <h1 className="text-[#187A82] lg:text-2xl text-xl font-bold ">{name}</h1>
                 <p className=" text-neutral-400 mt-2 font-normal lg:text-sm text-xs">
                     {desc}
                 </p>
@@ -35,7 +35,7 @@ const Filter = ({ name, desc }) => {
                     }}
                     trigger={['click']}
                 >
-                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#29a6b24a] text-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                         <span className=" text-xs font-medium tracking-tight">
                             {option}
                         </span>

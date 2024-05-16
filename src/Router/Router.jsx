@@ -31,6 +31,7 @@ import StaffList from "../Pages/Dashboard/Staffs/StaffList";
 import StaffRoster from "../Pages/Dashboard/Staffs/StaffRoster";
 import ScheduleTimeOff from "../Pages/Dashboard/User/Profile/_UI/ScheduleTimeOff";
 import TimeCard from "../Pages/Dashboard/User/Profile/_UI/TimeCard";
+import AddStudent from "../Pages/Dashboard/AddStudent/AddStudent";
 
 const router = createBrowserRouter([
     {
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
             {
                 path: "staffs-roster",
                 element: <StaffRoster />
+            },
+            {
+                path: "add-student",
+                element: <AddStudent />
             },
             {
                 path: ":role/:id",

@@ -6,6 +6,7 @@ import {
 } from "@material-tailwind/react";
 
 import DB_Page_Layout from '../../../Layouts/DB_Page_Layout';
+import Generalinfo from "./Generalinfo";
 
 function Icon({ id, open }) {
     return (
@@ -47,7 +48,7 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                       
+                       <Generalinfo />
                     </AccordionBody>
                 </Accordion>
             </div>

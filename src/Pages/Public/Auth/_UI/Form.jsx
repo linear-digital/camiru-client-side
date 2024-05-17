@@ -43,7 +43,7 @@ const Form = ({ mode }) => {
 
             {
                 mode !== 'reset' ?
-                    <form onSubmit={formHandler} className='mt-7'>
+                    <form onSubmit={formHandler} className='mt-7 form-auth'>
                         <div>
                             <Input
                                 variant='outlined'

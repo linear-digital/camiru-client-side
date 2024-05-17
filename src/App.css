@@ -119,13 +119,10 @@ body {
     font-size: 11px;
 }
 
-input {
-    background-color: white !important;
-    border: black;
-}
-
-input:focus {
-    border: black;
+.profile .border-none {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
 }
 
 .peer {
@@ -137,9 +134,11 @@ input:focus {
     color: black;
     border: none;
 }
+
 .add-form .ant-checkbox-checked .ant-checkbox-inner {
     background-color: red !important;
 }
+
 .enroll .MuiInputBase-root {
     border: none !important;
 }

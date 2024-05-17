@@ -11,7 +11,7 @@ import { Button } from '../../../Components/Buttons/Buttons';
 
 const Contacts = () => {
     return (
-        <div className='lg:w-[550px] w-full px-5 lg:px-0 h-auto pt-20'>
+        <div className='lg:w-[550px] w-full px-5 lg:px-0 h-auto pt-20 profile'>
             <div className="flex items-center gap-2">
                 <Dot size={10} className={"bg-amber-400"} />
                 <hr className='w-[40px] border-gray-200 border-[1px]' />
@@ -32,6 +32,7 @@ const Contacts = () => {
                         type='email'
                         placeholder='info@me.com'
                         icon={<FontAwesomeIcon icon={faEnvelope} />}
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-5 col-span-2'>
@@ -41,6 +42,7 @@ const Contacts = () => {
                         label="Contact Number"
                         placeholder='Enter your contact number'
                         icon={<FontAwesomeIcon icon={faPhone} />}
+                        className='border-none'
                     />
                 </div>
                 <h1 className=" text-zinc-800 text-base font-semibold  leading-7 col-span-2 mt-5">Password</h1>
@@ -52,6 +54,7 @@ const Contacts = () => {
                         label="Current Password"
                         placeholder='*******'
                         icon={<FontAwesomeIcon icon={faEye} />}
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-7 col-span-2'>
@@ -61,6 +64,7 @@ const Contacts = () => {
                         label="New Password"
                         placeholder='*******'
                         icon={<FontAwesomeIcon icon={faEye} />}
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-7 col-span-2'>
@@ -70,6 +74,7 @@ const Contacts = () => {
                         label="New Password"
                         placeholder='*******'
                         icon={<FontAwesomeIcon icon={faEye} />}
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-7 col-span-2'>
@@ -79,6 +84,7 @@ const Contacts = () => {
                         label="Re Type Password"
                         placeholder='*******'
                         icon={<FontAwesomeIcon icon={faEye} />}
+                        className='border-none'
                     />
                 </div>
             </form>

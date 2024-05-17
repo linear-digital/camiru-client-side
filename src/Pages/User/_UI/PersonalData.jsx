@@ -8,7 +8,7 @@ import { Button } from '../../../Components/Buttons/Buttons';
 
 const PersonalData = () => {
     return (
-        <div className='lg:w-[550px] w-full h-auto pt-20 outline-none px-5 lg:px-0' >
+        <div className='lg:w-[550px] w-full h-auto pt-20 outline-none px-5 lg:px-0 profile' >
             <div className="flex items-center gap-2">
                 <Dot size={12} className={"bg-amber-400"} />
                 <hr className='w-[40px] border-gray-200 border-[1px]' />
@@ -28,6 +28,7 @@ const PersonalData = () => {
                         label="First Name"
                         placeholder='Enter your first name'
                         size="md"
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-6 col-span-2'>
@@ -36,6 +37,7 @@ const PersonalData = () => {
                         variant="static"
                         label="Last Name"
                         placeholder='Enter your last name'
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-6 lg:col-span-1 col-span-2'>
@@ -44,6 +46,7 @@ const PersonalData = () => {
                         variant="static"
                         label="Date of Birth"
                         type='date'
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-6 lg:col-span-1 col-span-2'>
@@ -52,6 +55,7 @@ const PersonalData = () => {
                         variant="static"
                         label="Place of Birth"
                         placeholder='Enter your place of birth'
+                        className='border-none'
                     />
                 </div>
             </form>

@@ -12,7 +12,7 @@ const Address = () => {
     const [address, setAddress] = React.useState('');
     const { countries } = useCountries();
     return (
-        <div className='lg:w-[550px] w-full px-5 lg:px-0 h-auto pt-20'>
+        <div className='lg:w-[550px] w-full px-5 lg:px-0 h-auto pt-20 profile'>
             <div className="flex items-center gap-2">
                 <Dot size={10} className={"bg-amber-400"} />
                 <hr className='w-[40px] border-gray-200 border-[1px]' />
@@ -32,11 +32,13 @@ const Address = () => {
                         label="Address"
                         placeholder='Enter your address'
                         type='text'
+                        className='border-none'
                     />
                 </div>
                 <div className='mt-5 col-span-2'>
                     <Select variant="static" label="Select Address"
                         value={address}
+                        className='border-none'
                     >
                         <Option value=''>Select Address</Option>
                         <Option value='New York'>New York</Option>
@@ -52,6 +54,7 @@ const Address = () => {
                         size="lg"
                         variant="static"
                         label="Select Country"
+                        className='border-none'
                         value={"United States"}
                         onChange={(e) => {
                             console.log(e)
@@ -79,6 +82,7 @@ const Address = () => {
                 </div>
                 <div className='mt-6 lg:col-span-1 col-span-2'>
                     <Input
+                        className='border-none'
                         color='black'
                         variant="static"
                         label="ZIP Code"
@@ -88,11 +92,11 @@ const Address = () => {
                 </div>
             </form>
             <div className="flex mt-5 items-center gap-2">
-                <Checkbox color="orange" label="I agree with" 
-                className='text-secondary text-sm'
-                /> <a 
-                className='text-secondary text-sm'
-                href="#">Terms of use</a>
+                <Checkbox color="orange" label="I agree with"
+                    className='text-secondary text-sm'
+                /> <a
+                    className='text-secondary text-sm'
+                    href="#">Terms of use</a>
             </div>
             <div className="flex gap-5 pb-10">
                 <Button variant='secondary' className='mt-8 py-4 px-7 bg-white text-black border border-gray-600 flex items-center gap-3'>

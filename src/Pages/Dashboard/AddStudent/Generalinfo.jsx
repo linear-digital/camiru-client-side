@@ -1,9 +1,13 @@
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Checkbox } from '@material-tailwind/react';
+
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Checkbox } from 'antd';
 import { Upload } from 'antd';
 import { DatePicker } from 'antd';
 import { Input } from 'antd';
+import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from 'react';
 
@@ -38,49 +42,51 @@ const Generalinfo = () => {
                 placeholder={"Enter your last name"}
             />
             <RowWithChild label={"Date of Birth"}>
-                <div className='flex gap-2 items-center'>
-                    <button className="w-[85.32px] h-[32.41px]  text-xs bg-white border text-gray-500">
-                        Date <FontAwesomeIcon icon={faChevronDown} className='text-[10px] ml-1' />
-                    </button>
-                    <button className="w-[85.32px] h-[32.41px]  text-xs bg-white border text-gray-500">
-                        Month <FontAwesomeIcon icon={faChevronDown} className='text-[10px] ml-1' />
-                    </button>
-                    <button className="w-[85.32px] h-[32.41px]  text-xs bg-white border text-gray-500">
-                        Year <FontAwesomeIcon icon={faChevronDown} className='text-[10px] ml-1' />
-                    </button>
-                </div>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <div className='flex gap-3 enroll'>
+                        <DesktopDatePicker views={['day',]}
+                            defaultValue={dayjs()}
+                        />
+                        <DesktopDatePicker
+                            defaultValue={dayjs()}
+                            views={['month',]} />
+                        <DesktopDatePicker
+                            defaultValue={dayjs()}
+                            views={['year',]} />
+                    </div>
+                </LocalizationProvider>
             </RowWithChild>
             <RowWithChild label={"Gender"} position={"center"}>
-                <form className="flex items-center">
-                    <div className='flex  items-center'>
+                <div className="flex  items-center gap-3">
+                    <div className='flex  items-center gap-2'>
                         <Checkbox
                             checked={gender === "Boy"}
                             onChange={() => setGender("Boy")}
                             color="red"
-                            className='rounded-full w-[20px] '
+                            className='rounded-full w-[20px] text-red-400 add-form'
                             size="xs"
                         />
                         <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Boy</h5>
                     </div>
-                    <div className='flex  items-center'>
-                        <Checkbox color="red"
+                    <div className='flex  items-center gap-2'>
+                        <Checkbox
                             checked={gender === "Girl"}
                             onChange={() => setGender("Girl")}
-                            className='rounded-full w-[20px] '
+                            className='rounded-full w-[20px] add-form '
                             size="xs"
                         />
                         <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Girl</h5>
                     </div>
-                    <div className='flex  items-center'>
+                    <div className='flex  items-center gap-2'>
                         <Checkbox color="red"
                             checked={gender === "x"}
                             onChange={() => setGender("x")}
-                            className='rounded-full w-[20px] '
+                            className='rounded-full w-[20px] add-form'
                             size="xs"
                         />
                         <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">X</h5>
                     </div>
-                </form>
+                </div>
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
 
@@ -94,9 +100,10 @@ const Generalinfo = () => {
                 >
                     {fileList.length < 1 && '+ Upload'}
                 </Upload>
-                <div className='flex  items-center mt-2'>
+                <div className='flex gap-2 items-center mt-2'>
                     <Checkbox color="orange"
                         size="xs"
+                        className='add-form'
                     />
                     <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Permitted in photos & videos with other children</h5>
                 </div>

@@ -10,7 +10,7 @@
 }
 
 /* Fonts  */
-body{
+body {
     background-color: white;
     color: black;
 }
@@ -109,20 +109,46 @@ body{
     background-color: #FFBB3B !important;
     color: white !important;
 }
-.profile-history{
+
+.profile-history {
     right: 0px !important;
 }
 
-.my-table tr td{
+.my-table tr td {
     font-weight: 500 !important;
     font-size: 11px;
+}
+
+input {
+    background-color: white !important;
+    border: black;
+}
+
+input:focus {
+    border: black;
+}
+
+/* .peer:checked {
+    background-color: red !important;
+    color: white;
+} */
+.add-form .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: red !important;
+}
+
+.add-form .ant-checkbox-checked .ant-checkbox-inner:after {
+    border-color: white !important;
+}
+select {
+    background-color: white;
 }
 
 @media screen and (max-width: 768px) {
     .media-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .profile-history{
+
+    .profile-history {
         right: -100px !important;
     }
 }

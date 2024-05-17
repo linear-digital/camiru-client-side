@@ -81,7 +81,6 @@ const Generalinfo = () => {
                         <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">X</h5>
                     </div>
                 </form>
-
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
 

@@ -7,6 +7,7 @@ import {
 
 import DB_Page_Layout from '../../../Layouts/DB_Page_Layout';
 import Generalinfo from "./Generalinfo";
+import EnrollmentForm from './EnrollMentForm';
 
 function Icon({ id, open }) {
     return (
@@ -35,9 +36,9 @@ const AddStudent = () => {
                 <h1 className=" text-[#187A82] lg:text-2xl text-xl font-bold ">Contacts</h1>
                 <p className=" text-neutral-400 lg:mt-2 mt-1 font-normal text-sm">To add a profile, please fill out the following information</p>
             </div>
-            <div className="mt-10">
+            <div className="mt-10 grid gap-5">
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}
-                className={`border rounded-md lg:px-7 px-3 ${open === 1 && "border-[#187A82] py-5 bg-[#F8FCFF]"}`}
+                    className={`border rounded-md lg:px-7 px-3 ${open === 1 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(1)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -48,7 +49,24 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                       <Generalinfo />
+                        <Generalinfo />
+                    </AccordionBody>
+                </Accordion>
+                <Accordion open={open === 2} icon={<Icon id={2} open={open} />}
+                    className={`border rounded-md lg:px-7 px-3 ${open === 2 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                >
+                    <AccordionHeader onClick={() => handleOpen(2)} className="border-none items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
+                                2
+                            </div>
+                            <div className="text-[#646363] text-sm lg:text-2xl font-bold ">
+                                Enrollment
+                            </div>
+                        </div>
+                    </AccordionHeader>
+                    <AccordionBody>
+                        <EnrollmentForm />
                     </AccordionBody>
                 </Accordion>
             </div>

@@ -1,15 +1,14 @@
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Checkbox } from 'antd';
 import { Upload } from 'antd';
-import { DatePicker } from 'antd';
 import { Input } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from 'react';
+import { CheckBoxNew, Row, RowWithChild } from './Common';
 
 const Generalinfo = () => {
     const [fileList, setFileList] = useState([]);
@@ -30,11 +29,11 @@ const Generalinfo = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
     };
-    const [gender, setGender] = useState("Boy");
+
     return (
         <div className='w-full flex flex-col gap-7'>
             <Row
-                label={"First Name"}
+                label={"Classroom"}
                 placeholder={"Enter your first name"}
             />
             <Row
@@ -58,34 +57,15 @@ const Generalinfo = () => {
             </RowWithChild>
             <RowWithChild label={"Gender"} position={"center"}>
                 <div className="flex  items-center gap-3">
-                    <div className='flex  items-center gap-2'>
-                        <Checkbox
-                            checked={gender === "Boy"}
-                            onChange={() => setGender("Boy")}
-                            color="red"
-                            className='rounded-full w-[20px] text-red-400 add-form'
-                            size="xs"
-                        />
-                        <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Boy</h5>
-                    </div>
-                    <div className='flex  items-center gap-2'>
-                        <Checkbox
-                            checked={gender === "Girl"}
-                            onChange={() => setGender("Girl")}
-                            className='rounded-full w-[20px] add-form '
-                            size="xs"
-                        />
-                        <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Girl</h5>
-                    </div>
-                    <div className='flex  items-center gap-2'>
-                        <Checkbox color="red"
-                            checked={gender === "x"}
-                            onChange={() => setGender("x")}
-                            className='rounded-full w-[20px] add-form'
-                            size="xs"
-                        />
-                        <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">X</h5>
-                    </div>
+                    <CheckBoxNew
+                        label={"Boy"}
+                    />
+                    <CheckBoxNew
+                        label={"Girl"}
+                    />
+                    <CheckBoxNew
+                        label={"X"}
+                    />
                 </div>
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
@@ -117,21 +97,3 @@ const Generalinfo = () => {
 
 export default Generalinfo;
 
-const Row = ({ placeholder, label, value, onChange }) => {
-    return <div className='flex gap-5 items-center'>
-        <h5 className="text-zinc-700 min-w-[100px] text-end text-base font-semibold ">{label}
-        </h5>
-        <Input placeholder={placeholder} value={value} onChange={onChange}
-            className='focus:border-gray-400 w-[340px]'
-        />
-    </div>
-}
-const RowWithChild = ({ position, label, value, onChange, children }) => {
-    return <div className={`${position === "center" ? "items-center" : "items-start"} flex gap-5`}>
-        <h5 className="text-zinc-700 min-w-[100px] text-end text-base font-semibold ">{label}
-        </h5>
-        <div>
-            {children}
-        </div>
-    </div>
-}

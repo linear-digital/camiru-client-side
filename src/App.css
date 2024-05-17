@@ -128,17 +128,22 @@ input:focus {
     border: black;
 }
 
-/* .peer:checked {
-    background-color: red !important;
-    color: white;
-} */
+.peer {
+    color: black;
+    border: 1px solid black;
+}
+
+.peer:checked {
+    color: black;
+    border: none;
+}
 .add-form .ant-checkbox-checked .ant-checkbox-inner {
     background-color: red !important;
 }
-
-.add-form .ant-checkbox-checked .ant-checkbox-inner:after {
-    border-color: white !important;
+.enroll .MuiInputBase-root {
+    border: none !important;
 }
+
 select {
     background-color: white;
 }

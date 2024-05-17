@@ -123,7 +123,7 @@ const ScheduleAbsence = () => {
                             </h4>
                         </div>
                         <div className="col-span-3 flex items-center gap-3">
-                            <textarea name="" id="" className='w-[300px] border outline-none text-xs p-3 h-[131px]'
+                            <textarea name="" id="" className='w-[300px] border bg-white outline-none text-xs p-3 h-[131px]'
                                 placeholder='Type note here'
                             >
 

@@ -99,7 +99,7 @@ export default function Table() {
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <button className="btn btn-sm btn-secondary text-[10px] px-5 text-white">
+                                    <button className="py-2 border-[#187A82] bg-[#5CD9CA40] border text-xs font-medium rounded-lg px-5 text-[#187A82]">
                                         Clock in
                                     </button>
                                 </td>
@@ -187,7 +187,7 @@ const ActionButton = () => {
             }}
             trigger={['click']}
         >
-            <button className="btn btn-yellow btn-sm">
+            <button className="border bg-[#FFBB3B33] border-[#FFBB3B] px-5 py-2 rounded-lg flex items-center gap-2 text-[#f0b039]">
                 <span className="text-[10px] font-medium tracking-tight">
                     Action
                 </span>

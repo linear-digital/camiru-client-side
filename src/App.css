@@ -1,0 +1,183 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+    --primary: #239bd6;
+    --secondary: #F8AD47;
+    --accent: #98C931;
+    --white: #ffffffe8;
+    --yellow: #FFBB3B;
+}
+
+/* Fonts  */
+body {
+    background-color: white;
+    color: black;
+}
+
+.poppins {
+    font-family: "Poppins", sans-serif;
+}
+
+.inter {
+    font-family: "Inter", sans-serif;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--white);
+    outline-color: var(--primary);
+    border: var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.divider {
+    background-color: #DCDBDD;
+    height: 1px;
+    width: 100%;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+    background-color: wheat;
+}
+
+/* Scrollbar height */
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 10px;
+    height: 5px;
+}
+
+.btn-secondary {
+    background-color: var(--accent);
+    border: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--accent);
+    border: none;
+}
+
+.btn-yellow {
+    background-color: var(--yellow);
+    border: none;
+    color: white;
+}
+
+.btn-yellow:hover {
+    background-color: var(--yellow);
+    border: none;
+}
+
+:where(.css-dev-only-do-not-override-1okl62o).ant-checkbox-checked .ant-checkbox-inner {
+    background-color: var(--primary) !important;
+    border: var(--primary) !important;
+    /* color: #15acde40; */
+}
+
+.enroll .MuiInputBase-root {
+    height: 30px;
+    font-size: 11px !important;
+    width: 80px;
+    border: #187A82 1px solid !important;
+    outline: none !important;
+}
+
+.enroll .MuiSvgIcon-root {
+    width: 14px !important;
+    height: 14px !important;
+    color: #187A82 !important;
+}
+
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+
+.messageCard {
+    background: var(--Gray-1, #E3EBF1);
+}
+
+.absolute.bg-white {
+    background-color: #FFBB3B !important;
+    color: white !important;
+}
+
+.profile-history {
+    right: 0px !important;
+}
+
+.my-table tr td {
+    font-weight: 500 !important;
+    font-size: 11px;
+}
+
+.profile .border-none {
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+}
+
+.peer {
+    color: black;
+    border: 1px solid black;
+}
+
+.peer:checked {
+    color: black;
+    border: none;
+}
+
+.add-form .ant-checkbox-checked .ant-checkbox-inner {
+    background-color: red !important;
+}
+
+.enroll .MuiInputBase-root {
+    border: none !important;
+}
+
+select {
+    background-color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .media-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .profile-history {
+        right: -100px !important;
+    }
+}
+
+
+@media only screen and (min-width: 1000px) {
+    .media-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .media-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .media-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media only screen and (min-width: 1700px) {
+    .media-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}

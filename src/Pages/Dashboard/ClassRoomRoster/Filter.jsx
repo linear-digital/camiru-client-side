@@ -1,0 +1,109 @@
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Dropdown } from 'antd';
+import React from 'react';
+import { useState } from 'react';
+import { class_rooms } from '../../../util/classrooms';
+
+const Filter = ({ name, desc, color }) => {
+    const [option, setOption] = useState("Infants");
+    const [reportType, setReportType] = useState("Daily Reports");
+    return (
+        <section className='flex flex-col lg:flex-row justify-between lg:items-center'>
+            <div>
+                <h1 className="text-[#187A82] lg:text-2xl text-xl font-bold ">{name}</h1>
+                <p className=" text-neutral-400 mt-2 font-normal lg:text-sm text-xs">
+                    {desc}
+                </p>
+            </div>
+            <div className='flex flex-wrap mt-5 lg:mt-0 gap-5 items-center'>
+                <Dropdown
+                    className='option-classroom'
+                    menu={{
+                        items: [
+                            ...class_rooms?.map((item, index) => {
+                                return {
+                                    label: <button
+                                        className={`${option === item ? "text-primary" : ""} w-full   text-start`}
+                                        onClick={() => setOption(item)}>
+                                        {item}
+                                    </button>,
+                                    key: index,
+                                }
+                            })
+                        ],
+                    }}
+                    trigger={['click']}
+                >
+                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                        <span className=" text-xs font-medium tracking-tight">
+                            {option}
+                        </span>
+                        <FontAwesomeIcon icon={faChevronDown} />
+                    </button>
+                </Dropdown>
+                <Dropdown
+                    className='option-classroom'
+                    menu={{
+                        items: [
+                            {
+                                label: <button
+                                    className={`${reportType === "Daily Reports" ? "text-amber-500" : ""} w-full   text-start`}
+                                    onClick={() => setReportType("Daily Reports")}
+                                >
+                                    Daily Reports
+                                </button>,
+                                key: '1',
+                            },
+                            {
+                                type: 'divider',
+                            },
+                            {
+                                label: <button
+                                    className={`${reportType === "Weekly Reports" ? "text-amber-500" : ""} w-full   text-start`}
+                                    onClick={() => setReportType("Weekly Reports")}
+                                >
+                                    Weekly Reports
+                                </button>,
+                                key: '2',
+                            },
+                            {
+                                type: 'divider',
+                            },
+                            {
+                                label: <button
+                                    className={`${reportType === "Monthly Reports" ? "text-amber-500" : ""} w-full   text-start`}
+                                    onClick={() => setReportType("Monthly Reports")}>
+                                    Monthly Reports
+                                </button>,
+                                key: '3',
+                            },
+                            {
+                                type: 'divider',
+                            },
+                            {
+                                label: <button
+                                    className={`${reportType === "Yearly Reports" ? "text-amber-500" : ""} w-full   text-start`}
+                                    onClick={() => setReportType("Yearly Reports")}>
+                                    Yearly Reports
+                                </button>,
+                                key: '4',
+                            }
+                        ],
+                    }}
+                    trigger={['click']}
+                >
+                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-500">
+                        <span className=" font-medium tracking-tight">{reportType}</span>
+                        <FontAwesomeIcon icon={faChevronDown} />
+                    </button>
+                </Dropdown>
+                <button className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px]  bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-600 font-semibold">
+                    Add People
+                </button>
+            </div>
+        </section>
+    );
+};
+
+export default Filter;

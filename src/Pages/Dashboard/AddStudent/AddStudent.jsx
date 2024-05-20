@@ -11,7 +11,7 @@ import EnrollmentForm from './EnrollMentForm';
 import Contact from "./Contact";
 import Address from "./Address";
 import Records from "./Records";
-
+import AdditionalNotes from './AdditionalNotes';
 function Icon({ id, open }) {
     return (
         <svg
@@ -29,7 +29,7 @@ function Icon({ id, open }) {
 
 
 const AddStudent = () => {
-    const [open, setOpen] = React.useState(5);
+    const [open, setOpen] = React.useState(1);
 
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
@@ -137,7 +137,7 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Records />
+                        <AdditionalNotes />
                     </AccordionBody>
                 </Accordion>
             </div>

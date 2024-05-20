@@ -10,6 +10,7 @@ import Generalinfo from "./Generalinfo";
 import EnrollmentForm from './EnrollMentForm';
 import Contact from "./Contact";
 import Address from "./Address";
+import Records from "./Records";
 
 function Icon({ id, open }) {
     return (
@@ -28,7 +29,7 @@ function Icon({ id, open }) {
 
 
 const AddStudent = () => {
-    const [open, setOpen] = React.useState(0);
+    const [open, setOpen] = React.useState(5);
 
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
@@ -119,7 +120,24 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Address />
+                        <Records />
+                    </AccordionBody>
+                </Accordion>
+                <Accordion open={open === 6} icon={<Icon id={6} open={open} />}
+                    className={`border rounded-md lg:px-7 px-3 ${open === 6 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                >
+                    <AccordionHeader onClick={() => handleOpen(6)} className="border-none items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
+                                6
+                            </div>
+                            <div className="text-[#646363] text-sm lg:text-2xl font-bold ">
+                                Additional Notes
+                            </div>
+                        </div>
+                    </AccordionHeader>
+                    <AccordionBody>
+                        <Records />
                     </AccordionBody>
                 </Accordion>
             </div>

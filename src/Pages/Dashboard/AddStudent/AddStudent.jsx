@@ -105,6 +105,23 @@ const AddStudent = () => {
                         <Address />
                     </AccordionBody>
                 </Accordion>
+                <Accordion open={open === 5} icon={<Icon id={5} open={open} />}
+                    className={`border rounded-md lg:px-7 px-3 ${open === 5 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                >
+                    <AccordionHeader onClick={() => handleOpen(5)} className="border-none items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
+                                5
+                            </div>
+                            <div className="text-[#646363] text-sm lg:text-2xl font-bold ">
+                                Records
+                            </div>
+                        </div>
+                    </AccordionHeader>
+                    <AccordionBody>
+                        <Address />
+                    </AccordionBody>
+                </Accordion>
             </div>
         </DB_Page_Layout>
     );

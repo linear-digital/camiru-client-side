@@ -34,7 +34,6 @@ const Address = () => {
     return (
         <div className='w-full flex flex-col gap-7'>
 
-
             <Row
                 label={"Address"}
                 placeholder={"Street and House Number"}

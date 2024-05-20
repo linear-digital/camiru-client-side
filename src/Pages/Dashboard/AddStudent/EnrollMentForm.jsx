@@ -2,9 +2,7 @@
 
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Checkbox } from 'antd';
-import { Upload } from 'antd';
-import { Input } from 'antd';
+
 import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from 'react';

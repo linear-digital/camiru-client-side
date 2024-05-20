@@ -8,6 +8,8 @@ import {
 import DB_Page_Layout from '../../../Layouts/DB_Page_Layout';
 import Generalinfo from "./Generalinfo";
 import EnrollmentForm from './EnrollMentForm';
+import Contact from "./Contact";
+import Address from "./Address";
 
 function Icon({ id, open }) {
     return (
@@ -69,6 +71,40 @@ const AddStudent = () => {
                         <EnrollmentForm />
                     </AccordionBody>
                 </Accordion>
+                <Accordion open={open === 3} icon={<Icon id={3} open={open} />}
+                    className={`border rounded-md lg:px-7 px-3 ${open === 3 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                >
+                    <AccordionHeader onClick={() => handleOpen(3)} className="border-none items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
+                                3
+                            </div>
+                            <div className="text-[#646363] text-sm lg:text-2xl font-bold ">
+                                Contact
+                            </div>
+                        </div>
+                    </AccordionHeader>
+                    <AccordionBody>
+                        <Contact />
+                    </AccordionBody>
+                </Accordion>
+                <Accordion open={open === 4} icon={<Icon id={4} open={open} />}
+                    className={`border rounded-md lg:px-7 px-3 ${open === 4 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                >
+                    <AccordionHeader onClick={() => handleOpen(4)} className="border-none items-center">
+                        <div className="flex items-center gap-3">
+                            <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
+                                4
+                            </div>
+                            <div className="text-[#646363] text-sm lg:text-2xl font-bold ">
+                                Address
+                            </div>
+                        </div>
+                    </AccordionHeader>
+                    <AccordionBody>
+                        <Address />
+                    </AccordionBody>
+                </Accordion>
             </div>
         </DB_Page_Layout>
     );
@@ -76,4 +112,24 @@ const AddStudent = () => {
 
 export default AddStudent;
 
+
+const AccordionCard = ({ open, number, handleOpen, children }) => {
+    return <Accordion open={open === number} icon={<Icon id={number} open={open} />}
+        className={`border rounded-md lg:px-7 px-3 ${open === number && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+    >
+        <AccordionHeader onClick={() => handleOpen(number)} className="border-none items-center">
+            <div className="flex items-center gap-3">
+                <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
+                    2
+                </div>
+                <div className="text-[#646363] text-sm lg:text-2xl font-bold ">
+                    Enrollment
+                </div>
+            </div>
+        </AccordionHeader>
+        <AccordionBody>
+            {children}
+        </AccordionBody>
+    </Accordion>
+}
 

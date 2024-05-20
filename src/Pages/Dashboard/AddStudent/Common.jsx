@@ -7,7 +7,7 @@ export const Row = ({ placeholder, label, value, onChange }) => {
         <h5 className="text-zinc-700 min-w-[150px] text-end text-base font-semibold ">{label}
         </h5>
         <Input placeholder={placeholder} value={value} onChange={onChange}
-            className='focus:border-gray-400 w-[340px]'
+           className='focus:border-gray-400 w-[340px] h-[40px]'
         />
     </div>
 }

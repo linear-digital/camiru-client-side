@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { class_rooms } from '../../../util/classrooms';
 
-const Filter = ({ name, desc, color }) => {
+const Header = ({ name, desc, color }) => {
 
     const [mode, setMode] = useState("view");
     const location = useLocation();
@@ -37,7 +37,6 @@ const Filter = ({ name, desc, color }) => {
                 </p>
             </div>
             {
-                mode === "filter" ?
                     <div className='flex gap-5 items-center'>
                         <ClassRoomSelector />
                         <div className="flex items-center gap-3">
@@ -58,28 +57,17 @@ const Filter = ({ name, desc, color }) => {
                             <FontAwesomeIcon icon={faPrint} />
                         </button>
                     </div>
-                    : mode === "edit" ? <div className='flex gap-5 items-center'>
-                        <Link to={'graduate'} className='btn btn-sm bg-[#5CD9CA40] text-[#187A82] text-xs font-normal px-5'>
-                            Mark As Graduate
-                            <FontAwesomeIcon icon={faSquareCheck} />
-                        </Link>
-                        <Link to={isIncluded("edit") ? `${location.pathname}` : `${location.pathname}/edit`} className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
-                            Advance Edit Page
-                            <FontAwesomeIcon icon={faPen} className='text-[#FFBB3B]' />
-                        </Link>
-                    </div>
-                        : null
             }
         </section>
     );
 };
 
-export default Filter;
+export default Header;
 
 export const ClassRoomSelector = () => {
     const [option, setOption] = useState("Infants");
     return <Dropdown
-        className='option-classroom'
+        className='option-classroom border'
         menu={{
             items: [
                 ...class_rooms.map((item, index) => {

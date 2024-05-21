@@ -33,6 +33,7 @@ import ScheduleTimeOff from "../Pages/Dashboard/User/Profile/_UI/ScheduleTimeOff
 import TimeCard from "../Pages/Dashboard/User/Profile/_UI/TimeCard";
 import AddStudent from "../Pages/Dashboard/AddStudent/AddStudent";
 import Calendar from "../Pages/Dashboard/Calendar/Calendar";
+import CheckInOutReport from "../Pages/Dashboard/CheckInOutReport/CheckInOutReport";
 
 const router = createBrowserRouter([
     {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
             {
                 path: "checkin",
                 element: <Checkin page="Student" />
+            },
+            {
+                path: "checkio-report",
+                element: <CheckInOutReport />
             },
             {
                 path: "checkin-staff",

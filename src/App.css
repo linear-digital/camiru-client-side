@@ -13,6 +13,7 @@
 body {
     background-color: white;
     color: black;
+    font-family: "Poppins", sans-serif;
 }
 
 .poppins {
@@ -100,6 +101,15 @@ body {
     grid-template-columns: repeat(4, 1fr);
 }
 
+.btn-sm {
+    min-width: 90px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    gap: 10px;
+}
 
 .messageCard {
     background: var(--Gray-1, #E3EBF1);
@@ -146,11 +156,13 @@ body {
 select {
     background-color: white;
 }
-input{
+
+input {
     background-color: white;
-    color: black ;
+    color: black;
     font-weight: 500;
 }
+
 @media screen and (max-width: 768px) {
     .media-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -179,6 +191,7 @@ input{
         grid-template-columns: repeat(5, 1fr);
     }
 }
+
 @media only screen and (min-width: 1500px) {
     .media-grid {
         grid-template-columns: repeat(4, 1fr);

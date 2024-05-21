@@ -13,7 +13,7 @@ const UserLayout = () => {
             </div>
             <section className='w-full max-w-full h-full overflow-auto'>
                 {
-                    !location.pathname.includes('dashboard/profile') && <Navbar />
+                    (!location.pathname.includes('dashboard/profile') && !location.pathname.includes('dashboard/support')) && <Navbar />
                 }
                 <Outlet />
             </section>

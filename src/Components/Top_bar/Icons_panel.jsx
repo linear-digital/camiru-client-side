@@ -18,9 +18,9 @@ const Icons_panel = () => {
                     <ReportHistory className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
                 </div>
             </div>
-            <button>
+            <Link to={'/dashboard/messages'}>
                 <Envelope className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
-            </button>
+            </Link>
             <Link to={'/dashboard/notifications'}>
                 <Notification className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
             </Link>

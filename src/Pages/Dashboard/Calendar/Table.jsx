@@ -168,15 +168,6 @@ export default function Table() {
                                             </button>
                                         </td>
                                         <td className={classes}>
-                                            <Typography
-                                                variant="small"
-                                                color="blue-gray"
-                                                className="font-normal"
-                                            >
-                                                {date}
-                                            </Typography>
-                                        </td>
-                                        <td className={classes}>
                                             <div className="flex items-center gap-2">
                                                 <Dot className={`w-2 h-2 bg-amber-300`} />
                                                 <div className="text-slate-400 text-xs font-bold ">Infants</div>

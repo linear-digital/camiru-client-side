@@ -11,7 +11,7 @@ import { Bars, Grids } from '../../../util/icons';
 const Photos_Videos = () => {
 
     return (
-        <div className='lg:p-10 p-5 bg-white rounded-lg'>
+        <div className='lg:p-10 p-5 bg-white rounded-lg relative'>
             <div className="lg:flex justify-between items-center">
                 <div>
                     <h3 className="text-black/70 lg:text-2xl text-xl font-semibold ">Recent Photos & videos</h3>

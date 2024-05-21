@@ -6,11 +6,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown } from 'antd';
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
 import { useLocation } from 'react-router-dom';
 import { class_rooms } from '../../../util/classrooms';
 
-const Header = ({ name, desc, color }) => {
+const Header = ({ name, desc, color, toPDF }) => {
 
     const [mode, setMode] = useState("view");
     const location = useLocation();
@@ -37,26 +37,28 @@ const Header = ({ name, desc, color }) => {
                 </p>
             </div>
             {
-                    <div className='flex gap-5 items-center'>
-                        <ClassRoomSelector />
-                        <div className="flex items-center gap-3">
-                            <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
-                                Nov 21 , 2024
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </button>
-                            <div className='text-amber-500 text-sm'>
-                                To
-                            </div>
-                            <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
-                                Nov 21 , 2024
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </button>
+                <div className='flex gap-5 items-center'>
+                    <ClassRoomSelector />
+                    <div className="flex items-center gap-3">
+                        <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
+                            Nov 21 , 2024
+                            <FontAwesomeIcon icon={faChevronDown} />
+                        </button>
+                        <div className='text-amber-500 text-sm'>
+                            To
                         </div>
-
-                        <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-lg text-amber-600 font-semibold">
-                            <FontAwesomeIcon icon={faPrint} />
+                        <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
+                            Nov 21 , 2024
+                            <FontAwesomeIcon icon={faChevronDown} />
                         </button>
                     </div>
+
+                    <button
+                        onClick={() => toPDF()}
+                        className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-lg text-amber-600 font-semibold">
+                        <FontAwesomeIcon icon={faPrint} />
+                    </button>
+                </div>
             }
         </section>
     );

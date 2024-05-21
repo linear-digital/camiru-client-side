@@ -29,7 +29,7 @@ import {
     Tooltip,
     Input,
 } from "@material-tailwind/react";
-import { Dot } from "../../User/Profile";
+
 import { useState } from "react";
 import TableHead from "./TableHead";
 
@@ -116,12 +116,12 @@ const TABLE_ROWS = [
         expiry: "06/2026",
     },
 ];
-const TABLE_HEAD = ["Members & Schedule", "Job", "Employed", ""];
-export default function Table() {
+
+export default function Table({ targetRef }) {
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [selectedDays, setSelectedDays] = useState(["M", "Tu", "Wh"]);
     return (
-        <Card className="h-full w-full shadow-none bg-[#F1F6FA63] mt-10 ">
+        <Card ref={targetRef} className="h-full w-full shadow-none bg-[#F1F6FA63] mt-10 ">
 
             <CardBody className="overflow-auto px-0 py-0">
                 <table className="w-full min-w-max table-auto text-left">

@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 const Icons_panel = () => {
     return (
         <div className='flex items-center gap-5'>
-            <button>
+            <Link to={'/dashboard/calendar'}>
                 <Calendar className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />
-            </button>
+            </Link>
             <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button">
                     <Task className={"lg:w-auto lg:h-auto w-[17px] h-[17px]"} />

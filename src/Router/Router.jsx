@@ -32,6 +32,7 @@ import StaffRoster from "../Pages/Dashboard/Staffs/StaffRoster";
 import ScheduleTimeOff from "../Pages/Dashboard/User/Profile/_UI/ScheduleTimeOff";
 import TimeCard from "../Pages/Dashboard/User/Profile/_UI/TimeCard";
 import AddStudent from "../Pages/Dashboard/AddStudent/AddStudent";
+import Calendar from "../Pages/Dashboard/Calendar/Calendar";
 
 const router = createBrowserRouter([
     {
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
             {
                 path: "notifications",
                 element: <Notifications />
+            },
+            {
+                path: "calendar",
+                element: <Calendar />
             },
             {
                 path: "rooms",

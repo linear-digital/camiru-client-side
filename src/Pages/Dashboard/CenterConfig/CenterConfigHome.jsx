@@ -102,14 +102,12 @@ const CenterConfigHome = () => {
                 <RowWithChild label={"Child Name Display"}
                 >
                     <div className="flex flex-col">
-
                         <RadioButton
                             label={'First Name and Full Last Name (e.g., "Jane Doe")'}
                             checked={true}
                         />
                         <RadioButton
                             label={'First Name and Last Initial (e.g., "Jane D.")'}
-                            checked={true}
                         />
                     </div>
                 </RowWithChild>

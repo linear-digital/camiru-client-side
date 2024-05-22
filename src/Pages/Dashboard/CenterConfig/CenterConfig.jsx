@@ -13,30 +13,35 @@ const CenterConfig = () => {
                     To add a profile please fill out the following information.
                 </p>
             </div>
-            <section className='mt-10 flex gap-10 items-start'>
-                <div className='grid gap-5'>
+            <section className='mt-10 flex lg:flex-row flex-col gap-10 items-start'>
+                <div className='grid gap-5 w-full lg:w-[250px]'>
                     <Navigation
                         name={"Center Settings"}
                         path={"/dashboard/config"}
+                        number={1}
                     />
                     <Navigation
                         name={"Classroom Settings"}
                         path={"/dashboard/config/classroom"}
+                        number={2}
                     />
                     <Navigation
                         name={"Health Screening"}
                         path={"/dashboard/config/health"}
+                        number={3}
                     />
                     <Navigation
                         name={"Registration Configuration"}
                         path={"/dashboard/config/reg-config"}
+                        number={4}
                     />
                     <Navigation
                         name={"Logins"}
                         path={"/dashboard/config/logins"}
+                        number={5}
                     />
                 </div>
-                <div className='p-10 w-full border-[#187A82] border bg-[#F8FCFF] rounded'>
+                <div className='lg:p-10 p-3 w-full border-[#187A82] border bg-[#F8FCFF] rounded'>
                     <Outlet />
                 </div>
             </section>
@@ -45,15 +50,15 @@ const CenterConfig = () => {
 };
 
 export default CenterConfig;
-const Navigation = ({ name, path }) => {
+const Navigation = ({ name, path, number }) => {
     const location = useLocation();
     const isIncluded = (path) => {
-        return location.pathname.includes(path);
+        return location.pathname === path
     }
-    return <Link to={path} className={`flex border ${isIncluded(path) ? "border-[#FFBB3B] bg-[#FFBB3B33]" : "border-[#187A82]"} w-[250px] h-[50px] px-5 items-center justify-between rounded`}>
+    return <Link to={path} className={`flex border ${isIncluded(path) ? "border-[#FFBB3B] bg-[#FFBB3B33]" : "border-[#187A82]"} lg:w-[250px] w-full h-[50px] px-5 items-center justify-between rounded`}>
         <div className="flex gap-4 items-center">
             <div className={`w-[25px] h-[25px] bg-amber-400/opacity-25 rounded-full flex items-center justify-center text-sm font-bold border   ${isIncluded(path) ? "bg-[#FFBB3B45] text-amber-400 border-amber-400" : "bg-[#D9D9D9] text-gray-800"}`} >
-                1
+                {number}
             </div>
             <div className={`${isIncluded(path) ? "text-amber-400" : "text-gray-800"} text-[10px] font-bold`}>
                 {name}

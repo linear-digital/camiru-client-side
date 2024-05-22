@@ -41,6 +41,10 @@ import Services from "../Pages/Dashboard/Support/Steps/Services";
 import ContactStep from "../Pages/Dashboard/Support/Steps/ContactStep";
 import CenterConfig from "../Pages/Dashboard/CenterConfig/CenterConfig";
 import CenterConfigHome from "../Pages/Dashboard/CenterConfig/CenterConfigHome";
+import ClassroomSettings from "../Pages/Dashboard/CenterConfig/ClassroomSettings";
+import HealthScreening from "../Pages/Dashboard/CenterConfig/HealthScreening";
+import RegistrationConfig from "../Pages/Dashboard/CenterConfig/RegistrationConfig";
+import Logins from "../Pages/Dashboard/CenterConfig/Logins";
 
 
 
@@ -156,6 +160,22 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <CenterConfigHome />
+                    },
+                    {
+                        path: "classroom",
+                        element: <ClassroomSettings />
+                    },
+                    {
+                        path: "health",
+                        element: <HealthScreening />
+                    },
+                    {
+                        path: "reg-config",
+                        element: <RegistrationConfig />
+                    },
+                    {
+                        path: "logins",
+                        element: <Logins />
                     }
                 ]
             },

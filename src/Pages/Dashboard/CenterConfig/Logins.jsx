@@ -9,7 +9,7 @@ const Logins = () => {
                 </div>
                 <div className="text-stone-500 text-[21.73px] font-bold ">Logins</div>
             </div>
-            <div className="w-full h-[29px] bg-[#FFBB3B33] flex items-center px-5 mt-10" >
+            <div className="w-full py-2 bg-[#FFBB3B33] flex items-center px-5 mt-10" >
                 <p className='text-[11px]'>
                     New to Camiru? Your center's logins are listed below. Open the Launch Plan and follow the steps to get started.
                 </p>
@@ -37,6 +37,12 @@ const Logins = () => {
             <HistoryCard />
             <hr className='mt-7 pb-2 border-t-[#00000066]' />
             <HistoryCard />
+            <div className="w-full py-3 bg-[#5CD9CA40]  px-5 mt-10" >
+                <h5 className='text-xs font-semibold mb-2'>Password Reset Instructions</h5>
+                <p className='text-[11px]'>
+                    Additional Admin Logins Submit a request and include the director's name and email address to add administrator logins to your account.Note there may be an additional monthly cost to add administrators to your account.
+                </p>
+            </div>
         </div>
     );
 };

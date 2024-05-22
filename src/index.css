@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    background-color: white;
+:root {
+  --primary: #239bd6; /* Fallback */
+  --primary-oklch: oklch(57.21% 0.175 236.56); /* OKLCH */
 }

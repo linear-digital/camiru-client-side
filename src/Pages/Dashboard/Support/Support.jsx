@@ -9,6 +9,8 @@ import Icon4 from './icon/icon-4.png';
 import Icon5 from './icon/icon-7.png';
 import Icon6 from './icon/icon-6.png';
 import { Button } from '@material-tailwind/react';
+import Steps from './Steps';
+import { Outlet } from 'react-router-dom';
 const Support = () => {
     const data = [
         {
@@ -50,7 +52,7 @@ const Support = () => {
     ]
     return (
         <main>
-            <div className='w-full px-10 py-20 bg-[#187A82]'>
+            <div className='w-full px-20 py-20 bg-[#187A82]'>
                 <h1 className="text-white text-[31.54px] font-semibold text-center">What can help you with?</h1>
                 <p className="text-center text-white text-base font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <div className="w-[770.88px] h-[51.26px] bg-white rounded-lg mx-auto mt-10 flex items-center px-5 text-base" >
@@ -97,6 +99,12 @@ const Support = () => {
                 <Button className='bg-[#187A82] text-white px-10 py-4'>
                     Contact Now
                 </Button>
+            </div>
+            <div className={"py-20"}>
+                <Steps />
+                <div className={"mt-10"}>
+                    <Outlet />
+                </div>
             </div>
         </main>
 

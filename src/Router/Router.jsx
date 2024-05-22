@@ -35,6 +35,10 @@ import AddStudent from "../Pages/Dashboard/AddStudent/AddStudent";
 import Calendar from "../Pages/Dashboard/Calendar/Calendar";
 import CheckInOutReport from "../Pages/Dashboard/CheckInOutReport/CheckInOutReport";
 import Support from "../Pages/Dashboard/Support/Support";
+import General from "../Pages/Dashboard/Support/Steps/General";
+import Payments from "../Pages/Dashboard/Support/Steps/Payments";
+import Services from "../Pages/Dashboard/Support/Steps/Services";
+import ContactStep from "../Pages/Dashboard/Support/Steps/ContactStep";
 
 const router = createBrowserRouter([
     {
@@ -114,7 +118,28 @@ const router = createBrowserRouter([
             },
             {
                 path: "support",
-                element: <Support />
+                element: <Support />,
+                children: [
+                    {
+                        index: true,
+                        element: <General />
+                    },
+                    {
+                        path: "payments",
+                        // element: <Payments />
+                        element: <General />
+                    },
+                    {
+                        path: "services",
+                        // element: <Services />
+                        element: <General />
+                    },
+                    {
+                        path: "contact",
+                        // element: <ContactStep />
+                        element: <General />
+                    }
+                ]
             },
             {
                 path: "add-student",

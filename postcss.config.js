@@ -5,7 +5,9 @@ export default {
     'postcss-preset-env': {
       stage: 0,
       features: {
-        'oklch-function': true, // Ensure oklch is supported
+        'oklab-function': true,
+        'color-function': true,
+        'lab-function': true,
       },
     },
   },

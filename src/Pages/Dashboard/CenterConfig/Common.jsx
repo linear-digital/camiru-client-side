@@ -3,8 +3,8 @@ import { Checkbox } from "antd"
 import { Input } from "antd"
 
 export const Row = ({ placeholder, label, value, onChange }) => {
-    return <div className='flex gap-5 items-center'>
-        <h5 className="text-[#3A3D47] w-full  text-end text-xs font-semibold max-w-[110px]">
+    return <div className='flex gap-10 items-center'>
+        <h5 className="text-[#3A3D47] w-full  text-end text-xs font-semibold max-w-[120px]">
             {label}
         </h5>
         <Input placeholder={placeholder} value={value} onChange={onChange}
@@ -13,8 +13,8 @@ export const Row = ({ placeholder, label, value, onChange }) => {
     </div>
 }
 export const RowWithChild = ({ position, label, value, onChange, children }) => {
-    return <div className={`${position === "center" ? "items-center" : "items-start"} flex gap-5`}>
-        <h5 className="text-[#3A3D47] w-full text-end text-xs font-semibold max-w-[110px]">
+    return <div className={`${position === "center" ? "items-center" : "items-start"} flex gap-10`}>
+        <h5 className="text-[#3A3D47] w-full text-end text-xs font-semibold max-w-[120px]">
             {label}
         </h5>
         <div>

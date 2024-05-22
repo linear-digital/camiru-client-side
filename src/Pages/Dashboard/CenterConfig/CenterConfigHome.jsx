@@ -1,6 +1,7 @@
 import React from 'react';
 import { CheckBoxWithLabel, RadioButton, Row, RowWithChild } from './Common';
 import { Option, Select } from '@material-tailwind/react';
+import { Button } from '@material-tailwind/react';
 
 
 const CenterConfigHome = () => {
@@ -29,7 +30,7 @@ const CenterConfigHome = () => {
                         <option value="3 hours">3 hours</option>
                         <option value="4 hours">4 hours</option>
                     </select>
-                    <p className="lg:w-[571.47px] h-[31.87px] opacity-60 text-stone-600 text-[10.14px] mt-2 font-normal ">You can delay photo or video entries to review before sharing with parents. To ensure entries display the correct status, Camiru recommends changing this setting outside business hours.<br /></p>
+                    <p className="lg:max-w-[650px] h-[31.87px] opacity-60 text-stone-600 text-[10.14px] mt-2 font-normal ">You can delay photo or video entries to review before sharing with parents. To ensure entries display the correct status, Camiru recommends changing this setting outside business hours.<br /></p>
                 </RowWithChild>
                 <RowWithChild label={"Auto Send Report"}
                 >
@@ -40,7 +41,7 @@ const CenterConfigHome = () => {
                         <option value="3 hours">3 hours</option>
                         <option value="4 hours">4 hours</option>
                     </select>
-                    <p className="lg:w-[650px] h-[31.87px] opacity-60 text-stone-600 text-[10.14px] mt-2 font-normal ">Strongly recommended. Set an automated back-up for your daily reports. Any open reports will be sent to your center at this time and all corresponding children and staff will be signed out. The system won't send duplicates for reports that Have been sent in the last 24 hours.</p>
+                    <p className="lg:max-w-[650px] h-[31.87px] opacity-60 text-stone-600 text-[10.14px] mt-2 font-normal ">Strongly recommended. Set an automated back-up for your daily reports. Any open reports will be sent to your center at this time and all corresponding children and staff will be signed out. The system won't send duplicates for reports that Have been sent in the last 24 hours.</p>
                 </RowWithChild>
                 <Row label={"Tax ID"}
                     placeholder={""}
@@ -130,6 +131,50 @@ const CenterConfigHome = () => {
                             </a>
                         </span>
                     </CheckBoxWithLabel>
+                </RowWithChild>
+                <hr className='pb-6 mt-5 border-t-[#00000066]' />
+                <RowWithChild label={"Classroom access"}
+                >
+                    <CheckBoxWithLabel
+                        label={"If checked, teachers can access all classrooms. If unchecked, a teacher will only have access to their homeroom; as a result, temporarily moving children must be performed by an administrator. Default is checked."}
+                    >
+                    </CheckBoxWithLabel>
+                </RowWithChild>
+
+                <hr className='pb-6 mt-5 border-t-[#00000066]' />
+                <RowWithChild label={"Parents can mark child absent in app"}
+                >
+                    <CheckBoxWithLabel
+                        label={"If checked, teachers can access all classrooms. If unchecked, a teacher will only have access to their homeroom; as a result, temporarily moving children must be performed by an administrator. Default is checked."}
+                    >
+                    </CheckBoxWithLabel>
+                </RowWithChild>
+                <hr className='pb-6 mt-5 border-t-[#00000066]' />
+                <RowWithChild label={"Teacher editable time cards?"}
+                >
+                    <CheckBoxWithLabel
+                        label={"If checked, teachers can access all classrooms. If unchecked, a teacher will only have access to their homeroom; as a result, temporarily moving children must be performed by an administrator. Default is checked."}
+                    >
+                    </CheckBoxWithLabel>
+                </RowWithChild>
+                <hr className='pb-6 mt-5 border-t-[#00000066]' />
+                <RowWithChild label={"Is a full week center?"}
+                >
+                    <CheckBoxWithLabel
+                        label={"If checked, teachers can access all classrooms. If unchecked, a teacher will only have access to their homeroom; as a result, temporarily moving children must be performed by an administrator. Default is checked."}
+                    >
+                    </CheckBoxWithLabel>
+                </RowWithChild>
+                <RowWithChild label={""}
+                >
+                    <div className="flex gap-5 mt-10">
+                        <Button variant='filled' className='bg-[#C6F2EC] text-[#06A390] w-[135px] rounded-3xl shadow-none'>
+                            Save
+                        </Button>
+                        <Button variant='filled' className='bg-[#FFBB3B33] text-[#FFBB3B] w-[135px] rounded-3xl shadow-none'>
+                            Save
+                        </Button>
+                    </div>
                 </RowWithChild>
             </div>
         </div>

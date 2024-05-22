@@ -5,7 +5,7 @@ const General = () => {
 
     const [open, setOpen] = React.useState(1);
     return (
-        <div className='w-full grid grid-cols-2 gap-x-20 px-20'>
+        <div className='w-full grid lg:grid-cols-2 gap-x-20 lg:px-20 px-5'>
             <AccordionUseble number={1} open={open} setOpen={setOpen}
                 title={"What services does Camiru Offer?"}
             />
@@ -44,8 +44,8 @@ const AccordionUseble = ({ number, open, setOpen, title }) => {
                     </h1>
                 </AccordionHeader>
                 <AccordionBody>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus autem numquam officia pariatur perspiciatis, incidunt qui ullam iste reiciendis voluptatibus.
+                    <p className='pr-20'>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tempore dolores accusantium animi at sint reiciendis quo quas, eveniet eos fugiat, nesciunt rem ratione ipsa ducimus, repellat dolorem magni. Quia, atque.
                     </p>
                 </AccordionBody>
             </Accordion>

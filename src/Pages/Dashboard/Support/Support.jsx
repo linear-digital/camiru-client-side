@@ -52,10 +52,10 @@ const Support = () => {
     ]
     return (
         <main>
-            <div className='w-full px-20 py-20 bg-[#187A82]'>
-                <h1 className="text-white text-[31.54px] font-semibold text-center">What can help you with?</h1>
-                <p className="text-center text-white text-base font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                <div className="w-[770.88px] h-[51.26px] bg-white rounded-lg mx-auto mt-10 flex items-center px-5 text-base" >
+            <div className='w-full lg:px-20 px-5 py-20 bg-[#187A82]'>
+                <h1 className="text-white lg:text-[31.54px] text-xl font-semibold text-center">What can help you with?</h1>
+                <p className="text-center text-white lg:text-base text-sm mt-3 font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                <div className="lg:w-[770.88px] w-full h-[51.26px] bg-white rounded-lg mx-auto mt-10 flex items-center px-5 text-base" >
                     <FontAwesomeIcon icon={faMagnifyingGlass} className='text-[20px] text-[#ADA7A7]' />
                     <input type="text"
                         className='w-full h-full text-[#ADA7A7] focus:outline-none border-none text-sm pl-3'
@@ -94,13 +94,13 @@ const Support = () => {
                     }
                 </div>
             </div>
-            <div className='bg-[#FFBB3B] p-10 flex items-center justify-center gap-10'>
-                <div className="text-center text-[#535458] text-3xl font-bold  leading-10">Still Have any Questions?</div>
-                <Button className='bg-[#187A82] text-white px-10 py-4'>
+            <div className='bg-[#FFBB3B] lg:p-10 p-5 flex items-center justify-center gap-10'>
+                <div className="text-center text-[#535458] lg:text-3xl text-lg font-bold  leading-10">Still Have any Questions?</div>
+                <Button className='bg-[#187A82] text-white lg:px-10 lg:py-4'>
                     Contact Now
                 </Button>
             </div>
-            <div className={"py-20"}>
+            <div className={"lg:py-20 py-10"}>
                 <Steps />
                 <div className={"mt-10"}>
                     <Outlet />

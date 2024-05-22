@@ -24,7 +24,7 @@ const Steps = () => {
         }
     ]
     return (
-        <div className='flex gap-4 justify-center'>
+        <div className='flex gap-4 justify-center flex-wrap'>
             {
                 paths.map((path, index) => {
                     return (

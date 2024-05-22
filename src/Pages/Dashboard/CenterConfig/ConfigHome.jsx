@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ConfigHome = () => {
+const COnfigHome = () => {
     return (
-        <div className='p-10 w-full border-[#187A82] border bg-[#F8FCFF]'>
+        <div>
             
         </div>
     );
 };
 
-export default ConfigHome;
+export default COnfigHome;

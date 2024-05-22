@@ -40,7 +40,9 @@ import Payments from "../Pages/Dashboard/Support/Steps/Payments";
 import Services from "../Pages/Dashboard/Support/Steps/Services";
 import ContactStep from "../Pages/Dashboard/Support/Steps/ContactStep";
 import CenterConfig from "../Pages/Dashboard/CenterConfig/CenterConfig";
-import ConfigHome from "../Pages/Dashboard/CenterConfig/COnfigHome";
+import CenterConfigHome from "../Pages/Dashboard/CenterConfig/CenterConfigHome";
+
+
 
 const router = createBrowserRouter([
     {
@@ -153,7 +155,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <ConfigHome />
+                        element: <CenterConfigHome />
                     }
                 ]
             },

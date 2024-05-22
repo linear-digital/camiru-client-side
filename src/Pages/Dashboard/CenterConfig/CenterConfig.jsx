@@ -13,7 +13,7 @@ const CenterConfig = () => {
                     To add a profile please fill out the following information.
                 </p>
             </div>
-            <section className='mt-10 flex gap-10'>
+            <section className='mt-10 flex gap-10 items-start'>
                 <div className='grid gap-5'>
                     <Navigation
                         name={"Center Settings"}
@@ -36,7 +36,7 @@ const CenterConfig = () => {
                         path={"/dashboard/config/logins"}
                     />
                 </div>
-                <div>
+                <div className='p-10 w-full border-[#187A82] border bg-[#F8FCFF] rounded'>
                     <Outlet />
                 </div>
             </section>

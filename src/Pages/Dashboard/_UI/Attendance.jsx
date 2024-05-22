@@ -19,7 +19,7 @@ const Attendance = () => {
                 <div className='flex flex-col items-center mt-5 lg:hidden'>
                     <div className='flex flex-col justify-center  max-w-[200px] pl-10'>
                         <div className='pl-2'>
-                            <AttendanceChart />
+                            <AttendanceChart width={200} height={100}/>
                         </div>
                         <div className="flex items-center gap-4 mt-3">
                             <button className='w-4 '>
@@ -74,7 +74,7 @@ const Attendance = () => {
                     />
                     <div className='flex flex-col justify-center  max-w-[150px] pl-5'>
                         <div className='pl-2'>
-                            <AttendanceChart />
+                            <AttendanceChart height={200} width={200}/>
                         </div>
                         <div className="flex items-center gap-4 mt-3">
                             <button className='w-4 '>

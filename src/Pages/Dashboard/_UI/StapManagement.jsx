@@ -22,19 +22,19 @@ const StapManagement = () => {
                 </div>
             </section>
             <div className="overflow-x-auto mt-5 ">
-                <table className="table text-[10px] ">
+                <table className="table-auto text-[10px] w-full">
                     {/* head */}
                     <thead>
-                        <tr>
-                            <th className='text-black'>Class</th>
-                            <th className='text-black'>Students</th>
-                            <th className='text-black'>Teachers</th>
-                            <th className='text-black'>Absence</th>
+                        <tr className="text-start ">
+                            <th className='text-black py-2'>Class</th>
+                            <th className='text-black py-2'>Students</th>
+                            <th className='text-black py-2'>Teachers</th>
+                            <th className='text-black py-2'>Absence</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className=''>
                         {/* row 1 */}
-                        <tr>
+                        <tr className='mt-2'>
                             <td>Infants</td>
                             <td>
                                 <div className="flex items-center">

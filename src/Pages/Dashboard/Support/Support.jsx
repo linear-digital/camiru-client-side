@@ -21,31 +21,31 @@ const Support = () => {
         },
         {
             id: 2,
-            icon: Icon2,
+            icon: Icon5,
             title: "Desktop and mobile apps",
             desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text eve."
         },
         {
             id: 3,
-            icon: Icon3,
+            icon: Icon2,
             title: "Payment and billing",
             desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text eve."
         },
         {
             id: 4,
-            icon: Icon4,
+            icon: Icon3,
             title: "Troubleshooting",
             desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text eve."
         },
         {
             id: 5,
-            icon: Icon5,
+            icon: Icon6,
             title: "Login & Password",
             desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text eve."
         },
         {
             id: 6,
-            icon: Icon5,
+            icon: Icon4,
             title: "Support",
             desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text eve."
         },

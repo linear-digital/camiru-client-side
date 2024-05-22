@@ -14,7 +14,7 @@ import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
-const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
+const TABLE_HEAD = ["Members", "Enrolled", "Class", "Schedule", "Action"];
 
 
 export default function Table() {
@@ -72,13 +72,18 @@ export default function Table() {
                                     />
                                 </td>
                                 <td className={classes}>
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        {user?.name}
-                                    </Typography>
+                                    <div className="flex items-center gap-2">
+                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                            className="w-[45.16px] h-[45.16px] rounded-full object-cover"
+                                        />
+                                        <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal text-xs"
+                                        >
+                                            {user?.name}
+                                        </Typography>
+                                    </div>
                                 </td>
                                 <td className={classes}>
                                     <Typography
@@ -90,13 +95,7 @@ export default function Table() {
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        28Y 7M
-                                    </Typography>
+                                <div className=" text-red-500 text-xs font-medium leading-normal">infants</div>
                                 </td>
                                 <td className={classes}>
                                     <button className="py-2 border-[#187A82] bg-[#5CD9CA40] border text-xs font-medium rounded-lg px-5 text-[#187A82]">
@@ -127,7 +126,7 @@ const ActionButton = () => {
                             className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
-                          <CheckIn />  Check in
+                            <CheckIn />  Check in
                         </button>,
                         key: '1',
                     },
@@ -139,7 +138,7 @@ const ActionButton = () => {
                             className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
-                          <FontAwesomeIcon icon={faUser}/>
+                            <FontAwesomeIcon icon={faUser} />
                             View User
                         </Link>,
                         key: '2',
@@ -152,8 +151,8 @@ const ActionButton = () => {
                             className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
-                          <ReportIcon />
-                          Reports
+                            <ReportIcon />
+                            Reports
                         </button>,
                         key: '3',
                     },
@@ -165,8 +164,8 @@ const ActionButton = () => {
                             className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
-                          <FontAwesomeIcon icon={faCalendarDays}/>
-                          Schedule Absence
+                            <FontAwesomeIcon icon={faCalendarDays} />
+                            Schedule Absence
                         </button>,
                         key: '4',
                     },
@@ -178,8 +177,8 @@ const ActionButton = () => {
                             className={`${option === "Graduate" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Graduate")}
                         >
-                          <FontAwesomeIcon icon={faGraduationCap}/>
-                          Graduate
+                            <FontAwesomeIcon icon={faGraduationCap} />
+                            Graduate
                         </button>,
                         key: '4',
                     },

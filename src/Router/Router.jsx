@@ -39,6 +39,8 @@ import General from "../Pages/Dashboard/Support/Steps/General";
 import Payments from "../Pages/Dashboard/Support/Steps/Payments";
 import Services from "../Pages/Dashboard/Support/Steps/Services";
 import ContactStep from "../Pages/Dashboard/Support/Steps/ContactStep";
+import CenterConfig from "../Pages/Dashboard/CenterConfig/CenterConfig";
+import ConfigHome from "../Pages/Dashboard/CenterConfig/COnfigHome";
 
 const router = createBrowserRouter([
     {
@@ -144,6 +146,16 @@ const router = createBrowserRouter([
             {
                 path: "add-student",
                 element: <AddStudent />
+            },
+            {
+                path: "config",
+                element: <CenterConfig />,
+                children: [
+                    {
+                        index: true,
+                        element: <ConfigHome />
+                    }
+                ]
             },
             {
                 path: ":role/:id",

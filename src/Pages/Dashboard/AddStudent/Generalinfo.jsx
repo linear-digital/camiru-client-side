@@ -31,7 +31,7 @@ const Generalinfo = () => {
     };
 
     return (
-        <div className='w-full flex flex-col gap-7'>
+        <div className='w-full flex flex-col lg:gap-3'>
             <Row
                 label={"Classroom"}
                 placeholder={"Enter your first name"}

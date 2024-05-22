@@ -13,7 +13,7 @@ const Sidebar = ({ setOpen }) => {
         setOpen && setOpen(false);
     }
     return (
-        <div className='min-w-[250px] w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
+        <div className='min-w-[260px] w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
             <div>
                 <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
                 <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>

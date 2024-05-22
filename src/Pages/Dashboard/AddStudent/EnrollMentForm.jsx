@@ -31,7 +31,7 @@ const EnrollmentForm = () => {
     };
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     return (
-        <div className='w-full flex flex-col gap-7'>
+        <div className='w-full flex flex-col'>
             <RowWithChild label={"Classroom"} position={"center"}>
                 <Select
                     className='w-[340px] border-[1.5px] rounded-lg border-[#00000033] text-[#58575580]'

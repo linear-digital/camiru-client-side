@@ -3,19 +3,21 @@ import { Checkbox } from "antd"
 import { Input } from "antd"
 
 export const Row = ({ placeholder, label, value, onChange }) => {
-    return <div className='flex gap-5 items-center'>
-        <h5 className="text-zinc-700 min-w-[150px] text-end text-base font-semibold ">{label}
+    return <div className='flex lg:flex-row flex-col lg:gap-10 gap-5 items-center mt-3'>
+        <h5 className="text-[#3A3D47] w-full  lg:text-end text-start text-xs font-semibold lg:max-w-[120px]">
+            {label}
         </h5>
         <Input placeholder={placeholder} value={value} onChange={onChange}
-           className='focus:border-gray-400 w-[340px] h-[40px]'
+            className='focus:border-gray-400 lg:w-[340px] w-full text-xs h-[40px]'
         />
     </div>
 }
 export const RowWithChild = ({ position, label, value, onChange, children }) => {
-    return <div className={`${position === "center" ? "items-center" : "items-start"} flex gap-5`}>
-        <h5 className="text-zinc-700 min-w-[150px] text-end text-base font-semibold ">{label}
+    return <div className={`${position === "center" ? "items-center" : "items-start"} flex lg:gap-10 gap-5 lg:flex-row flex-col mt-5 `}>
+        <h5 className="text-[#3A3D47] w-full lg:text-end text-start text-xs font-semibold lg:max-w-[120px]">
+            {label}
         </h5>
-        <div>
+        <div className="w-full">
             {children}
         </div>
     </div>
@@ -44,7 +46,7 @@ export const CheckBoxNew = ({ label, checked, onChange }) => {
 
 export const CheckBoxWithLabel = ({ label, checked, onChange }) => {
     return <div className="inline-flex items-center gap-2">
-        <Checkbox color="amber" id="cb"  className="w-5 h-5" />
+        <Checkbox color="amber" id="cb" className="w-5 h-5" />
         <label class="mt-px text-[#585755d9] text-sm font-semibold cursor-pointer select-none" htmlFor="cb">
             {label}
         </label>

@@ -10,6 +10,7 @@ import { CheckBoxNew, CheckBoxWithLabel, Row, RowWithChild } from './Common';
 import { Select } from 'antd';
 import { class_rooms } from '../../../util/classrooms';
 import { Input } from 'antd';
+import { PhoneNumber } from './CountrySelect';
 
 const Contact = () => {
     const [fileList, setFileList] = useState([]);
@@ -32,15 +33,15 @@ const Contact = () => {
     };
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     return (
-        <div className='w-full flex flex-col gap-7'>
+        <div className='w-full flex flex-col lg:gap-2'>
 
             <RowWithChild label={"Name"} position={"start"}>
                 <div className='flex flex-col gap-3'>
                     <Input placeholder={"First Name"}
-                        className='focus:border-gray-400 w-[340px] h-[40px]'
+                        className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
                     />
                     <Input placeholder={"Last Name"}
-                        className='focus:border-gray-400 w-[340px] h-[40px]'
+                        className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
                     />
                 </div>
             </RowWithChild>
@@ -49,6 +50,13 @@ const Contact = () => {
                 label={"Email"}
                 placeholder={"info@mail.com"}
             />
+            <RowWithChild label={"Home"} position={"center"}>
+                <PhoneNumber />
+            </RowWithChild>
+            <RowWithChild label={"Other Phone"} position={"center"}>
+                <PhoneNumber />
+            </RowWithChild>
+
             <RowWithChild label={"Gender"} position={"center"}>
                 <div className="flex  items-center gap-3">
                     <CheckBoxNew
@@ -59,7 +67,7 @@ const Contact = () => {
                     />
                 </div>
             </RowWithChild>
-            
+
             <RowWithChild label={""}>
                 <div>
                     <button className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>

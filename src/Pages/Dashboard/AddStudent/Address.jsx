@@ -32,7 +32,7 @@ const Address = () => {
     };
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     return (
-        <div className='w-full flex flex-col gap-7'>
+        <div className='w-full flex flex-col lg:gap-3'>
 
             <Row
                 label={"Address"}

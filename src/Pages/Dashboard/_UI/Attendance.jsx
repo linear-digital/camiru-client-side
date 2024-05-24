@@ -72,11 +72,11 @@ const Attendance = () => {
                         title={"Present"}
                         desc={"51 Studnets"}
                     />
-                    <div className='flex flex-col justify-center  max-w-[150px] pl-5'>
-                        <div className='pl-2'>
-                            <AttendanceChart height={200} width={200}/>
+                    <div className='flex flex-col justify-center  max-w-[200px] pl-5'>
+                        <div className=''>
+                            <AttendanceChart height={200} width={250}/>
                         </div>
-                        <div className="flex items-center gap-4 mt-3">
+                        <div className="flex items-center gap-4 ml-4">
                             <button className='w-4 '>
                                 <FontAwesomeIcon
                                     icon={faCircleChevronLeft}

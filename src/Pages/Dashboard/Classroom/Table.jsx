@@ -123,12 +123,12 @@ const ActionButton = () => {
             menu={{
                 items: [
                     {
-                        label: <button
+                        label: <Link to={'/dashboard/checkin'}
                             className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
                           <CheckIn />  Check in
-                        </button>,
+                        </Link>,
                         key: '1',
                     },
                     {
@@ -148,39 +148,39 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <button
+                        label: <Link to={'/dashboard/student/323/profile/report'}
                             className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
                           <ReportIcon />
                           Reports
-                        </button>,
+                        </Link>,
                         key: '3',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <button
+                        label: <Link to={'/dashboard/student/323/profile/schedule-absence'}
                             className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
                           <FontAwesomeIcon icon={faCalendarDays}/>
                           Schedule Absence
-                        </button>,
+                        </Link>,
                         key: '4',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <button
+                        label: <Link to={'/dashboard/student/323/profile/graduate'}
                             className={`${option === "Graduate" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Graduate")}
                         >
                           <FontAwesomeIcon icon={faGraduationCap}/>
                           Graduate
-                        </button>,
+                        </Link>,
                         key: '4',
                     },
                 ],

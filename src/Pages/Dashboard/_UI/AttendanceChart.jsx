@@ -33,7 +33,7 @@ function PieCenterLabel({ children }) {
 
 export default function AttendanceChart({ height, width }) {
     return (
-        <PieChart series={[{ data, innerRadius: '70%' }]}
+        <PieChart series={[{ data, innerRadius: '60%' }]}
             width={width} height={height} >
             <PieCenterLabel>
                 40

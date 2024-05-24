@@ -41,7 +41,7 @@ const AddStudent = () => {
             </div>
             <div className="mt-10 grid gap-5">
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}
-                    className={`border rounded-md lg:px-7 px-3 ${open === 1 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                    className={` border w-full rounded-md lg:px-7 px-3 ${open === 1 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(1)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -56,7 +56,7 @@ const AddStudent = () => {
                     </AccordionBody>
                 </Accordion>
                 <Accordion open={open === 2} icon={<Icon id={2} open={open} />}
-                    className={`border rounded-md lg:px-7 px-3 ${open === 2 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                    className={`border w-full rounded-md lg:px-7 px-3 ${open === 2 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(2)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -72,8 +72,9 @@ const AddStudent = () => {
                         <EnrollmentForm />
                     </AccordionBody>
                 </Accordion>
+              
                 <Accordion open={open === 3} icon={<Icon id={3} open={open} />}
-                    className={`border rounded-md lg:px-7 px-3 ${open === 3 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                    className={`border w-full rounded-md lg:px-7 px-3 ${open === 3 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(3)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -89,8 +90,9 @@ const AddStudent = () => {
                         <Contact />
                     </AccordionBody>
                 </Accordion>
+                 
                 <Accordion open={open === 4} icon={<Icon id={4} open={open} />}
-                    className={`border rounded-md lg:px-7 px-3 ${open === 4 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                    className={`border w-full rounded-md lg:px-7 px-3 ${open === 4 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(4)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -106,8 +108,9 @@ const AddStudent = () => {
                         <Address />
                     </AccordionBody>
                 </Accordion>
+                
                 <Accordion open={open === 5} icon={<Icon id={5} open={open} />}
-                    className={`border rounded-md lg:px-7 px-3 ${open === 5 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                    className={`border w-full rounded-md lg:px-7 px-3 ${open === 5 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(5)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -123,8 +126,9 @@ const AddStudent = () => {
                         <Records />
                     </AccordionBody>
                 </Accordion>
+              
                 <Accordion open={open === 6} icon={<Icon id={6} open={open} />}
-                    className={`border rounded-md lg:px-7 px-3 ${open === 6 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
+                    className={`border w-full rounded-md lg:px-7 px-3 ${open === 6 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
                     <AccordionHeader onClick={() => handleOpen(6)} className="border-none items-center">
                         <div className="flex items-center gap-3">
@@ -139,7 +143,7 @@ const AddStudent = () => {
                     <AccordionBody>
                         <AdditionalNotes />
                     </AccordionBody>
-                </Accordion>
+                </Accordion> 
             </div>
         </DB_Page_Layout>
     );

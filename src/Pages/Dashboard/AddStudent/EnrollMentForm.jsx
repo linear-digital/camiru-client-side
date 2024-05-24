@@ -34,7 +34,7 @@ const EnrollmentForm = () => {
         <div className='w-full flex flex-col'>
             <RowWithChild label={"Classroom"} position={"center"}>
                 <Select
-                    className='w-[340px] border-[1.5px] rounded-lg border-[#00000033] text-[#58575580]'
+                    className='lg:w-[340px] w-full border-[1.5px] rounded-lg border-[#00000033] text-[#58575580]'
                     bordered={false}
                     defaultValue={class_rooms[0]}
                     options={[
@@ -44,7 +44,7 @@ const EnrollmentForm = () => {
                     ]}
                 />
             </RowWithChild>
-            <RowWithChild label={"Status"} position={"center"}>
+           <RowWithChild label={"Status"} position={"center"}>
                 <div className="flex  items-center gap-3">
                     <CheckBoxNew
                         label={"Active"}
@@ -54,6 +54,7 @@ const EnrollmentForm = () => {
                     />
                 </div>
             </RowWithChild>
+              
             <RowWithChild label={"Date of Birth"}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div className='flex gap-3 enroll'>
@@ -71,7 +72,7 @@ const EnrollmentForm = () => {
             </RowWithChild>
 
             <RowWithChild label={"Rotation"} position={"center"}>
-                <div className="flex  items-center gap-3">
+                <div className="flex flex-wrap  items-center gap-3">
                     <CheckBoxNew
                         label={"Morning"}
                     />
@@ -88,7 +89,7 @@ const EnrollmentForm = () => {
             </RowWithChild>
 
             <RowWithChild label={"Days"} position={"center"}>
-                <div className="flex  items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                     {
                         days.map((item, index) => {
                             return <CheckBoxWithLabel
@@ -120,7 +121,7 @@ const EnrollmentForm = () => {
                     Next
                 </button>
             </div>
-            </RowWithChild>
+            </RowWithChild> 
             
         </div>
     );

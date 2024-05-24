@@ -1,7 +1,8 @@
 import React from 'react';
 import DB_Page_Layout from '../../../Layouts/DB_Page_Layout';
 import Filter from '../ClassRoomRoster/Filter';
-import Table from '../ClassRoomRoster/Table';
+import Table from './RosterTable';
+
 
 const StaffRoster = () => {
     return (

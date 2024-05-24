@@ -38,24 +38,24 @@ export const links = [
         path: '/dashboard/contacts',
         icon: Contacts
     },
-    {
-        id: 5,
-        name: 'Classrooms Actions',
-        path: '/dashboard/rooms-active',
-        icon: ClassAction
-    },
+    // {
+    //     id: 5,
+    //     name: 'Classrooms Actions',
+    //     path: '/dashboard/rooms-active',
+    //     icon: ClassAction
+    // },
     {
         id: 6,
         name: 'Photo & Videos',
         path: '/dashboard/media',
         icon: Media
     },
-    {
-        id: 7,
-        name: 'Billing',
-        path: '/dashboard/billing',
-        icon: Billing
-    },
+    // {
+    //     id: 7,
+    //     name: 'Billing',
+    //     path: '/dashboard/billing',
+    //     icon: Billing
+    // },
     {
         id: 8,
         name: 'Messaging',

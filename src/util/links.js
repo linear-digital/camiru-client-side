@@ -21,6 +21,18 @@ export const links = [
         icon: Roaster
     },
     {
+        id: 2,
+        name: 'Staffs',
+        path: '/dashboard/staffs',
+        icon: Classrooms
+    },
+    {
+        id: 3,
+        name: 'Staffs Roster',
+        path: '/dashboard/staffs-roster',
+        icon: Roaster
+    },
+    {
         id: 4,
         name: 'Contacts',
         path: '/dashboard/contacts',

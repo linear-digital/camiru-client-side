@@ -45,6 +45,7 @@ import ClassroomSettings from "../Pages/Dashboard/CenterConfig/ClassroomSettings
 import HealthScreening from "../Pages/Dashboard/CenterConfig/HealthScreening";
 import RegistrationConfig from "../Pages/Dashboard/CenterConfig/RegistrationConfig";
 import Logins from "../Pages/Dashboard/CenterConfig/Logins";
+import Deactive from "../Pages/Dashboard/User/Profile/Deactive";
 
 
 
@@ -233,6 +234,10 @@ const router = createBrowserRouter([
                             {
                                 path: "graduate",
                                 element: <Graduate />
+                            },
+                            {
+                                path: "deactive",
+                                element: <Deactive />
                             }
                         ]
                     },

@@ -14,6 +14,7 @@ import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
+import { Button } from "@material-tailwind/react";
 const TABLE_HEAD = ["Members", "Enrolled", "Class", "Schedule", "Action"];
 
 
@@ -122,23 +123,23 @@ const ActionButton = () => {
             menu={{
                 items: [
                     {
-                        label: <button
-                            className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                        label: <Link to={'/dashboard/checkin-staff'}
+                            className={`${option === "Check in" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
-                            <CheckIn />  Check in
-                        </button>,
+                          <CheckIn />  Check in
+                        </Link>,
                         key: '1',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile'}
-                            className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                        label: <Link to={'/dashboard/staff/323/profile'}
+                            className={`${option === "View User" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
-                            <FontAwesomeIcon icon={faUser} />
+                          <FontAwesomeIcon icon={faUser}/>
                             View User
                         </Link>,
                         key: '2',
@@ -147,51 +148,51 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <button
-                            className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                        label: <Link to={'/dashboard/staff/323/profile/timecard'}
+                            className={`${option === "Reports" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
-                            <ReportIcon />
-                            Reports
-                        </button>,
+                          <ReportIcon />
+                          Time Cards
+                        </Link>,
                         key: '3',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <button
-                            className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                        label: <Link to={'/dashboard/staff/323/profile/schedule-absence'}
+                            className={`${option === "Schedule Absence" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
-                            <FontAwesomeIcon icon={faCalendarDays} />
-                            Schedule Absence
-                        </button>,
+                          <FontAwesomeIcon icon={faCalendarDays}/>
+                          Schedule Time Off
+                        </Link>,
                         key: '4',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <button
-                            className={`${option === "Graduate" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                        label: <Link to={'/dashboard/staff/323/profile/deactive'}
+                            className={`${option === "Graduate" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Graduate")}
                         >
-                            <FontAwesomeIcon icon={faGraduationCap} />
-                            Graduate
-                        </button>,
+                          <FontAwesomeIcon icon={faGraduationCap}/>
+                          Deactive
+                        </Link>,
                         key: '4',
                     },
                 ],
             }}
             trigger={['click']}
         >
-            <button className="border bg-[#FFBB3B33] border-[#FFBB3B] px-5 py-2 rounded-lg flex items-center gap-2 text-[#f0b039]">
-                <span className="text-[10px] font-medium tracking-tight">
+            <Button variant="filled"  className="border border-[#FFBB3B33] bg-[#FFBB3B33] text-[#FFBB3B] text-[13px] shadow-none" size="sm">
+                <span className="text-[12px] font-medium tracking-tight">
                     Action
                 </span>
-                <FontAwesomeIcon icon={faChevronDown} className="text-[12px]" />
-            </button>
+                <FontAwesomeIcon icon={faChevronDown} className="text-[12px] ml-2" />
+            </Button>
         </Dropdown>
 
     );

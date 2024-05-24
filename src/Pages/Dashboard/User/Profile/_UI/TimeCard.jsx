@@ -22,12 +22,12 @@ const TimeCard = () => {
                 <h4 className='lg:text-sm text-xs mt-2 font-semibold'>
                     Thursday, Dec 15 2024
                 </h4>
-                <div className="overflow-x-auto mt-4">
-                    <table className="table">
+                <div className="overflow-x-auto mt-4 w-full">
+                    <table className="table w-full">
                         {/* head */}
-                        <thead className='bg-[#187A82] text-white'>
+                        <thead className='bg-[#187A82] text-white '>
                             <tr>
-                                <th>In</th>
+                                <th className='text-center'>In</th>
                                 <th>Out</th>
                                 <th>Time</th>
                                 <th>Note</th>
@@ -36,24 +36,24 @@ const TimeCard = () => {
                         <tbody className='my-table'>
                             {/* row 1 */}
                             <tr>
-                                <td>02:00 PM</td>
-                                <td>03:00 PM</td>
-                                <td></td>
-                                <td>Blue</td>
+                                <td className='p-3 text-center'>02:00 PM</td>
+                                <td className='p-3 text-center'>03:00 PM</td>
+                                <td className='p-3 text-center'></td>
+                                <td className='p-3 text-center'>Red</td>
                             </tr>
                             {/* row 2 */}
                             <tr>
-                                <td>02:00 PM</td>
-                                <td>03:00 PM</td>
-                                <td></td>
-                                <td>Purple</td>
+                                <td className='p-3 text-center'>02:00 PM</td>
+                                <td className='p-3 text-center'>03:00 PM</td>
+                                <td className='p-3 text-center'></td>
+                                <td className='p-3 text-center'>Red</td>
                             </tr>
                             {/* row 3 */}
                             <tr>
-                                <td>02:00 PM</td>
-                                <td>03:00 PM</td>
-                                <td></td>
-                                <td>Red</td>
+                                <td className='p-3 text-center'>02:00 PM</td>
+                                <td className='p-3 text-center'>03:00 PM</td>
+                                <td className='p-3 text-center'></td>
+                                <td className='p-3 text-center'>Red</td>
                             </tr>
                         </tbody>
                     </table>

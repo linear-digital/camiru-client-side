@@ -56,6 +56,11 @@ const Sidebar = () => {
                             Icon={Calendar}
                         />
                          <Item
+                            name={"Schedule Time Off"}
+                            path={"schedule-absence"}
+                            Icon={Calendar}
+                        />
+                         <Item
                             name={"Time Card"}
                             path={"timecard"}
                             Icon={Report}

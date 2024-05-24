@@ -3,6 +3,7 @@ import Filter from './Filter';
 import { Image } from 'antd';
 import ProfileCard from './ProfileCard';
 import Table from './Table';
+import StaffProfileCard from '../User/Profile/_UI/StaffProfileCard';
 
 
 const Checkin = ({ page }) => {
@@ -12,7 +13,11 @@ const Checkin = ({ page }) => {
                 name={`${page} check In - Out Report`}
                 desc={"Select your class to checkout the reports"}
             />
-            <ProfileCard />
+            {
+                page === "student" ?
+                    <ProfileCard /> :
+                    <StaffProfileCard />
+            }
             <Table />
         </div>
     );

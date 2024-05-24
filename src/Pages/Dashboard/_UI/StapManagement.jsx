@@ -35,8 +35,8 @@ const StapManagement = () => {
                     <tbody className=''>
                         {/* row 1 */}
                         <tr className='mt-2'>
-                            <td>Infants</td>
-                            <td>
+                            <td className='p-2'>Infants</td>
+                            <td className='p-2'>
                                 <div className="flex items-center">
                                     <Avater />
                                     <Avater />
@@ -45,13 +45,13 @@ const StapManagement = () => {
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
@@ -60,20 +60,20 @@ const StapManagement = () => {
                         </tr>
                         {/* row 2 */}
                         <tr>
-                            <td>Toddlers</td>
-                            <td>
+                            <td className='p-2'>Toddlers</td>
+                            <td className='p-2'>
                                 <div className="flex items-center">
                                     <Avater />
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
@@ -82,20 +82,20 @@ const StapManagement = () => {
                         </tr>
                         {/* row 3 */}
                         <tr>
-                            <td>Pre-K</td>
-                            <td>
+                            <td className='p-2'>Pre-K</td>
+                            <td className='p-2'>
                                 <div className="flex items-center">
                                     <Avater />
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
@@ -103,7 +103,7 @@ const StapManagement = () => {
                             </td>
                         </tr>
                         <tr>
-                            <td>A</td>
+                            <td className='p-2'>A</td>
                             <td>
                                 <div className="flex items-center">
                                     <Avater />
@@ -111,13 +111,13 @@ const StapManagement = () => {
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />
                                 </div>
                             </td>
-                            <td>
+                            <td className='p-2'>
                                 <div className="flex">
                                     <Avater />
                                     <Avater />

@@ -6,12 +6,14 @@ import { Dot } from '../../User/Profile';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
+import WeekChart from './WeekChart';
+import WeekChart2 from './WeekChart2';
 
 const Attendance = () => {
     const [type, setType] = React.useState('daily');
     return (
         <div>
-            <Card className='lg:p-5 p-3 mt-10 shadow-blue-gray-50'>
+            <div className='lg:p-5 p-3 mt-10 border border-[#C7F1FF] bg-[#F8FCFF] rounded-xl'>
                 <div className="flex justify-between items-center">
                     <h2 className=" text-black lg:text-sm text-xs font-bold poppins">Attendance</h2>
                     <AttendanceNavigation state={type} setState={setType} />
@@ -19,7 +21,7 @@ const Attendance = () => {
                 <div className='flex flex-col items-center mt-5 lg:hidden'>
                     <div className='flex flex-col justify-center  max-w-[200px] pl-10'>
                         <div className='pl-2'>
-                            <AttendanceChart width={200} height={100}/>
+                            <AttendanceChart width={200} height={100} />
                         </div>
                         <div className="flex items-center gap-4 mt-3">
                             <button className='w-4 '>
@@ -74,7 +76,7 @@ const Attendance = () => {
                     />
                     <div className='flex flex-col justify-center  max-w-[200px] pl-5'>
                         <div className=''>
-                            <AttendanceChart height={200} width={250}/>
+                            <AttendanceChart height={190} width={250} />
                         </div>
                         <div className="flex items-center gap-4 ml-4">
                             <button className='w-4 '>
@@ -83,7 +85,7 @@ const Attendance = () => {
                                     className='text-base'
                                 />
                             </button>
-                            <h1 className="  text-neutral-600 text-sm font-extrabold ">January</h1>
+                            <h1 className="  text-neutral-600 text-sm font-extrabold">January</h1>
                             <button className='w-4 '>
                                 <FontAwesomeIcon
                                     icon={faCircleChevronRight}
@@ -103,8 +105,8 @@ const Attendance = () => {
                         desc={"51 Studnets"}
                     />
                 </div>
-
-            </Card>
+                <WeekChart />
+            </div>
         </div>
     );
 };

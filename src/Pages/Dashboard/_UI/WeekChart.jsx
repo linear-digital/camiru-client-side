@@ -45,7 +45,6 @@ const ChartComponent = () => {
                 <XAxis dataKey="name" tick={{ fill: '#888', fontSize: 12 }} tickLine={false} axisLine={false} />
                 <YAxis hide />
                 {/* <Tooltip cursor={{ fill: 'transparent' }} /> */}
-
                 <Bar
                     background={{ fill: '#F2F6FC' }}
                     dataKey="value"

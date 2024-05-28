@@ -13,8 +13,8 @@ import {
 const SingleImage = ({ show, setShow }) => {
 
     return (
-        <Dialog open={show} handler={setShow} size="lg" className="p-0 bg-gradient-to-t from-[#3de2f1f3] to-[#61d8e3f9] ">
-            <DialogBody className="p-0 h-screen overflow-y-auto">
+        <Dialog open={show} handler={setShow} size="lg" className="p-0 bg-gradient-to-t from-[#3de2f1f3] to-[#61d8e3f9]">
+            <DialogBody className="p-0 max-h-screen overflow-y-auto">
                 <div className='singleImage bg-gradient-to-t from-[#3de2f1f3] to-[#61d8e3f9] lg:px-10 px-5 lg:py-10 py-10 flex justify-center z-50'
                 >
                     <div className="lg:max-w-[1095.92px] max-w-full ">
@@ -28,8 +28,8 @@ const SingleImage = ({ show, setShow }) => {
                                 <FontAwesomeIcon icon={faXmarkCircle} className=" text-[25px]" />
                             </button>
                         </div>
-                        <img className="w-full rounded-xl mt-7 lg:h-[731.42px]" src="/img-394.png" />
-                        <div className="flex justify-between items-start mt-7">
+                        <img className="w-full rounded-xl mt-7 lg:max-h-[731.42px]" src="/img-394.png" />
+                        <div className="flex flex-wrap lg:flex-row flex-col-reverse gap-4 lg:gap-0 justify-between items-start mt-7">
                             <div>
                                 <h4 className="text-white text-[25px] font-semibold capitalize">Photo Tags</h4>
                                 <div className='flex gap-3 w-[350px] flex-wrap mt-5'>

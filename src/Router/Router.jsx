@@ -107,7 +107,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "checkin",
-                element: <Checkin page="Student" />
+                element: <Checkin page="student" />
             },
             {
                 path: "checkio-report",
@@ -115,7 +115,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "checkin-staff",
-                element: <Checkin page="Staff" />
+                element: <Checkin page="staff" />
             },
             {
                 path: "staffs",

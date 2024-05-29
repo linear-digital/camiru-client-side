@@ -16,25 +16,25 @@ export const links = [
     },
     {
         id: 3,
-        name: 'Classrooms Roster',
+        name: 'Classrooms Rosters',
         path: '/dashboard/rooms-roster',
         icon: Roaster
     },
     {
         id: 2,
-        name: 'Staffs',
+        name: 'Staff List',
         path: '/dashboard/staffs',
         icon: Classrooms
     },
     {
         id: 3,
-        name: 'Staffs Roster',
+        name: 'Staff Rosters',
         path: '/dashboard/staffs-roster',
         icon: Roaster
     },
     {
         id: 4,
-        name: 'Contacts',
+        name: 'All Contacts',
         path: '/dashboard/contacts',
         icon: Contacts
     },

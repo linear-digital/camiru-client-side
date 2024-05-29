@@ -11,7 +11,7 @@ const All_Contacts = () => {
         <main className='lg:p-10 p-5 bg-white rounded-lg'>
             <section className='lg:flex justify-between items-center'>
                 <div>
-                    <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Contacts</h1>
+                    <h1 className=" text-primary lg:text-2xl text-xl font-bold ">All Contacts</h1>
                     <p className=" text-neutral-400 lg:mt-2 mt-1 font-normal text-sm">Checkout your overview at a glance</p>
                 </div>
                 <div className='flex flex-wrap lg:flex-nowrap lg:gap-5 gap-3'>

@@ -35,7 +35,7 @@ const Filter = ({ name, desc, color }) => {
                     }}
                     trigger={['click']}
                 >
-                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                    <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15ACDE40] text-[#15ACDE] border border-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                         <span className=" text-xs font-medium tracking-tight">
                             {option}
                         </span>

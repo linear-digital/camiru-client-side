@@ -26,13 +26,13 @@ const Sidebar = ({ setOpen }) => {
                 </ul>
             </div>
             <div className='w-full bg-accent h-16 flex items-center pl-4 justify-between'>
-                <div className="flex items-center gap-4">
+                <Link to={'/dashboard/profile'} className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-white rounded-full" />
                     <div>
                         <div className=" h-4 text-white text-sm font-semibold">KeyOrent</div>
-                        <div className=" h-3 mt-1 text-white text-xs font-normal ">Profile Setting</div>
+                        <div className=" h-3 mt-1 text-white text-xs font-normal">Profile Setting</div>
                     </div>
-                </div>
+                </Link>
                 <div className='px-5 border-l h-full flex items-center border-gray-300'>
                     <Bell />
                 </div>

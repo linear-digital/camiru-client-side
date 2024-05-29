@@ -58,9 +58,9 @@ export default function Table() {
                         <th
                             className="border-b border-blue-gray-100  p-3"
                         >
-                            <Checkbox className="" 
-                            checked={selected.length === contacts.length}
-                            onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
+                            <Checkbox className=""
+                                checked={selected.length === contacts.length}
+                                onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
                             />
                         </th>
                         {TABLE_HEAD.map((head) => (
@@ -85,22 +85,27 @@ export default function Table() {
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id} 
-                            className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
+                            <tr key={user.id}
+                                className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
                             >
                                 <td className={classes}>
-                                    <Checkbox checked={selected.includes(user.id)} 
-                                    onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
+                                    <Checkbox checked={selected.includes(user.id)}
+                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
                                     />
                                 </td>
                                 <td className={classes}>
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        {user?.name}
-                                    </Typography>
+                                    <div className="flex items-center gap-2">
+                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                            className="w-[45.16px] h-[45.16px] rounded-full object-cover"
+                                        />
+                                        <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal text-xs"
+                                        >
+                                            {user?.name}
+                                        </Typography>
+                                    </div>
                                 </td>
                                 <td className={classes}>
                                     <Typography
@@ -126,8 +131,8 @@ export default function Table() {
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <button className=" text-xs  btn-link  rounded-md  font-normal text-primary" >
-                                        Send Message
+                                    <button className=" text-xs  btn-link  rounded-md  font-normal text-[#0062FF] underline" >
+                                        View Profile
                                     </button>
                                 </td>
                             </tr>

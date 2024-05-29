@@ -11,7 +11,7 @@ const UserLayout = () => {
             <div className='hidden lg:block max-w-[250px]'>
                 <Sidebar />
             </div>
-            <section className='w-full max-w-full h-full overflow-auto'>
+            <section className='w-full max-w-full h-full overflow-auto  pb-20 lg:pb-5'>
                 {
                     (!location.pathname.includes('dashboard/profile') && !location.pathname.includes('dashboard/support')) && <Navbar />
                 }

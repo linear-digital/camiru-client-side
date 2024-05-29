@@ -74,13 +74,18 @@ export default function Table({ rows, class_name }) {
                                     />
                                 </td>
                                 <td className={classes}>
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        {user?.name}
-                                    </Typography>
+                                    <div className="flex items-center gap-2">
+                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                            className="w-[45.16px] h-[45.16px] rounded-full object-cover"
+                                        />
+                                        <Typography
+                                            variant="small"
+                                            color="blue-gray"
+                                            className="font-normal text-xs"
+                                        >
+                                            {user?.name}
+                                        </Typography>
+                                    </div>
                                 </td>
                                 <td className={classes}>
                                     <Typography
@@ -143,12 +148,12 @@ const ActionButton = ({ color1, color2 }) => {
             menu={{
                 items: [
                     {
-                        label: <button
+                        label: <Link to={'/dashboard/checkin'}
                             className={`${option === "Check in" ? color1 ? color1 : "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
                             <CheckIn />  Check in
-                        </button>,
+                        </Link>,
                         key: '1',
                     },
                     {

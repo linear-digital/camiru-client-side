@@ -14,7 +14,7 @@ const Checkin = ({ page }) => {
                 desc={"Select your class to checkout the reports"}
             />
             {
-                page === "student" ?
+                page !== "staff" ?
                     <ProfileCard /> :
                     <StaffProfileCard />
             }

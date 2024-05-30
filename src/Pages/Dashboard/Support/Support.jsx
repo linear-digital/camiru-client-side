@@ -11,6 +11,7 @@ import Icon6 from './icon/icon-6.png';
 import { Button } from '@material-tailwind/react';
 import Steps from './Steps';
 import { Outlet } from 'react-router-dom';
+import pattern from './pattern.svg';
 const Support = () => {
     const data = [
         {
@@ -51,8 +52,11 @@ const Support = () => {
         },
     ]
     return (
-        <main>
-            <div className='w-full lg:px-20 px-5 py-20 bg-[#187A82]'>
+        <main className='relative'>
+            <img src={pattern} alt="" 
+            className='absolute top-0 right-0 '
+            />
+            <div className='w-full z-10 lg:px-20 px-5 py-20 bg-[#187A82]'>
                 <h1 className="text-white lg:text-[31.54px] text-xl font-semibold text-center">What can help you with?</h1>
                 <p className="text-center text-white lg:text-base text-sm mt-3 font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <div className="lg:w-[770.88px] w-full h-[51.26px] bg-white rounded-lg mx-auto mt-10 flex items-center px-5 text-base" >

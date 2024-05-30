@@ -69,9 +69,22 @@ export const links = [
         icon: Messaging
     },
     {
+        id: 11,
+        name: 'Support',
+        path: '/dashboard/support',
+        icon: Settings
+    },
+    {
+        id: 9,
+        name: 'Reports',
+        path: '/dashboard/reports',
+        icon: Settings
+    },
+    {
         id: 9,
         name: 'Configuration',
         path: '/dashboard/config',
         icon: Settings
     },
+   
 ]

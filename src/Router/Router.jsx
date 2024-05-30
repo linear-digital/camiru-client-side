@@ -46,6 +46,7 @@ import HealthScreening from "../Pages/Dashboard/CenterConfig/HealthScreening";
 import RegistrationConfig from "../Pages/Dashboard/CenterConfig/RegistrationConfig";
 import Logins from "../Pages/Dashboard/CenterConfig/Logins";
 import Deactive from "../Pages/Dashboard/User/Profile/Deactive";
+import Reports from "../Pages/Dashboard/Reports/Reports";
 
 
 
@@ -124,6 +125,10 @@ const router = createBrowserRouter([
             {
                 path: "staffs-roster",
                 element: <StaffRoster />
+            },
+            {
+                path: "reports",
+                element: <Reports />
             },
             {
                 path: "support",

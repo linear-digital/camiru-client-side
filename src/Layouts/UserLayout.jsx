@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 const UserLayout = () => {
     const location = useLocation();
     return (
-        <main className='w-full h-screen flex gap-5 bg-[#F1F6FA]'>
+        <main className='w-full h-screen flex lg:gap-6 bg-[#F1F6FA]'>
             <div className='hidden lg:block max-w-[250px]'>
                 <Sidebar />
             </div>

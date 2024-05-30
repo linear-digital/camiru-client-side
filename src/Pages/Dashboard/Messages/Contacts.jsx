@@ -11,7 +11,8 @@ const Contacts = () => {
             <div className="flex mt-5 gap-[10px]">
                 <UserAvater
                     className={"rounded-xl overflow-hidden w-11 h-11"}
-                /><UserAvater
+                />
+                <UserAvater
                     className={"rounded-xl overflow-hidden w-11 h-11"}
                 /><UserAvater
                     className={"rounded-xl overflow-hidden w-11 h-11"}

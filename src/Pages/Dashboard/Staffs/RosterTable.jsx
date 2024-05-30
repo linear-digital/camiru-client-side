@@ -15,6 +15,7 @@ import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
@@ -204,7 +205,7 @@ const ActionButton = () => {
                             className={`${option === "Graduate" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Graduate")}
                         >
-                          <FontAwesomeIcon icon={faGraduationCap}/>
+                          <FontAwesomeIcon icon={faPowerOff} className="text-red-600"/>
                           Deactive
                         </Link>,
                         key: '4',

@@ -67,7 +67,6 @@ const Photos_Videos = () => {
                 <ImageCard />
                 <ImageCard />
                 <ImageCard />
-                <ImageCard />
             </div>
         </div>
     );

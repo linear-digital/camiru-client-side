@@ -26,7 +26,6 @@ const RecentMedia = () => {
                 <ImageCard />
                 <ImageCard />
                 <ImageCard />
-                <ImageCard />
             </div>
         </Card>
     );

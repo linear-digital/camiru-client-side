@@ -7,7 +7,7 @@ import Avater from '../../../Components/Card/Avater';
 
 const StapManagement = () => {
     return (
-        <Card className='p-5 w-full h-full shadow-blue-gray-50'>
+        <Card className='p-5 w-full h-full border border-[#C7F1FF] bg-[#F8FCFF] shadow-none'>
             <section className="flex items-center justify-between">
                 <h2 className=" text-zinc-800 text-xs font-semibold ">Staff Management</h2>
                 <div className="flex gap-3 items-center">

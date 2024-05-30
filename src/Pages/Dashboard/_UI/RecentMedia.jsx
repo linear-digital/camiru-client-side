@@ -6,7 +6,7 @@ import ImageCard from '../../../Components/Card/ImageCard';
 
 const RecentMedia = () => {
     return (
-        <Card className='p-5 w-full mt-10 shadow-blue-gray-50'>
+        <Card className='p-5 w-full mt-10 border border-[#C7F1FF] bg-[#F8FCFF] shadow-none'>
             <div className="lg:flex justify-between items-center">
                 <div>
                     <h3 className="text-zinc-800 text-lg font-semibold ">Recent Photos & videos</h3>

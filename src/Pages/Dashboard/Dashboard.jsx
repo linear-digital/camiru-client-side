@@ -13,7 +13,7 @@ import RecentActivity from './_UI/Sidebar/RecentActivity';
 
 const Dashboard = () => {
     return (
-        <Card className='w-full bg-white h-auto inter lg:p-5 p-5 min-h-[80vh]'>
+        <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <section className='lg:flex justify-between items-center'>
                 <div>
                     <h1 className="w-40 text-primary lg:text-2xl text-base font-bold ">Dashboard</h1>
@@ -56,7 +56,7 @@ const Dashboard = () => {
                     <DownloadCustomReport />
                     <RecentMedia />
                 </div>
-                <div className="w-full mt-5 lg:mt-0 lg:max-w-[280px]  shadow-lg p-5 rounded-md">
+                <div className="w-full mt-5 lg:mt-0 lg:max-w-[280px]  shadow-md shadow-gray-200 p-5 rounded-md">
                     <NotificationSec />
                     <Messages />
                     <RecentActivity />

@@ -10,7 +10,7 @@ const Sidebar = () => {
             <SearchBar />
             <Contacts />
             <div className="mt-10 text-cyan-700 text-xs font-semibold ">Chats</div>
-            <div className='mt-5 h-full overflow-y-auto'>
+            <div className='mt-5 h-full'>
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />

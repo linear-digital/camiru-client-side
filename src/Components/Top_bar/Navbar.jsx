@@ -10,7 +10,7 @@ const Navbar = () => {
     const [text, setText] = React.useState('');
     const [open, setOpen] = React.useState(false);
     return (
-        <nav className='py-7 lg:pr-10 pr-5 pl-5 lg:pl-0 flex items-center inter justify-between w-full' >
+        <nav className='py-5 lg:pr-10 pr-5 pl-5 lg:pl-0 flex items-center inter justify-between w-full' >
             <SideDrawer open={open} setOpen={setOpen} />
             <div className='lg:flex items-center gap-5 hidden'>
                 <div className="lg:w-[50px] min-w-[30px] lg:h-[50px] min-h-[30px] bg-accent rounded-full " />

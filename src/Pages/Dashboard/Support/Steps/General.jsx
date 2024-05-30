@@ -34,7 +34,7 @@ const AccordionUseble = ({ number, open, setOpen, title }) => {
 
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
     return (
-        <div className='shadow shadow-gray-100 px-5 rounded bg-white'>
+        <div className='shadow shadow-gray-100 px-5 rounded bg-white '>
             <Accordion open={open === number} icon={<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none" >
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11.6836 2.67188C6.60563 2.67188 2.48438 6.79313 2.48438 11.8711C2.48438 16.9491 6.60563 21.0703 11.6836 21.0703C16.7616 21.0703 20.8828 16.9491 20.8828 11.8711C20.8828 6.79313 16.7616 2.67188 11.6836 2.67188ZM11.3616 14.3089L8.79504 11.7423C8.50066 11.4479 8.70305 10.9512 9.11701 10.9512H14.2594C14.6733 10.9512 14.8757 11.4479 14.5813 11.7331L12.0148 14.2997C11.8308 14.4837 11.5364 14.4837 11.3616 14.3089Z" fill="#187A82" />
             </svg>}

@@ -15,7 +15,6 @@ import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
-import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 const TABLE_HEAD = ["Members", "Enrolled", "Class", "Schedule", "Action"];
 
 
@@ -97,7 +96,7 @@ export default function Table() {
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                <div className=" text-red-500 text-xs font-medium leading-normal">infants</div>
+                                    <div className=" text-red-500 text-xs font-medium leading-normal">infants</div>
                                 </td>
                                 <td className={classes}>
                                     <button className="py-2 border-[#187A82] bg-[#5CD9CA40] border text-xs font-medium rounded-lg px-5 text-[#187A82]">
@@ -128,7 +127,7 @@ const ActionButton = () => {
                             className={`${option === "Check in" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
-                          <CheckIn />  Check in
+                            <CheckIn />  Check in
                         </Link>,
                         key: '1',
                     },
@@ -140,7 +139,7 @@ const ActionButton = () => {
                             className={`${option === "View User" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
-                          <FontAwesomeIcon icon={faUser}/>
+                            <FontAwesomeIcon icon={faUser} />
                             View User
                         </Link>,
                         key: '2',
@@ -153,8 +152,8 @@ const ActionButton = () => {
                             className={`${option === "Reports" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
-                          <ReportIcon />
-                          Time Cards
+                            <ReportIcon />
+                            Time Cards
                         </Link>,
                         key: '3',
                     },
@@ -166,8 +165,8 @@ const ActionButton = () => {
                             className={`${option === "Schedule Absence" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
-                          <FontAwesomeIcon icon={faCalendarDays}/>
-                          Schedule Time Off
+                            <FontAwesomeIcon icon={faCalendarDays} />
+                            Schedule Time Off
                         </Link>,
                         key: '4',
                     },
@@ -177,10 +176,11 @@ const ActionButton = () => {
                     {
                         label: <Link to={'/dashboard/staff/323/profile/deactive'}
                             className={` w-full flex items-center gap-2  text-start `}
-                            onClick={() => setOption("Deactive")}
                         >
-                          <FontAwesomeIcon icon={faPowerOff} className="text-red-600"/>
-                          Deactive
+                            <h5 className="text-red-600 flex items-center gap-1">
+                                <FontAwesomeIcon icon={faGraduationCap} className="" />
+                                Deactive
+                            </h5>
                         </Link>,
                         key: '4',
                     },
@@ -188,7 +188,7 @@ const ActionButton = () => {
             }}
             trigger={['click']}
         >
-            <Button variant="filled"  className="border border-[#FFBB3B33] bg-[#FFBB3B33] text-[#FFBB3B] text-[13px] shadow-none" size="sm">
+            <Button variant="filled" className="border border-[#FFBB3B33] bg-[#FFBB3B33] text-[#FFBB3B] text-[13px] shadow-none" size="sm">
                 <span className="text-[12px] font-medium tracking-tight">
                     Action
                 </span>

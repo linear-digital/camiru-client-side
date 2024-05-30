@@ -180,11 +180,11 @@ const ActionButton = () => {
                     },
                     {
                         label: <Link to={'/dashboard/student/323/profile/graduate'}
-                            className={`${option === "Graduate" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Graduate")}
                         >
-                            <FontAwesomeIcon icon={faGraduationCap} />
-                            Graduate
+                            <h5 className={` w-full flex items-center gap-2  text-start text-green-700`}>
+                                <FontAwesomeIcon icon={faGraduationCap} />
+                                Graduate
+                            </h5>
                         </Link>,
                         key: '4',
                     },

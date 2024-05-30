@@ -154,7 +154,7 @@ const ActionButton = () => {
                             className={`${option === "Check in" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
-                          <CheckIn />  Check in
+                            <CheckIn />  Check in
                         </Link>,
                         key: '1',
                     },
@@ -166,7 +166,7 @@ const ActionButton = () => {
                             className={`${option === "View User" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
-                          <FontAwesomeIcon icon={faUser}/>
+                            <FontAwesomeIcon icon={faUser} />
                             View User
                         </Link>,
                         key: '2',
@@ -179,8 +179,8 @@ const ActionButton = () => {
                             className={`${option === "Reports" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
-                          <ReportIcon />
-                          Time Cards
+                            <ReportIcon />
+                            Time Cards
                         </Link>,
                         key: '3',
                     },
@@ -192,8 +192,8 @@ const ActionButton = () => {
                             className={`${option === "Schedule Absence" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
-                          <FontAwesomeIcon icon={faCalendarDays}/>
-                          Schedule Time Off
+                            <FontAwesomeIcon icon={faCalendarDays} />
+                            Schedule Time Off
                         </Link>,
                         key: '4',
                     },
@@ -203,10 +203,11 @@ const ActionButton = () => {
                     {
                         label: <Link to={'/dashboard/staff/323/profile/deactive'}
                             className={`${option === "Graduate" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Graduate")}
                         >
-                          <FontAwesomeIcon icon={faPowerOff} className="text-red-600"/>
-                          Deactive
+                            <h5 className="text-red-600 flex items-center gap-1">
+                                <FontAwesomeIcon icon={faGraduationCap} className="" />
+                                Deactive
+                            </h5>
                         </Link>,
                         key: '4',
                     },
@@ -214,7 +215,7 @@ const ActionButton = () => {
             }}
             trigger={['click']}
         >
-            <Button variant="filled"  className="border border-[#187A82] bg-[#5CD9CA40] text-[#187A82] text-[13px] shadow-none" size="sm">
+            <Button variant="filled" className="border border-[#187A82] bg-[#5CD9CA40] text-[#187A82] text-[13px] shadow-none" size="sm">
                 <span className="text-[12px] font-medium tracking-tight">
                     Action
                 </span>

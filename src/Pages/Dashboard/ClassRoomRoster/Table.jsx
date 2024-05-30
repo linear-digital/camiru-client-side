@@ -199,13 +199,13 @@ const ActionButton = ({ color1, color2 }) => {
                         type: 'divider',
                     },
                     {
-                        label: <button
-                            className={`${option === "Graduate" ? color1 ? color1 : "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Graduate")}
+                        label: <Link to={'/dashboard/student/323/profile/graduate'}
                         >
-                            <FontAwesomeIcon icon={faGraduationCap} />
-                            Graduate
-                        </button>,
+                            <h5 className={` w-full flex items-center gap-2  text-start text-green-700`}>
+                                <FontAwesomeIcon icon={faGraduationCap} />
+                                Graduate
+                            </h5>
+                        </Link>,
                         key: '4',
                     },
                 ],

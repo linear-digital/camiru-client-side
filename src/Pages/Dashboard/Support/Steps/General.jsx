@@ -5,7 +5,7 @@ const General = () => {
 
     const [open, setOpen] = React.useState(1);
     return (
-        <div className='w-full grid lg:grid-cols-2 gap-x-10 gap-y-3 lg:px-20 px-5'>
+        <div className='w-full grid lg:grid-cols-2 gap-5 lg:px-20 px-5'>
             <AccordionUseble number={1} open={open} setOpen={setOpen}
                 title={"What services does Camiru Offer?"}
             />

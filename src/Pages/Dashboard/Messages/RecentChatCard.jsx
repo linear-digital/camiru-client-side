@@ -12,7 +12,7 @@ const RecentChatCard = () => {
                     <h5 className=" text-slate-900 text-xs font-bold ">Samantha William</h5>
                     <p className=" text-cyan-700 text-xs font-normal ">12:45 PM</p>
                 </div>
-                <div className="w-44 h-6 text-cyan-700 text-xs font-normal mt-1">Lorem ipsum dolor sit amet...</div>
+                <div className="w-44 h-6 text-cyan-700 text-xs font-normal mt-1">Lorem ipsum dolor sit amet....</div>
             </div>
         </div>
     );

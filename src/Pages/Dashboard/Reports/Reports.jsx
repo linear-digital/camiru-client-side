@@ -4,6 +4,7 @@ import ChildReport from './ChildReport';
 import ClassRoomReport from './ClassroomReport';
 import CenterReport from './CenterReport';
 import StaffReport from './StaffReport';
+import BillingReport from './BillingReports';
 
 const Reports = () => {
     return (
@@ -18,6 +19,7 @@ const Reports = () => {
             <ClassRoomReport />
             <CenterReport />
             <StaffReport />
+            <BillingReport />
         </DB_Page_Layout>
     );
 };

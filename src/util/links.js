@@ -1,5 +1,7 @@
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+
+import { faChartLine } from "@fortawesome/free-solid-svg-icons";
 import { Billing, ClassAction, Classrooms, Contacts, Home, Media, Messaging, Roaster, Settings } from "./icons";
+import { faHeadset } from "@fortawesome/free-solid-svg-icons";
 
 export const links = [
     {
@@ -66,19 +68,22 @@ export const links = [
         id: 10,
         name: 'Check in-out',
         path: '/dashboard/checkio-report',
-        icon: Messaging
+        icon: faChartLine,
+        isIcon: true
     },
     {
         id: 11,
         name: 'Support',
         path: '/dashboard/support',
-        icon: Settings
+        icon: faHeadset,
+        isIcon: true
     },
     {
         id: 9,
         name: 'Reports',
         path: '/dashboard/reports',
-        icon: Settings
+        icon: faChartLine,
+        isIcon: true
     },
     {
         id: 9,
@@ -86,5 +91,5 @@ export const links = [
         path: '/dashboard/config',
         icon: Settings
     },
-   
+
 ]

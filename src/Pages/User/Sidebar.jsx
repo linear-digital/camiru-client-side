@@ -19,8 +19,8 @@ const Sidebar = ({ setOpen }) => {
                 <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
-                        links.map((link) => {
-                            return <NavigationCard onClick={closeSidebar} link={link} key={link.id} active={location.pathname === link.path} />
+                        links.map((link, index) => {
+                            return <NavigationCard  isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} />
                         })
                     }
                 </ul>
@@ -43,7 +43,7 @@ const Sidebar = ({ setOpen }) => {
 
 export default Sidebar;
 
-export const NavigationCard = ({ link, active, onClick }) => {
+export const NavigationCard = ({ link, active, onClick, isIcon }) => {
     return <li className='mb-1 w-full'>
         <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded`}>
             {
@@ -55,7 +55,12 @@ export const NavigationCard = ({ link, active, onClick }) => {
             <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
                 {link.icon &&
                     <span>
-                        <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                        {
+                            link.isIcon ?
+                                <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
+                                :
+                                <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                        }
                     </span>
                 }
                 <div className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</div>

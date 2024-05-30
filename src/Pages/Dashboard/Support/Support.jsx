@@ -56,7 +56,7 @@ const Support = () => {
             <img src={pattern} alt="" 
             className='absolute top-0 right-0 '
             />
-            <div className='w-full z-10 lg:px-20 px-5 py-20 bg-[#187A82]'>
+            <div className='w-full z-10 lg:px-20 px-5 py-20 bg-primary'>
                 <h1 className="text-white lg:text-[31.54px] text-xl font-semibold text-center">What can help you with?</h1>
                 <p className="text-center text-white lg:text-base text-sm mt-3 font-normal">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                 <div className="lg:w-[770.88px] w-full h-[51.26px] bg-white rounded-lg mx-auto mt-10 flex items-center px-5 text-base" >
@@ -98,9 +98,9 @@ const Support = () => {
                     }
                 </div>
             </div>
-            <div className='bg-[#FFBB3B] lg:p-10 p-5 flex items-center justify-center gap-10'>
+            <div className='bg-[#98C931] lg:p-10 p-5 flex items-center justify-center gap-10'>
                 <div className="text-center text-[#535458] lg:text-3xl text-lg font-bold  leading-10">Still Have any Questions?</div>
-                <Button className='bg-[#187A82] text-white lg:px-10 lg:py-4'>
+                <Button className='bg-primary text-white lg:px-10 lg:py-4'>
                     Contact Now
                 </Button>
             </div>

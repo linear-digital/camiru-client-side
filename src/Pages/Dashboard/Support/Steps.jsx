@@ -29,7 +29,7 @@ const Steps = () => {
                 paths.map((path, index) => {
                     return (
                         <Link to={path.path} key={index}>
-                            <Button className={`capitalize px-5 ${location.pathname === path.path ? "text-white bg-[#52A1A8]" : "text-black bg-white"} shadow-none`} size='sm'>
+                            <Button className={`capitalize px-5 ${location.pathname === path.path ? "text-white bg-[#98C931]" : "text-black bg-white"} shadow-none`} size='sm'>
                                 {path.name}
                             </Button>
                         </Link>

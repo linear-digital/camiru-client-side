@@ -63,6 +63,12 @@ export const links = [
         icon: Messaging
     },
     {
+        id: 10,
+        name: 'Check in-out',
+        path: '/dashboard/checkio-report',
+        icon: Messaging
+    },
+    {
         id: 9,
         name: 'Configuration',
         path: '/dashboard/config',

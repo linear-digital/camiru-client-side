@@ -3,7 +3,7 @@ import React from 'react';
 const Card = ({ title }) => {
     const [show, setShow] = React.useState(false);
     return (
-        <div className="w-[220px] h-[40px] bg-slate-100 rounded-md border border-gray-200 flex items-center justify-between px-5 relative cursor-pointer" onClick={() => setShow(!show)}>
+        <div className="lg:w-[220px] w-[300px] h-[40px] bg-slate-100 rounded-md border border-gray-200 flex items-center justify-between px-5 relative cursor-pointer" onClick={() => setShow(!show)}>
             <h5 className="text-cyan-700 text-[10.67px] font-normal leading-none">{title}</h5>
             <Icon />
 

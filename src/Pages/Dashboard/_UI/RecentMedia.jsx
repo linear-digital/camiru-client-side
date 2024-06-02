@@ -17,7 +17,7 @@ const RecentMedia = () => {
                     <FontAwesomeIcon icon={faCircleDown} />
                 </button>
             </div>
-            <div className="media-grid mt-10 gap-5">
+            <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-10 gap-5">
                 <ImageCard />
                 <ImageCard />
                 <ImageCard />

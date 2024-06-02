@@ -108,10 +108,7 @@ body {
     color: #187A82 !important;
 }
 
-.media-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-}
+
 
 .btn-sm {
     min-width: 90px;
@@ -173,45 +170,4 @@ input {
     background-color: white;
     color: black;
     font-weight: 500;
-}
-
-@media screen and (max-width: 768px) {
-    .media-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .profile-history {
-        right: -100px !important;
-    }
-}
-
-
-@media only screen and (min-width: 1000px) {
-    .media-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media only screen and (min-width: 1200px) {
-    .media-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media only screen and (min-width: 1400px) {
-    .media-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
-}
-
-@media only screen and (min-width: 1500px) {
-    .media-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-
-@media only screen and (min-width: 1700px) {
-    .media-grid {
-        grid-template-columns: repeat(5, 1fr);
-    }
 }

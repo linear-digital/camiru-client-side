@@ -11,6 +11,7 @@ import { Input } from '@material-tailwind/react';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { api } from '../../../../Components/helper/axios.instance';
 
 const Form = ({ mode }) => {
     const [error, setError] = React.useState('');
@@ -20,14 +21,23 @@ const Form = ({ mode }) => {
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
     const handleMouseDownPassword = (event) => {
-      event.preventDefault();
+        event.preventDefault();
     };
-    const formHandler = (e) => {
+    const formHandler = async (e) => {
         e.preventDefault();
         // get all the inputs
         const target = new FormData(e.target);
         const data = Object.fromEntries(target.entries())
-        console.log(data);
+
+        try {
+            if (mode === 'login') {
+                const res = await api.post('/center/login', data);
+                console.log(res);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
         // navigate('/dashboard');
     }
     return (

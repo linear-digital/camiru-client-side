@@ -1,23 +1,34 @@
 import React from 'react';
 import Social from './Social';
-import { Input } from '@material-tailwind/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { Button } from '@material-tailwind/react';
 import { Link } from 'react-router-dom';
 import { Progress } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import { Input } from '@material-tailwind/react';
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 const Form = ({ mode }) => {
+    const [error, setError] = React.useState('');
+
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event) => {
+      event.preventDefault();
+    };
     const formHandler = (e) => {
         e.preventDefault();
         // get all the inputs
         const target = new FormData(e.target);
         const data = Object.fromEntries(target.entries())
         console.log(data);
-        navigate('/dashboard');
+        // navigate('/dashboard');
     }
     return (
         <div className="lg:w-[457px] w-full h-auto p-5 flex flex-col justify-center">
@@ -45,11 +56,14 @@ const Form = ({ mode }) => {
                 mode !== 'reset' ?
                     <form onSubmit={formHandler} className='mt-7 form-auth'>
                         <div>
-                            <Input
+                            <TextField
+                                fullWidth
+                                size='small'
                                 variant='outlined'
                                 label='Email address'
                                 type='email'
                                 name='email'
+
                                 required
                             />
                         </div>
@@ -58,7 +72,9 @@ const Form = ({ mode }) => {
                             mode === 'signup' && (
                                 <div className="lg:flex mt-5 gap-2 justify-between">
                                     <div>
-                                        <Input
+                                        <TextField
+                                            fullWidth
+                                            size='small'
                                             variant='outlined'
                                             label='First name'
                                             type='text'
@@ -67,7 +83,9 @@ const Form = ({ mode }) => {
                                         />
                                     </div>
                                     <div className='mt-5 lg:mt-0'>
-                                        <Input
+                                        <TextField
+                                            fullWidth
+                                            size='small'
                                             variant='outlined'
                                             label='Last name'
                                             type='text'
@@ -79,14 +97,29 @@ const Form = ({ mode }) => {
                             )
                         }
                         <div className='mt-5'>
-                            <Input
-                                variant='outlined'
-                                label='Password'
-                                name='password'
-                                required
-                                type={showPassword ? 'text' : 'password'}
-                                icon={<FontAwesomeIcon icon={faEye} onClick={() => setShowPassword(!showPassword)} />}
-                            />
+                            <FormControl fullWidth variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <OutlinedInput
+                                    name='password'
+                                    size='small'
+                                    fullWidth
+                                    id="outlined-adornment-password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    label="Password"
+                                />
+                            </FormControl>
                         </div>
                         {
                             mode === 'signup' &&

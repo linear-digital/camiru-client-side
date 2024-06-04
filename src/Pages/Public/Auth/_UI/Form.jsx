@@ -12,10 +12,12 @@ import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } fr
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { api } from '../../../../Components/helper/axios.instance';
+import Cookie from 'js-cookie';
 
 const Form = ({ mode }) => {
     const [error, setError] = React.useState('');
-
+    const [loading, setLoading] = React.useState(false);
+    const [success, setSuccess] = React.useState("");
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -30,12 +32,18 @@ const Form = ({ mode }) => {
         const data = Object.fromEntries(target.entries())
 
         try {
+            setLoading(true);
             if (mode === 'login') {
                 const res = await api.post('/center/login', data);
-                console.log(res);
+                Cookie.set('accessToken', res.data.accessToken);
+                Cookie.set('refreshToken', res.data.refreshToken);
+                navigate('/dashboard');
             }
+            setError('');
+            setLoading(false);
         } catch (error) {
-            console.log(error);
+            setLoading(false);
+            setError(error?.response?.data?.message || 'Something went wrong');
         }
 
         // navigate('/dashboard');
@@ -146,6 +154,7 @@ const Form = ({ mode }) => {
                                 </div>
                             </div>
                         }
+                        <p className='text-red-500 text-xs my-2'>{error}</p>
                         {
                             mode === "signup" ?
                                 <Button type='submit' className='bg-secondary mt-5' fullWidth>
@@ -156,7 +165,7 @@ const Form = ({ mode }) => {
                                     <Link to={'/reset-password'}>
                                         <p className=" text-sm font-medium">Forgot password?</p>
                                     </Link>
-                                    <Button type='submit' className='bg-secondary '>
+                                    <Button disabled={loading} type='submit' className='bg-secondary '>
                                         Sign In
                                     </Button>
                                 </div>

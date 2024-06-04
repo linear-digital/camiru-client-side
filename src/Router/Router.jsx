@@ -47,6 +47,7 @@ import RegistrationConfig from "../Pages/Dashboard/CenterConfig/RegistrationConf
 import Logins from "../Pages/Dashboard/CenterConfig/Logins";
 import Deactive from "../Pages/Dashboard/User/Profile/Deactive";
 import Reports from "../Pages/Dashboard/Reports/Reports";
+import AuthChecker from "../Layouts/AuthChecker";
 
 
 
@@ -72,7 +73,9 @@ const router = createBrowserRouter([
     },
     {
         path: "/dashboard",
-        element: <UserLayout />,
+        element: <AuthChecker>
+            <UserLayout />
+        </AuthChecker>,
         children: [
             {
                 index: true,

@@ -40,7 +40,6 @@ const Generalinfo = () => {
     const setData = (data) => {
         dispatch(setChildFeilds({ ...childFeilds, ...data }))
     }
-
     useEffect(() => {
         setData({ gender })
     }, [gender])

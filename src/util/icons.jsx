@@ -36,8 +36,8 @@ export const ClassAction = ({ className }) => {
 }
 
 export const Media = ({ className }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="1.5" className={className} width="20" height="22">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
+    return <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" className={className} width="20" height="22">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 0 1-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 0 1 1.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 0 0-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 0 1-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 0 0-3.375-3.375h-1.5a1.125 1.125 0 0 1-1.125-1.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H9.75" />
     </svg>
 
 }
@@ -68,28 +68,28 @@ export const Bell = ({ className }) => {
 
 export const Calendar = ({ className }) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 29 31" fill="none" className={className}>
-        <rect x="1" y="3.90002" width="26.1" height="26.1" rx="2" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M19.85 1V6.8" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M8.2499 1V6.8" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M1 12.6H27.1" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <rect x="1" y="3.90002" width="26.1" height="26.1" rx="2" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M19.85 1V6.8" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M8.2499 1V6.8" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M1 12.6H27.1" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 }
 export const Task = ({ className }) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 31 29" fill="none" className={className}>
-        <path d="M10.6499 13.05L14.9999 17.4L29.4999 2.89996" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M28.05 14.5V24.65C28.05 26.2516 26.7516 27.55 25.15 27.55H4.84995C3.24833 27.55 1.94995 26.2516 1.94995 24.65V4.34995C1.94995 2.74833 3.24833 1.44995 4.84995 1.44995H20.8" stroke="#333333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M10.6499 13.05L14.9999 17.4L29.4999 2.89996" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M28.05 14.5V24.65C28.05 26.2516 26.7516 27.55 25.15 27.55H4.84995C3.24833 27.55 1.94995 26.2516 1.94995 24.65V4.34995C1.94995 2.74833 3.24833 1.44995 4.84995 1.44995H20.8" stroke="#333333" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 }
 export const Envelope = ({ className }) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="25" viewBox="0 0 32 27" fill="none" className={className}>
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M4.2501 1.8999H27.4501C29.0451 1.8999 30.3501 3.2049 30.3501 4.7999V22.1999C30.3501 23.7949 29.0451 25.0999 27.4501 25.0999H4.2501C2.6551 25.0999 1.3501 23.7949 1.3501 22.1999V4.7999C1.3501 3.2049 2.6551 1.8999 4.2501 1.8999Z" stroke="#FFBB3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M30.3501 4.79993L15.8501 14.9499L1.3501 4.79993" stroke="#FFBB3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path fillRule="evenodd" clipRule="evenodd" d="M4.2501 1.8999H27.4501C29.0451 1.8999 30.3501 3.2049 30.3501 4.7999V22.1999C30.3501 23.7949 29.0451 25.0999 27.4501 25.0999H4.2501C2.6551 25.0999 1.3501 23.7949 1.3501 22.1999V4.7999C1.3501 3.2049 2.6551 1.8999 4.2501 1.8999Z" stroke="#FFBB3B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M30.3501 4.79993L15.8501 14.9499L1.3501 4.79993" stroke="#FFBB3B" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 }
 export const Notification = ({ className }) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 31 34" fill="none" className={className}>
-        <path d="M24.3673 10.6355C24.3673 5.47333 20.1825 1.28857 15.0204 1.28857C9.85822 1.28857 5.67346 5.47333 5.67346 10.6355C5.67346 21.5402 1 24.6559 1 24.6559H29.0408C29.0408 24.6559 24.3673 21.5402 24.3673 10.6355" stroke="#5CD9CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M17.7155 30.887C17.1581 31.8478 16.1313 32.4393 15.0205 32.4393C13.9096 32.4393 12.8828 31.8478 12.3254 30.887" stroke="#5CD9CA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M24.3673 10.6355C24.3673 5.47333 20.1825 1.28857 15.0204 1.28857C9.85822 1.28857 5.67346 5.47333 5.67346 10.6355C5.67346 21.5402 1 24.6559 1 24.6559H29.0408C29.0408 24.6559 24.3673 21.5402 24.3673 10.6355" stroke="#5CD9CA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M17.7155 30.887C17.1581 31.8478 16.1313 32.4393 15.0205 32.4393C13.9096 32.4393 12.8828 31.8478 12.3254 30.887" stroke="#5CD9CA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
 }
 
@@ -157,7 +157,7 @@ export const PaperClip = ({ className }) => {
 
 export const Send = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M3.54107 4.66575V6.26009C3.54107 6.62291 3.24673 6.91725 2.88406 6.91725C2.52139 6.91725 2.22705 6.62291 2.22705 6.26009V3.70506C2.22705 3.4884 2.33414 3.28501 2.51285 3.16288C2.69221 3.04024 2.92019 3.01418 3.1219 3.09288L14.948 7.69193C15.201 7.79004 15.3672 8.03328 15.3672 8.30412C15.3672 8.57495 15.201 8.81819 14.948 8.9163L3.1219 13.5154C2.92019 13.5941 2.69221 13.568 2.51285 13.4453C2.33414 13.3232 2.22705 13.1198 2.22705 12.9032C2.22705 12.9032 2.22705 10.9772 2.22705 9.61791C2.22705 8.52947 3.10941 7.64696 4.19807 7.64696H7.48311C7.84578 7.64696 8.14012 7.9413 8.14012 8.30412C8.14012 8.66693 7.84578 8.96127 7.48311 8.96127C7.48311 8.96127 5.55742 8.96127 4.19807 8.96127C3.83541 8.96127 3.54107 9.2551 3.54107 9.61791V11.9425L12.8975 8.30412L3.54107 4.66575Z" fill="white" />
+        <path fillRule="evenodd" clipRule="evenodd" d="M3.54107 4.66575V6.26009C3.54107 6.62291 3.24673 6.91725 2.88406 6.91725C2.52139 6.91725 2.22705 6.62291 2.22705 6.26009V3.70506C2.22705 3.4884 2.33414 3.28501 2.51285 3.16288C2.69221 3.04024 2.92019 3.01418 3.1219 3.09288L14.948 7.69193C15.201 7.79004 15.3672 8.03328 15.3672 8.30412C15.3672 8.57495 15.201 8.81819 14.948 8.9163L3.1219 13.5154C2.92019 13.5941 2.69221 13.568 2.51285 13.4453C2.33414 13.3232 2.22705 13.1198 2.22705 12.9032C2.22705 12.9032 2.22705 10.9772 2.22705 9.61791C2.22705 8.52947 3.10941 7.64696 4.19807 7.64696H7.48311C7.84578 7.64696 8.14012 7.9413 8.14012 8.30412C8.14012 8.66693 7.84578 8.96127 7.48311 8.96127C7.48311 8.96127 5.55742 8.96127 4.19807 8.96127C3.83541 8.96127 3.54107 9.2551 3.54107 9.61791V11.9425L12.8975 8.30412L3.54107 4.66575Z" fill="white" />
     </svg>
 }
 

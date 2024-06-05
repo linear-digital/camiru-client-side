@@ -107,6 +107,19 @@ body {
     height: 14px !important;
     color: #187A82 !important;
 }
+.enroll2 .MuiInputBase-root {
+    height: 40px;
+    font-size: 14px !important;
+    width: 100%;
+    border: #187A82 1px solid !important;
+    outline: none !important;
+}
+
+.enroll2 .MuiSvgIcon-root {
+    width: 16px !important;
+    height: 16px !important;
+    color: #187A82 !important;
+}
 
 
 
@@ -159,6 +172,9 @@ body {
 }
 
 .enroll .MuiInputBase-root {
+    border: none !important;
+}
+.enroll2 .MuiInputBase-root {
     border: none !important;
 }
 

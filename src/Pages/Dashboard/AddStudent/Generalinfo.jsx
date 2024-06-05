@@ -1,6 +1,6 @@
 
 
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Checkbox } from 'antd';
 import { Upload } from 'antd';
@@ -9,8 +9,14 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from 'react';
 import { CheckBoxNew, Row, RowWithChild } from './Common';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setChildFeilds } from '../../../redux/child/child.action';
+import { useEffect } from 'react';
 
 const Generalinfo = () => {
+    const { childFeilds } = useSelector(state => state.child)
+
     const [fileList, setFileList] = useState([]);
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
@@ -29,44 +35,58 @@ const Generalinfo = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
     };
+    const [gender, setGender] = useState("boy")
+    const dispatch = useDispatch()
+    const setData = (data) => {
+        dispatch(setChildFeilds({ ...childFeilds, ...data }))
+    }
 
+    useEffect(() => {
+        setData({ gender })
+    }, [gender])
     return (
         <div className='w-full flex flex-col lg:gap-3'>
             <Row
                 label={"First Name"}
                 placeholder={"Enter your first name"}
+                value={childFeilds?.firstName}
+                onChange={(e) => setData({ firstName: e.target.value })}
             />
             <Row
+                value={childFeilds?.lastName}
+                onChange={(e) => setData({ lastName: e.target.value })}
                 label={"Last Name"}
                 placeholder={"Enter your last name"}
             />
-            <RowWithChild label={"Date of Birth"}>
+            <RowWithChild label={"Date of Birth"} position={"center"}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <div className='flex gap-3 enroll'>
-                        <DesktopDatePicker views={['day',]}
-                            defaultValue={dayjs()}
-                        />
-                        <DesktopDatePicker
-                            defaultValue={dayjs()}
-                            views={['month',]} />
-                        <DesktopDatePicker
-                            defaultValue={dayjs()}
-                            views={['year',]} />
+                    <div className='flex gap-3 enroll2'>
+                        <DatePicker
+                            value={dayjs(childFeilds?.dateOfBirth)}
+                            onChange={(e) => {
+                                setData({ dateOfBirth: dayjs(e).format("YYYY-MM-DD") })
+                            }} />
                     </div>
                 </LocalizationProvider>
             </RowWithChild>
             <RowWithChild label={"Gender"} position={"center"}>
-                <div className="flex  items-center gap-3">
+                <form className="flex  items-center gap-3">
                     <CheckBoxNew
+                        onChange={() => setGender("boy")}
                         label={"Boy"}
+                        checked={gender === "boy"}
                     />
                     <CheckBoxNew
+                        onChange={() => setGender("girl")}
+                        checked={gender === "girl"}
                         label={"Girl"}
                     />
                     <CheckBoxNew
+                        onChange={() => setGender("x")}
+                        checked={gender === "x"}
                         label={"X"}
                     />
-                </div>
+                </form>
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
 

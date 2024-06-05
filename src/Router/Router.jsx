@@ -48,237 +48,244 @@ import Logins from "../Pages/Dashboard/CenterConfig/Logins";
 import Deactive from "../Pages/Dashboard/User/Profile/Deactive";
 import Reports from "../Pages/Dashboard/Reports/Reports";
 import AuthChecker from "../Layouts/AuthChecker";
+import App from "../App";
 
 
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <PublicLayout />,
+        element: <App />,
         children: [
             {
-                index: true,
-                element: <Login />
-            }, {
-                path: "login",
-                element: <Login />
-            }, {
-                path: "signup",
-                element: <Signup />
-            }, {
-                path: "reset-password",
-                element: <ResetPassword />
-            },
-        ]
-    },
-    {
-        path: "/dashboard",
-        element: <AuthChecker>
-            <UserLayout />
-        </AuthChecker>,
-        children: [
-            {
-                index: true,
-                element: <Dashboard />
-            },
-            {
-                path: "contacts",
-                element: <All_Contacts />
-            },
-            {
-                path: "messages",
-                element: <Messages />
-            },
-            {
-                path: "notifications",
-                element: <Notifications />
-            },
-            {
-                path: "calendar",
-                element: <Calendar />
-            },
-            {
-                path: "rooms",
-                element: <ClassRoom />
-            },
-            {
-                path: "media",
-                element: <Photos_Videos />
-            },
-            {
-                path: "rooms-roster",
-                element: <Classroom_roster />
-            },
-            {
-                path: "checkin",
-                element: <Checkin page="student" />
-            },
-            {
-                path: "checkio-report",
-                element: <CheckInOutReport />
-            },
-            {
-                path: "checkin-staff",
-                element: <Checkin page="staff" />
-            },
-            {
-                path: "staffs",
-                element: <StaffList />
-            },
-            {
-                path: "staffs-roster",
-                element: <StaffRoster />
-            },
-            {
-                path: "reports",
-                element: <Reports />
-            },
-            {
-                path: "support",
-                element: <Support />,
+                path: "/",
+                element: <PublicLayout />,
                 children: [
                     {
                         index: true,
-                        element: <General />
+                        element: <Login />
+                    }, {
+                        path: "login",
+                        element: <Login />
+                    }, {
+                        path: "signup",
+                        element: <Signup />
+                    }, {
+                        path: "reset-password",
+                        element: <ResetPassword />
                     },
-                    {
-                        path: "payments",
-                        // element: <Payments />
-                        element: <General />
-                    },
-                    {
-                        path: "services",
-                        // element: <Services />
-                        element: <General />
-                    },
-                    {
-                        path: "contact",
-                        // element: <ContactStep />
-                        element: <General />
-                    }
                 ]
             },
             {
-                path: "add-student",
-                element: <AddStudent />
-            },
-            {
-                path: "config",
-                element: <CenterConfig />,
+                path: "dashboard",
+                element: <AuthChecker>
+                    <UserLayout />
+                </AuthChecker>,
                 children: [
                     {
                         index: true,
-                        element: <CenterConfigHome />
+                        element: <Dashboard />
                     },
                     {
-                        path: "classroom",
-                        element: <ClassroomSettings />
+                        path: "contacts",
+                        element: <All_Contacts />
                     },
                     {
-                        path: "health",
-                        element: <HealthScreening />
+                        path: "messages",
+                        element: <Messages />
                     },
                     {
-                        path: "reg-config",
-                        element: <RegistrationConfig />
+                        path: "notifications",
+                        element: <Notifications />
                     },
                     {
-                        path: "logins",
-                        element: <Logins />
-                    }
-                ]
-            },
-            {
-                path: ":role/:id",
-                element: <Outlet />,
-                children: [
+                        path: "calendar",
+                        element: <Calendar />
+                    },
                     {
-                        path: "profile",
-                        element: <UserProfile />,
+                        path: "rooms",
+                        element: <ClassRoom />
+                    },
+                    {
+                        path: "media",
+                        element: <Photos_Videos />
+                    },
+                    {
+                        path: "rooms-roster",
+                        element: <Classroom_roster />
+                    },
+                    {
+                        path: "checkin",
+                        element: <Checkin page="student" />
+                    },
+                    {
+                        path: "checkio-report",
+                        element: <CheckInOutReport />
+                    },
+                    {
+                        path: "checkin-staff",
+                        element: <Checkin page="staff" />
+                    },
+                    {
+                        path: "staffs",
+                        element: <StaffList />
+                    },
+                    {
+                        path: "staffs-roster",
+                        element: <StaffRoster />
+                    },
+                    {
+                        path: "reports",
+                        element: <Reports />
+                    },
+                    {
+                        path: "support",
+                        element: <Support />,
                         children: [
                             {
                                 index: true,
-                                element: <Enrollment />,
-                            }, {
-                                path: "enrollment",
-                                element: <Enrollment />,
+                                element: <General />
                             },
                             {
-                                path: "enrollment/edit",
-                                element: <Enrollment edit={true} />,
+                                path: "payments",
+                                // element: <Payments />
+                                element: <General />
                             },
                             {
-                                path: "details",
-                                element: <Address_Contact />
+                                path: "services",
+                                // element: <Services />
+                                element: <General />
                             },
                             {
-                                path: "timecard",
-                                element: <TimeCard />
-                            },
-                            {
-                                path: "details/edit",
-                                element: <Address_Contact edit={true} />
-                            },
-                            {
-                                path: "schedule-absence",
-                                element: <ScheduleAbsence />
-                            },
-                            {
-                                path: "schedule-timeoff",
-                                element: <ScheduleTimeOff />
-                            },
-                            {
-                                path: "report",
-                                element: <Report />
-                            },
-                            {
-                                path: "development-evidence",
-                                element: <Development_evidence />
-                            },
-                            {
-                                path: "health-log",
-                                element: <HealthLog />
-                            },
-                            {
-                                path: "graduate",
-                                element: <Graduate />
-                            },
-                            {
-                                path: "deactive",
-                                element: <Deactive />
+                                path: "contact",
+                                // element: <ContactStep />
+                                element: <General />
                             }
+                        ]
+                    },
+                    {
+                        path: "add-student",
+                        element: <AddStudent />
+                    },
+                    {
+                        path: "config",
+                        element: <CenterConfig />,
+                        children: [
+                            {
+                                index: true,
+                                element: <CenterConfigHome />
+                            },
+                            {
+                                path: "classroom",
+                                element: <ClassroomSettings />
+                            },
+                            {
+                                path: "health",
+                                element: <HealthScreening />
+                            },
+                            {
+                                path: "reg-config",
+                                element: <RegistrationConfig />
+                            },
+                            {
+                                path: "logins",
+                                element: <Logins />
+                            }
+                        ]
+                    },
+                    {
+                        path: ":role/:id",
+                        element: <Outlet />,
+                        children: [
+                            {
+                                path: "profile",
+                                element: <UserProfile />,
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <Enrollment />,
+                                    }, {
+                                        path: "enrollment",
+                                        element: <Enrollment />,
+                                    },
+                                    {
+                                        path: "enrollment/edit",
+                                        element: <Enrollment edit={true} />,
+                                    },
+                                    {
+                                        path: "details",
+                                        element: <Address_Contact />
+                                    },
+                                    {
+                                        path: "timecard",
+                                        element: <TimeCard />
+                                    },
+                                    {
+                                        path: "details/edit",
+                                        element: <Address_Contact edit={true} />
+                                    },
+                                    {
+                                        path: "schedule-absence",
+                                        element: <ScheduleAbsence />
+                                    },
+                                    {
+                                        path: "schedule-timeoff",
+                                        element: <ScheduleTimeOff />
+                                    },
+                                    {
+                                        path: "report",
+                                        element: <Report />
+                                    },
+                                    {
+                                        path: "development-evidence",
+                                        element: <Development_evidence />
+                                    },
+                                    {
+                                        path: "health-log",
+                                        element: <HealthLog />
+                                    },
+                                    {
+                                        path: "graduate",
+                                        element: <Graduate />
+                                    },
+                                    {
+                                        path: "deactive",
+                                        element: <Deactive />
+                                    }
+                                ]
+                            },
+
+
                         ]
                     },
 
 
-                ]
-            },
-
-
-            {
-                path: "profile",
-                element: <Profile />,
-                children: [
                     {
-                        index: true,
-                        element: <PersonalData />
+                        path: "profile",
+                        element: <Profile />,
+                        children: [
+                            {
+                                index: true,
+                                element: <PersonalData />
+                            },
+                            {
+                                path: "contacts",
+                                element: <Contacts />
+                            },
+                            {
+                                path: "address",
+                                element: <Address />
+                            }
+                        ]
                     },
-                    {
-                        path: "contacts",
-                        element: <Contacts />
-                    },
-                    {
-                        path: "address",
-                        element: <Address />
-                    }
-                ]
+                ],
             },
-        ],
+        ]
     },
-    {
-        path: "*",
-        element: <NotFound />
-    }
+    // {
+    //     path: "*",
+    //     element: <NotFound />
+    // }
 ])
 
 export default router

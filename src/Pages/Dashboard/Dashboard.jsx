@@ -10,8 +10,12 @@ import RecentMedia from './_UI/RecentMedia';
 import NotificationSec from './_UI/Sidebar/NotificationSec';
 import Messages from './_UI/Sidebar/Messages';
 import RecentActivity from './_UI/Sidebar/RecentActivity';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
+    const { currentUser } = useSelector((state) => state.user)
+
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <section className='lg:flex justify-between items-center'>
@@ -20,9 +24,11 @@ const Dashboard = () => {
                     <p className="w-72 text-neutral-400 mt-2 font-normal lg:text-sm text-xs">Checkout your overview at a glance</p>
                 </div>
                 <div className='flex gap-5 mt-3 lg:mt-0'>
-                    <Button variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
-                        Add Child
-                    </Button>
+                    <Link to={'/dashboard/add-student'}>
+                        <Button variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
+                            Add Child
+                        </Button>
+                    </Link>
                     <Button variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
                         Add Classrooms
                     </Button>

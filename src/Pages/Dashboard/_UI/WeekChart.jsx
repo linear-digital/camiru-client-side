@@ -12,6 +12,8 @@ const ChartComponent = () => {
         { day: 55, name: '', value: 6, max: 10 },
         { day: 55, name: '', value: 6, max: 10 },
         { day: 55, name: '', value: 6, max: 10 },
+        { day: 55, name: '', value: 6, max: 10 },
+        { day: 55, name: '', value: 6, max: 10 },
         { day: 6, name: 'Sat', value: 5, max: 10 },
         { day: 0, name: 'Sun', value: 6, max: 10 },
         { day: 1, name: 'Mon', value: 10, max: 10 },
@@ -19,6 +21,8 @@ const ChartComponent = () => {
         { day: 3, name: 'Wed', value: 4, max: 10 },
         { day: 4, name: 'Thu', value: 5, max: 10 },
         { day: 5, name: 'Fri', value: 7, max: 10 },
+        { day: 55, name: '', value: 6, max: 10 },
+        { day: 55, name: '', value: 6, max: 10 },
         { day: 55, name: '', value: 6, max: 10 },
         { day: 55, name: '', value: 6, max: 10 },
         { day: 55, name: '', value: 6, max: 10 },
@@ -39,7 +43,7 @@ const ChartComponent = () => {
     }, [])
     return (
         <ResponsiveContainer width="100%" height={150} className={'mt-5'}>
-            <BarChart data={data} barCategoryGap={28}>
+            <BarChart data={data} barCategoryGap={20}>
 
                 <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
                 <XAxis dataKey="name" tick={{ fill: '#888', fontSize: 12 }} tickLine={false} axisLine={false} />
@@ -66,7 +70,7 @@ const ChartComponent = () => {
                         // } else {
                         //     barFill = fill
                         // }
-                        return <rect x={x} y={y} width={10} height={height} fill={barFill} rx={2} ry={5} />;
+                        return <rect x={x} y={y} width={8} height={height} fill={barFill} rx={2} ry={5} />;
                     }}
                 />
             </BarChart>

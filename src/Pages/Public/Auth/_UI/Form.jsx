@@ -13,6 +13,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { api } from '../../../../Components/helper/axios.instance';
 import Cookie from 'js-cookie';
+import { useEffect } from 'react';
 
 const Form = ({ mode }) => {
     const [error, setError] = React.useState('');
@@ -21,7 +22,7 @@ const Form = ({ mode }) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-
+    const token = Cookie.get('accessToken');
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -35,9 +36,10 @@ const Form = ({ mode }) => {
             setLoading(true);
             if (mode === 'login') {
                 const res = await api.post('/center/login', data);
-                Cookie.set('accessToken', res.data.accessToken);
-                Cookie.set('refreshToken', res.data.refreshToken);
-                navigate('/dashboard');
+                Cookie.set('accessToken', res.data.accessToken, { expires: 30, path: '/' });
+                const expires = new Date(Date.now() + 30 * 60 * 1000);
+                Cookie.set("refreshToken", res.data.refreshToken, { expires: expires, path: '/' });
+                window.location.reload();
             }
             setError('');
             setLoading(false);
@@ -48,6 +50,9 @@ const Form = ({ mode }) => {
 
         // navigate('/dashboard');
     }
+    useEffect(() => {
+        if (token) navigate('/dashboard')
+    }, [])
     return (
         <div className="lg:w-[457px] w-full h-auto p-5 flex flex-col justify-center">
             {

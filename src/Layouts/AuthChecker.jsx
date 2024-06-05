@@ -4,17 +4,19 @@ import { Navigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { Progress } from 'antd';
 import { api } from '../Components/helper/axios.instance';
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from '../redux/user/user.action';
 const AuthChecker = ({ children }) => {
     const token = Cookie.get('accessToken');
     const [loading, setLoading] = React.useState(false);
+    const dispatch = useDispatch();
     useEffect(() => {
         (
             async () => {
-               try {
+                try {
                     setLoading(true);
-                    const res = await api.get('/center/refresh');
-                    Cookie.set('accessToken', res.data.accessToken);
-                    Cookie.set('refreshToken', res.data.refreshToken);
+                    const res = await api.get('/center/me');
+                    dispatch(setCurrentUser(res.data));
                     setLoading(false);
                 } catch (error) {
                     setLoading(false);
@@ -30,9 +32,9 @@ const AuthChecker = ({ children }) => {
     if (loading) {
         return <Progress />
     }
-    // if (!token) {
-    //     return <Navigate to="/login" />
-    // }
+    if (!token) {
+        return <Navigate to="/login" />
+    }
     return children
 };
 

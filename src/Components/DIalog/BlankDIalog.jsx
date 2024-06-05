@@ -4,16 +4,15 @@ import {
     DialogBody,
 } from "@material-tailwind/react";
 
-export function DialogDefault({ children }) {
-    const [open, setOpen] = React.useState(false);
+export function BlankDIalog({ children, open, setOpen , size}) {
 
     const handleOpen = () => setOpen(!open);
 
     return (
         <>
-            <Dialog open={open} handler={handleOpen}>
+            <Dialog open={open} handler={handleOpen} size={size || "md"}>
                 <DialogBody>
-                   {children}
+                    {children}
                 </DialogBody>
             </Dialog>
         </>

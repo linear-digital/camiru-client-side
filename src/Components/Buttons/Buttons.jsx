@@ -2,7 +2,7 @@ import { Button as MButton } from "@material-tailwind/react"
 import { useState } from "react"
 import { useEffect } from "react"
 
-export const Button = ({ children, className, variant, ...props }) => {
+export const Button = ({ children, className, variant, onClick }) => {
     const [types, setType] = useState('primary')
     useEffect(() => {
         if (variant === 'primary') {
@@ -27,7 +27,7 @@ export const Button = ({ children, className, variant, ...props }) => {
             setType('bg-primary text-white')
         }
     }, [])
-    return <MButton size="sm" variant="filled" {...props} className={`${className} border-none ${types}`} >
+    return <MButton size="sm" variant="filled" className={`${className} border-none ${types}`} onClick={onClick}>
         {children}
     </MButton>
 }

@@ -11,6 +11,11 @@ import { Select } from 'antd';
 import { class_rooms } from '../../../util/classrooms';
 import { Input } from 'antd';
 import { PhoneNumber } from './CountrySelect';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setChildFeilds } from '../../../redux/child/child.action';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 const Contact = () => {
     const [fileList, setFileList] = useState([]);
@@ -31,7 +36,13 @@ const Contact = () => {
         const imgWindow = window.open(src);
         imgWindow?.document.write(image.outerHTML);
     };
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
+
+    const { childFeilds } = useSelector(state => state.child)
+    const dispatch = useDispatch()
+    const [phones, setPhones] = useState([])
+    const setData = (data) => {
+        dispatch(setChildFeilds({ ...childFeilds, ...data }))
+    }
     return (
         <div className='w-full flex flex-col lg:gap-2'>
 
@@ -39,19 +50,28 @@ const Contact = () => {
                 <div className='flex flex-col gap-3'>
                     <Input placeholder={"First Name"}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
+                        value={childFeilds?.firstName}
+                        onChange={(e) => setData({ firstName: e.target.value })}
                     />
+
                     <Input placeholder={"Last Name"}
+                        value={childFeilds?.lastName}
+                        onChange={(e) => setData({ lastName: e.target.value })}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
                     />
                 </div>
             </RowWithChild>
             <Row
+                value={childFeilds?.email}
+                onChange={(e) => setData({ email: e.target.value })}
                 type="email"
                 label={"Email"}
                 placeholder={"info@mail.com"}
             />
             <RowWithChild label={"Home"} position={"center"}>
-                <PhoneNumber />
+                <PhoneInput
+                    country={'us'}
+                />
             </RowWithChild>
             <RowWithChild label={"Other Phone"} position={"center"}>
                 <PhoneNumber />

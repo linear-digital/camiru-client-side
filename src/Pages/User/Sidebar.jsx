@@ -12,15 +12,18 @@ const Sidebar = ({ setOpen }) => {
     const closeSidebar = () => {
         setOpen && setOpen(false);
     }
+    const [collapse, setCollapse] = React.useState(false);
     return (
-        <div className='min-w-[260px] w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white'>
+        <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white`}>
             <div>
                 <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
-                <h3 className='text-gray-700 text-sm ml-8 mt-7'>MAIN MENU</h3>
+                <div className={`${collapse ? 'hidden' : 'flex'} items-center  mt-7 justify-between pr-3`}>
+                    <h3 className='text-gray-700 text-sm ml-8'>MAIN MENU</h3>
+                </div>
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
                         links.map((link, index) => {
-                            return <NavigationCard  isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} />
+                            return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} />
                         })
                     }
                 </ul>
@@ -28,14 +31,18 @@ const Sidebar = ({ setOpen }) => {
             <div className='w-full bg-accent h-16 flex items-center pl-4 justify-between'>
                 <Link to={'/dashboard/profile'} className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-white rounded-full" />
-                    <div>
-                        <div className=" h-4 text-white text-sm font-semibold">KeyOrent</div>
-                        <div className=" h-3 mt-1 text-white text-xs font-normal">Profile Setting</div>
-                    </div>
+                    {
+                        !collapse && <div>
+                            <div className=" h-4 text-white text-sm font-semibold">KeyOrent</div>
+                            <div className=" h-3 mt-1 text-white text-xs font-normal">Profile Setting</div>
+                        </div>
+                    }
                 </Link>
-                <div className='px-5 border-l h-full flex items-center border-gray-300'>
-                    <Bell />
-                </div>
+                {
+                    !collapse && <div className='px-5 border-l h-full flex items-center border-gray-300'>
+                        <Bell />
+                    </div>
+                }
             </div>
         </div>
     );
@@ -43,7 +50,7 @@ const Sidebar = ({ setOpen }) => {
 
 export default Sidebar;
 
-export const NavigationCard = ({ link, active, onClick, isIcon }) => {
+export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
     return <li className='mb-1 w-full'>
         <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded`}>
             {
@@ -63,7 +70,9 @@ export const NavigationCard = ({ link, active, onClick, isIcon }) => {
                         }
                     </span>
                 }
-                <div className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</div>
+                {
+                    !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</p>
+                }
             </div>
             {
                 !active && <span className='absolute right-7 text-blue-gray-600'>

@@ -1,8 +1,9 @@
-import { CHILDFEILD } from "./class.constant";
+import { CLASSROOM } from "./class.constant";
 
 
 
-export const setChildFeilds = (child) => ({
-    type: CHILDFEILD,
-    payload: child
+
+export const setClassRooms = (data) => ({
+    type: CLASSROOM,
+    payload: data
 })

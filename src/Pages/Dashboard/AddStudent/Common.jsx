@@ -46,7 +46,7 @@ export const CheckBoxNew = ({ label, checked, onChange }) => {
 
 export const CheckBoxWithLabel = ({ label, checked, onChange }) => {
     return <div className="inline-flex items-center gap-2">
-        <Checkbox color="amber" id="cb" className="w-5 h-5" />
+        <Checkbox color="amber" id="cb" className="w-5 h-5" checked={checked} onChange={() => onChange(label)} />
         <label className="mt-px text-[#585755d9] text-sm font-semibold cursor-pointer select-none" htmlFor="cb">
             {label}
         </label>

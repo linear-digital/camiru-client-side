@@ -30,7 +30,7 @@ function Icon({ id, open }) {
 
 const AddStudent = () => {
     const [open, setOpen] = React.useState(1);
-
+    const [completed, setCompleted] = React.useState(0);
     const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
     return (
@@ -52,7 +52,7 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Generalinfo />
+                        <Generalinfo  />
                     </AccordionBody>
                 </Accordion>
                 <Accordion open={open === 2} icon={<Icon id={2} open={open} />}

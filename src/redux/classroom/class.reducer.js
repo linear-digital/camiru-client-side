@@ -1,20 +1,21 @@
-import { CHILDFEILD } from "./child.constant";
+import { CLASSROOM } from "./class.constant";
+
 
 const initialState = {
-    childFeilds: {},
+    classrooms: [],
 };
 
 
-const childReducer = (state = initialState, action) => {
+const classReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHILDFEILD:
+        case CLASSROOM:
             return {
                 ...state,
-                childFeilds: action.payload,
+                classrooms: action.payload,
             };
         default:
             return { ...state };
     }
 };
 
-export default childReducer;
+export default classReducer;

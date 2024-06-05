@@ -1,10 +1,10 @@
 
 
-import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker,  LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Checkbox } from 'antd';
 import { Upload } from 'antd';
-import { Input } from 'antd';
+
 import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from 'react';
@@ -15,7 +15,7 @@ import { setChildFeilds } from '../../../redux/child/child.action';
 import { useEffect } from 'react';
 
 const Generalinfo = () => {
-    const { childFeilds } = useSelector(state => state.child)
+  
 
     const [fileList, setFileList] = useState([]);
     const onChange = ({ fileList: newFileList }) => {
@@ -36,6 +36,7 @@ const Generalinfo = () => {
         imgWindow?.document.write(image.outerHTML);
     };
     const [gender, setGender] = useState("boy")
+    const { childFeilds } = useSelector(state => state.child)
     const dispatch = useDispatch()
     const setData = (data) => {
         dispatch(setChildFeilds({ ...childFeilds, ...data }))

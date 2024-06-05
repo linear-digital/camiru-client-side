@@ -12,12 +12,17 @@ import Messages from './_UI/Sidebar/Messages';
 import RecentActivity from './_UI/Sidebar/RecentActivity';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { BlankDIalog } from '../../Components/DIalog/BlankDIalog';
+import CreateClassRoom from './_UI/CreateClassRoom';
 
 const Dashboard = () => {
     const { currentUser } = useSelector((state) => state.user)
-
+    const [open, setOpen] = React.useState(false);
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
+            <BlankDIalog open={open} setOpen={setOpen} size={"sm"}>
+                <CreateClassRoom  open={open} setOpen={setOpen}/>
+            </BlankDIalog>
             <section className='lg:flex justify-between items-center'>
                 <div>
                     <h1 className="w-40 text-primary lg:text-2xl text-base font-bold ">Dashboard</h1>
@@ -29,7 +34,11 @@ const Dashboard = () => {
                             Add Child
                         </Button>
                     </Link>
-                    <Button variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
+                    <Button
+                        onClick={() => {
+                            setOpen(true)
+                        }}
+                        variant={"accent"} className='lg:rounded-3xl lg:px-10 px-4  text-[8px] lg:text-xs lg:py-3'>
                         Add Classrooms
                     </Button>
                 </div>

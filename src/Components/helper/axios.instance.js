@@ -7,5 +7,10 @@ export const api = axios.create({
         "Content-Type": "application/json",
         "token": Cookie.get('accessToken')
     },
-
+});
+export const upload = axios.create({
+    baseURL: "http://localhost:4000/api",
+    headers: {
+        "token": Cookie.get('accessToken')
+    },
 });

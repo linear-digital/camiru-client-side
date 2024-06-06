@@ -8,31 +8,17 @@ import React from 'react';
 import { useState } from 'react';
 import { CheckBoxNew, CheckBoxWithLabel, Row, RowWithChild } from './Common';
 import { Select } from 'antd';
-import { class_rooms } from '../../../util/classrooms';
+
 import { setChildFeilds } from '../../../redux/child/child.action';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-const EnrollmentForm = () => {
-    const [fileList, setFileList] = useState([]);
+const EnrollmentForm = ({ setOpen, open }) => {
+
     const { classrooms } = useSelector(state => state.classroom)
-    const onChange = ({ fileList: newFileList }) => {
-        setFileList(newFileList);
-    };
-    const onPreview = async (file) => {
-        let src = file.url;
-        if (!src) {
-            src = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file.originFileObj);
-                reader.onload = () => resolve(reader.result);
-            });
-        }
-        const image = new Image();
-        image.src = src;
-        const imgWindow = window.open(src);
-        imgWindow?.document.write(image.outerHTML);
-    };
+
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [selectedDays, setSelectedDays] = useState([...days]);
     const { childFeilds } = useSelector(state => state.child)
@@ -40,12 +26,18 @@ const EnrollmentForm = () => {
     const setData = (data) => {
         dispatch(setChildFeilds({ ...childFeilds, ...data }))
     }
-    console.log(childFeilds);
+    const onNext = () => {
+        if (!childFeilds?.status) {
+
+        }
+        setOpen(open + 1)
+    }
+    const rotations = ["morning", "afternoon", "evening", "before & Afterschools"]
     return (
         <div className='w-full flex flex-col'>
             <RowWithChild label={"Classroom"} position={"center"}>
                 <Select
-
+                    defaultValue={""}
                     onChange={(e) => setData({ classRoom: e })}
                     className='lg:w-[340px] w-full border-[1.5px] rounded-lg border-[#00000033] text-[#58575580]'
                     variant='outlined'
@@ -62,37 +54,33 @@ const EnrollmentForm = () => {
                     <CheckBoxNew
                         onChange={(e) => setData({ status: "active" })}
                         label={"Active"}
+                        checked={childFeilds?.status === "active"}
                     />
                     <CheckBoxNew
                         onChange={(e) => setData({ status: "inactive" })}
                         label={"Not Active (Upcomming/Graduated)"}
+                        checked={childFeilds?.status === "inactive"}
                     />
                 </div>
             </RowWithChild>
 
             <RowWithChild label={"Rotation"} position={"center"}>
-                <div className="flex flex-wrap  items-center gap-3">
-                    <CheckBoxNew
-                        onChange={(e) => setData({ rotation: "morning" })}
-                        label={"Morning"}
-                    />
-                    <CheckBoxNew
-                        onChange={(e) => setData({ rotation: "afternoon" })}
-                        label={"Afternoon"}
-                    />
-                    <CheckBoxNew
-                        onChange={(e) => setData({ rotation: "evening" })}
-                        label={"Day"}
-                    />
-                    <CheckBoxNew
-                        onChange={(e) => setData({ rotation: "before-after" })}
-                        label={"Before & Afterschools"}
-                    />
+                <div className="flex flex-wrap  items-center gap-3 pb-2">
+                    {
+                        rotations.map((item, index) => {
+                            return <CheckBoxWithLabel
+                                onChange={(e) => setData({ rotation: item })}
+                                checked={childFeilds?.rotation === item}
+                                key={index}
+                                label={item}
+                            />
+                        })
+                    }
                 </div>
             </RowWithChild>
 
             <RowWithChild label={"Days"} position={"center"}>
-                <div className="flex flex-wrap items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3 pb-2">
                     {
                         days.map((item, index) => {
                             return <CheckBoxWithLabel
@@ -124,8 +112,18 @@ const EnrollmentForm = () => {
                 </LocalizationProvider>
             </RowWithChild>
             <RowWithChild label={""}>
-                <div>
-                    <button className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>
+                <div className='flex gap-3'>
+                    <button
+                        onClick={()=> {
+                            setOpen(open - 1)
+                        }}
+                        className='py-2 px-5 rounded-2xl mt-3 text-sm font-semibold text-accent2'>
+                       <FontAwesomeIcon icon={faArrowLeft} className='mr-2'/>
+                        Previous
+                    </button>
+                    <button
+                        onClick={onNext}
+                        className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>
                         Next
                     </button>
                 </div>

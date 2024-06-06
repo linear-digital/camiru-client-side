@@ -1,6 +1,6 @@
 
 
-import { DatePicker,  LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Checkbox } from 'antd';
 import { Upload } from 'antd';
@@ -13,11 +13,12 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setChildFeilds } from '../../../redux/child/child.action';
 import { useEffect } from 'react';
+import Cookie from 'js-cookie';
+const Generalinfo = ({ setOpen, open }) => {
 
-const Generalinfo = () => {
-  
 
     const [fileList, setFileList] = useState([]);
+    console.log(fileList);
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
     };
@@ -36,6 +37,7 @@ const Generalinfo = () => {
         imgWindow?.document.write(image.outerHTML);
     };
     const [gender, setGender] = useState("boy")
+
     const { childFeilds } = useSelector(state => state.child)
     const dispatch = useDispatch()
     const setData = (data) => {
@@ -44,6 +46,12 @@ const Generalinfo = () => {
     useEffect(() => {
         setData({ gender })
     }, [gender])
+    const onNext = () => {
+        if (!childFeilds?.dateOfBirth) {
+            setData({ dateOfBirth: dayjs().format("YYYY-MM-DD") })
+        }
+        setOpen(open + 1)
+    }
     return (
         <div className='w-full flex flex-col lg:gap-3'>
             <Row
@@ -92,8 +100,11 @@ const Generalinfo = () => {
 
                 <Upload
                     className='object-cover'
-                    action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
+                    action="http://localhost:4000/api/upload/profile"
+                    name='image'
+                    headers={{ token: Cookie.get("accessToken") }}
                     listType="picture-card"
+                    accept='image/*'
                     fileList={fileList}
                     onChange={onChange}
                     onPreview={onPreview}
@@ -107,7 +118,7 @@ const Generalinfo = () => {
                     />
                     <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Permitted in photos & videos with other children</h5>
                 </div>
-                <button className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>
+                <button onClick={onNext} className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>
                     Next
                 </button>
             </RowWithChild>

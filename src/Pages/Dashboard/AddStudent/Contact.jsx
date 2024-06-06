@@ -16,8 +16,10 @@ import { useDispatch } from 'react-redux';
 import { setChildFeilds } from '../../../redux/child/child.action';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-const Contact = () => {
+const Contact = ({ open, setOpen }) => {
     const [fileList, setFileList] = useState([]);
     const onChange = ({ fileList: newFileList }) => {
         setFileList(newFileList);
@@ -39,10 +41,31 @@ const Contact = () => {
 
     const { childFeilds } = useSelector(state => state.child)
     const dispatch = useDispatch()
-    const [phones, setPhones] = useState([])
+    const [contact, setContact] = useState({
+        home: "",
+        other: "",
+
+    })
+    const [details, setDetails] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        home: "",
+        other: "",
+        guardianType: "parent",
+    })
     const setData = (data) => {
-        dispatch(setChildFeilds({ ...childFeilds, ...data }))
+        dispatch(setChildFeilds({
+            ...childFeilds,
+            contacts: [details]
+        }
+        ))
     }
+    const onNext = () => {
+        setOpen(open + 1)
+        setData(details)
+    }
+    console.log(childFeilds);
     return (
         <div className='w-full flex flex-col lg:gap-2'>
 
@@ -50,47 +73,77 @@ const Contact = () => {
                 <div className='flex flex-col gap-3'>
                     <Input placeholder={"First Name"}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
-                        value={childFeilds?.firstName}
-                        onChange={(e) => setData({ firstName: e.target.value })}
+                        value={details.firstName}
+                        onChange={(e) => setDetails({ ...details, firstName: e.target.value })}
                     />
 
                     <Input placeholder={"Last Name"}
-                        value={childFeilds?.lastName}
-                        onChange={(e) => setData({ lastName: e.target.value })}
+                        value={details.lastName}
+                        onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
                     />
                 </div>
             </RowWithChild>
             <Row
-                value={childFeilds?.email}
-                onChange={(e) => setData({ email: e.target.value })}
+                value={details.email}
+                onChange={(e) => setDetails({ ...details, email: e.target.value })}
                 type="email"
                 label={"Email"}
                 placeholder={"info@mail.com"}
             />
             <RowWithChild label={"Home"} position={"center"}>
                 <PhoneInput
+                    value={contact.home}
+                    onChange={(e) => setContact({ ...contact, home: e })}
+                    inputStyle={{ height: 40, width: 340 }}
+                    buttonStyle={{ backgroundColor: "white", }}
                     country={'us'}
                 />
             </RowWithChild>
-            <RowWithChild label={"Other Phone"} position={"center"}>
-                <PhoneNumber />
+            <RowWithChild
+                label={"Other Phone"}
+                position={"center"}
+            >
+                <PhoneInput
+                    value={contact.other}
+                    onChange={(e) => setContact({ ...contact, other: e })}
+                    inputStyle={{ height: 40, width: 340 }}
+                    buttonStyle={{ backgroundColor: "white", }}
+                    country={'us'}
+                />
             </RowWithChild>
 
-            <RowWithChild label={"Gender"} position={"center"}>
+            <RowWithChild
+                label={"Guardian Type"}
+                position={"center"}
+            >
                 <div className="flex  items-center gap-3">
-                    <CheckBoxNew
-                        label={"Parent"}
-                    />
-                    <CheckBoxNew
-                        label={"Gardian"}
-                    />
+                    {
+                        ["parent", "guardian"].map((item, index) => {
+                            return <CheckBoxWithLabel
+                                key={index}
+                                label={item}
+                                checked={details.guardianType === item}
+                                onChange={() => setDetails({ ...details, guardianType: item })}
+                            />
+                        })
+                    }
                 </div>
             </RowWithChild>
 
             <RowWithChild label={""}>
-                <div>
-                    <button className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>
+                <div className='flex gap-3'>
+                    <button
+                        onClick={() => {
+                            setOpen(open - 1)
+                        }}
+                        className='py-2 px-5 rounded-2xl mt-3 text-sm font-semibold text-accent2'>
+                        <FontAwesomeIcon icon={faArrowLeft} className='mr-2' />
+                        Previous
+                    </button>
+                    <button
+                        onClick={onNext}
+                        className='py-2 px-8 rounded-2xl mt-3 text-sm font-semibold text-[#06A390] bg-[#C6F2EC]'>
                         Next
                     </button>
                 </div>

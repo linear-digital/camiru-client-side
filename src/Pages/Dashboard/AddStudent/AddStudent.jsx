@@ -43,7 +43,7 @@ const AddStudent = () => {
                 <Accordion open={open === 1} icon={<Icon id={1} open={open} />}
                     className={` border w-full rounded-md lg:px-7 px-3 ${open === 1 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
-                    <AccordionHeader onClick={() => handleOpen(1)} className="border-none items-center">
+                    <AccordionHeader className="border-none items-center">
                         <div className="flex items-center gap-3">
                             <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
                                 1
@@ -52,13 +52,13 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Generalinfo  />
+                        <Generalinfo open={open} setOpen={setOpen} />
                     </AccordionBody>
                 </Accordion>
                 <Accordion open={open === 2} icon={<Icon id={2} open={open} />}
                     className={`border w-full rounded-md lg:px-7 px-3 ${open === 2 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
-                    <AccordionHeader onClick={() => handleOpen(2)} className="border-none items-center">
+                    <AccordionHeader className="border-none items-center">
                         <div className="flex items-center gap-3">
                             <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
                                 2
@@ -69,14 +69,14 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <EnrollmentForm />
+                        <EnrollmentForm open={open} setOpen={setOpen} />
                     </AccordionBody>
                 </Accordion>
-              
+
                 <Accordion open={open === 3} icon={<Icon id={3} open={open} />}
                     className={`border w-full rounded-md lg:px-7 px-3 ${open === 3 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
-                    <AccordionHeader onClick={() => handleOpen(3)} className="border-none items-center">
+                    <AccordionHeader className="border-none items-center">
                         <div className="flex items-center gap-3">
                             <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
                                 3
@@ -87,14 +87,14 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Contact />
+                        <Contact open={open} setOpen={setOpen} />
                     </AccordionBody>
                 </Accordion>
-                 
+
                 <Accordion open={open === 4} icon={<Icon id={4} open={open} />}
                     className={`border w-full rounded-md lg:px-7 px-3 ${open === 4 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
-                    <AccordionHeader onClick={() => handleOpen(4)} className="border-none items-center">
+                    <AccordionHeader className="border-none items-center">
                         <div className="flex items-center gap-3">
                             <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
                                 4
@@ -105,14 +105,14 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Address />
+                        <Address open={open} setOpen={setOpen} />
                     </AccordionBody>
                 </Accordion>
-                
+
                 <Accordion open={open === 5} icon={<Icon id={5} open={open} />}
                     className={`border w-full rounded-md lg:px-7 px-3 ${open === 5 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
-                    <AccordionHeader onClick={() => handleOpen(5)} className="border-none items-center">
+                    <AccordionHeader className="border-none items-center">
                         <div className="flex items-center gap-3">
                             <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
                                 5
@@ -123,14 +123,14 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <Records />
+                        <Records open={open} setOpen={setOpen} />
                     </AccordionBody>
                 </Accordion>
-              
+
                 <Accordion open={open === 6} icon={<Icon id={6} open={open} />}
                     className={`border w-full rounded-md lg:px-7 px-3 ${open === 6 && "py-5"} border-[#187A82] bg-[#F8FCFF]`}
                 >
-                    <AccordionHeader onClick={() => handleOpen(6)} className="border-none items-center">
+                    <AccordionHeader className="border-none items-center">
                         <div className="flex items-center gap-3">
                             <div className="lg:w-10 w-7 lg:h-10 h-7 bg-[#D9D9D9] rounded-full text-xs lg:text-base flex justify-center items-center" >
                                 6
@@ -141,9 +141,9 @@ const AddStudent = () => {
                         </div>
                     </AccordionHeader>
                     <AccordionBody>
-                        <AdditionalNotes />
+                        <AdditionalNotes open={open} setOpen={setOpen} />
                     </AccordionBody>
-                </Accordion> 
+                </Accordion>
             </div>
         </DB_Page_Layout>
     );

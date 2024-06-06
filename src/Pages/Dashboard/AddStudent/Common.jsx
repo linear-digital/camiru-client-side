@@ -1,6 +1,8 @@
 
 import { Checkbox } from "antd"
 import { Input } from "antd"
+import { useEffect } from "react"
+import { useRef } from "react"
 
 export const Row = ({ placeholder, label, value, onChange }) => {
     return <div className='flex lg:flex-row flex-col lg:gap-10 gap-5 items-center mt-3'>
@@ -45,8 +47,10 @@ export const CheckBoxNew = ({ label, checked, onChange }) => {
 }
 
 export const CheckBoxWithLabel = ({ label, checked, onChange }) => {
+    const inputRef = useRef(null);
+
     return <div className="inline-flex items-center gap-2">
-        <Checkbox color="amber" id="cb" className="w-5 h-5" checked={checked} onChange={() => onChange(label)} />
+        <Checkbox ref={inputRef} color="amber" id="cb" className="w-5 h-5" checked={checked} onChange={() => onChange(label)} />
         <label className="mt-px text-[#585755d9] text-sm font-semibold cursor-pointer select-none" htmlFor="cb">
             {label}
         </label>

@@ -1,7 +1,11 @@
 import { CHILDFEILD } from "./child.constant";
 
 const initialState = {
-    childFeilds: {},
+    childFeilds: {
+        status: "active",
+        rotation: "morning",
+        
+    },
 };
 
 

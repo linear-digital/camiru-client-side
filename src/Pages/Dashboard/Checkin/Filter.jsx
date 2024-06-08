@@ -76,18 +76,17 @@ const Filter = ({ name, desc, color }) => {
 
 export default Filter;
 
-export const ClassRoomSelector = () => {
-    const [option, setOption] = useState("Infants");
+export const ClassRoomSelector = ({ rooms, selected, setSelected }) => {
     return <Dropdown
         className='option-classroom'
         menu={{
             items: [
-                ...class_rooms.map((item, index) => {
+                ...rooms.map((item, index) => {
                     return {
                         label: <button
-                            className={`${option === item ? "text-primary" : ""} w-full   text-start`}
-                            onClick={() => setOption(item)}>
-                            {item}
+                            className={`${selected?.name === item?.name ? "text-primary" : ""} w-full   text-start`}
+                            onClick={() => setSelected(item)}>
+                            {item?.name}
                         </button>,
                         key: index,
                     }
@@ -98,7 +97,7 @@ export const ClassRoomSelector = () => {
     >
         <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
             <span className=" text-xs font-medium tracking-tight">
-                {option}
+                {selected?.name}
             </span>
             <FontAwesomeIcon icon={faChevronDown} />
         </button>

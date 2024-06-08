@@ -11,12 +11,67 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from "dayjs";
 import { useSelector } from 'react-redux';
 import moment from 'moment/moment';
+import { useEffect } from 'react';
+import toast from 'react-hot-toast';
+import api from '../../../../../Components/helper/axios.instance';
+import { setRefresh, setSelectedSt } from '../../../../../redux/child/childSlice';
+import { useDispatch } from 'react-redux';
+
 const Enrollment = ({ edit }) => {
 
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
-    const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
     const [status, setStatus] = useState("Active");
     const { selected: user } = useSelector(state => state.child)
+    const dispatch = useDispatch()
+    const { classrooms } = useSelector(state => state.classroom)
+
+    const [date, setDate] = useState({
+        day: 0,
+        month: 0,
+        year: 0
+    });
+    const [grDate, setGrDate] = useState({
+        day: 0,
+        month: 0,
+        year: 0
+    });
+    const [update, setUpdate] = useState({
+        classRoom: "",
+        status: "",
+        enrollmentDate: "",
+        graduationDate: "",
+        graduate: false,
+        rotation: "",
+        days: []
+    })
+    useEffect(() => {
+        const date = dayjs(user?.enrollmentDate);
+        setDate({
+            day: date.date(),
+            month: date.month() + 1,
+            year: date.year()
+        })
+        setUpdate({
+            days: user?.days,
+            classRoom: user?.classRoom,
+            status: user?.status,
+            enrollmentDate: user?.enrollmentDate,
+            graduationDate: user?.graduationDate,
+            graduate: user?.graduate,
+            rotation: user?.rotation
+        })
+    }, [user])
+    const updateHandler = async () => {
+        try {
+            const dt = update
+            dt.enrollmentDate = new Date(date.year, date.month - 1, date.day)
+            const res = await api.put(`/student/${user?._id}`, dt)
+            dispatch(setSelectedSt(res.data))
+            toast.success("Student updated successfully")
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong');
+        }
+    }
     if (edit) {
         return <div className='w-full border lg:pl-[84px] pl-5 py-[55px] rounded-xl poppins'>
             <h1 className="text-slate-900 text-2xl font-bold ">
@@ -26,7 +81,12 @@ const Enrollment = ({ edit }) => {
                 <RowEdit
                     title={"Classroom"}
                 >
-                    <ClassRoomSelector />
+                    <ClassRoomSelector rooms={classrooms} selected={update.classRoom} setSelected={(e) => {
+                        setUpdate({
+                            ...update,
+                            classRoom: e
+                        })
+                    }} />
                 </RowEdit>
                 <RowEdit
                     title={"Status"}
@@ -38,7 +98,7 @@ const Enrollment = ({ edit }) => {
                                 {
                                     label: <button
                                         className={`${status === "Active" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setStatus("Active")}
+                                        onClick={() => setUpdate({ ...update, status: "active" })}
                                     >
                                         Active
                                     </button>,
@@ -50,7 +110,7 @@ const Enrollment = ({ edit }) => {
                                 {
                                     label: <button
                                         className={`${status === "InActive" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setStatus("InActive")}
+                                        onClick={() => setUpdate({ ...update, status: "inactive" })}
                                     >
                                         InActive
                                     </button>,
@@ -61,8 +121,8 @@ const Enrollment = ({ edit }) => {
                         trigger={['click']}
                     >
                         <button className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
-                            <span className=" text-xs font-medium tracking-tight">
-                                {status}
+                            <span className=" text-xs font-medium tracking-tight capitalize">
+                                {update.status}
                             </span>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </button>
@@ -75,14 +135,34 @@ const Enrollment = ({ edit }) => {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <div className='flex gap-3 enroll'>
                             <DesktopDatePicker views={['day',]}
-                                defaultValue={dayjs()}
+                                defaultValue={dayjs(user?.enrollmentDate)}
+                                onChange={(e) => {
+                                    setDate({
+                                        ...date,
+                                        day: e.$d.getDate(),
+                                    })
+                                }}
                             />
                             <DesktopDatePicker
-                                defaultValue={dayjs()}
-                                views={['month',]} />
+                                defaultValue={dayjs(user?.enrollmentDate)}
+                                views={['month',]}
+                                onChange={(e) => {
+                                    setDate({
+                                        ...date,
+                                        month: e.$M,
+                                    })
+                                }}
+                            />
                             <DesktopDatePicker
-                                defaultValue={dayjs()}
-                                views={['year',]} />
+                                defaultValue={dayjs(user?.enrollmentDate)}
+                                views={['year',]}
+                                onChange={(e) => {
+                                    setDate({
+                                        ...date,
+                                        year: e.$y,
+                                    })
+                                }}
+                            />
                         </div>
                     </LocalizationProvider>
                 </RowEdit>
@@ -93,14 +173,34 @@ const Enrollment = ({ edit }) => {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <div className='flex gap-3 enroll'>
                                 <DesktopDatePicker views={['day',]}
-                                    defaultValue={dayjs()}
+                                    defaultValue={dayjs(user?.graduationDate)}
+                                    onChange={(e) => {
+                                        setGrDate({
+                                            ...grDate,
+                                            day: e.$d.getDate(),
+                                        })
+                                    }}
                                 />
                                 <DesktopDatePicker
-                                    defaultValue={dayjs()}
-                                    views={['month',]} />
+                                    defaultValue={dayjs(user?.graduationDate)}
+                                    views={['month',]}
+                                    onChange={(e) => {
+                                        setGrDate({
+                                            ...grDate,
+                                            month: e.$M,
+                                        })
+                                    }}
+                                />
                                 <DesktopDatePicker
-                                    defaultValue={dayjs()}
-                                    views={['year',]} />
+                                    defaultValue={dayjs(user?.graduationDate)}
+                                    views={['year',]}
+                                    onChange={(e) => {
+                                        setGrDate({
+                                            ...grDate,
+                                            year: e.$y,
+                                        })
+                                    }}
+                                />
                             </div>
                         </LocalizationProvider>
                         <button className='text-[#187A82] text-xs mt-2'>Skip</button>
@@ -116,7 +216,12 @@ const Enrollment = ({ edit }) => {
                                 {
                                     label: <button
                                         className={`${status === "Morning" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setStatus("Morning")}
+                                        onClick={() => {
+                                            setUpdate({
+                                                ...update,
+                                                rotation: "morning"
+                                            })
+                                        }}
                                     >
                                         Morning
                                     </button>,
@@ -128,7 +233,12 @@ const Enrollment = ({ edit }) => {
                                 {
                                     label: <button
                                         className={`${status === "Evening" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setStatus("Evening")}
+                                        onClick={() => {
+                                            setUpdate({
+                                                ...update,
+                                                rotation: "evening"
+                                            })
+                                        }}
                                     >
                                         Evening
                                     </button>,
@@ -140,7 +250,12 @@ const Enrollment = ({ edit }) => {
                                 {
                                     label: <button
                                         className={`${status === "Evening" ? "text-primary" : ""} w-full   text-start`}
-                                        onClick={() => setStatus("Evening")}
+                                        onClick={() => {
+                                            setUpdate({
+                                                ...update,
+                                                rotation: "afternoon"
+                                            })
+                                        }}
                                     >
                                         Afternoon
                                     </button>,
@@ -151,8 +266,10 @@ const Enrollment = ({ edit }) => {
                         trigger={['click']}
                     >
                         <button className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
-                            <span className=" text-xs font-medium tracking-tight">
-                                Morning
+                            <span className=" text-xs font-medium tracking-tight capitalize">
+                                {
+                                    update.rotation
+                                }
                             </span>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </button>
@@ -168,13 +285,19 @@ const Enrollment = ({ edit }) => {
                         {
                             days.map((day, index) => <button
                                 onClick={() => {
-                                    if (selected.includes(day)) {
-                                        setSelected(selected.filter((d) => d !== day))
+                                    if (update.days.includes(day)) {
+                                        setUpdate({
+                                            ...update,
+                                            days: update.days.filter((d) => d !== day)
+                                        })
                                     } else {
-                                        setSelected([...selected, day])
+                                        setUpdate({
+                                            ...update,
+                                            days: [...update.days, day]
+                                        })
                                     }
                                 }}
-                                key={index} className={`text-[11px] ${selected.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
+                                key={index} className={`text-[11px] ${update.days.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
                                 {day}
                             </button>)
                         }
@@ -185,6 +308,7 @@ const Enrollment = ({ edit }) => {
                 >
                     <div className="flex gap-2">
                         <button
+                            onClick={updateHandler}
                             className='w-[90px] h-[32px] bg-[#5CD9CA40] text-[#187A82] rounded-md text-xs'
                         >
                             Save

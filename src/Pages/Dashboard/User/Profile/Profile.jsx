@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { setSelectedSt } from '../../../../redux/child/childSlice';
 import { useSelector } from 'react-redux';
 import Loader from '../../../../Layouts/Loader';
+import toast from 'react-hot-toast';
 
 const Profile = () => {
     const location = useLocation();
@@ -50,21 +51,24 @@ const Profile = () => {
     }, [location.pathname])
     const params = useParams();
     const dispatch = useDispatch();
-    const { selected } = useSelector(state => state.child)
+    const { selected, refreshChild } = useSelector(state => state.child)
+    const [loading, setLoading] = React.useState(false);
     useEffect(() => {
         (
             async () => {
                 try {
+                    setLoading(true)
                     const res = await api.get(`/student/${params.id}`)
+                    setLoading(false)
                     dispatch(setSelectedSt(res.data))
                 }
                 catch (err) {
-                    console.log(err)
+                    toast.error(err?.response?.data?.message || 'Something went wrong');
                 }
             }
         )()
-    }, [params])
-    if (!selected) {
+    }, [params, refreshChild])
+    if (!selected || loading) {
         return <Loader />
     }
     return (

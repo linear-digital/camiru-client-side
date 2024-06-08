@@ -23,7 +23,8 @@ const initialState = {
         guardianType: "parent",
     },
     profile: null,
-    selected: null
+    selected: null,
+    refreshChild: null
 };
 
 export const childSlice = createSlice({
@@ -42,9 +43,12 @@ export const childSlice = createSlice({
         setSelectedSt: (state, action) => {
             state.selected = { ...state.selected, ...action.payload };
         },
+        setRefresh: (state, action) => {
+            state.selected = { ...state.refresh, ...action.payload };
+        },
     },
 });
 
-export const { setContact, setProfilePic, setChildFeilds,setSelectedSt } = childSlice.actions;
+export const { setContact, setProfilePic, setChildFeilds, setSelectedSt, setRefresh } = childSlice.actions;
 const childReducer = childSlice.reducer;
 export default childReducer;

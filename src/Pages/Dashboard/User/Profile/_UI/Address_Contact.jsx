@@ -7,10 +7,45 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import nameDisplay from '../../../../../util/nameDisplay';
+import { useCountries } from 'use-react-countries';
+import { useEffect } from 'react';
+import api from '../../../../../Components/helper/axios.instance';
+import { setSelectedSt } from '../../../../../redux/child/childSlice';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
 const Address_Contact = ({ edit }) => {
     const location = useLocation();
     const { selected } = useSelector((state) => state.child)
+    const { countries } = useCountries();
+    const [update, setUpdate] = useState({
+        address: "",
+        city: "",
+        country: "",
+        zip: "",
+        state: ""
+    })
+    useEffect(() => {
+        if (selected) {
+            setUpdate({
+                address: selected.address,
+                city: selected.city,
+                country: selected.country,
+                zip: selected.zip
+            })
+        }
+    }, [selected])
+    const dispatch = useDispatch();
+    const updateHandler = async () => {
+        try {
+            const res = await api.put(`/student/${selected?._id}`, update)
+            dispatch(setSelectedSt(res.data))
+            toast.success("Student updated successfully")
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong');
+        }
+    }
+
 
     return (
         <div className='w-full border pl-5 py-[55px] rounded-xl poppins'>
@@ -103,33 +138,63 @@ const Address_Contact = ({ edit }) => {
                             title={"Address"}
                         >
                             <input type="text"
+                                value={update.address}
+                                onChange={(e) => setUpdate((prev) => ({ ...prev, address: e.target.value }))}
                                 className='w-[350px] h-[38px] bg-slate-50 border outline-none text-xs px-2 '
                                 placeholder='Address'
                             />
                         </RowEdit>
 
                         <RowEdit
-                            title={"State of Province"}
+                            title={"City"}
                         >
-                            <input type="text"
+                            <input
+                                value={update.city}
+                                onChange={(e) => setUpdate((prev) => ({ ...prev, city: e.target.value }))}
+                                type="text"
                                 className='w-[350px] h-[38px] bg-slate-50 border outline-none text-xs px-2 '
                                 placeholder='State of Province'
+
+                            />
+                        </RowEdit>
+
+                        <RowEdit
+                            title={"State of Province"}
+                        >
+                            <input
+                                value={update.state}
+                                onChange={(e) => setUpdate((prev) => ({ ...prev, state: e.target.value }))}
+                                type="text"
+                                className='w-[350px] h-[38px] bg-slate-50 border outline-none text-xs px-2 '
+                                placeholder='State of Province'
+
                             />
                         </RowEdit>
 
                         <RowEdit
                             title={"Country"}
                         >
-                            <input type="text"
-                                className='w-[350px] h-[38px] bg-slate-50 border outline-none text-xs px-2 '
-                                placeholder='Country'
-                            />
+                            <div>
+                                <select
+                                    defaultValue={"United States"}
+                                    value={update.country}
+                                    onChange={(e) => setUpdate((prev) => ({ ...prev, country: e.target.value }))}
+                                    className='focus:border-gray-400 border border-gray-400 rounded-md px-2 text-xs text-gray-400 w-full lg:w-[340px] h-[40px] outline-none bg-white cursor-pointer'>
+                                    {
+                                        (countries.sort((a, b) => a - b)).map((country, index) => <option
+                                            value={country.name} key={index}>{country.name}
+                                        </option>)
+                                    }
+                                </select>
+                            </div>
                         </RowEdit>
                         <RowEdit
                             title={"Zip"}
                         >
                             <input type="text"
                                 className='w-[350px] h-[38px] bg-slate-50 border outline-none text-xs px-2 '
+                                value={update.zip}
+                                onChange={(e) => setUpdate((prev) => ({ ...prev, zip: e.target.value }))}
                                 placeholder='Zip'
                             />
                         </RowEdit>
@@ -138,11 +203,16 @@ const Address_Contact = ({ edit }) => {
                         >
                             <div className="flex gap-2">
                                 <button
+                                    onClick={updateHandler}
                                     className='w-[90px] h-[32px] bg-[#5CD9CA40] text-[#187A82] rounded-md text-xs'
                                 >
                                     Save
                                 </button>
                                 <button
+                                    onClick={()=> {
+                                        // go back to previous page
+                                        window.history.back()
+                                    }}
                                     className='w-[90px] h-[32px] text-[#FF3636] bg-[#FF363633] rounded-md text-xs'
                                 >
                                     Cencle
@@ -240,8 +310,8 @@ const Gurdian = ({ name, phone, email }) => {
 
 const RowEdit = ({ title, desc, children }) => {
     return <div className="lg:grid grid-cols-5 gap-10 mb-8">
-        <div className="col-span-1 justify-end flex items-start">
-            <h4 className="text-zinc-700 text-sm font-semibold">
+        <div className="col-span-1 lg:justify-end justify-start flex items-center">
+            <h4 className="text-zinc-700 mb-2 lg:mb-0 text-sm font-semibold">
                 {title}
             </h4>
         </div>

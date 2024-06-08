@@ -44,7 +44,15 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
                 <Card title={"Enrollment Date"} value={data?.enrollmentDate} />
                 <div className="grid grid-cols-4 border px-2 py-1">
             <div className="col-span-1 text-zinc-500 text-xs font-semibold">{"Contacts"}</div>
-            <div className="col-span-2 border-l text-slate-900 text-xs font-normal px-2">{""}</div>
+            <div className="col-span-2 border-l text-slate-900 text-xs font-normal px-2">
+                Guardian Type: <span className='capitalize'>{data?.contacts[0]?.guardianType}</span>
+                <br />
+                 Name: {data?.contacts[0]?.firstName + " " + data?.contacts[0]?.lastName}
+                 <br />
+                 Home: {data?.contacts[0]?.home}
+                <br />
+                 Others: {data?.contacts[0]?.others}
+            </div>
         </div>
             </div>
             <div className='flex justify-end items-center gap-3 mt-5'>

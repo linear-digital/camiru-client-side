@@ -5,7 +5,8 @@ import { useEffect } from 'react';
 import { Progress } from 'antd';
 import { api } from '../Components/helper/axios.instance';
 import { useDispatch } from 'react-redux';
-import { setCurrentUser } from '../redux/user/user.action';
+import { setCurrentUser } from '../redux/user/userSlice';
+
 const AuthChecker = ({ children }) => {
     const token = Cookie.get('accessToken');
     const [loading, setLoading] = React.useState(false);

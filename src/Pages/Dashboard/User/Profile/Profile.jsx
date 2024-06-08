@@ -7,6 +7,12 @@ import { useLocation } from 'react-router-dom';
 import Filter from '../../Checkin/Filter';
 import { useParams } from 'react-router-dom';
 import StaffProfileCard from './_UI/StaffProfileCard';
+import { useEffect } from 'react';
+import api from '../../../../Components/helper/axios.instance';
+import { useDispatch } from 'react-redux';
+import { setSelectedSt } from '../../../../redux/child/childSlice';
+import { useSelector } from 'react-redux';
+import Loader from '../../../../Layouts/Loader';
 
 const Profile = () => {
     const location = useLocation();
@@ -42,7 +48,25 @@ const Profile = () => {
             setIsGraduate(false)
         }
     }, [location.pathname])
-    const params = useParams()
+    const params = useParams();
+    const dispatch = useDispatch();
+    const { selected } = useSelector(state => state.child)
+    useEffect(() => {
+        (
+            async () => {
+                try {
+                    const res = await api.get(`/student/${params.id}`)
+                    dispatch(setSelectedSt(res.data))
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
+        )()
+    }, [params])
+    if (!selected) {
+        return <Loader />
+    }
     return (
         <div className='w-full lg:p-10 p-5 bg-white'>
             <Filter
@@ -51,11 +75,11 @@ const Profile = () => {
             />
             {
                 params.role === "staff" ?
-                <StaffProfileCard />
-                :
-                <ProfileCard />
+                    <StaffProfileCard />
+                    :
+                    <ProfileCard user={selected} />
             }
-           
+
             <section className='mt-10 flex items-start gap-5 '>
                 {
                     !isGraduate && <Sidebar />

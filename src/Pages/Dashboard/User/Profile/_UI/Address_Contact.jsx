@@ -3,11 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card } from '@material-tailwind/react';
 import React from 'react';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import nameDisplay from '../../../../../util/nameDisplay';
 
 const Address_Contact = ({ edit }) => {
     const location = useLocation();
+    const { selected } = useSelector((state) => state.child)
+
     return (
         <div className='w-full border pl-5 py-[55px] rounded-xl poppins'>
             <div className="lg:flex gap-10">
@@ -155,16 +159,14 @@ const Address_Contact = ({ edit }) => {
                                 </h4>
                             </div>
                             <div className="col-span-3 flex items-center gap-3">
-                                <Gurdian
-                                    name={"Father"}
-                                    phone={"+001234567"}
-                                    email={"father@mail.com"}
-                                />
-                                <Gurdian
-                                    name={"Mother"}
-                                    phone={"+001234567"}
-                                    email={"mother@mail.com"}
-                                />
+                                {
+                                    (selected?.contacts?.filter((s) => s.guardianType === "parents"))?.map((contact) => <Gurdian
+                                        name={nameDisplay(contact)}
+                                        phone={contact.home}
+                                        other={contact.other}
+                                        email={contact.email}
+                                    />)
+                                }
                             </div>
                         </div>
                         <div className="lg:grid grid-cols-4 gap-10 mb-8 items-start">
@@ -174,38 +176,31 @@ const Address_Contact = ({ edit }) => {
                                 </h4>
                             </div>
                             <div className="col-span-3 flex flex-wrap items-center gap-3">
-                                <Gurdian
-                                    name={"Grand Father"}
-                                    phone={"+001234567"}
-                                    email={"grandfa@mail.com"}
-                                />
-                                <Gurdian
-                                    name={"Grand Mother"}
-                                    phone={"+001234567"}
-                                    email={"grandma@mail.com"}
-                                />
-                                <Gurdian
-                                    name={"Sibling"}
-                                    phone={"+001234567"}
-                                    email={"sibling@mail.com"}
-                                />
+                                {
+                                    (selected?.contacts?.filter((s) => s.guardianType === "guardian"))?.map((contact) => <Gurdian
+                                        name={nameDisplay(contact)}
+                                        phone={contact.home}
+                                        other={contact.other}
+                                        email={contact.email}
+                                    />)
+                                }
                             </div>
                         </div>
                         <Row
                             title={"Address"}
-                            desc={"Saint Paul"}
+                            desc={selected?.address || "N/A"}
                         />
                         <Row
                             title={"State of Province"}
-                            desc={"MN"}
+                            desc={selected?.state || "N/A"}
                         />
                         <Row
                             title={"Country"}
-                            desc={"United States"}
+                            desc={selected?.country || "N/A"}
                         />
                         <Row
                             title={"Zip"}
-                            desc={"5555"}
+                            desc={selected?.zip || "N/A"}
                         />
 
                     </div>

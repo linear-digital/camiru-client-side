@@ -14,10 +14,13 @@ import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
+import nameDisplay from "../../../util/nameDisplay";
+import { imageUrl } from "../../../Components/helper/axios.instance";
+import calculateAge from "../../../util/ageCalculator";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
-export default function Table() {
+export default function Table({ data }) {
     const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
@@ -58,12 +61,12 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {contacts.map((user, index) => {
+                    {data?.map((user, index) => {
                         const isLast = index === contacts.length - 1;
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id}
+                            <tr key={user._id}
                                 className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
                             >
                                 <td className={classes}>
@@ -73,7 +76,7 @@ export default function Table() {
                                 </td>
                                 <td className={classes}>
                                     <div className="flex items-center gap-2">
-                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                        <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"
                                         />
                                         <Typography
@@ -81,7 +84,9 @@ export default function Table() {
                                             color="blue-gray"
                                             className="font-normal text-xs"
                                         >
-                                            {user?.name}
+                                            {
+                                                nameDisplay(user)
+                                            }
                                         </Typography>
                                     </div>
                                 </td>
@@ -91,7 +96,8 @@ export default function Table() {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        {moment().format('MMMM Do YYYY hh:mm a')}
+                                        {moment(user?.
+                                            enrollmentDate).format('MMMM Do YYYY hh:mm a')}
                                     </Typography>
                                 </td>
                                 <td className={classes}>
@@ -100,7 +106,7 @@ export default function Table() {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        28Y 7M
+                                        {calculateAge(user?.birthDate)}
                                     </Typography>
                                 </td>
                                 <td className={classes}>
@@ -109,7 +115,7 @@ export default function Table() {
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <ActionButton />
+                                    <ActionButton user={user} />
                                 </td>
                             </tr>
                         );
@@ -120,7 +126,7 @@ export default function Table() {
     );
 }
 
-const ActionButton = () => {
+const ActionButton = ({ user }) => {
     const [option, setOption] = useState("Check in");
     return (
         <Dropdown
@@ -130,7 +136,6 @@ const ActionButton = () => {
                     {
                         label: <Link to={'/dashboard/checkin'}
                             className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Check in")}
                         >
                             <CheckIn />  Check in
                         </Link>,
@@ -140,9 +145,8 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile'}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile`}
                             className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("View User")}
                         >
                             <FontAwesomeIcon icon={faUser} />
                             View User
@@ -153,9 +157,8 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile/report'}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/report`}
                             className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Reports")}
                         >
                             <ReportIcon />
                             Reports
@@ -166,9 +169,9 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile/schedule-absence'}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/schedule-absence`}
                             className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Schedule Absence")}
+
                         >
                             <FontAwesomeIcon icon={faCalendarDays} />
                             Schedule Absence
@@ -179,7 +182,7 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile/graduate'}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/graduate`}
                         >
                             <h5 className={` w-full flex items-center gap-2  text-start text-green-700`}>
                                 <FontAwesomeIcon icon={faGraduationCap} />

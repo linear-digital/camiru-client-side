@@ -9,11 +9,14 @@ import { Input } from '@material-tailwind/react';
 import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from "dayjs";
+import { useSelector } from 'react-redux';
+import moment from 'moment/moment';
 const Enrollment = ({ edit }) => {
 
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
     const [status, setStatus] = useState("Active");
+    const { selected: user } = useSelector(state => state.child)
     if (edit) {
         return <div className='w-full border lg:pl-[84px] pl-5 py-[55px] rounded-xl poppins'>
             <h1 className="text-slate-900 text-2xl font-bold ">
@@ -204,23 +207,27 @@ const Enrollment = ({ edit }) => {
             <div className='mt-10'>
                 <Row
                     title={"Classroom"}
-                    desc={"Toodlers"}
+                    desc={user?.classRoom?.name}
                 />
                 <Row
                     title={"Status"}
-                    desc={"Active"}
+                    desc={<span className='capitalize'>
+                        {user?.status}
+                    </span>}
                 />
                 <Row
                     title={"Enrollment Date"}
-                    desc={"16th March 2024"}
+                    desc={moment(user?.enrollmentDate).format("DD MMM YYYY")}
                 />
                 <Row
                     title={"Graduation Date"}
-                    desc={"16th March 2024"}
+                    desc={"Not Set"}
                 />
                 <Row
                     title={"Rotation"}
-                    desc={"Afternoon"}
+                    desc={<span className='capitalize'>
+                        {user?.rotation}
+                    </span>}
                 />
                 <div className="grid grid-cols-5 lg:gap-10 gap-5 mb-8">
                     <div className="col-span-1 justify-end flex items-center">
@@ -230,7 +237,7 @@ const Enrollment = ({ edit }) => {
                     </div>
                     <div className="lg:col-span-4 col-span-5 flex items-center flex-wrap gap-2">
                         {
-                            days.map((day, index) => <button key={index} className={`text-[11px] ${selected.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
+                            days?.map((day, index) => <button key={index} className={`text-[11px] ${user?.days?.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
                                 {day}
                             </button>)
                         }

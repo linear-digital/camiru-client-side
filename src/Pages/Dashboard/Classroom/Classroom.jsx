@@ -6,7 +6,7 @@ import { Dropdown } from 'antd';
 import { useState } from 'react';
 import {
     useQuery,
-  } from '@tanstack/react-query'
+} from '@tanstack/react-query'
 import { useSelector } from 'react-redux';
 import api from '../../../Components/helper/axios.instance';
 
@@ -14,9 +14,9 @@ const ClassRoom = () => {
     const [option, setOption] = useState({
 
     });
-    const {currentUser} = useSelector(state => state.user)
+    const { currentUser } = useSelector(state => state.user)
     const { classrooms } = useSelector(state => state.classroom)
-    const {data, isLoading} = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['classrooms'],
         queryFn: async () => {
             const res = await api.get(`/student/center/${currentUser?._id}`)
@@ -64,7 +64,7 @@ const ClassRoom = () => {
                 </div>
             </section>
             <section className='lg:mt-10 mt-5 w-full'>
-                <Table />
+                <Table data={data} />
             </section>
             <section className='flex justify-between items-center lg:mt-20 mt-10'>
                 <div>

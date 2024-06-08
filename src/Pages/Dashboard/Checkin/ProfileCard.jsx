@@ -5,8 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image } from 'antd';
 import React from 'react';
 import { useState } from 'react';
+import { imageUrl } from '../../../Components/helper/axios.instance';
+import nameDisplay from '../../../util/nameDisplay';
+import calculateAge from '../../../util/ageCalculator';
 
-const ProfileCard = () => {
+const ProfileCard = ({ user }) => {
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
     return (
@@ -15,24 +18,35 @@ const ProfileCard = () => {
                 <Image
                     className='rounded-full overflow-hidden w-full h-full'
                     width={150}
-                    src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                    src={imageUrl(user?.profilePic)}
                 />
             </div>
             <div className='lg:flex gap-10 items-center'>
                 <div className='lg:ml-5'>
-                    <h1 className="text-black text-[28px] font-semibold leading-10 tracking-tight">Roxie Ward</h1>
-                    <p className="mt-1 text-cyan-700 text-xs font-semibold">7 Years old | Boy</p>
+                    <h1 className="text-black text-[28px] font-semibold leading-10 tracking-tight">
+                        {
+                            nameDisplay(user)
+                        }
+                    </h1>
+                    <p className="mt-1 text-cyan-700 text-xs font-semibold">{
+                        calculateAge(user?.birthDate, true)
+                    } Years old | Boy</p>
                     <div className='mt-5'>
                         <div className="flex items-center gap-3 text-primary">
                             <FontAwesomeIcon icon={faGraduationCap} />
                             <span className='text-sm text-black'>
-                                Toodlers
+                                {
+                                    user?.classRoom?.name
+                                }
                             </span>
                         </div>
                         <div className="flex items-center gap-3 text-primary mt-2">
                             <FontAwesomeIcon icon={faLandmarkDome} />
-                            <span className='text-sm text-black'>
+                            <span className='text-sm text-black max-w-[350px]'>
                                 House No: 2bhk, California, United States
+                                {
+                                    user?.address + ", " + user?.city + ", " + user?.country
+                                }
                             </span>
                         </div>
                         <div className="flex items-center gap-3 text-primary mt-2">

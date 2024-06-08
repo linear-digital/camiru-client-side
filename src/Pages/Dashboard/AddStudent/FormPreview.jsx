@@ -20,7 +20,9 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
         )()
     }, [data])
     return (
-        <div>
+        <div
+        onClick={()=> console.log(data)}
+        >
             <h1 className='text-2xl text-center font-semibold'>Preview</h1>
             <div className="flex flex-col gap-1 mt-5">
                 <Card title={"First Name"} value={data?.firstName} />
@@ -29,20 +31,16 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
                     title={"Email"}
                     value={data?.email || "Not Inserted"}
                 />
-                <Card
-                    title={"Date of Birth"}
-                    value={data?.dateOfBirth}
-                />
                 <Card title={"Gender"} value={data?.gender} />
                 <Card title={"Status"} value={data?.status} />
                 <Card title={"Rotation"} value={data?.rotation} />
                 <Card title={"Days"} value={data?.days.map(day => <span className="text-slate-900 text-xs font-semibold px-2">{day}</span>)} />
               
                 <Card title={"Class Room"} value={className?.name} />
-                <Card title={"Address"} value={className?.address} />
-                <Card title={"City"} value={className?.city} />
-                <Card title={"Zip"} value={className?.zip} />
-                <Card title={"Date of Birth"} value={className?.birthDate} />
+                <Card title={"Address"} value={data?.address} />
+                <Card title={"City"} value={data?.city} />
+                <Card title={"Zip"} value={data?.zip} />
+                <Card title={"Date of Birth"} value={data?.birthDate} />
                 <Card title={"Enrollment Date"} value={data?.enrollmentDate} />
                 <div className="grid grid-cols-4 border px-2 py-1">
             <div className="col-span-1 text-zinc-500 text-xs font-semibold">{"Contacts"}</div>

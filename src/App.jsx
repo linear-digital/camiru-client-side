@@ -1,8 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { store } from './redux/store';
+
 import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
+import store from './redux/store';
 
 const App = () => {
   return (

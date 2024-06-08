@@ -14,3 +14,7 @@ export const upload = axios.create({
         "token": Cookie.get('accessToken')
     },
 });
+
+export const imageUrl =  (url) => {
+    return `http://localhost:4000/${url}`
+}

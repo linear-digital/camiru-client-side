@@ -15,19 +15,20 @@ import { useEffect } from 'react';
 import Cookie from 'js-cookie';
 import toast from 'react-hot-toast';
 import { setChildFeilds, setProfilePic } from '../../../redux/child/childSlice';
+import { imageUrl, upload } from '../../../Components/helper/axios.instance';
 const Generalinfo = ({ setOpen, open }) => {
-    const setData = (data) => {
-        dispatch(setChildFeilds({ ...childFeilds, ...data }))
-    }
+
     const [preview, setPreview] = useState("")
 
     const [gender, setGender] = useState("boy")
 
     const { childFeilds, profile } = useSelector(state => state.child)
     const dispatch = useDispatch()
-
+    const setData = (data) => {
+        dispatch(setChildFeilds(data))
+    }
     useEffect(() => {
-        !childFeilds?.dateOfBirth && setData({ dateOfBirth: dayjs().format("YYYY-MM-DD") })
+        !childFeilds?.birthDate && setData({ birthDate: dayjs().format("YYYY-MM-DD") })
         !childFeilds?.gender && setData({ gender: gender })
     }, [childFeilds])
     const onNext = async () => {
@@ -35,7 +36,7 @@ const Generalinfo = ({ setOpen, open }) => {
         if (
             !childFeilds?.firstName ||
             !childFeilds?.lastName ||
-            !childFeilds?.dateOfBirth ||
+            !childFeilds?.birthDate ||
             !childFeilds?.gender ||
             !childFeilds?.profilePic
         ) {
@@ -45,13 +46,24 @@ const Generalinfo = ({ setOpen, open }) => {
 
         setOpen(open + 1)
     }
-    useEffect(() => {
-        if (profile) {
-            // create preview url
-            setPreview(URL.createObjectURL(profile))
-        }
-    }, [profile])
 
+    const uploadProfilePic = async (file) => {
+        try {
+            // Upload the file to a server or cloud storage
+            const formData = new FormData();
+            formData.append('image', file);
+
+            const response = await upload.post('/upload/profile', formData)
+
+            const data = response.data
+
+            // Dispatch the URL and other metadata to the store
+            dispatch(setChildFeilds({ profilePic: data?.file?.path }));
+        } catch (error) {
+            console.error('Error uploading file:', error);
+        }
+    };
+    console.log(childFeilds);
     return (
         <div className='w-full flex flex-col lg:gap-3'>
             <Row
@@ -78,9 +90,9 @@ const Generalinfo = ({ setOpen, open }) => {
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div className='flex gap-3 enroll2'>
                         <DatePicker
-                            value={dayjs(childFeilds?.dateOfBirth)}
+                            value={dayjs(childFeilds?.birthDate)}
                             onChange={(e) => {
-                                setData({ dateOfBirth: dayjs(e).format("YYYY-MM-DD") })
+                                setData({ birthDate: dayjs(e).format("YYYY-MM-DD") })
                             }} />
                     </div>
                 </LocalizationProvider>
@@ -107,15 +119,12 @@ const Generalinfo = ({ setOpen, open }) => {
             <RowWithChild label={"profile Picture"}>
 
                 <label htmlFor='profile' className='w-[130px] h-[133px] border flex justify-center items-end relative box'>
-                    <img src={preview || "/avater.png"} alt=""
+                    <img src={childFeilds?.profilePic ? imageUrl(childFeilds?.profilePic) : "/avater.png"} alt=""
                         className='w-[110px] object-cover h-full'
                     />
                     {
-                        profile ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white  items-center justify-center'
-                            onClick={() => dispatch({
-                                type: 'PROFILEPIC',
-                                payload: null
-                            })}
+                        childFeilds?.profilePic ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white  items-center justify-center'
+                            onClick={() => dispatch(setChildFeilds({ profilePic: "" }))}
                         >
                             Remove
                         </div>
@@ -126,9 +135,9 @@ const Generalinfo = ({ setOpen, open }) => {
                     }
                 </label>
                 {
-                    !profile && <input type="file" className='hidden' id='profile'
+                    !childFeilds?.profilePic && <input type="file" className='hidden' id='profile'
                         onChange={(e) => {
-                            dispatch(setProfilePic(e.target.files[0]))
+                            uploadProfilePic(e.target.files[0])
                         }}
                     />
                 }

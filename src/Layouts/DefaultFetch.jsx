@@ -2,7 +2,8 @@ import React from 'react';
 import { useEffect } from 'react';
 import { api } from '../Components/helper/axios.instance';
 import { useDispatch } from 'react-redux';
-import { setClassRooms } from '../redux/classroom/class.action';
+import { setClassRooms } from '../redux/classroom/classSlice';
+
 
 const DefaultFetch = () => {
     const dispatch = useDispatch()

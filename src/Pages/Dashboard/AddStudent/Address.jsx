@@ -12,12 +12,13 @@ import { class_rooms } from '../../../util/classrooms';
 import { Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { setChildFeilds } from '../../../redux/child/childSlice';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 import { useCountries } from 'use-react-countries';
 import toast from 'react-hot-toast';
+import { setChildFeilds } from '../../../redux/child/childSlice';
 
 const Address = ({ open, setOpen }) => {
     const dispatch = useDispatch()
@@ -30,18 +31,18 @@ const Address = ({ open, setOpen }) => {
     })
     const [contactDetails, setContactDetails] = useState({
         city: "",
-        zip: ""
+        zip: "",
+        country: "United States",
     })
 
     const onNext = () => {
-        if (!address.address ||  !contactDetails.city || !contactDetails.zip) {
+        if (!childFeilds?.address ||  !childFeilds?.city || !childFeilds?.zip || !childFeilds?.country) {
             return toast.error("Please fill all the fields")
         }
         setOpen(open + 1)
     }
     useEffect(() => {
         dispatch(setChildFeilds({
-            ...childFeilds,
             ...contactDetails,
             address: `${address.address} ${address.addressLine2}`
         }))

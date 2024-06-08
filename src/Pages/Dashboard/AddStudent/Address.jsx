@@ -12,7 +12,7 @@ import { class_rooms } from '../../../util/classrooms';
 import { Input } from 'antd';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { setChildFeilds } from '../../../redux/child/child.action';
+import { setChildFeilds } from '../../../redux/child/childSlice';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';

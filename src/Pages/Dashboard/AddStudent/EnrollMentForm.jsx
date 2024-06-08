@@ -9,7 +9,8 @@ import { useState } from 'react';
 import { CheckBoxNew, CheckBoxWithLabel, Row, RowWithChild } from './Common';
 import { Select } from 'antd';
 
-import { setChildFeilds } from '../../../redux/child/child.action';
+import { setChildFeilds } from '../../../redux/child/childSlice';
+
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

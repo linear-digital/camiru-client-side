@@ -10,7 +10,8 @@ import { CheckBoxNew, CheckBoxWithLabel, Row, RowWithChild } from './Common';
 import { Input } from 'antd';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setChildFeilds, setContact } from '../../../redux/child/child.action';
+import { setChildFeilds } from '../../../redux/child/childSlice';
+
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

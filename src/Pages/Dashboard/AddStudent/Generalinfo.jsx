@@ -11,10 +11,10 @@ import { useState } from 'react';
 import { CheckBoxNew, Row, RowWithChild } from './Common';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setChildFeilds, setProfilePic } from '../../../redux/child/child.action';
 import { useEffect } from 'react';
 import Cookie from 'js-cookie';
 import toast from 'react-hot-toast';
+import { setChildFeilds, setProfilePic } from '../../../redux/child/childSlice';
 const Generalinfo = ({ setOpen, open }) => {
     const setData = (data) => {
         dispatch(setChildFeilds({ ...childFeilds, ...data }))

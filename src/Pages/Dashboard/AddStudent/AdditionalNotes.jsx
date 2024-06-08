@@ -13,7 +13,10 @@ const AdditionalNotes = ({ open, setOpen }) => {
     }
     return (
         <div className="flex gap-3 flex-col items-start lg:pl-14 pl-5">
-            <BlankDIalog open={show} setOpen={setShow}>
+            <BlankDIalog open={show} setOpen={(e) => {
+                setShow(e)
+                setOpen(6)
+            }}>
                 {
                     show && <FormPreview data={childFeilds} setOpen={setShow} open={open} setIndex={setOpen} />
                 }

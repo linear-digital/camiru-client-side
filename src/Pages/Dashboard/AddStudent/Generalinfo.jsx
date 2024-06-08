@@ -145,6 +145,9 @@ const Generalinfo = ({ setOpen, open }) => {
                     <Checkbox color="orange"
                         size="xs"
                         className='add-form'
+                        checked={childFeilds?.isPermitted}
+                        onChange={() => setData({ isPermitted: !childFeilds?.isPermitted1 })}
+
                     />
                     <h5 className="opacity-60 mt-1 text-stone-600 text-base font-normal ">Permitted in photos & videos with other children</h5>
                 </div>

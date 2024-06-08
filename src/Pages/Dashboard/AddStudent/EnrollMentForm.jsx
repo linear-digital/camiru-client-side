@@ -34,7 +34,7 @@ const EnrollmentForm = ({ setOpen, open }) => {
 
         console.log(childFeilds);
         if (!childFeilds?.classRoom || !childFeilds?.status || !childFeilds?.rotation || !childFeilds?.days || !childFeilds?.enrollmentDate) {
-            toast.error("Please fill all the fields");
+            return toast.error("Please fill all the fields");
         }
         setOpen(open + 1)
     }
@@ -47,7 +47,7 @@ const EnrollmentForm = ({ setOpen, open }) => {
         !childFeilds?.days && setData({ days: selectedDays })
         // if enrollmentDate is not selected
         !childFeilds?.enrollmentDate && setData({ enrollmentDate: dayjs().format("YYYY-MM-DD") })
-        
+
     }, [childFeilds])
     const rotations = ["morning", "afternoon", "evening", "before & Afterschools"]
     return (

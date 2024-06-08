@@ -11,7 +11,8 @@ const initialState = {
             home: "",
             other: "",
             guardianType: "parent",
-        }]
+        }],
+        isPermitted: false,
     },
     contact: {
         firstName: "First Name",

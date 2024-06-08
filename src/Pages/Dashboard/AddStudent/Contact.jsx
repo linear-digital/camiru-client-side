@@ -40,7 +40,6 @@ const Contact = ({ open, setOpen }) => {
     }
     const onNext = () => {
         setData(details)
-        console.log(childFeilds);
         if (
             !childFeilds.contacts[0].firstName ||
             !childFeilds.contacts[0].lastName ||

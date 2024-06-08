@@ -4,10 +4,29 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import Table from './Table';
 import { Dropdown } from 'antd';
 import { useState } from 'react';
-import { class_rooms } from '../../../util/classrooms';
+import {
+    useQuery,
+  } from '@tanstack/react-query'
+import { useSelector } from 'react-redux';
+import api from '../../../Components/helper/axios.instance';
 
 const ClassRoom = () => {
-    const [option, setOption] = useState("Toddlers");
+    const [option, setOption] = useState({
+
+    });
+    const {currentUser} = useSelector(state => state.user)
+    const { classrooms } = useSelector(state => state.classroom)
+    const {data, isLoading} = useQuery({
+        queryKey: ['classrooms'],
+        queryFn: async () => {
+            const res = await api.get(`/student/center/${currentUser?._id}`)
+            return res.data
+        }
+    })
+    console.log(data);
+    if (isLoading) {
+        return <div>Loading...</div>
+    }
     return (
         <main className='lg:p-10 p-5 bg-white rounded-lg poppins'>
             <section className='flex flex-col lg:flex-row lg:justify-between lg:items-center'>
@@ -21,12 +40,12 @@ const ClassRoom = () => {
                         className='option-classroom'
                         menu={{
                             items: [
-                                ...class_rooms?.map((item, index) => {
+                                ...classrooms?.map((item, index) => {
                                     return {
                                         label: <button
                                             className={`${option === item ? "text-primary" : ""} w-full   text-start`}
                                             onClick={() => setOption(item)}>
-                                            {item}
+                                            {item?.name}
                                         </button>,
                                         key: index,
                                     }
@@ -37,7 +56,7 @@ const ClassRoom = () => {
                     >
                         <button className="w-[135px] lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                             <span className=" text-xs font-medium tracking-tight">
-                                {option}
+                                {option?.name || classrooms[0]?.name}
                             </span>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </button>

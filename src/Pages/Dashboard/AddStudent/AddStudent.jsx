@@ -29,7 +29,7 @@ function Icon({ id, open }) {
 
 
 const AddStudent = () => {
-    const [open, setOpen] = React.useState(6);
+    const [open, setOpen] = React.useState(1);
 
     return (
         <DB_Page_Layout>

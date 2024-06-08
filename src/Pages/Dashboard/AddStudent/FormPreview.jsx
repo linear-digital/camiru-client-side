@@ -5,10 +5,12 @@ import React from 'react';
 import { useEffect } from 'react';
 import { api } from '../../../Components/helper/axios.instance';
 import { useSelector } from 'react-redux';
+import toast from 'react-hot-toast';
 
 const FormPreview = ({ data, open, setOpen, setIndex }) => {
     const [className, setClassName] = React.useState({})
     const { currentUser } = useSelector(state => state.user)
+    const [error, setError] = React.useState('')
     useEffect(() => {
         (
             async () => {
@@ -24,9 +26,13 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
     const submitNewStudent = async () => {
         try {
             const res = await api.post('/student', { ...data, center: currentUser._id })
-            console.log(res)
+            toast.success("Student created successfully")
+            setOpen(false)
+            setInterval(() => {
+                window.location.reload()
+            }, 3000)
         } catch (error) {
-            console.error(error)
+            setError(error?.response?.data?.message || 'Something went wrong');
         }
     }
     return (
@@ -65,6 +71,7 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
                     </div>
                 </div>
             </div>
+            <p className='text-red-500 text-sm'>{error}</p>
             <div className='flex justify-end items-center gap-3 mt-5'>
                 <Button onClick={() => {
                     setOpen(false)

@@ -63,7 +63,6 @@ const Generalinfo = ({ setOpen, open }) => {
             console.error('Error uploading file:', error);
         }
     };
-    console.log(childFeilds);
     return (
         <div className='w-full flex flex-col lg:gap-3'>
             <Row

@@ -8,13 +8,14 @@ export const api = axios.create({
         "token": Cookie.get('accessToken')
     },
 });
+
 export const upload = axios.create({
     baseURL: "http://localhost:4000/api",
     headers: {
         "token": Cookie.get('accessToken')
     },
 });
-
+export default api
 export const imageUrl =  (url) => {
     return `http://localhost:4000/${url}`
 }

@@ -31,7 +31,8 @@ const Address_Contact = ({ edit }) => {
                 address: selected.address,
                 city: selected.city,
                 country: selected.country,
-                zip: selected.zip
+                zip: selected.zip,
+                state: selected.state
             })
         }
     }, [selected])
@@ -153,8 +154,7 @@ const Address_Contact = ({ edit }) => {
                                 onChange={(e) => setUpdate((prev) => ({ ...prev, city: e.target.value }))}
                                 type="text"
                                 className='w-[350px] h-[38px] bg-slate-50 border outline-none text-xs px-2 '
-                                placeholder='State of Province'
-
+                                placeholder='City'
                             />
                         </RowEdit>
 
@@ -259,6 +259,10 @@ const Address_Contact = ({ edit }) => {
                         <Row
                             title={"Address"}
                             desc={selected?.address || "N/A"}
+                        />
+                        <Row
+                            title={"City"}
+                            desc={selected?.city || "N/A"}
                         />
                         <Row
                             title={"State of Province"}

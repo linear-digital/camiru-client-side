@@ -7,65 +7,53 @@ import dayjs from 'dayjs';
 import React from 'react';
 import { useState } from 'react';
 import { CheckBoxNew, CheckBoxWithLabel, Row, RowWithChild } from './Common';
-import { Select } from 'antd';
-import { class_rooms } from '../../../util/classrooms';
 import { Input } from 'antd';
-import { PhoneNumber } from './CountrySelect';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setChildFeilds } from '../../../redux/child/child.action';
+import { setChildFeilds, setContact } from '../../../redux/child/child.action';
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import toast from 'react-hot-toast';
+import { validateEmail } from '../../../util/emailValidator';
+import { useEffect } from 'react';
 
 const Contact = ({ open, setOpen }) => {
-    const [fileList, setFileList] = useState([]);
-    const onChange = ({ fileList: newFileList }) => {
-        setFileList(newFileList);
-    };
-    const onPreview = async (file) => {
-        let src = file.url;
-        if (!src) {
-            src = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file.originFileObj);
-                reader.onload = () => resolve(reader.result);
-            });
-        }
-        const image = new Image();
-        image.src = src;
-        const imgWindow = window.open(src);
-        imgWindow?.document.write(image.outerHTML);
-    };
 
-    const { childFeilds } = useSelector(state => state.child)
+
+    const { childFeilds, contact } = useSelector(state => state.child)
     const dispatch = useDispatch()
-    const [contact, setContact] = useState({
-        home: "",
-        other: "",
 
-    })
     const [details, setDetails] = useState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        home: "",
-        other: "",
-        guardianType: "parent",
     })
     const setData = (data) => {
         dispatch(setChildFeilds({
             ...childFeilds,
-            contacts: [details]
+            contacts: [{
+                ...childFeilds.contacts[0],
+                ...data
+            }]
         }
         ))
     }
     const onNext = () => {
-        setOpen(open + 1)
         setData(details)
+        console.log(childFeilds);
+        if (
+            !childFeilds.contacts[0].firstName ||
+            !childFeilds.contacts[0].lastName ||
+            !validateEmail(childFeilds.contacts[0].email) ||
+            !childFeilds.contacts[0].home ||
+            !childFeilds.contacts[0].guardianType
+        ) {
+            toast.error("Please fill all the fields");
+            return
+        }
+
+        setOpen(open + 1)
     }
-    console.log(childFeilds);
+
     return (
         <div className='w-full flex flex-col lg:gap-2'>
 
@@ -73,28 +61,28 @@ const Contact = ({ open, setOpen }) => {
                 <div className='flex flex-col gap-3'>
                     <Input placeholder={"First Name"}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
-                        value={details.firstName}
-                        onChange={(e) => setDetails({ ...details, firstName: e.target.value })}
+                        value={childFeilds.contacts[0].firstName}
+                        onChange={(e) => setData({ firstName: e.target.value })}
                     />
 
                     <Input placeholder={"Last Name"}
-                        value={details.lastName}
-                        onChange={(e) => setDetails({ ...details, lastName: e.target.value })}
+                        value={childFeilds.contacts[0].lastName}
+                        onChange={(e) => setData({ lastName: e.target.value })}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
                     />
                 </div>
             </RowWithChild>
             <Row
-                value={details.email}
-                onChange={(e) => setDetails({ ...details, email: e.target.value })}
+                value={childFeilds.contacts[0].email}
+                onChange={(e) => setData({ email: e.target.value })}
                 type="email"
                 label={"Email"}
                 placeholder={"info@mail.com"}
             />
             <RowWithChild label={"Home"} position={"center"}>
                 <PhoneInput
-                    value={contact.home}
-                    onChange={(e) => setContact({ ...contact, home: e })}
+                    value={childFeilds.contacts[0].home}
+                    onChange={(e) => setData({ home: e })}
                     inputStyle={{ height: 40, width: 340 }}
                     buttonStyle={{ backgroundColor: "white", }}
                     country={'us'}
@@ -105,8 +93,8 @@ const Contact = ({ open, setOpen }) => {
                 position={"center"}
             >
                 <PhoneInput
-                    value={contact.other}
-                    onChange={(e) => setContact({ ...contact, other: e })}
+                    value={childFeilds.contacts[0].other}
+                    onChange={(e) => setData({ other: e })}
                     inputStyle={{ height: 40, width: 340 }}
                     buttonStyle={{ backgroundColor: "white", }}
                     country={'us'}
@@ -123,8 +111,8 @@ const Contact = ({ open, setOpen }) => {
                             return <CheckBoxWithLabel
                                 key={index}
                                 label={item}
-                                checked={details.guardianType === item}
-                                onChange={() => setDetails({ ...details, guardianType: item })}
+                                checked={childFeilds.contacts[0].guardianType === item}
+                                onChange={() => setData({ guardianType: item })}
                             />
                         })
                     }

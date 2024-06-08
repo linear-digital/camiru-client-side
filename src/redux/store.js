@@ -1,14 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './user/user.rducer';
-import childReducer from './child/child.reducer';
-import classReducer from './classroom/class.reducer';
+// src/app/store.js
+import { configureStore } from "@reduxjs/toolkit";
+import rootReducer from "./reducer";
 
-
-
-export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    child: childReducer,
-    classroom: classReducer
-  },
+const store = configureStore({
+  reducer: rootReducer,
+  // Add middleware, devtools, etc. as needed
 });
+
+export default store;

@@ -17,6 +17,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 import { useCountries } from 'use-react-countries';
+import toast from 'react-hot-toast';
 
 const Address = ({ open, setOpen }) => {
     const dispatch = useDispatch()
@@ -33,6 +34,9 @@ const Address = ({ open, setOpen }) => {
     })
 
     const onNext = () => {
+        if (!address.address ||  !contactDetails.city || !contactDetails.zip) {
+            return toast.error("Please fill all the fields")
+        }
         setOpen(open + 1)
     }
     useEffect(() => {
@@ -41,7 +45,7 @@ const Address = ({ open, setOpen }) => {
             ...contactDetails,
             address: `${address.address} ${address.addressLine2}`
         }))
-    }, [address])
+    }, [address,contactDetails])
 
     return (
         <div className='w-full flex flex-col lg:gap-3'>

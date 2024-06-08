@@ -30,8 +30,6 @@ function Icon({ id, open }) {
 
 const AddStudent = () => {
     const [open, setOpen] = React.useState(1);
-    const [completed, setCompleted] = React.useState(0);
-    const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
     return (
         <DB_Page_Layout>

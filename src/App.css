@@ -191,3 +191,12 @@ input {
 .peer{
     border: 1px solid rgba(0, 0, 0, 0.338);
 }
+.box{
+    cursor: pointer;
+}
+.box .overlay {
+    display: none;
+}
+.box:hover .overlay {
+    display: flex;
+}

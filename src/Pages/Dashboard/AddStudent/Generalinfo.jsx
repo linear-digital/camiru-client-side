@@ -11,47 +11,47 @@ import { useState } from 'react';
 import { CheckBoxNew, Row, RowWithChild } from './Common';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { setChildFeilds } from '../../../redux/child/child.action';
+import { setChildFeilds, setProfilePic } from '../../../redux/child/child.action';
 import { useEffect } from 'react';
 import Cookie from 'js-cookie';
+import toast from 'react-hot-toast';
 const Generalinfo = ({ setOpen, open }) => {
-
-
-    const [fileList, setFileList] = useState([]);
-    console.log(fileList);
-    const onChange = ({ fileList: newFileList }) => {
-        setFileList(newFileList);
-    };
-    const onPreview = async (file) => {
-        let src = file.url;
-        if (!src) {
-            src = await new Promise((resolve) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file.originFileObj);
-                reader.onload = () => resolve(reader.result);
-            });
-        }
-        const image = new Image();
-        image.src = src;
-        const imgWindow = window.open(src);
-        imgWindow?.document.write(image.outerHTML);
-    };
-    const [gender, setGender] = useState("boy")
-
-    const { childFeilds } = useSelector(state => state.child)
-    const dispatch = useDispatch()
     const setData = (data) => {
         dispatch(setChildFeilds({ ...childFeilds, ...data }))
     }
+    const [preview, setPreview] = useState("")
+
+    const [gender, setGender] = useState("boy")
+
+    const { childFeilds, profile } = useSelector(state => state.child)
+    const dispatch = useDispatch()
+
     useEffect(() => {
-        setData({ gender })
-    }, [gender])
-    const onNext = () => {
-        if (!childFeilds?.dateOfBirth) {
-            setData({ dateOfBirth: dayjs().format("YYYY-MM-DD") })
+        !childFeilds?.dateOfBirth && setData({ dateOfBirth: dayjs().format("YYYY-MM-DD") })
+        !childFeilds?.gender && setData({ gender: gender })
+    }, [childFeilds])
+    const onNext = async () => {
+
+        if (
+            !childFeilds?.firstName ||
+            !childFeilds?.lastName ||
+            !childFeilds?.dateOfBirth ||
+            !childFeilds?.gender ||
+            !childFeilds?.profilePic
+        ) {
+            toast.error("Please fill all the fields");
+            return
         }
+
         setOpen(open + 1)
     }
+    useEffect(() => {
+        if (profile) {
+            // create preview url
+            setPreview(URL.createObjectURL(profile))
+        }
+    }, [profile])
+
     return (
         <div className='w-full flex flex-col lg:gap-3'>
             <Row
@@ -65,6 +65,14 @@ const Generalinfo = ({ setOpen, open }) => {
                 onChange={(e) => setData({ lastName: e.target.value })}
                 label={"Last Name"}
                 placeholder={"Enter your last name"}
+            />
+            <Row
+                type={"email"}
+                value={childFeilds?.email}
+                onChange={(e) => setData({ email: e.target.value })}
+                label={"Email Address"}
+
+                placeholder={"Enter your email address"}
             />
             <RowWithChild label={"Date of Birth"} position={"center"}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -98,19 +106,32 @@ const Generalinfo = ({ setOpen, open }) => {
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
 
-                <Upload
-                    className='object-cover'
-                    action="http://localhost:4000/api/upload/profile"
-                    name='image'
-                    headers={{ token: Cookie.get("accessToken") }}
-                    listType="picture-card"
-                    accept='image/*'
-                    fileList={fileList}
-                    onChange={onChange}
-                    onPreview={onPreview}
-                >
-                    {fileList.length < 1 && '+ Upload'}
-                </Upload>
+                <label htmlFor='profile' className='w-[130px] h-[133px] border flex justify-center items-end relative box'>
+                    <img src={preview || "/avater.png"} alt=""
+                        className='w-[110px] object-cover h-full'
+                    />
+                    {
+                        profile ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white  items-center justify-center'
+                            onClick={() => dispatch({
+                                type: 'PROFILEPIC',
+                                payload: null
+                            })}
+                        >
+                            Remove
+                        </div>
+                            :
+                            <div className='absolute overlay text-xs font-semibold text-[#0095FF] w-full h-[25px] bg-[#BDE4FF]  items-center justify-center'>
+                                Upload Image
+                            </div>
+                    }
+                </label>
+                {
+                    !profile && <input type="file" className='hidden' id='profile'
+                        onChange={(e) => {
+                            dispatch(setProfilePic(e.target.files[0]))
+                        }}
+                    />
+                }
                 <div className='flex gap-2 items-center mt-2'>
                     <Checkbox color="orange"
                         size="xs"

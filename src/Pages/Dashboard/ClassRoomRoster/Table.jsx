@@ -14,10 +14,13 @@ import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
+import { imageUrl } from "../../../Components/helper/axios.instance";
+import nameDisplay from "../../../util/nameDisplay";
+import calculateAge from "../../../util/ageCalculator";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
-export default function Table({ rows, class_name }) {
+export default function Table({ rows, class_name, data }) {
     const [contacts, setContacts] = useState([]);
 
     useEffect(() => {
@@ -60,22 +63,22 @@ export default function Table({ rows, class_name }) {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {contacts.map((user, index) => {
-                        const isLast = index === contacts.length - 1;
+                    {data?.map((user, index) => {
+                        const isLast = index === data?.length - 1;
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id}
+                            <tr key={user._id}
                                 className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
                             >
                                 <td className={classes}>
-                                    <Checkbox checked={selected.includes(user.id)}
+                                    <Checkbox checked={selected.includes(user._id)}
                                         onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
                                     />
                                 </td>
                                 <td className={classes}>
                                     <div className="flex items-center gap-2">
-                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                        <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"
                                         />
                                         <Typography
@@ -83,7 +86,9 @@ export default function Table({ rows, class_name }) {
                                             color="blue-gray"
                                             className="font-normal text-xs"
                                         >
-                                            {user?.name}
+                                            {
+                                                nameDisplay(user)
+                                            }
                                         </Typography>
                                     </div>
                                 </td>
@@ -93,7 +98,8 @@ export default function Table({ rows, class_name }) {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        {moment().format('MMMM Do YYYY hh:mm a')}
+                                        {moment(user?.
+                                            enrollmentDate).format('MMMM Do YYYY hh:mm a')}
                                     </Typography>
                                 </td>
                                 <td className={classes}>
@@ -115,21 +121,21 @@ export default function Table({ rows, class_name }) {
                                                 className="font-normal text-xs"
                                             >
 
-                                                28Y 7M
+                                                {calculateAge(user?.birthDate)}
                                             </Typography>
                                     }
                                 </td>
                                 <td className={classes}>
                                     <div className="flex gap-[5px]">
                                         {
-                                            days.map((day, index) => <button key={index} className={`text-[11px] ${selectedDays.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
+                                            days.map((day, index) => <button key={index} className={`text-[11px] ${user?.days?.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
                                                 {day}
                                             </button>)
                                         }
                                     </div>
                                 </td>
                                 <td className={classes}>
-                                    <ActionButton />
+                                    <ActionButton user={user} />
                                 </td>
                             </tr>
                         );
@@ -140,7 +146,7 @@ export default function Table({ rows, class_name }) {
     );
 }
 
-const ActionButton = ({ color1, color2 }) => {
+const ActionButton = ({ color1, user }) => {
     const [option, setOption] = useState("Check in");
     return (
         <Dropdown
@@ -149,8 +155,7 @@ const ActionButton = ({ color1, color2 }) => {
                 items: [
                     {
                         label: <Link to={'/dashboard/checkin'}
-                            className={`${option === "Check in" ? color1 ? color1 : "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Check in")}
+                            className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <CheckIn />  Check in
                         </Link>,
@@ -160,9 +165,8 @@ const ActionButton = ({ color1, color2 }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile'}
-                            className={`${option === "View User" ? color1 ? color1 : "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("View User")}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile`}
+                            className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <FontAwesomeIcon icon={faUser} />
                             View User
@@ -173,33 +177,32 @@ const ActionButton = ({ color1, color2 }) => {
                         type: 'divider',
                     },
                     {
-                        label: <button
-                            className={`${option === "Reports" ? color1 ? color1 : "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Reports")}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/report`}
+                            className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <ReportIcon />
                             Reports
-                        </button>,
+                        </Link>,
                         key: '3',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <button
-                            className={`${option === "Schedule Absence" ? color1 ? color1 : "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                            onClick={() => setOption("Schedule Absence")}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/schedule-absence`}
+                            className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+
                         >
                             <FontAwesomeIcon icon={faCalendarDays} />
                             Schedule Absence
-                        </button>,
+                        </Link>,
                         key: '4',
                     },
                     {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/student/323/profile/graduate'}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/graduate`}
                         >
                             <h5 className={` w-full flex items-center gap-2  text-start text-green-700`}>
                                 <FontAwesomeIcon icon={faGraduationCap} />

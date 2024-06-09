@@ -17,7 +17,7 @@ const ClassRoom = () => {
     const { currentUser } = useSelector(state => state.user)
     const { classrooms } = useSelector(state => state.classroom)
     const { data, isLoading } = useQuery({
-        queryKey: ['classrooms'],
+        queryKey: ['classrooms', currentUser?._id],
         queryFn: async () => {
             const res = await api.get(`/student/center/${currentUser?._id}`)
             return res.data

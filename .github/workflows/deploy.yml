@@ -15,13 +15,23 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
+      - name: Debug secrets
+        run: |
+          echo "SERVER_IP: ${{ secrets.SERVER_IP }}"
+          echo "SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}"
+          # Don't echo the SSH_PRIVATE_KEY directly, but check if it's non-empty
+          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
+            echo "SSH_PRIVATE_KEY is empty"
+          else
+            echo "SSH_PRIVATE_KEY is set"
+          fi
 
       - name: Deploy to VPS using SSH
         uses: appleboy/ssh-action@v0.1.10  # Updated to a specific stable version
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDABZKR95lv/x6IhjeVfFVii9GoCAPd6+hP2398ikxVQ3OTO0uYbyaGWrjKvd27o2S0u4SM5vgG7ybfKRMO3CqTUC9JuCHqjlNtvQUvTwwt0blSsqF69ULYOqA5u7o3mYybL2aBIYwCB0Gf9AZbEMmbvc2ETiLzxVU0O13GQYPxp5uF9q9YnnTe8BhaXMxKAuCSkeqkDAkRkRLgAOAyyLrtpkISiBGZQkITmi5kcr+lor9aRJMFbn9mLHB+Hor612g52bvlRaF8u3Uf0bdNCgucZwjVZqnH9M0Qow450UEmMU9H6i5qH+stOg1B6dSMu/2Ym68dSYBpm7Y0HraIBLsXMWoJKFpHwXAL5VfmMYRI9f7jjGy1om26DvftKTv+Ghc73phSyg/+amyjOxGRrSRWg3ngtA6u9zKOJ2v8g0dQFaEGHr+z8fbajPrG8OqJ0GSjlxujDbZ2onyipp3mIx71Cv/XwhBfiAF0jaK1AL0jgBZT+XE7u9j8rEdypiBYykk= root@srv515675
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
             cd /home/camiru/htdocs/camiru.com/

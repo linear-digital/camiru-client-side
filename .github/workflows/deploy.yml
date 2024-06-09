@@ -17,10 +17,10 @@ jobs:
           node-version: 20.x
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build the application (if applicable)
-        run: npm run build
+        run: pnpm run build
 
       - name: Deploy to VPS using SSH
         uses: appleboy/ssh-action@v0.1.10  # Updated to a specific stable version
@@ -32,5 +32,6 @@ jobs:
           script: |
             cd /home/camiru/htdocs/camiru.com/
             git pull origin main
-            npm install --production
+            pnpm build
+            pm2 restart 0 --update-env
             # Add your application startup commands here (e.g., pm2 start your_app.js)

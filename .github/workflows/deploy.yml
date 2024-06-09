@@ -15,13 +15,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
-          
+
       - name: Deploy to VPS using SSH
         uses: appleboy/ssh-action@v0.1.10  # Updated to a specific stable version
         with:
           host: ${{ secrets.SERVER_IP }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+           password: ${{ secrets.SERVER_PASSWORD }}
           port: 22
           script: |
             cd /home/camiru/htdocs/camiru.com/

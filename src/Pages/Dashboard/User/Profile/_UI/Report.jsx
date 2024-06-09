@@ -15,9 +15,9 @@ const Report = () => {
             </h1>
             <div className='lg:mt-10 mt-5 flex flex-col gap-5'>
                 <ReportCard />
-                <ReportCard />
-                <ReportCard />
-                <ReportCard />
+                {/* <ReportCard /> */}
+                {/* <ReportCard /> */}
+                {/* <ReportCard /> */}
             </div>
         </div >
     );

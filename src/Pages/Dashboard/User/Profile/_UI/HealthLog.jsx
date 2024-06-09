@@ -58,7 +58,7 @@ export default function HealthLog() {
                 </thead>
                 <tbody>
                     {
-                        contacts.map((user, index) => {
+                        contacts?.map((user, index) => {
                             const isLast = index === contacts.length - 1;
                             const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 

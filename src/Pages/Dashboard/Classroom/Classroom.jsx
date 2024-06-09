@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-query'
 import { useSelector } from 'react-redux';
 import api from '../../../Components/helper/axios.instance';
+import Loader from '../../../Components/Loader';
 
 
 const ClassRoom = () => {
@@ -26,7 +27,7 @@ const ClassRoom = () => {
     })
 
     if (isLoading) {
-        return <div>Loading...</div>
+        return <Loader />
     }
     return (
         <main className='lg:p-10 p-5 bg-white rounded-lg poppins'>

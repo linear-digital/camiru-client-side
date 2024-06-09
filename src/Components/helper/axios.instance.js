@@ -1,8 +1,10 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-
+const local = "http://localhost:4000/api"
+const server = 'https://server.camiru.com/api'
+const url = server
 export const api = axios.create({
-    baseURL: "http://localhost:4000/api",
+    baseURL: url,
     headers: {
         "Content-Type": "application/json",
         "token": Cookie.get('accessToken')
@@ -10,12 +12,12 @@ export const api = axios.create({
 });
 
 export const upload = axios.create({
-    baseURL: "http://localhost:4000/api",
+    baseURL: url,
     headers: {
         "token": Cookie.get('accessToken')
     },
 });
 export default api
-export const imageUrl =  (url) => {
-    return `http://localhost:4000/${url}`
+export const imageUrl = (url) => {
+    return `${url}/${url}`
 }

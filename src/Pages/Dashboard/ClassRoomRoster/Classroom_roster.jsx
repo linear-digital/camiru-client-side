@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 
 const Classroom_roster = () => {
     const { currentUser } = useSelector(state => state.user)
+    
     const { data, isLoading } = useQuery({
         queryKey: ['classrooms-student', currentUser?._id],
         queryFn: async () => {

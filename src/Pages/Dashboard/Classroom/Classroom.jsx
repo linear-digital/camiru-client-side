@@ -10,6 +10,7 @@ import {
 import { useSelector } from 'react-redux';
 import api from '../../../Components/helper/axios.instance';
 
+
 const ClassRoom = () => {
     const [option, setOption] = useState({
 
@@ -17,13 +18,13 @@ const ClassRoom = () => {
     const { currentUser } = useSelector(state => state.user)
     const { classrooms } = useSelector(state => state.classroom)
     const { data, isLoading } = useQuery({
-        queryKey: ['classrooms', currentUser?._id],
+        queryKey: ['classrooms', currentUser?._id, option?._id],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}`)
+            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${option?._id || classrooms[0]?._id}`)
             return res.data
         }
     })
-    console.log(data);
+
     if (isLoading) {
         return <div>Loading...</div>
     }

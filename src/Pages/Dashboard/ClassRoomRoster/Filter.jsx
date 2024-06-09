@@ -4,10 +4,19 @@ import { Dropdown } from 'antd';
 import React from 'react';
 import { useState } from 'react';
 import { class_rooms } from '../../../util/classrooms';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
-const Filter = ({ name, desc, color }) => {
-    const [option, setOption] = useState("Infants");
+const Filter = ({ name, desc, color, setSelectedClass }) => {
+    const [option, setOption] = useState({});
     const [reportType, setReportType] = useState("Daily Reports");
+    const { classrooms } = useSelector(state => state.classroom)
+    useEffect(() => {
+        setOption(classrooms[0])
+    }, [classrooms])
+    useEffect(() => {
+        setSelectedClass && setSelectedClass(option)
+    }, [option])
     return (
         <section className='flex flex-col lg:flex-row justify-between lg:items-center'>
             <div>
@@ -21,23 +30,23 @@ const Filter = ({ name, desc, color }) => {
                     className='option-classroom'
                     menu={{
                         items: [
-                            ...class_rooms?.map((item, index) => {
+                            ...classrooms?.map((item, index) => {
                                 return {
                                     label: <button
                                         className={`${option === item ? "text-primary" : ""} w-full   text-start`}
                                         onClick={() => setOption(item)}>
-                                        {item}
+                                        {item?.name}
                                     </button>,
                                     key: index,
                                 }
                             })
-                        ],
+                        ]
                     }}
                     trigger={['click']}
                 >
                     <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15ACDE40] text-[#15ACDE] border border-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                         <span className=" text-xs font-medium tracking-tight">
-                            {option}
+                            {option?.name}
                         </span>
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>

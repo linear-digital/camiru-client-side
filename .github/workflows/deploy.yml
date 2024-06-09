@@ -2,16 +2,16 @@ name: Deploy Node.js Application
 
 on:
   push:
-    branches: [ main ]  # Trigger on pushes to the main branch
+    branches: [ main ]
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Run the workflow on an Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3  # Checkout the repository code
+      - uses: actions/checkout@v3
 
-      - name: Use Node.js 20  # Replace with your desired Node.js version
+      - name: Use Node.js 20
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
@@ -20,17 +20,17 @@ jobs:
         run: npm install
 
       - name: Build the application (if applicable)
-        run: npm run build  # Replace with your build command
+        run: npm run build
 
       - name: Deploy to VPS using SSH
-        uses: appleboy/ssh-action@v1  # Action to execute commands over SSH
+        uses: appleboy/ssh-action@v0.1.10  # Updated to a specific stable version
         with:
-          host: ${{ secrets.SERVER_IP }}  # Replace with your VPS IP address
-          username: ${{ secrets.SERVER_USERNAME }}  # Replace with your VPS username
-          key: ${{ secrets.SSH_PRIVATE_KEY }}  # Reference the private key secret
-          port: 22  # Default SSH port
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
-            cd /home/camiru/htdocs/camiru.com/  # Replace with your application directory
-            git pull origin main  # Update the code on the VPS
-            npm install --production  # Install production dependencies
+            cd /home/camiru/htdocs/camiru.com/
+            git pull origin main
+            npm install --production
             # Add your application startup commands here (e.g., pm2 start your_app.js)

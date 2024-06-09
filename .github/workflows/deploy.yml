@@ -15,17 +15,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 22.x
-      - name: Debug secrets
-        run: |
-          echo "SERVER_IP: ${{ secrets.SERVER_IP }}"
-          echo "SERVER_USERNAME: ${{ secrets.SERVER_USERNAME }}"
-          # Don't echo the SSH_PRIVATE_KEY directly, but check if it's non-empty
-          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "SSH_PRIVATE_KEY is empty"
-          else
-            echo "SSH_PRIVATE_KEY is set"
-          fi
-
+          
       - name: Deploy to VPS using SSH
         uses: appleboy/ssh-action@v0.1.10  # Updated to a specific stable version
         with:

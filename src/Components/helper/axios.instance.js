@@ -19,5 +19,5 @@ export const upload = axios.create({
 });
 export default api
 export const imageUrl = (url) => {
-    return `${url}/${url}`
+    return `https://server.camiru.com/${url}`
 }

@@ -16,6 +16,7 @@ import Cookie from 'js-cookie';
 import toast from 'react-hot-toast';
 import { setChildFeilds, setProfilePic } from '../../../redux/child/childSlice';
 import { imageUrl, upload } from '../../../Components/helper/axios.instance';
+import { Spinner } from '@material-tailwind/react';
 const Generalinfo = ({ setOpen, open }) => {
 
     const [preview, setPreview] = useState("")
@@ -46,20 +47,22 @@ const Generalinfo = ({ setOpen, open }) => {
 
         setOpen(open + 1)
     }
-
+    const [loading, setLoading] = useState(false)
     const uploadProfilePic = async (file) => {
         try {
+            setLoading(true)
             // Upload the file to a server or cloud storage
             const formData = new FormData();
             formData.append('image', file);
 
             const response = await upload.post('/upload/profile', formData)
-
+            setLoading(false)
             const data = response.data
 
             // Dispatch the URL and other metadata to the store
             dispatch(setChildFeilds({ profilePic: data?.file?.path }));
         } catch (error) {
+            setLoading(false)
             console.error('Error uploading file:', error);
         }
     };
@@ -118,9 +121,16 @@ const Generalinfo = ({ setOpen, open }) => {
             <RowWithChild label={"profile Picture"}>
 
                 <label htmlFor='profile' className='w-[130px] h-[133px] border flex justify-center items-end relative box'>
-                    <img src={childFeilds?.profilePic ? imageUrl(childFeilds?.profilePic) : "/avater.png"} alt=""
-                        className='w-[110px] object-cover h-full'
-                    />
+                    {
+                        loading ?
+                            <div className='flex justify-center items-center w-full h-full'>
+                                <Spinner />
+                            </div>
+                            :
+                            <img src={childFeilds?.profilePic ? imageUrl(childFeilds?.profilePic) : "/avater.png"} alt=""
+                                className='w-[110px] object-cover h-full'
+                            />
+                    }
                     {
                         childFeilds?.profilePic ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white  items-center justify-center'
                             onClick={() => dispatch(setChildFeilds({ profilePic: "" }))}

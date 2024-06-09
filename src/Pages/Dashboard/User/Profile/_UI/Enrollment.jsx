@@ -72,6 +72,7 @@ const Enrollment = ({ edit }) => {
             toast.error(error?.response?.data?.message || 'Something went wrong');
         }
     }
+    
     if (edit) {
         return <div className='w-full border lg:pl-[84px] pl-5 py-[55px] rounded-xl poppins'>
             <h1 className="text-slate-900 text-2xl font-bold ">

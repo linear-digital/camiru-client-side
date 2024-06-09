@@ -17,10 +17,10 @@ jobs:
           node-version: 22.x
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       - name: Build the application (if applicable)
-        run: pnpm run build
+        run: npm run build
 
       - name: Deploy to VPS using SSH
         uses: appleboy/ssh-action@v0.1.10  # Updated to a specific stable version

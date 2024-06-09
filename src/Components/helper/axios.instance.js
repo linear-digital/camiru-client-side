@@ -17,7 +17,9 @@ export const upload = axios.create({
         "token": Cookie.get('accessToken')
     },
 });
-export default api
+
 export const imageUrl = (url) => {
     return `https://server.camiru.com/${url}`
 }
+
+export default api

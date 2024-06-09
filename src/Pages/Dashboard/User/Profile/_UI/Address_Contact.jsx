@@ -257,6 +257,7 @@ const Address_Contact = ({ edit }) => {
                             </div>
                         </div>
                         <Row
+                        
                             title={"Address"}
                             desc={selected?.address || "N/A"}
                         />

@@ -16,7 +16,7 @@ const ProfileCard = ({ user }) => {
         <section className='mt-10 lg:p-10 p-5 border w-full rounded-lg lg:flex items-start gap-10 justify-between'>
             <div className="rounded-full overflow-hidden w-[150px] h-[150px] bg-gray-100 flex justify-center items-center">
                 <Image
-                    className='rounded-full overflow-hidden w-full h-full object-cover'
+                    className='overflow-hidden w-full h-full object-cover'
                     width={150}
                     src={imageUrl(user?.profilePic)}
                 />

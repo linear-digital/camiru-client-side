@@ -2,37 +2,30 @@ name: Deploy Node.js Application
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  # Adjust if you use a different branch for deployment
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Use Node.js 22
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22.x'
-
-      - name: Debug SSH Key
-        run: |
-          if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "SSH_PRIVATE_KEY is empty"
-          else
-            echo "SSH_PRIVATE_KEY is set"
-          fi
+          node-version: '22.x'  # Specify the Node.js version you need
 
       - name: Deploy to VPS using SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SERVER_USERNAME }}
+          username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: 22
           script: |
-            cd /home/camiru/htdocs/camiru.com/
-            git pull origin main
-            npm install --production
-            # Add your application startup commands here (e.g., pm2 start your_app.js)
+            cd /home/your_user/your_project_directory/  # Adjust to your project directory on VPS
+            git pull origin main  # Pull latest changes
+            npm install --production  # Install production dependencies
+            pm2 restart all  # Restart your application using pm2 (or any other command)

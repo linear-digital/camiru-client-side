@@ -60,9 +60,10 @@ const Profile = () => {
                     setLoading(true)
                     const res = await api.get(`/student/${params.id}`)
                     setLoading(false)
-                    dispatch(setSelectedSt(res.data))
+                    dispatch(setSelectedSt(res.data || []))
                 }
                 catch (err) {
+                    dispatch(setSelectedSt([]))
                     toast.error(err?.response?.data?.message || 'Something went wrong');
                 }
             }

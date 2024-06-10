@@ -29,6 +29,7 @@ function Icon({ id, open }) {
 
 
 const AddStudent = () => {
+    
     const [open, setOpen] = React.useState(1);
 
     return (

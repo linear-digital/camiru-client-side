@@ -1,6 +1,6 @@
 
 
-import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Checkbox } from 'antd';
 import { Upload } from 'antd';
@@ -38,8 +38,7 @@ const Generalinfo = ({ setOpen, open }) => {
             !childFeilds?.firstName ||
             !childFeilds?.lastName ||
             !childFeilds?.birthDate ||
-            !childFeilds?.gender ||
-            !childFeilds?.profilePic
+            !childFeilds?.gender 
         ) {
             toast.error("Please fill all the fields");
             return
@@ -66,6 +65,13 @@ const Generalinfo = ({ setOpen, open }) => {
             console.error('Error uploading file:', error);
         }
     };
+    const today = new Date()
+    const [date, setDate] = useState({
+        day: today.getDate(),
+        month: today.getMonth() + 1,
+        year: today.getFullYear()
+    });
+
     return (
         <div className='w-full flex flex-col lg:gap-3'>
             <Row
@@ -85,18 +91,44 @@ const Generalinfo = ({ setOpen, open }) => {
                 value={childFeilds?.email}
                 onChange={(e) => setData({ email: e.target.value })}
                 label={"Email Address"}
-
                 placeholder={"Enter your email address"}
             />
             <RowWithChild label={"Date of Birth"} position={"center"}>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <div className='flex gap-3 enroll2'>
-                        <DatePicker
-                            value={dayjs(childFeilds?.birthDate)}
-                            onChange={(e) => {
-                                setData({ birthDate: dayjs(e).format("YYYY-MM-DD") })
-                            }} />
-                    </div>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <div className='flex gap-3 enroll'>
+                            <DesktopDatePicker views={['day',]}
+                                defaultValue={dayjs()}
+                                onChange={(e) => {
+                                    setDate({
+                                        ...date,
+                                        day: e.$d.getDate(),
+                                    })
+                                }}
+                            />
+                            <DesktopDatePicker
+                                defaultValue={dayjs()}
+                                views={['month',]}
+                                onChange={(e) => {
+                                    setDate({
+                                        ...date,
+                                        month: e.$M,
+                                    })
+                                }}
+                            />
+                            <DesktopDatePicker
+                                defaultValue={dayjs()}
+                                views={['year',]}
+                                maxDate={dayjs()}
+                                onChange={(e) => {
+                                    setDate({
+                                        ...date,
+                                        year: e.$y,
+                                    })
+                                }}
+                            />
+                        </div>
+                    </LocalizationProvider>
                 </LocalizationProvider>
             </RowWithChild>
             <RowWithChild label={"Gender"} position={"center"}>

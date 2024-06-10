@@ -7,20 +7,25 @@ import api from '../../../Components/helper/axios.instance';
 import Loader from '../../../Components/Loader';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 const Classroom_roster = () => {
     const { currentUser } = useSelector(state => state.user)
-    const [selectedClass, setSelectedClass] = useState(null)
+    const [selectedClass, setSelectedClass] = useState({
+        
+    })
     const { classrooms } = useSelector(state => state.classroom)
     const { data, isLoading } = useQuery({
-        queryKey: ['classrooms-student', currentUser?._id, selectedClass?._id],
+        queryKey: ['students-r', currentUser?._id, selectedClass?._id],
         queryFn: async () => {
             const res = await api.get(`/student/center/${currentUser?._id}?classroom=${selectedClass?._id || classrooms[0]?._id}`)
             return res.data
         }
     })
-
-    if (isLoading ) {
+    useEffect(() => {
+        setSelectedClass(classrooms[0]?._id)
+    }, [classrooms])
+    if (isLoading) {
         return <Loader />
     }
     return (
@@ -35,6 +40,8 @@ const Classroom_roster = () => {
                 <Table data={data} />
             </section>
             <Filter
+                setSelectedClass={setSelectedClass}
+                selectedClass={selectedClass}
                 name={"Upcoming"}
                 desc={"Upcoming Student list donw bellow"}
             />
@@ -42,6 +49,8 @@ const Classroom_roster = () => {
                 <Table data={data} />
             </section>
             <Filter
+                setSelectedClass={setSelectedClass}
+                selectedClass={selectedClass}
                 name={"Graduated"}
                 desc={"Graduated Student list donw bellow"}
             />

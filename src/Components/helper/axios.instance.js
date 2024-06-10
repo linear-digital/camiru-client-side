@@ -12,7 +12,7 @@ export const api = axios.create({
 });
 
 export const upload = axios.create({
-    baseURL: url,
+    baseURL: server,
     headers: {
         "token": Cookie.get('accessToken')
     },

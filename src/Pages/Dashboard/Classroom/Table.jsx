@@ -12,24 +12,19 @@ import { CheckIn, ReportIcon } from "../../../util/icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
-import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
 import nameDisplay from "../../../util/nameDisplay";
 import { imageUrl } from "../../../Components/helper/axios.instance";
 import calculateAge from "../../../util/ageCalculator";
+import { useNavigate } from "react-router-dom";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
 export default function Table({ data }) {
-    const [contacts, setContacts] = useState([]);
-
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setContacts(res.data))
-    }, [])
+    const navigate = useNavigate()
     const [selected, setSelected] = useState([]);
-    if (contacts.length === 0) {
-        return <Loader />
+    const navigateProfile = (id) => {
+        navigate(`/dashboard/student/${id}/profile/enrollment`)
     }
     return (
         <Card className="h-full w-full overflow-auto rounded-none shadow-none">
@@ -40,8 +35,8 @@ export default function Table({ data }) {
                             className="border-b border-blue-gray-100  p-3"
                         >
                             <Checkbox className=""
-                                checked={selected.length === contacts.length}
-                                onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
+                                checked={selected.length === data?.length}
+                                onChange={(e) => setSelected(e.target.checked ? data?.map((user) => user._id) : [])}
                             />
                         </th>
                         {TABLE_HEAD.map((head) => (
@@ -62,19 +57,23 @@ export default function Table({ data }) {
                 </thead>
                 <tbody className="">
                     {data?.map((user, index) => {
-                        const isLast = index === contacts.length - 1;
-                        const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
+                        const isLast = index === data?.length - 1;
+                        const classes = isLast ? "p-3 cursor-pointer" : "p-3 border-b border-blue-gray-50  cursor-pointer";
 
                         return (
                             <tr key={user._id}
-                                className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
+                                className={`${selected.includes(user._id) && "shadow-lg border-l-4 border-primary "} hover:bg-gray-50`}
                             >
-                                <td className={classes}>
-                                    <Checkbox checked={selected.includes(user.id)}
-                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
+                                <td className={classes}
+
+                                >
+                                    <Checkbox checked={selected.includes(user._id)}
+                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user._id] : selected.filter((item) => item !== user._id))}
                                     />
                                 </td>
-                                <td className={classes}>
+                                <td className={classes}
+                                    onClick={() => navigateProfile(user?._id)}
+                                >
                                     <div className="flex items-center gap-2">
                                         <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"
@@ -90,7 +89,9 @@ export default function Table({ data }) {
                                         </Typography>
                                     </div>
                                 </td>
-                                <td className={classes}>
+                                <td className={classes}
+                                    onClick={() => navigateProfile(user?._id)}
+                                >
                                     <Typography
                                         variant="small"
                                         color="blue-gray"
@@ -100,7 +101,9 @@ export default function Table({ data }) {
                                             enrollmentDate).format('MMMM Do YYYY hh:mm a')}
                                     </Typography>
                                 </td>
-                                <td className={classes}>
+                                <td className={classes}
+                                    onClick={() => navigateProfile(user?._id)}
+                                >
                                     <Typography
                                         variant="small"
                                         color="blue-gray"

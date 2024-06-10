@@ -17,22 +17,19 @@ import { Link } from "react-router-dom";
 import { imageUrl } from "../../../Components/helper/axios.instance";
 import nameDisplay from "../../../util/nameDisplay";
 import calculateAge from "../../../util/ageCalculator";
+import { useNavigate } from "react-router-dom";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
-export default function Table({ rows, class_name, data }) {
-    const [contacts, setContacts] = useState([]);
+export default function Table({ rows, class_name, data, selectedClass }) {
 
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setContacts(res.data))
-    }, [])
+    const navigate = useNavigate()
     const [selected, setSelected] = useState([]);
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
-    const [selectedDays, setSelectedDays] = useState(["M", "Tu", "Wh"]);
-    if (contacts.length === 0) {
-        return <Loader />
+    const navigateProfile = (id) => {
+        navigate(`/dashboard/student/${id}/profile/enrollment`)
     }
+    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
+
     return (
         <Card className="h-full w-full overflow-auto rounded-none shadow-none">
             <table className="w-full min-w-max table-auto text-left">
@@ -42,8 +39,8 @@ export default function Table({ rows, class_name, data }) {
                             className="border-b border-blue-gray-100  p-3"
                         >
                             <Checkbox className=""
-                                checked={selected.length === contacts.length}
-                                onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
+                                checked={selected.length === data.length}
+                                onChange={(e) => setSelected(e.target.checked ? data?.map((user) => user._id) : [])}
                             />
                         </th>
                         {(rows ? rows : TABLE_HEAD).map((head) => (
@@ -65,18 +62,19 @@ export default function Table({ rows, class_name, data }) {
                 <tbody className="">
                     {data?.map((user, index) => {
                         const isLast = index === data?.length - 1;
-                        const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
-
+                        const classes = isLast ? "p-3 cursor-pointer" : "p-3 border-b border-blue-gray-50  cursor-pointer";
                         return (
                             <tr key={user._id}
-                                className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
+                                className={`${selected.includes(user._id) && "shadow-lg border-l-4 border-primary"} hover:bg-gray-100`}
                             >
                                 <td className={classes}>
                                     <Checkbox checked={selected.includes(user._id)}
-                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
+                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user._id] : selected.filter((item) => item !== user._id))}
                                     />
                                 </td>
-                                <td className={classes}>
+                                <td className={classes}
+                                    onClick={() => navigateProfile(user?._id)}
+                                >
                                     <div className="flex items-center gap-2">
                                         <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"

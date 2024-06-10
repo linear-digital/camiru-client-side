@@ -152,7 +152,7 @@ const Generalinfo = ({ setOpen, open }) => {
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
 
-                <label htmlFor='profile' className='w-[130px] h-[133px] border flex justify-center items-end relative box'>
+                <label htmlFor='profile' className={`w-[130px] border h-[133px] ${childFeilds?.profilePic ? "" : "border-yollow-200"} flex justify-center items-end relative box`}>
                     {
                         loading ?
                             <div className='flex justify-center items-center w-full h-full'>

@@ -57,22 +57,25 @@ const Contact = ({ open, setOpen }) => {
     return (
         <div className='w-full flex flex-col lg:gap-2'>
 
-            <RowWithChild label={"Name"} position={"start"}>
+            <RowWithChild label={childFeilds.contacts[0].guardianType  === "parent" ? "Parent Name" : "Guardian Name"} position={"start"}>
                 <div className='flex flex-col gap-3'>
                     <Input placeholder={"First Name"}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
                         value={childFeilds.contacts[0].firstName}
                         onChange={(e) => setData({ firstName: e.target.value })}
+                        status={childFeilds.contacts[0].firstName ? "default" : "error"}
                     />
 
                     <Input placeholder={"Last Name"}
                         value={childFeilds.contacts[0].lastName}
                         onChange={(e) => setData({ lastName: e.target.value })}
                         className='focus:border-gray-400 w-full lg:w-[340px] h-[40px]'
+                        status={childFeilds.contacts[0].lastName ? "default" : "error"}
                     />
                 </div>
             </RowWithChild>
             <Row
+                error={!validateEmail(childFeilds.contacts[0].email)}
                 value={childFeilds.contacts[0].email}
                 onChange={(e) => setData({ email: e.target.value })}
                 type="email"

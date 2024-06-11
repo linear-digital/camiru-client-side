@@ -230,7 +230,7 @@ const Address_Contact = ({ edit }) => {
                             </div>
                             <div className="col-span-3 flex items-center gap-3">
                                 {
-                                    (selected?.contacts?.filter((s) => s.guardianType === "parents"))?.map((contact) => <Gurdian
+                                    (selected?.contacts?.filter((s) => s.guardianType === "parent" || s.guardianType === "parents"))?.map((contact) => <Gurdian
                                         name={nameDisplay(contact)}
                                         phone={contact.home}
                                         other={contact.other}

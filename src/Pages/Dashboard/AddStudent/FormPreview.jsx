@@ -67,7 +67,7 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
                         <br />
                         Home: {data?.contacts[0]?.home}
                         <br />
-                        Others: {data?.contacts[0]?.others}
+                        Others: {data?.contacts[0]?.other}
                     </div>
                 </div>
             </div>

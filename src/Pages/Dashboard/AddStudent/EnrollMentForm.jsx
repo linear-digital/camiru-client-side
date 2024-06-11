@@ -49,6 +49,17 @@ const EnrollmentForm = ({ setOpen, open }) => {
         !childFeilds?.enrollmentDate && setData({ enrollmentDate: dayjs().format("YYYY-MM-DD") })
 
     }, [childFeilds])
+    const today = new Date();
+
+    const [date, setDate] = useState({
+        day: today.getDate(),
+        month: today.getMonth(),
+        year: today.getFullYear()
+    });
+    useEffect(() => {
+        const d = new Date(date.year, date.month, date.day)
+        setData({ enrollmentDate: d.toISOString().split('T')[0] })
+    }, [date])
     const rotations = ["morning", "afternoon", "evening", "before & Afterschools"]
     return (
         <div className='w-full flex flex-col'>
@@ -118,13 +129,39 @@ const EnrollmentForm = ({ setOpen, open }) => {
                 </div>
             </RowWithChild>
             <RowWithChild label={"Enrollment Date"} position={"center"}>
+
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <div className='flex gap-3 enroll2'>
-                        <DatePicker
-                            value={dayjs(childFeilds?.enrollmentDate)}
+                    <div className='flex gap-3 enroll'>
+                        <DesktopDatePicker views={['day',]}
+                            defaultValue={dayjs()}
                             onChange={(e) => {
-                                setData({ enrollmentDate: dayjs(e).format("YYYY-MM-DD") })
-                            }} />
+                                setDate({
+                                    ...date,
+                                    day: e.$d.getDate(),
+                                })
+                            }}
+                        />
+                        <DesktopDatePicker
+                            defaultValue={dayjs()}
+                            views={['month',]}
+                            onChange={(e) => {
+                                setDate({
+                                    ...date,
+                                    month: e.$M,
+                                })
+                            }}
+                        />
+                        <DesktopDatePicker
+                            defaultValue={dayjs()}
+                            views={['year',]}
+                            maxDate={dayjs()}
+                            onChange={(e) => {
+                                setDate({
+                                    ...date,
+                                    year: e.$y,
+                                })
+                            }}
+                        />
                     </div>
                 </LocalizationProvider>
             </RowWithChild>

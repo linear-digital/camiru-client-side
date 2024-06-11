@@ -36,7 +36,7 @@ const Address = ({ open, setOpen }) => {
     })
 
     const onNext = () => {
-        if (!childFeilds?.address ||  !childFeilds?.city || !childFeilds?.zip || !childFeilds?.country) {
+        if (!childFeilds?.address || !childFeilds?.city || !childFeilds?.zip || !childFeilds?.country) {
             return toast.error("Please fill all the fields")
         }
         setOpen(open + 1)
@@ -46,7 +46,7 @@ const Address = ({ open, setOpen }) => {
             ...contactDetails,
             address: `${address.address} ${address.addressLine2}`
         }))
-    }, [address,contactDetails])
+    }, [address, contactDetails])
 
     return (
         <div className='w-full flex flex-col lg:gap-3'>
@@ -58,6 +58,7 @@ const Address = ({ open, setOpen }) => {
                 value={address.address}
             />
             <Row
+                error={false}
                 value={address.addressLine2}
                 onChange={(e) => setAddress((prev) => ({ ...prev, addressLine2: e.target.value }))}
                 label={"Address Line 2"}

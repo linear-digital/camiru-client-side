@@ -1,15 +1,14 @@
 
 import { Checkbox } from "antd"
 import { Input } from "antd"
-import { useEffect } from "react"
 import { useRef } from "react"
 
-export const Row = ({ placeholder, label, value, onChange , type}) => {
+export const Row = ({ placeholder, label, value, onChange, type, error }) => {
     return <div className='flex lg:flex-row flex-col lg:gap-10 gap-5 items-center mt-3'>
         <h5 className="text-[#3A3D47] w-full  lg:text-end text-start text-xs font-semibold lg:max-w-[120px]">
             {label}
         </h5>
-        <Input status={!value ? "error" : ""} placeholder={placeholder} value={value} onChange={onChange}
+        <Input status={(error || !value) ? "error" : ""} placeholder={placeholder} value={value} onChange={onChange}
             type={type ? type : "text"}
             className='focus:border-gray-400 lg:w-[340px] w-full text-xs h-[40px]'
         />

@@ -38,7 +38,7 @@ const Generalinfo = ({ setOpen, open }) => {
             !childFeilds?.firstName ||
             !childFeilds?.lastName ||
             !childFeilds?.birthDate ||
-            !childFeilds?.gender 
+            !childFeilds?.gender
         ) {
             toast.error("Please fill all the fields");
             return
@@ -68,9 +68,15 @@ const Generalinfo = ({ setOpen, open }) => {
     const today = new Date()
     const [date, setDate] = useState({
         day: today.getDate(),
-        month: today.getMonth() + 1,
+        month: today.getMonth(),
         year: today.getFullYear()
     });
+    useEffect(() => {
+        if (date) {
+            const d = new Date(date.year, date.month, date.day)
+            setData({ birthDate: d.toISOString().split('T')[0] })
+        }
+    }, [date])
 
     return (
         <div className='w-full flex flex-col lg:gap-3'>
@@ -94,41 +100,40 @@ const Generalinfo = ({ setOpen, open }) => {
                 placeholder={"Enter your email address"}
             />
             <RowWithChild label={"Date of Birth"} position={"center"}>
+
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                        <div className='flex gap-3 enroll'>
-                            <DesktopDatePicker views={['day',]}
-                                defaultValue={dayjs()}
-                                onChange={(e) => {
-                                    setDate({
-                                        ...date,
-                                        day: e.$d.getDate(),
-                                    })
-                                }}
-                            />
-                            <DesktopDatePicker
-                                defaultValue={dayjs()}
-                                views={['month',]}
-                                onChange={(e) => {
-                                    setDate({
-                                        ...date,
-                                        month: e.$M,
-                                    })
-                                }}
-                            />
-                            <DesktopDatePicker
-                                defaultValue={dayjs()}
-                                views={['year',]}
-                                maxDate={dayjs()}
-                                onChange={(e) => {
-                                    setDate({
-                                        ...date,
-                                        year: e.$y,
-                                    })
-                                }}
-                            />
-                        </div>
-                    </LocalizationProvider>
+                    <div className='flex gap-3 enroll'>
+                        <DesktopDatePicker views={['day',]}
+                            defaultValue={dayjs()}
+                            onChange={(e) => {
+                                setDate({
+                                    ...date,
+                                    day: e.$d.getDate(),
+                                })
+                            }}
+                        />
+                        <DesktopDatePicker
+                            defaultValue={dayjs()}
+                            views={['month',]}
+                            onChange={(e) => {
+                                setDate({
+                                    ...date,
+                                    month: e.$M,
+                                })
+                            }}
+                        />
+                        <DesktopDatePicker
+                            defaultValue={dayjs()}
+                            views={['year',]}
+                            maxDate={dayjs()}
+                            onChange={(e) => {
+                                setDate({
+                                    ...date,
+                                    year: e.$y,
+                                })
+                            }}
+                        />
+                    </div>
                 </LocalizationProvider>
             </RowWithChild>
             <RowWithChild label={"Gender"} position={"center"}>
@@ -152,7 +157,7 @@ const Generalinfo = ({ setOpen, open }) => {
             </RowWithChild>
             <RowWithChild label={"profile Picture"}>
 
-                <label htmlFor='profile' className={`w-[130px] border h-[133px] ${childFeilds?.profilePic ? "" : "border-yollow-200"} flex justify-center items-end relative box`}>
+                <label htmlFor='profile' className={`w-[130px] border h-[133px] ${childFeilds?.profilePic ? "" : "border-red-200"} flex justify-center items-end relative box rounded`}>
                     {
                         loading ?
                             <div className='flex justify-center items-center w-full h-full'>

@@ -6,11 +6,11 @@ import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 const Profile = () => {
     return (
-        <div className='lg:grid grid-cols-9 h-full w-full'>
+        <div className='lg:grid grid-cols-9 h-screen w-full gap-1'>
             <div className='col-span-6 w-full h-full overflow-y-auto flex justify-center'>
                 <Outlet />
             </div>
-            <div className='col-span-3 h-full w-full pt-[110px] pl-[50px] relative'
+            <div className='col-span-3 h-full w-full pt-[110px] pl-[50px] relative z-10 '
                 style={{
                     background: 'rgba(21, 172, 222, 0.05)',
                 }}
@@ -44,8 +44,8 @@ const Profile = () => {
                     </Link>
                 </section>
                 <Button variant={"error"} className={"mt-14"}> SignOut</Button>
-                <img src={Element} alt=""
-                    className='absolute bottom-0 right-[60px] max-w-[490px] opacity-40 -z-10'
+                <img src={'/profile-element.png'} alt=""
+                    className='absolute bottom-0 right-[60px] max-w-[490px] opacity-80'
                 />
             </div>
         </div>

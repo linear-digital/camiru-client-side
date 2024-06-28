@@ -56,6 +56,8 @@ const Contacts = () => {
         try {
             const res = await api.put(`/center/password/${currentUser?._id}`, password)
             toast.success(res.data.message)
+            setPassword({ current: "", new: "", confirm: "" })
+            setError("")
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')
             setError(error?.response?.data?.message || 'Something went wrong')

@@ -36,13 +36,29 @@ const Contacts = () => {
             toast.error(error?.response?.data?.message || 'Something went wrong')
         }
     }
+    const [error, setError] = React.useState("")
     const updatePassword = async () => {
+        if (!password.current) {
+            setError('Please enter current password')
+            return toast.error('Please enter current password')
+
+        }
+        if (password.new !== password.confirm) {
+            setError('Password does not match')
+            return toast.error('Password does not match')
+
+        }
+
+        if (password.new.length < 6) {
+            setError('New Password must be at least 6 characters')
+            return toast.error('New Password must be at least 6 characters')
+        }
         try {
-            const res = await api.put(`/center/${currentUser?._id}`, password)
-            dispatch(setCurrentUser(res.data.user))
+            const res = await api.put(`/center/password/${currentUser?._id}`, password)
             toast.success(res.data.message)
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')
+            setError(error?.response?.data?.message || 'Something went wrong')
         }
     }
     return (
@@ -87,11 +103,12 @@ const Contacts = () => {
                             />
                         </div>
                         <h1 className=" text-zinc-800 text-base font-semibold  leading-7 col-span-2 mt-5">Password</h1>
-                        <p className="mt-2 text-gray-600 text-xs font-light  leading-none col-span-2"> Your password must be at least 12 characters</p>
+                        <p className="mt-2 text-gray-600 text-xs font-light  leading-none col-span-2"> Your password must be at least 6 characters</p>
                         <div className='mt-7 col-span-2'>
                             <Input
                                 type={showPassword ? "text" : "password"}
                                 color='black'
+
                                 variant="static"
                                 label="Current Password"
                                 placeholder='*******'
@@ -99,6 +116,7 @@ const Contacts = () => {
                                 className='border-none'
                                 value={password.current}
                                 onChange={(e) => setPassword({ ...password, current: e.target.value })}
+
                             />
                         </div>
                         <div className='mt-7 col-span-2'>
@@ -112,10 +130,12 @@ const Contacts = () => {
                                 className='border-none'
                                 value={password.new}
                                 onChange={(e) => setPassword({ ...password, new: e.target.value })}
+                                error={password.new !== password.confirm || (password.new.length < 6 && password.new.length > 1)}
                             />
                         </div>
                         <div className='mt-7 col-span-2'>
                             <Input
+                                error={password.new !== password.confirm || (password.confirm.length < 6 && password.confirm.length > 1)}
                                 type={showPassword ? "text" : "password"}
                                 color='black'
                                 variant="static"
@@ -127,7 +147,10 @@ const Contacts = () => {
                                 onChange={(e) => setPassword({ ...password, confirm: e.target.value })}
                             />
                         </div>
-                        <Button variant="error" className={"mt-2"}>
+                        <p className='text-red-500 text-xs mt-2'>
+                            {error}
+                        </p>
+                        <Button onClick={updatePassword} variant="error" className={"mt-2"}>
                             Update Password
                         </Button>
                     </div>

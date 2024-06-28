@@ -4,10 +4,16 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../Components/Top_bar/Navbar';
 import { useLocation } from 'react-router-dom';
 import DefaultFetch from './DefaultFetch';
+import { useSelector } from 'react-redux';
+import Loader from './Loader';
 
 const UserLayout = () => {
     const location = useLocation();
-    const [open, setOpen] = React.useState(false);
+
+    const { currentUser } = useSelector(state => state.user)
+    if (!currentUser) {
+        return <Loader />
+    }
     return (
 
         <main className='w-full h-screen flex lg:gap-6 bg-[#F1F6FA]'>

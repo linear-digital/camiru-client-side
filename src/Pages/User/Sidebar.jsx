@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { Bell } from '../../util/icons';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import nameDisplay from '../../util/nameDisplay';
 
 const Sidebar = ({ setOpen }) => {
     const location = useLocation();
@@ -13,6 +15,8 @@ const Sidebar = ({ setOpen }) => {
         setOpen && setOpen(false);
     }
     const [collapse, setCollapse] = React.useState(false);
+    const { currentUser } = useSelector(state => state.user)
+
     return (
         <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white`}>
             <div>
@@ -33,7 +37,7 @@ const Sidebar = ({ setOpen }) => {
                     <div className="w-10 h-10 bg-white rounded-full" />
                     {
                         !collapse && <div>
-                            <div className=" h-4 text-white text-sm font-semibold">KeyOrent</div>
+                            <div className=" h-4 text-white text-sm font-semibold">{nameDisplay(currentUser)}</div>
                             <div className=" h-3 mt-1 text-white text-xs font-normal">Profile Setting</div>
                         </div>
                     }

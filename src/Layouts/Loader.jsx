@@ -3,8 +3,11 @@ import React from 'react';
 
 const Loader = () => {
     return (
-        <div>
-            <Spinner />
+        <div className='w-full h-screen flex items-center justify-center'>
+            <Spinner
+                width={40}
+                height={40}
+            />
         </div>
     );
 };

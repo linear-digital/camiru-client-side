@@ -15,7 +15,7 @@ export const Button = ({ children, className, variant, onClick }) => {
             setType('bg-accent text-white')
         }
         else if (variant === 'error') {
-            setType('bg-error text-white')
+            setType('bg-red-500 text-white')
         }
         else if (variant === 'success') {
             setType('bg-green-500 text-white')
@@ -27,7 +27,7 @@ export const Button = ({ children, className, variant, onClick }) => {
             setType('bg-primary text-white')
         }
     }, [])
-    return <MButton size="sm" variant="filled" className={`${className} border-none ${types}`} onClick={onClick}>
+    return <MButton size="sm" variant="filled"  className={`${className} border-none ${types}`} onClick={onClick}>
         {children}
     </MButton>
 }

@@ -53,6 +53,7 @@
     "react-to-pdf": "^1.0.1",
     "recharts": "^2.12.7",
     "redux": "^5.0.1",
+    "socket.io-client": "^4.7.5",
     "styled-components": "^6.1.10",
     "use-react-countries": "^2.0.1",
     "wavesurfer-react": "^3.0.2"

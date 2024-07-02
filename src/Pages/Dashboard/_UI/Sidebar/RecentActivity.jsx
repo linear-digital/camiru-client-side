@@ -23,7 +23,7 @@ export default RecentActivity;
 
 export const RecentCard = () => {
     return <div className='flex items-start gap-3'>
-        <div className='w-[14px] h-[14px] bg-gray-100 rounded-full border-[4px] border-secondary mt-1'>
+        <div className='w-[14px] min-w-[14px] h-[14px] bg-gray-100 rounded-full border-[4px] border-secondary mt-1'>
         </div>
         <div>
             <div className="flex justify-between">

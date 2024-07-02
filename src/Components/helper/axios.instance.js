@@ -19,6 +19,9 @@ export const upload = axios.create({
 });
 
 export const imageUrl = (url) => {
+    if (url === "/default-profile.png") {
+        return url
+    }
     return `https://server.camiru.com/${url}`
 }
 

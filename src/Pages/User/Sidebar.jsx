@@ -8,6 +8,7 @@ import { Bell } from '../../util/icons';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import nameDisplay from '../../util/nameDisplay';
+import { imageUrl } from '../../Components/helper/axios.instance';
 
 const Sidebar = ({ setOpen }) => {
     const location = useLocation();
@@ -34,7 +35,10 @@ const Sidebar = ({ setOpen }) => {
             </div>
             <div className='w-full bg-accent h-16 flex items-center pl-4 justify-between'>
                 <Link to={'/dashboard/profile'} className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-white rounded-full" />
+                    {/* <div className="w-10 h-10 bg-white rounded-full" /> */}
+                    <img src={imageUrl(currentUser?.profilePic)} alt=""
+                        className="w-10 h-10 bg-white rounded-full object-cover"
+                    />
                     {
                         !collapse && <div>
                             <div className=" h-4 text-white text-sm font-semibold">{nameDisplay(currentUser)}</div>

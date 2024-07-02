@@ -4,7 +4,10 @@ import { Button } from '../../Components/Buttons/Buttons';
 import Element from '../../assets/profile-element.png'
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { imageUrl } from '../../Components/helper/axios.instance';
 const Profile = () => {
+    const { currentUser } = useSelector(state => state.user)
     return (
         <div className='lg:grid grid-cols-9 h-screen w-full gap-1'>
             <div className='col-span-6 w-full h-full overflow-y-auto flex justify-center'>
@@ -17,7 +20,7 @@ const Profile = () => {
             >
                 <div className="w-[100px] h-[100px] rounded-full overflow-hidden">
                     <Image
-                        src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
+                        src={imageUrl(currentUser?.profilePic)}
                         className='rounded-full overflow-hidden w-full h-full'
                     />
                 </div>

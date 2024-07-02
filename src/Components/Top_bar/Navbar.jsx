@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { SideDrawer } from './Drawer';
 import { useSelector } from 'react-redux';
+import nameDisplay from '../../util/nameDisplay';
 
 
 const Navbar = () => {
@@ -21,7 +22,7 @@ const Navbar = () => {
                         <span className="text-black font-normal ">Welcome,</span><span className="text-black font-bold "> {currentUser?.name}</span>
                     </h1>
                     <div className="text-neutral-400 mt-2 lg:text-sm text-[10px] font-normal ">
-                        Hi Alvin, don't forget to check your property today
+                        Hi <strong>{nameDisplay(currentUser)}</strong>, don't forget to check your property today
                     </div>
                 </div>
                 <NavSearchbar state={text} setState={setText} />

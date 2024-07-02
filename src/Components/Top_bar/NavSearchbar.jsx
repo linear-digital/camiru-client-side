@@ -2,7 +2,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-const NavSearchbar = ({ state, setState, variant, placeholder }) => {
+const NavSearchbar = ({ state, setState, variant, placeholder, setIsBlured }) => {
 
     return (
         <div className={`lg:w-[338px] w-full h-12 bg-white rounded-2xl overflow-hidden flex items-center lg:ml-5 shadow-md shadow-gray-100 ${variant === 'borderd' ? 'border border-amber-400' : ''}`} >
@@ -10,8 +10,12 @@ const NavSearchbar = ({ state, setState, variant, placeholder }) => {
             <input
                 className='w-full h-full text-sm bg-transparent rounded-md outline-none pl-4'
                 type="text"
-                value={state}
-                onChange={(e) => setState(e.target.value)}
+                defaultValue={state}
+                onKeyDown={(e)=> {
+                    if (e.key === 'Enter') {
+                        setState(e.target.value)
+                    }
+                }}
                 placeholder={placeholder ? placeholder : 'Search anything here'}
             />
         </div>

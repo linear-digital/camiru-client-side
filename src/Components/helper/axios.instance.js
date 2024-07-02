@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookie from "js-cookie";
 const local = "http://localhost:4000/api"
 const server = 'https://server.camiru.com/api'
-const url = local
+const url = server
 export const api = axios.create({
     baseURL: url,
     headers: {

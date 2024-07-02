@@ -7,19 +7,20 @@ import Navbar from '../Components/Top_bar/Navbar';
 import DefaultFetch from './DefaultFetch';
 import Loader from './Loader';
 import { Outlet } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setSocket } from '../redux/socket/socketSlice';
 
 const UserLayout = () => {
     const location = useLocation();
     const { currentUser } = useSelector(state => state.user);
     const [messages, setMessages] = useState([]);
-    const [socket, setSocket] = useState(null);
-
+    const dispatch = useDispatch();
     useEffect(() => {
         if (currentUser) {
             const newSocket = io('http://localhost:4000', {
                 query: { userId: currentUser._id, role: "center" }
             });
-            setSocket(newSocket);
+            dispatch(setSocket(newSocket))
 
             newSocket.on('chat message', (msg) => {
                 setMessages((prevMessages) => [...prevMessages, msg]);
@@ -30,22 +31,25 @@ const UserLayout = () => {
         }
     }, [currentUser]);
 
-    if (!currentUser) {
-        return <Loader />;
-    }
-
     return (
         <main className='w-full h-screen flex lg:gap-6 bg-[#F1F6FA]'>
             <DefaultFetch />
-            <div className='hidden lg:block max-w-[250px]'>
-                <Sidebar />
-            </div>
-            <section className='w-full max-w-full h-full overflow-auto pb-20 lg:pb-5'>
-                <div className="container mx-auto">
-                    {(!location.pathname.includes('dashboard/profile') && !location.pathname.includes('dashboard/support')) && <Navbar />}
-                    <Outlet />
-                </div>
-            </section>
+            {
+                currentUser ?
+                    <>
+                        <div className='hidden lg:block max-w-[250px]'>
+                            <Sidebar />
+                        </div>
+                        <section className='w-full max-w-full h-full overflow-auto pb-20 lg:pb-5'>
+                            <div className="container mx-auto">
+                                {(!location.pathname.includes('dashboard/profile') && !location.pathname.includes('dashboard/support')) && <Navbar />}
+                                <Outlet />
+                            </div>
+                        </section>
+                    </>
+                    :
+                    <Loader />
+            }
         </main>
     );
 };

@@ -18,7 +18,6 @@ import { useEffect } from 'react';
 const Form = ({ mode }) => {
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
-    const [success, setSuccess] = React.useState("");
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -35,6 +34,13 @@ const Form = ({ mode }) => {
         try {
             setLoading(true);
             if (mode === 'login') {
+                const res = await api.post('/center/login', data);
+                Cookie.set('accessToken', res.data.accessToken, { expires: 30, path: '/' });
+                const expires = new Date(Date.now() + 30 * 60 * 1000);
+                Cookie.set("refreshToken", res.data.refreshToken, { expires: expires, path: '/' });
+                window.location.reload();
+            }
+            if (mode === 'student') {
                 const res = await api.post('/center/login', data);
                 Cookie.set('accessToken', res.data.accessToken, { expires: 30, path: '/' });
                 const expires = new Date(Date.now() + 30 * 60 * 1000);
@@ -59,7 +65,12 @@ const Form = ({ mode }) => {
                 mode === 'reset' ?
                     <h1 className="text-neutral-800 lg:text-2xl text-xl font-medium  leading-loose">Forgot Password?</h1>
                     :
-                    <h1 className="text-neutral-800 lg:text-2xl text-xl font-medium  leading-loose">{mode === 'signup' ? 'Create an account' : 'Sign in'} to Cuboid</h1>
+                    <h1 className="text-neutral-800 lg:text-2xl text-xl font-medium  leading-loose">{
+                        mode === "student" ?
+                            "Student Login"
+                            :
+                            mode === 'signup' ? 'Create an account to Cuboid' : 'Sign in to Cuboid'
+                    } </h1>
             }
 
             {

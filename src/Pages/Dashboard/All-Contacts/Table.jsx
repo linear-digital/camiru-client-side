@@ -5,49 +5,14 @@ import axios from "axios"
 import { useState } from "react";
 import moment from 'moment';
 import { Checkbox } from "antd";
+import { imageUrl } from "../../../Components/helper/axios.instance";
+import nameDisplay from "../../../util/nameDisplay";
+import { Link } from "react-router-dom";
 const TABLE_HEAD = ["Members", "Registration Date", "Class", "Send Message", "Action"];
 
-const TABLE_ROWS = [
-    {
-        id: 1,
-        name: "John Michael",
-        class: "Infants"
-    },
-    {
-        id: 2,
-        name: "Bella",
-        class: "Infants"
-    },
-    {
-        id: 3,
-        name: "Dejon",
-        class: "Infants"
-    },
-    {
-        id: 4,
-        name: "Wiliam",
-        class: "Infants"
-    },
 
-    {
-        id: 5,
-        name: "Wiliam",
-        class: "Infants"
-    },
-
-    {
-        id: 6,
-        name: "Lurliam",
-        class: "Infants"
-    },
-];
-
-export default function Table() {
-    const [contacts, setContacts] = useState([]);
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setContacts(res.data))
-    }, [])
+export default function Table({ users }) {
+    const contacts = users || [];
     const [selected, setSelected] = useState([]);
 
     return (
@@ -85,7 +50,7 @@ export default function Table() {
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id}
+                            <tr key={user?._id}
                                 className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
                             >
                                 <td className={classes}>
@@ -95,7 +60,7 @@ export default function Table() {
                                 </td>
                                 <td className={classes}>
                                     <div className="flex items-center gap-2">
-                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                        <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"
                                         />
                                         <Typography
@@ -103,7 +68,7 @@ export default function Table() {
                                             color="blue-gray"
                                             className="font-normal text-xs"
                                         >
-                                            {user?.name}
+                                            {nameDisplay(user)}
                                         </Typography>
                                     </div>
                                 </td>
@@ -113,7 +78,7 @@ export default function Table() {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        {moment().format('MMMM Do YYYY hh:mm a')}
+                                        {moment(user?.createdAt).format('MMMM Do YYYY hh:mm a')}
                                     </Typography>
                                 </td>
                                 <td className={classes}>
@@ -122,7 +87,9 @@ export default function Table() {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        <div className="text-red-600 text-xs font-bold  leading-normal">Infants</div>
+                                        <div className="text-red-600 text-xs font-bold  leading-normal">
+                                            {user?.classRoom?.name}
+                                        </div>
                                     </Typography>
                                 </td>
                                 <td className={classes}>
@@ -131,9 +98,9 @@ export default function Table() {
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <button className=" text-xs  btn-link  rounded-md  font-normal text-[#0062FF] underline" >
+                                    <Link to={`/dashboard/student/${user?._id}/profile/enrollment`} className=" text-xs  btn-link  rounded-md  font-normal text-[#0062FF] underline" >
                                         View Profile
-                                    </button>
+                                    </Link>
                                 </td>
                             </tr>
                         );

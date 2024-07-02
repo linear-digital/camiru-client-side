@@ -49,6 +49,7 @@ import Deactive from "../Pages/Dashboard/User/Profile/Deactive";
 import Reports from "../Pages/Dashboard/Reports/Reports";
 import AuthChecker from "../Layouts/AuthChecker";
 import App from "../App";
+import StudentLogin from "../Pages/Public/Auth/StudentLogin";
 
 
 
@@ -64,10 +65,16 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <Login />
-                    }, {
+                    },
+                    {
                         path: "login",
                         element: <Login />
-                    }, {
+                    },
+                    {
+                        path: "login/student",
+                        element: <StudentLogin />
+                    },
+                    {
                         path: "signup",
                         element: <Signup />
                     }, {

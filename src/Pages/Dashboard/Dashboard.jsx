@@ -18,6 +18,7 @@ import CreateClassRoom from './_UI/CreateClassRoom';
 const Dashboard = () => {
     const { currentUser } = useSelector((state) => state.user)
     const [open, setOpen] = React.useState(false);
+    const {classrooms} = useSelector(state => state.classroom)
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <BlankDIalog open={open} setOpen={setOpen} size={"sm"}>
@@ -48,7 +49,7 @@ const Dashboard = () => {
                     <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-3">
                         <StatisticCard
                             title={"Classrooms"}
-                            value={"10"}
+                            value={classrooms?.length}
                         />
                         <StatisticCard
                             title={"Active Children"}

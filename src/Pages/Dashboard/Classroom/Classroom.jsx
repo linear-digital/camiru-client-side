@@ -10,6 +10,7 @@ import {
 import { useSelector } from 'react-redux';
 import api from '../../../Components/helper/axios.instance';
 import Loader from '../../../Components/Loader';
+import { useSearchParams } from 'react-router-dom';
 
 
 const ClassRoom = () => {
@@ -18,10 +19,13 @@ const ClassRoom = () => {
     });
     const { currentUser } = useSelector(state => state.user)
     const { classrooms } = useSelector(state => state.classroom)
+
+    const searchPa = useSearchParams()
+    const search = searchPa[0]?.get('id')
     const { data, isLoading } = useQuery({
-        queryKey: ['students', currentUser?._id, option?._id],
+        queryKey: ['students', currentUser?._id, search],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${option?._id || classrooms[0]?._id}`)
+            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`)
             return res.data
         }
     })
@@ -37,28 +41,34 @@ const ClassRoom = () => {
                     <p className=" text-neutral-400 mt-2 font-normal text-sm">Select your class to checkout the reports</p>
                 </div>
                 <div className='flex gap-10 items-center mt-3 lg:mt-0'>
-                    <div className="text-primary text-xs font-semibold ">21th December, 2022</div>
+
                     <Dropdown
                         className='option-classroom'
                         menu={{
                             items: [
-                                ...classrooms?.map((item, index) => {
-                                    return {
-                                        label: <button
-                                            className={`${option === item ? "text-primary" : ""} w-full   text-start`}
-                                            onClick={() => setOption(item)}>
-                                            {item?.name}
-                                        </button>,
-                                        key: index,
-                                    }
-                                })
+                                {
+                                    label: <button
+                                        className={`text-start`}
+                                        >
+                                        Add New
+                                    </button>,
+                                    key: '0',
+                                },
+                                {
+                                    label: <button
+                                        className={`text-start`}
+                                        >
+                                        Import Existing
+                                    </button>,
+                                    key: '1',
+                                }
                             ],
                         }}
                         trigger={['click']}
                     >
                         <button className="w-[135px] lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
                             <span className=" text-xs font-medium tracking-tight">
-                                {option?.name || classrooms[0]?.name}
+                                Add People
                             </span>
                             <FontAwesomeIcon icon={faChevronDown} />
                         </button>

@@ -2,12 +2,12 @@
 import { Checkbox } from "antd"
 import { Input } from "antd"
 
-export const Row = ({ placeholder, label, value, onChange }) => {
+export const Row = ({ placeholder, label, value, onChange , name }) => {
     return <div className='flex lg:flex-row flex-col lg:gap-10 gap-5 items-center mt-3'>
         <h5 className="text-[#3A3D47] w-full  lg:text-end text-start text-xs font-semibold lg:max-w-[120px]">
             {label}
         </h5>
-        <Input placeholder={placeholder} value={value} onChange={onChange}
+        <Input name={name ? name : ""} placeholder={placeholder} value={value} onChange={onChange}
             className='focus:border-gray-400 lg:w-[340px] w-full text-xs h-[40px]'
         />
     </div>

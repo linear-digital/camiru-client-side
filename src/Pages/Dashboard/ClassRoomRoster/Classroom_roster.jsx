@@ -8,17 +8,20 @@ import Loader from '../../../Components/Loader';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const Classroom_roster = () => {
     const { currentUser } = useSelector(state => state.user)
     const [selectedClass, setSelectedClass] = useState({
         
     })
+    const searchPa = useSearchParams()
+    const search = searchPa[0]?.get('id')
     const { classrooms } = useSelector(state => state.classroom)
     const { data, isLoading } = useQuery({
-        queryKey: ['students-r', currentUser?._id, selectedClass?._id],
+        queryKey: ['students-r', currentUser?._id, search],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${selectedClass?._id || classrooms[0]?._id}`)
+            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`)
             return res.data
         }
     })
@@ -31,8 +34,7 @@ const Classroom_roster = () => {
     return (
         <main className='lg:p-10 p-5 bg-white rounded-lg poppins'>
             <Filter
-                setSelectedClass={setSelectedClass}
-                selectedClass={selectedClass}
+                
                 name={"Classroom Rosters"}
                 desc={"Select your class to checkout the reports"}
             />
@@ -40,19 +42,17 @@ const Classroom_roster = () => {
                 <Table data={data} />
             </section>
             <Filter
-                setSelectedClass={setSelectedClass}
-                selectedClass={selectedClass}
+               
                 name={"Upcoming"}
-                desc={"Upcoming Student list donw bellow"}
+                desc={"Upcoming Student list down bellow"}
             />
-            <section className='lg:mb-20 mb-10'>
+            <section className='lg:mb-20 my-10'>
                 <Table data={data} />
             </section>
             <Filter
-                setSelectedClass={setSelectedClass}
-                selectedClass={selectedClass}
+               
                 name={"Graduated"}
-                desc={"Graduated Student list donw bellow"}
+                desc={"Graduated Student list down bellow"}
             />
             <section className='mt-10'>
                 <Table data={data} />

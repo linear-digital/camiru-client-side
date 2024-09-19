@@ -1,9 +1,23 @@
 import React from 'react';
 import { CheckBoxWithLabel, RadioButton, Row, RowWithChild } from './Common';
 import { Button } from '@material-tailwind/react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setSettings } from '../../../redux/setting/settingSlice';
 
 
 const CenterConfigHome = () => {
+    const { settings } = useSelector(state => state.settings)
+    const dispatch = useDispatch()
+    const updateState = (e, e2) => {
+        console.log(e);
+        if (!e2) {
+            dispatch(setSettings({ ...settings, [e.target.name]: e.target.value }))
+        }
+        else {
+            setData({ ...settings, [e2]: e });
+        }
+    }
     return (
         <div className='w-full'>
             <div className="flex items-center gap-5">
@@ -15,10 +29,22 @@ const CenterConfigHome = () => {
             <div className="mt-10  w-full">
                 <Row label={"Phone"}
                     placeholder={"Enter your phone number"}
+                    value={settings?.phone}
+                    name={"phone"}
+                    onChange={updateState}
                 />
-                <Row label={"Time Zone"}
+                <RowWithChild label={"Select Time zone"}
                     placeholder={"Your time zone"}
-                />
+                >
+                    <select className='focus:border-gray-400 border border-gray-400 rounded-md px-2 text-xs text-gray-400 w-full lg:w-[340px] h-[40px] outline-none bg-white cursor-pointer'>
+                        <option value="No delay">No delay</option>
+                        <option value="1 hour">1 hour</option>
+                        <option value="2 hours">2 hours</option>
+                        <option value="3 hours">3 hours</option>
+                        <option value="4 hours">4 hours</option>
+                    </select>
+                    <p className="lg:max-w-[650px] h-[31.87px] opacity-60 text-stone-600 text-[10.14px] mt-2 font-normal ">You can delay photo or video entries to review before sharing with parents. To ensure entries display the correct status, Camiru recommends changing this setting outside business hours.<br /></p>
+                </RowWithChild>
                 <RowWithChild label={"Delayed media Sharing"}
                     placeholder={"Your time zone"}
                 >

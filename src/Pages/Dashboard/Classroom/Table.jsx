@@ -17,7 +17,7 @@ import nameDisplay from "../../../util/nameDisplay";
 import { imageUrl } from "../../../Components/helper/axios.instance";
 import calculateAge from "../../../util/ageCalculator";
 import { useNavigate } from "react-router-dom";
-const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
+const TABLE_HEAD = ["Members", "Enrolled", "ClassRoom", "Age", "Schedule", "Action"];
 
 
 export default function Table({ data }) {
@@ -99,6 +99,18 @@ export default function Table({ data }) {
                                     >
                                         {moment(user?.
                                             enrollmentDate).format('MMMM Do YYYY hh:mm a')}
+                                    </Typography>
+                                </td>
+
+                                <td className={classes}
+                                // onClick={() => navigateProfile(user?._id)}
+                                >
+                                    <Typography
+                                        variant="small"
+                                        color="blue-gray"
+                                        className="font-normal text-xs"
+                                    >
+                                        {user?.classRoom?.name}
                                     </Typography>
                                 </td>
                                 <td className={classes}

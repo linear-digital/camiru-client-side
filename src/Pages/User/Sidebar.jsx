@@ -9,6 +9,8 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import nameDisplay from '../../util/nameDisplay';
 import { imageUrl } from '../../Components/helper/axios.instance';
+import { Popover } from 'antd';
+import { useEffect } from 'react';
 
 const Sidebar = ({ setOpen }) => {
     const location = useLocation();
@@ -17,9 +19,23 @@ const Sidebar = ({ setOpen }) => {
     }
     const [collapse, setCollapse] = React.useState(false);
     const { currentUser } = useSelector(state => state.user)
-
+    const { classrooms } = useSelector(state => state.classroom)
+    const [paths, setPaths] = React.useState([]);
+    useEffect(() => {
+        if (classrooms) {
+            setPaths(links.map(link => {
+                if (link.id === 2 || link.id === 3) {
+                    return {
+                        ...link,
+                        children: classrooms
+                    }
+                }
+                return link
+            }))
+        }
+    }, [classrooms])
     return (
-        <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-y-auto bg-white`}>
+        <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-auto bg-white`}>
             <div>
                 <Logo to={'/dashboard'} className={'max-w-[154px] mx-auto'} />
                 <div className={`${collapse ? 'hidden' : 'flex'} items-center  mt-7 justify-between pr-3`}>
@@ -27,7 +43,7 @@ const Sidebar = ({ setOpen }) => {
                 </div>
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
-                        links.map((link, index) => {
+                        paths.map((link, index) => {
                             return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} />
                         })
                     }
@@ -60,34 +76,78 @@ export default Sidebar;
 
 export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
     return <li className='mb-1 w-full'>
-        <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded`}>
-            {
-                active &&
-                <span className='float-left'>
-                    <Icon />
-                </span>
-            }
-            <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
-                {link.icon &&
-                    <span>
+        {
+            link?.children ?
+                <Popover trigger={'click'} placement='right' content={<ul className='w-[200px] flex flex-col gap-y-2' >
+                    {
+                        link?.children?.map((item, index) => {
+                            return <li key={index}>
+                                <Link to={`${link.path}?id=${item._id}`}  >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        })
+                    }
+                </ul>}>
+                    <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
                         {
-                            link.isIcon ?
-                                <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
-                                :
-                                <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                            active &&
+                            <span className='float-left'>
+                                <Icon />
+                            </span>
                         }
-                    </span>
-                }
-                {
-                    !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</p>
-                }
-            </div>
-            {
-                !active && <span className='absolute right-7 text-blue-gray-600'>
-                    <FontAwesomeIcon icon={faChevronRight} height={24} />
-                </span>
-            }
-        </Link>
+                        <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
+                            {link.icon &&
+                                <span>
+                                    {
+                                        link.isIcon ?
+                                            <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
+                                            :
+                                            <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                                    }
+                                </span>
+                            }
+                            {
+                                !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</p>
+                            }
+                        </div>
+                        {
+                            !active && <span className='absolute right-7 text-blue-gray-600'>
+                                <FontAwesomeIcon icon={faChevronRight} height={24} />
+                            </span>
+                        }
+                    </Link>
+                </Popover>
+                :
+                <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
+                    {
+                        active &&
+                        <span className='float-left'>
+                            <Icon />
+                        </span>
+                    }
+                    <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
+                        {link.icon &&
+                            <span>
+                                {
+                                    link.isIcon ?
+                                        <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
+                                        :
+                                        <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                                }
+                            </span>
+                        }
+                        {
+                            !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</p>
+                        }
+                    </div>
+                    {
+                        !active && <span className='absolute right-7 text-blue-gray-600'>
+                            <FontAwesomeIcon icon={faChevronRight} height={24} />
+                        </span>
+                    }
+                </Link>
+        }
     </li>
 }
 

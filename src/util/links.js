@@ -14,7 +14,8 @@ export const links = [
         id: 2,
         name: 'Classrooms',
         path: '/dashboard/rooms',
-        icon: Classrooms
+        icon: Classrooms,
+        children: []
     },
     {
         id: 3,
@@ -23,70 +24,70 @@ export const links = [
         icon: Roaster
     },
     {
-        id: 2,
+        id: 4,
         name: 'Staff List',
         path: '/dashboard/staffs',
         icon: Classrooms
     },
     {
-        id: 3,
+        id: 5,
         name: 'Staff Rosters',
         path: '/dashboard/staffs-roster',
         icon: Roaster
     },
     {
-        id: 4,
+        id: 6,
         name: 'All Contacts',
         path: '/dashboard/contacts',
         icon: Contacts
     },
     // {
-    //     id: 5,
+    //     id: 7,
     //     name: 'Classrooms Actions',
     //     path: '/dashboard/rooms-active',
     //     icon: ClassAction
     // },
     {
-        id: 6,
+        id: 8,
         name: 'Photo & Videos',
         path: '/dashboard/media',
         icon: Media
     },
     // {
-    //     id: 7,
+    //     id: 9,
     //     name: 'Billing',
     //     path: '/dashboard/billing',
     //     icon: Billing
     // },
     {
-        id: 8,
+        id: 10,
         name: 'Messaging',
         path: '/dashboard/messages',
         icon: Messaging
     },
     {
-        id: 10,
+        id: 11,
         name: 'Check in-out',
         path: '/dashboard/checkio-report',
         icon: faChartLine,
         isIcon: true
     },
     {
-        id: 11,
+        id: 12,
         name: 'Support',
         path: '/dashboard/support',
         icon: faHeadset,
         isIcon: true
     },
     {
-        id: 9,
+        id: 13,
         name: 'Reports',
         path: '/dashboard/reports',
         icon: faChartLine,
         isIcon: true
     },
     {
-        id: 9,
+        id: 14,
         name: 'Configuration',
         path: '/dashboard/config',
         icon: Settings

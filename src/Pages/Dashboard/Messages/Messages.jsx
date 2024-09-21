@@ -3,8 +3,12 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import ChatBox from './ChatBox';
 import ChatBottom from './ChatBottom';
+import { useEffect } from 'react';
 
 const Messages = () => {
+    useEffect(() => {
+        document.title = 'Messages'
+    },[ ])
     return (
         <div className='lg:p-8 p-5 bg-white rounded-lg lg:h-[calc(100vh-100px)] h-[calc(100vh-80px)] flex'>
             <Sidebar />

@@ -200,3 +200,14 @@ input {
 .box:hover .overlay {
     display: flex;
 }
+
+.date-picker-ant {
+    width: 0px !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.ant-picker-input {
+    display: none !important;
+    width: 0px !important;
+}

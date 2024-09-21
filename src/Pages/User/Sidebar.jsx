@@ -11,12 +11,15 @@ import nameDisplay from '../../util/nameDisplay';
 import { imageUrl } from '../../Components/helper/axios.instance';
 import { Popover } from 'antd';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const Sidebar = ({ setOpen }) => {
     const location = useLocation();
     const closeSidebar = () => {
         setOpen && setOpen(false);
     }
+    const searchPa = useSearchParams()
+    const search = searchPa[0]?.get('id')
     const [collapse, setCollapse] = React.useState(false);
     const { currentUser } = useSelector(state => state.user)
     const { classrooms } = useSelector(state => state.classroom)
@@ -34,6 +37,11 @@ const Sidebar = ({ setOpen }) => {
             }))
         }
     }, [classrooms])
+    useEffect(() => {
+        if (search) {
+            document.title = classrooms.find(c => c._id === search)?.name?.toUpperCase() || 'Classroom'
+        }
+    },[search])
     return (
         <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-auto bg-white`}>
             <div>
@@ -44,7 +52,9 @@ const Sidebar = ({ setOpen }) => {
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
                         paths.map((link, index) => {
-                            return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} />
+                            return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} 
+                            name={link.name }
+                            />
                         })
                     }
                 </ul>
@@ -74,7 +84,7 @@ const Sidebar = ({ setOpen }) => {
 
 export default Sidebar;
 
-export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
+export const NavigationCard = ({ link, active, onClick, isCollapse ,name}) => {
     return <li className='mb-1 w-full'>
         {
             link?.children ?
@@ -108,7 +118,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
                                 </span>
                             }
                             {
-                                !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</p>
+                                !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{name}</p>
                             }
                         </div>
                         {
@@ -138,7 +148,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
                             </span>
                         }
                         {
-                            !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{link.name}</p>
+                            !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{name}</p>
                         }
                     </div>
                     {

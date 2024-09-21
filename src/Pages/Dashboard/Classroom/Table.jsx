@@ -126,7 +126,7 @@ export default function Table({ data }) {
                                 </td>
                                 <td className={classes}>
                                     <button className="btn btn-sm btn-secondary text-[10px] px-5 text-white">
-                                        Clock in
+                                        Check in
                                     </button>
                                 </td>
                                 <td className={classes}>

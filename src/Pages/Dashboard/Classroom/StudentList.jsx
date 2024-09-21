@@ -8,6 +8,7 @@ import moment from 'moment';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
 import { Popconfirm } from 'antd';
+import calculateAge from '../../../util/ageCalculator';
 
 const StudentList = ({ id, refetch: refetchList }) => {
 
@@ -54,7 +55,8 @@ const StudentList = ({ id, refetch: refetchList }) => {
             title: 'Date of Birth',
             dataIndex: 'birthDate',
             render: (text, record) => {
-                return moment(record?.birthDate).format('DD-MM-YYYY')
+                return calculateAge(record?.birthDate)
+                // return moment(record?.birthDate).format('DD-MM-YYYY')
             }
         },
         {

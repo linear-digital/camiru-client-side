@@ -1,13 +1,10 @@
+import { Avatar } from 'antd';
 import React from 'react';
 
-const Avater = () => {
+const Avater = ({src}) => {
     return (
         <div className="avatar ml-[-5px]  border rounded-full overflow-hidden">
-            <div className="w-[18px] h-[18px] rounded-full">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                    className='w-full h-full object-cover'
-                />
-            </div>
+             <Avatar size={18} src={src} />
         </div>
     );
 };
@@ -19,7 +16,7 @@ export const UserAvater = ({ className, url }) => {
         <div className={`avatar overflow-hidden ${className}`}>
             <div
                 className="h-full w-full">
-                <img src={url ? url : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}
+                <Image src={url ? url : 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg'}
                     className='w-full h-full object-cover'
                 />
             </div>

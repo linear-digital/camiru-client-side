@@ -89,7 +89,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
                         })
                     }
                 </ul>}>
-                    <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
+                    <button onClick={onClick}  className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
                         {
                             active &&
                             <span className='float-left'>
@@ -116,7 +116,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse }) => {
                                 <FontAwesomeIcon icon={faChevronRight} height={24} />
                             </span>
                         }
-                    </Link>
+                    </button>
                 </Popover>
                 :
                 <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>

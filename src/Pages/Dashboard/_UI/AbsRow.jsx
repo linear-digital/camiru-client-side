@@ -1,3 +1,5 @@
+import { Avatar } from 'antd';
+
 import React from 'react';
 
 const AbsRow = () => {
@@ -7,8 +9,9 @@ const AbsRow = () => {
             <div className="flex items-center gap-3">
                 <div className="avatar  border rounded-full overflow-hidden">
                     <div className="w-7 h-7 rounded-full">
-                        <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                        <Avatar 
                             className='w-full h-full object-cover'
+                            alt='attachment'
                         />
                     </div>
                 </div>

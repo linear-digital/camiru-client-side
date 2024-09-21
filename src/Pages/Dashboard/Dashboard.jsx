@@ -70,7 +70,7 @@ const Dashboard = () => {
                         <AbsentStudentList />
                     </div>
                     <DownloadCustomReport />
-                    <RecentMedia />
+                    {/* <RecentMedia /> */}
                 </div>
                 <div className="w-full mt-5 lg:mt-0 lg:max-w-[280px]  shadow-md shadow-gray-200 p-5 rounded-md">
                     <NotificationSec />

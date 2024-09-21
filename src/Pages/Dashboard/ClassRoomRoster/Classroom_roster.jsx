@@ -12,9 +12,7 @@ import { useSearchParams } from 'react-router-dom';
 
 const Classroom_roster = () => {
     const { currentUser } = useSelector(state => state.user)
-    const [selectedClass, setSelectedClass] = useState({
-        
-    })
+    console.log(currentUser);
     const searchPa = useSearchParams()
     const search = searchPa[0]?.get('id')
     const { classrooms } = useSelector(state => state.classroom)
@@ -25,9 +23,6 @@ const Classroom_roster = () => {
             return res.data
         }
     })
-    useEffect(() => {
-        setSelectedClass(classrooms[0]?._id)
-    }, [classrooms])
     if (isLoading) {
         return <Loader />
     }

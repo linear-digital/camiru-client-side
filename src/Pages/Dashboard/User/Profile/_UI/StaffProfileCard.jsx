@@ -16,7 +16,7 @@ const StaffProfileCard = () => {
     const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
     return (
         <section className='mt-10 p-5 border w-full rounded-lg lg:flex items-start gap-10 justify-between'>
-            <div className="rounded-lg overflow-hidden w-[242px] h-[285px] ">
+            <div className="rounded-lg overflow-hidden min-w-[242px] max-w-[242px] h-[285px] ">
                 <Image
                     className='rounded-lg overflow-hidden w-full h-full'
                     src="https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"

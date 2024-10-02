@@ -8,7 +8,7 @@ import { Checkbox } from "antd";
 import { imageUrl } from "../../../Components/helper/axios.instance";
 import nameDisplay from "../../../util/nameDisplay";
 import { Link } from "react-router-dom";
-const TABLE_HEAD = ["Members", "Registration Date", "Class", "Send Message", "Action"];
+const TABLE_HEAD = ["Members", "Registration Date", "Class", "Contact", "Send Message", "Action"];
 
 
 export default function Table({ users }) {
@@ -91,6 +91,45 @@ export default function Table({ users }) {
                                             {user?.classRoom?.name}
                                         </div>
                                     </Typography>
+                                </td>
+                                <td className={classes}>
+                                    {
+                                        !user?.contact_numbers && <p className="text-red-600 text-xs font-semibold  leading-normal">No Contact</p>
+                                    }
+                                   <div className="flex gap-2 flex-col">
+                                        {
+                                            user?.contact_numbers?.father?.email && <div>
+                                                <h2 className="text-xs font-bold  leading-normal">
+                                                    Father
+                                                </h2>
+                                                <h2 className="text-xs  leading-normal">
+                                                    {user?.contact_numbers?.father?.name}
+                                                </h2>
+                                                <h2 className="text-xs  leading-normal">
+                                                    {user?.contact_numbers?.father?.phone}
+                                                </h2>
+                                                <h2 className="text-xs  leading-normal">
+                                                    {user?.contact_numbers?.father?.email}
+                                                </h2>
+                                            </div>
+                                        }
+                                        {
+                                            user?.contact_numbers?.mother?.email && <div>
+                                                <h2 className="text-xs font-bold  leading-normal">
+                                                    Mother
+                                                </h2>
+                                                <h2 className="text-xs  leading-normal">
+                                                    {user?.contact_numbers?.mother?.name}
+                                                </h2>
+                                                <h2 className="text-xs  leading-normal">
+                                                    {user?.contact_numbers?.mother?.phone}
+                                                </h2>
+                                                <h2 className="text-xs  leading-normal">
+                                                    {user?.contact_numbers?.mother?.email}
+                                                </h2>
+                                            </div>
+                                        }
+                                   </div>
                                 </td>
                                 <td className={classes}>
                                     <button className="w-[100.53px] text-xs h-[25px]  bg-[#def4eb] text-[#3DD598] rounded-md" >

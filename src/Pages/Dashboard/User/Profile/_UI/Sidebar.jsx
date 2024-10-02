@@ -21,11 +21,11 @@ const Sidebar = () => {
                             name={"Address & Contacts"}
                             Icon={CoAdd}
                         />
-                        <Item
+                        {/* <Item
                             path={"attendance"}
                             name={"Attendance"}
                             Icon={HandsUp}
-                        />
+                        /> */}
                         <Item
                             name={"Schedule Absence"}
                             path={"schedule-absence"}

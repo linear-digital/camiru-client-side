@@ -13,6 +13,10 @@ import api from '../../../../../Components/helper/axios.instance';
 import { setSelectedSt } from '../../../../../redux/child/childSlice';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import { Form } from 'antd';
+import { Select } from 'antd';
+import { Input } from 'antd';
+import Loader from '../../../../../Components/Loader';
 
 const Address_Contact = ({ edit }) => {
     const location = useLocation();
@@ -25,6 +29,18 @@ const Address_Contact = ({ edit }) => {
         zip: "",
         state: ""
     })
+    const [contact, setContact] = useState({
+        father: {
+            name: "",
+            email: "",
+            phone: "",
+        },
+        mother: {
+            name: "",
+            email: "",
+            phone: "",
+        }
+    })
     useEffect(() => {
         if (selected) {
             setUpdate({
@@ -34,20 +50,47 @@ const Address_Contact = ({ edit }) => {
                 zip: selected.zip,
                 state: selected.state
             })
+            setContact({
+                ...contact,
+                ...selected?.contact_numbers
+            } || {
+                father: {
+                    name: "",
+                    email: "",
+                    phone: "",
+                },
+                mother: {
+                    name: "",
+                    email: "",
+                    phone: "",
+                }
+            })
         }
     }, [selected])
     const dispatch = useDispatch();
     const updateHandler = async () => {
         try {
-            const res = await api.put(`/student/${selected?._id}`, update)
+            const res = await api.put(`/student/${selected?._id}`, {
+                ...update,
+                contact_numbers: contact
+            })
             dispatch(setSelectedSt(res.data))
             toast.success("Student updated successfully")
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong');
         }
     }
-
-
+    const [parentType, setParentType] = useState("father")
+    const [l, setL] = useState(false)
+    useEffect(() => {
+        setL(true)
+        setTimeout(() => {
+            setL(false)
+        }, 200)
+    }, [parentType])
+    if (l) {
+        return <Loader />
+    }
     return (
         <div className='w-full border pl-5 py-[55px] rounded-xl poppins'>
             <div className="lg:flex gap-10">
@@ -65,73 +108,72 @@ const Address_Contact = ({ edit }) => {
                         <RowEdit
                             title={"Parents"}
                         >
-                            <div>
-                                <div className="w-[350px] h-[31.50px] bg-slate-50 rounded-sm border border-slate-300/opacity-50 grid grid-cols-8 " >
-                                    <div className='col-span-2 border-r px-2'>
-                                        <select
-                                            className='w-full h-full bg-slate-50 border-none outline-none text-xs '
-                                        >
-                                            <option value={"father"}>
-                                                Father
-                                            </option>
-                                            <option value={"mother"}>
-                                                Mother
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div className="col-span-2 flex items-center px-2 border-r">
-                                        <select
-                                            className='w-full h-full bg-slate-50 border-none outline-none text-xs'
-                                        >
-                                            <option value={"phone"}>
-                                                Phone
-                                            </option>
-                                            <option value={"mother"}>
-                                                Email
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div className="col-span-4 flex items-center px-2 ">
-                                        <input type="text"
-                                            className='w-full h-full bg-slate-50 border-none outline-none text-xs'
-                                            placeholder='Write here'
-                                        />
-                                    </div>
-                                </div>
-                                <div className="w-[350px] h-[31.50px] bg-slate-50 rounded-sm border border-slate-300/opacity-50 grid grid-cols-8 mt-2" >
-                                    <div className='col-span-2 border-r px-2'>
-                                        <select
-                                            className='w-full h-full bg-slate-50 border-none outline-none text-xs '
-                                        >
-                                            <option value={"mother"}>
-                                                Mother
-                                            </option>
-                                            <option value={"father"}>
-                                                Father
-                                            </option>
+                            <div className='lg:w-[350px] w-full'>
+                                <Form
+                                    layout='vertical'
+                                    size='small'
 
-                                        </select>
-                                    </div>
-                                    <div className="col-span-2 flex items-center px-2 border-r">
-                                        <select
-                                            className='w-full h-full bg-slate-50 border-none outline-none text-xs'
-                                        >
-                                            <option value={"mother"}>
-                                                Email
-                                            </option>
-                                            <option value={"phone"}>
-                                                Phone
-                                            </option>
+                                    initialValues={{
+                                        type: parentType,
+                                        name: contact[parentType].name,
+                                        email: contact[parentType].email,
+                                        phone: contact[parentType].phone
+                                    }}
+                                    onChange={(e) => {
+                                        if (e.target.name === "type") {
+                                            setParentType(e.target.value)
+                                        }
+                                        else {
+                                            setContact({
+                                                ...contact,
+                                                [parentType]: {
+                                                    ...contact[parentType],
+                                                    [e.target.id]: e.target.value
+                                                }
+                                            })
+                                        }
 
+                                    }}
+                                >
+                                    <Form.Item
+                                        name="type"
+                                        label="Parent Type"
+                                        size="small"
+                                        className='mb-3'
+                                    >
+                                        <select name="type" id="" className='w-full lg:w-[350px] h-[28px] bg-slate-50 border outline-none text-xs px-2 rounded-md '>
+                                            <option value="">Select</option>
+                                            <option value="father">Father</option>
+                                            <option value="mother">Mother</option>
                                         </select>
-                                    </div>
-                                    <div className="col-span-4 flex items-center px-2 ">
-                                        <input type="text"
-                                            className='w-full h-full bg-slate-50 border-none outline-none text-xs'
-                                            placeholder='Write here'
-                                        />
-                                    </div>
-                                </div>
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="name"
+                                        label="Name"
+                                        size="small"
+                                        className='mb-3'
+                                    >
+                                        <Input name='name' placeholder='Name' />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="email"
+                                        label="Email Address"
+                                        size="small"
+                                        className='mb-3'
+                                    >
+                                        <Input name='email' placeholder='Email Address' />
+                                    </Form.Item>
+                                    <Form.Item
+                                        name="phone"
+                                        label="Phone Number"
+                                        size="small"
+
+                                    >
+                                        <Input name='phone' placeholder='Phone  Number' />
+                                    </Form.Item>
+                                </Form>
+
+
                             </div>
                         </RowEdit>
 
@@ -209,7 +251,7 @@ const Address_Contact = ({ edit }) => {
                                     Save
                                 </button>
                                 <button
-                                    onClick={()=> {
+                                    onClick={() => {
                                         // go back to previous page
                                         window.history.back()
                                     }}
@@ -257,7 +299,7 @@ const Address_Contact = ({ edit }) => {
                             </div>
                         </div>
                         <Row
-                        
+
                             title={"Address"}
                             desc={selected?.address || "N/A"}
                         />

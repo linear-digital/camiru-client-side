@@ -154,7 +154,7 @@ export default function Table({ rows, class_name }) {
     );
 }
 
-const ActionButton = ({ user }) => {
+export const ActionButton = ({ user }) => {
     const [option, setOption] = useState("Check in");
     return (
         <Dropdown

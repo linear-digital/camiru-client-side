@@ -15,18 +15,29 @@ import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import Loader from "../../../Components/Loader";
 import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
+import { useSelector } from "react-redux";
+import { useQuery } from "@tanstack/react-query";
+import api from "../../../Components/helper/axios.instance";
+import nameDisplay from "../../../util/nameDisplay";
 const TABLE_HEAD = ["Members", "Enrolled", "Class", "Schedule", "Action"];
 
 
 export default function Table() {
     const [contacts, setContacts] = useState([]);
-
+    const { currentUser } = useSelector(state => state.user)
     useEffect(() => {
         axios.get('https://jsonplaceholder.typicode.com/users')
             .then(res => setContacts(res.data))
     }, [])
+    const { data, isLoading } = useQuery({
+        queryKey: ['All_students 2', currentUser?._id],
+        queryFn: async () => {
+            const res = await api.get(`/student/center/${currentUser?._id}`)
+            return res.data
+        }
+    })
     const [selected, setSelected] = useState([]);
-    if (contacts.length === 0) {
+    if (isLoading) {
         return <Loader />
     }
     return (
@@ -38,8 +49,8 @@ export default function Table() {
                             className="border-b border-blue-gray-100  p-3"
                         >
                             <Checkbox className=""
-                                checked={selected.length === contacts.length}
-                                onChange={(e) => setSelected(e.target.checked ? contacts.map((user) => user.id) : [])}
+                                checked={selected.length === data.length}
+                                onChange={(e) => setSelected(e.target.checked ? data.map((user) => user._id) : [])}
                             />
                         </th>
                         {TABLE_HEAD.map((head) => (
@@ -59,17 +70,17 @@ export default function Table() {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {contacts.map((user, index) => {
+                    {data?.map((user, index) => {
                         const isLast = index === contacts.length - 1;
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
-                            <tr key={user.id}
+                            <tr key={user._id}
                                 className={`${selected.includes(user.id) && "shadow-lg border-l-4 border-primary"}`}
                             >
                                 <td className={classes}>
-                                    <Checkbox checked={selected.includes(user.id)}
-                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user.id] : selected.filter((item) => item !== user.id))}
+                                    <Checkbox checked={selected.includes(user._id)}
+                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user._id] : selected.filter((item) => item !== user._id))}
                                     />
                                 </td>
                                 <td className={classes}>
@@ -82,7 +93,7 @@ export default function Table() {
                                             color="blue-gray"
                                             className="font-normal text-xs"
                                         >
-                                            {user?.name}
+                                            {nameDisplay(user)}
                                         </Typography>
                                     </div>
                                 </td>
@@ -92,11 +103,11 @@ export default function Table() {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        {moment().format('MMMM Do YYYY hh:mm a')}
+                                        {moment(user?.enrollmentDate).format('MMMM Do YYYY hh:mm a')}
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <div className=" text-red-500 text-xs font-medium leading-normal">infants</div>
+                                    <div className=" text-red-500 text-xs font-medium leading-normal">{user?.classRoom?.name}</div>
                                 </td>
                                 <td className={classes}>
                                     <button className="py-2 border-[#187A82] bg-[#5CD9CA40] border text-xs font-medium rounded-lg px-5 text-[#187A82]">
@@ -104,7 +115,7 @@ export default function Table() {
                                     </button>
                                 </td>
                                 <td className={classes}>
-                                    <ActionButton />
+                                    <ActionButton user={user} />
                                 </td>
                             </tr>
                         );
@@ -115,7 +126,8 @@ export default function Table() {
     );
 }
 
-const ActionButton = () => {
+
+export const ActionButton = ({ user }) => {
     const [option, setOption] = useState("Check in");
     return (
         <Dropdown
@@ -135,7 +147,7 @@ const ActionButton = () => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/staff/323/profile'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
                             className={`${option === "View User" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
@@ -175,7 +187,7 @@ const ActionButton = () => {
                     },
                     {
                         label: <Link to={'/dashboard/staff/323/profile/deactive'}
-                            className={` w-full flex items-center gap-2  text-start `}
+                            className={`${option === "Graduate" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <h5 className="text-red-600 flex items-center gap-1">
                                 <FontAwesomeIcon icon={faGraduationCap} className="" />

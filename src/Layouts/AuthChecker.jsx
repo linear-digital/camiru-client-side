@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../redux/user/userSlice';
 
 const AuthChecker = ({ children }) => {
-    const token = Cookie.get('accessToken');
+    const token = Cookie.get('token-camiru');
     const [loading, setLoading] = React.useState(false);
     const dispatch = useDispatch();
     useEffect(() => {

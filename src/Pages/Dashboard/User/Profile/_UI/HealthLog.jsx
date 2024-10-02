@@ -77,7 +77,7 @@ export default function HealthLog() {
                                             color="blue-gray"
                                             className="font-normal text-xs"
                                         >
-                                            {user?.name}
+                                            {moment().format("DD-MM-YYYY")}
                                         </Typography>
                                     </td>
                                     <td className={classes}>

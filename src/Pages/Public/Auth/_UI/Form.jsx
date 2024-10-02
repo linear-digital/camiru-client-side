@@ -21,7 +21,7 @@ const Form = ({ mode }) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const token = Cookie.get('accessToken');
+    const token = Cookie.get('token-camiru');
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -35,14 +35,14 @@ const Form = ({ mode }) => {
             setLoading(true);
             if (mode === 'login') {
                 const res = await api.post('/center/login', data);
-                Cookie.set('accessToken', res.data.accessToken, { expires: 30, path: '/' });
+                Cookie.set('token-camiru', res.data.accessToken, { expires: 30, path: '/' });
                 const expires = new Date(Date.now() + 30 * 60 * 1000);
                 Cookie.set("refreshToken", res.data.refreshToken, { expires: expires, path: '/' });
                 window.location.reload();
             }
             if (mode === 'student') {
                 const res = await api.post('/center/login', data);
-                Cookie.set('accessToken', res.data.accessToken, { expires: 30, path: '/' });
+                Cookie.set('token-camiru', res.data.accessToken, { expires: 30, path: '/' });
                 const expires = new Date(Date.now() + 30 * 60 * 1000);
                 Cookie.set("refreshToken", res.data.refreshToken, { expires: expires, path: '/' });
                 window.location.reload();
@@ -58,7 +58,7 @@ const Form = ({ mode }) => {
     }
     useEffect(() => {
         if (token) navigate('/dashboard')
-    }, [])
+    }, [token])
     return (
         <div className="lg:w-[457px] w-full h-auto p-5 flex flex-col justify-center">
             {

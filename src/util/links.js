@@ -47,12 +47,12 @@ export const links = [
     //     path: '/dashboard/rooms-active',
     //     icon: ClassAction
     // },
-    {
-        id: 8,
-        name: 'Photo & Videos',
-        path: '/dashboard/media',
-        icon: Media
-    },
+    // {
+    //     id: 8,
+    //     name: 'Photo & Videos',
+    //     path: '/dashboard/media',
+    //     icon: Media
+    // },
     // {
     //     id: 9,
     //     name: 'Billing',

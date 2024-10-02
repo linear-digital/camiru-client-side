@@ -33,6 +33,8 @@
     "antd": "^5.17.0",
     "axios": "^1.6.8",
     "chart.js": "^4.4.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
     "dayjs": "^1.11.11",
     "email-validator": "^2.0.4",
     "express": "^4.19.2",

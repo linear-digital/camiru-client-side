@@ -16,7 +16,7 @@ const UserLayout = () => {
     const { currentUser } = useSelector(state => state.user);
     const [messages, setMessages] = useState([]);
     const dispatch = useDispatch();
-    const token = Cookie.get("accessToken")
+    const token = Cookie.get('token-camiru')
 
     // useEffect(() => {
     //     if (currentUser) {

@@ -12,11 +12,14 @@ const Messages = () => {
     return (
         <div className='lg:p-8 p-5 bg-white rounded-lg lg:h-[calc(100vh-100px)] h-[calc(100vh-80px)] flex'>
             <Sidebar />
-            <section className='h-full w-full flex flex-col justify-between'>
+            {/* <section className='h-full w-full flex flex-col justify-between'>
                 <Topbar />
                 <ChatBox />
                 <ChatBottom />
-            </section>
+            </section> */}
+            <div className="flex justify-center items-center w-full text-lg">
+                Select a conversation
+            </div>
         </div>
     );
 };

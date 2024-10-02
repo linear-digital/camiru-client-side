@@ -94,9 +94,11 @@ export default function Table({ users }) {
                                 </td>
                                 <td className={classes}>
                                     {
-                                        !user?.contact_numbers && <p className="text-red-600 text-xs font-semibold  leading-normal">No Contact</p>
+                                        !user?.contact_numbers && <Link to={`/dashboard/student/${user?._id}/profile/details/edit`} className=" text-xs  btn-link  rounded-md  font-normal text-[#0062FF] underline" >
+                                            Add Contact
+                                        </Link>
                                     }
-                                   <div className="flex gap-2 flex-col">
+                                    <div className="flex gap-2 flex-col">
                                         {
                                             user?.contact_numbers?.father?.email && <div>
                                                 <h2 className="text-xs font-bold  leading-normal">
@@ -129,7 +131,7 @@ export default function Table({ users }) {
                                                 </h2>
                                             </div>
                                         }
-                                   </div>
+                                    </div>
                                 </td>
                                 <td className={classes}>
                                     <button className="w-[100.53px] text-xs h-[25px]  bg-[#def4eb] text-[#3DD598] rounded-md" >

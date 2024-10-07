@@ -8,7 +8,7 @@ import {
     useQuery,
 } from '@tanstack/react-query'
 import { useSelector } from 'react-redux';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import Loader from '../../../Components/Loader';
 import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -26,11 +26,16 @@ const ClassRoom = () => {
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['students', currentUser?._id, search],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`)
-            return res.data
-        }
+            
+            const res = await fetcher({
+                url: `/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`,
+                method: 'GET',
+            })
+            return res
+        },
     })
     const [open, setOpen] = useState(false)
+    console.log(data);
     if (isLoading) {
         return <Loader />
     }

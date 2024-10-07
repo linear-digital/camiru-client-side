@@ -8,7 +8,7 @@ import { Button } from '../../../Components/Buttons/Buttons';
 import { useSelector } from 'react-redux';
 import moment from 'moment';
 import toast from 'react-hot-toast';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../redux/user/userSlice';
 
@@ -22,9 +22,13 @@ const PersonalData = () => {
         data.dob = new Date(data.dob)
 
         try {
-            const res = await api.put(`/center/${currentUser?._id}`, data)
-            dispatch(setCurrentUser(res.data.user))
-            toast.success(res.data.message)
+            const res = await fetcher({
+                url: `/user/${currentUser?._id}`,
+                method: 'PUT',
+                body: data
+            })
+            dispatch(setCurrentUser(res.user))
+            toast.success(res.message)
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')
         }

@@ -4,7 +4,7 @@ import { TextField } from '@mui/material';
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { api } from '../../../Components/helper/axios.instance';
+import { api, fetcher } from '../../../Components/helper/axios.instance';
 import toast from 'react-hot-toast';
 const CreateClassRoom = ({ open, setOpen }) => {
     const [name, setName] = useState("");
@@ -16,9 +16,14 @@ const CreateClassRoom = ({ open, setOpen }) => {
             return;
         }
         try {
-            await api.post(`/classroom`, {
-                center: currentUser._id,
-                name: name
+            
+            await fetcher({
+                url: `/classroom`,
+                method: 'POST',
+                data: {
+                    center: currentUser._id,
+                    name: name
+                }
             })
             toast.success("Classroom created successfully");
             setOpen(false);

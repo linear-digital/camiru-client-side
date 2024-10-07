@@ -18,7 +18,7 @@ import { Button } from "@material-tailwind/react";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import api from "../../../Components/helper/axios.instance";
+import api, { fetcher } from "../../../Components/helper/axios.instance";
 import nameDisplay from "../../../util/nameDisplay";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
@@ -33,8 +33,12 @@ export default function Table({ rows, class_name }) {
     const { data, isLoading } = useQuery({
         queryKey: ['All_students 2', currentUser?._id],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}`)
-            return res.data
+       
+            const res = await fetcher({
+                url: `/student/center/${currentUser?._id}`,
+                method: "GET",
+            })
+            return res
         }
     })
     const [selected, setSelected] = useState([]);

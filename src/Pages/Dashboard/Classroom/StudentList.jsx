@@ -3,7 +3,7 @@ import { Button, Spin } from 'antd';
 import { Table } from 'antd';
 import React from 'react';
 import { useSelector } from 'react-redux';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import moment from 'moment';
 import toast from 'react-hot-toast';
 import { useState } from 'react';
@@ -18,17 +18,26 @@ const StudentList = ({ id, refetch: refetchList }) => {
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['students-import', id],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}?ignore=${id}`)
-            return res.data
+            
+            const res = await fetcher({
+                url: `/student/center/${currentUser?._id}?ignore=${id}`,
+                method: 'GET',
+            })
+            return res
         }
     })
     const [loading, setLoading] = useState(false)
     const transperStudent = async (selectedId) => {
         try {
             setLoading(true)
-            const res = await api.patch(`/student/center/transper`, {
-                id: selectedId,
-                class: id || classrooms[0]?._id
+           
+            const res = await fetcher({
+                url: `/student/center/transper`,
+                method: 'PATCH',
+                data: {
+                    id: selectedId,
+                    class: id || classrooms[0]?._id
+                }
             })
             toast.success("Student transfered successfully")
             refetch()

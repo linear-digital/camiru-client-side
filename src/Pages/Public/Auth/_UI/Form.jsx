@@ -11,7 +11,7 @@ import { Input } from '@material-tailwind/react';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { api } from '../../../../Components/helper/axios.instance';
+import { api, fetcher } from '../../../../Components/helper/axios.instance';
 import Cookie from 'js-cookie';
 import { useEffect } from 'react';
 
@@ -33,20 +33,16 @@ const Form = ({ mode }) => {
 
         try {
             setLoading(true);
-            if (mode === 'login') {
-                const res = await api.post('/center/login', data);
-                Cookie.set('token-camiru', res.data.accessToken, { expires: 30, path: '/' });
-                const expires = new Date(Date.now() + 30 * 60 * 1000);
-                Cookie.set("refreshToken", res.data.refreshToken, { expires: expires, path: '/' });
-                window.location.reload();
-            }
-            if (mode === 'student') {
-                const res = await api.post('/center/login', data);
-                Cookie.set('token-camiru', res.data.accessToken, { expires: 30, path: '/' });
-                const expires = new Date(Date.now() + 30 * 60 * 1000);
-                Cookie.set("refreshToken", res.data.refreshToken, { expires: expires, path: '/' });
-                window.location.reload();
-            }
+
+            const res = await fetcher({
+                url: '/center/login',
+                method: 'POST',
+                data
+            })
+            Cookie.set('token-camiru', res.accessToken, { expires: 30, path: '/' });
+            const expires = new Date(Date.now() + 30 * 60 * 1000);
+            Cookie.set("refreshToken", res.refreshToken, { expires: expires, path: '/' });
+            window.location.reload();
             setError('');
             setLoading(false);
         } catch (error) {

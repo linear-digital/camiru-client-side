@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@material-tailwind/react';
 import React from 'react';
 import { useEffect } from 'react';
-import { api } from '../../../Components/helper/axios.instance';
+import { api, fetcher } from '../../../Components/helper/axios.instance';
 import { useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
 
@@ -15,8 +15,12 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
         (
             async () => {
                 try {
-                    const res = await api.get(`/classroom/${data?.classRoom}`)
-                    setClassName(res.data)
+                    
+                    const res = await fetcher({
+                        url: `/classroom/${data?.classRoom}`,
+                        method: 'GET'
+                    })
+                    setClassName(res)
                 } catch (error) {
                     console.error(error)
                 }
@@ -25,7 +29,15 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
     }, [data])
     const submitNewStudent = async () => {
         try {
-            const res = await api.post('/student', { ...data, center: currentUser._id })
+
+            const res  = await fetcher({
+                url: '/student',
+                method: 'POST',
+                data: {
+                    ...data,
+                    center: currentUser._id
+                }
+            })
             toast.success("Student created successfully")
             setOpen(false)
             setInterval(() => {

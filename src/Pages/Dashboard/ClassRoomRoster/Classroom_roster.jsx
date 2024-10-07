@@ -3,7 +3,7 @@ import React from 'react';
 import Filter from './Filter';
 import Table from './Table';
 import { useQuery } from '@tanstack/react-query';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import Loader from '../../../Components/Loader';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
@@ -19,8 +19,12 @@ const Classroom_roster = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['students-r', currentUser?._id, search],
         queryFn: async () => {
-            const res = await api.get(`/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`)
-            return res.data
+         
+            const res = await fetcher({
+                url: `/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`,
+                method: 'GET',
+            })
+            return res
         }
     })
     if (isLoading) {

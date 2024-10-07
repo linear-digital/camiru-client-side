@@ -5,7 +5,7 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Square } from '../../../util/icons';
 import Table from './Table';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../Layouts/Loader';
 import { useSelector } from 'react-redux';
@@ -24,8 +24,12 @@ const All_Contacts = () => {
     const { data, isLoading } = useQuery({
         queryKey: ['All_students', currentUser?._id, option?._id, search,withoutContact],
         queryFn: async () => {
-            const res = await api.get(`/student/center/search/${currentUser?._id}?search=${search}&classroom=${option ? option?._id : ""}&wc=${withoutContact}`)
-            return res.data
+           
+            const res = await fetcher({
+                url: `/student/center/search/${currentUser?._id}?search=${search}&classroom=${option ? option?._id : ""}&wc=${withoutContact}`,
+                method: 'GET',
+            })
+            return res
         }
     })
     if (isLoading) {

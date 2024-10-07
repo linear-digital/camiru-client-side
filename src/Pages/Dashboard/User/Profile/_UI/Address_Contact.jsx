@@ -9,7 +9,7 @@ import { useLocation } from 'react-router-dom';
 import nameDisplay from '../../../../../util/nameDisplay';
 import { useCountries } from 'use-react-countries';
 import { useEffect } from 'react';
-import api from '../../../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../../../Components/helper/axios.instance';
 import { setSelectedSt } from '../../../../../redux/child/childSlice';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
@@ -70,11 +70,17 @@ const Address_Contact = ({ edit }) => {
     const dispatch = useDispatch();
     const updateHandler = async () => {
         try {
-            const res = await api.put(`/student/${selected?._id}`, {
-                ...update,
-                contact_numbers: contact
+         
+            const res = await fetcher({
+                url: `/student/${selected?._id}`,
+                method: 'PATCH',
+                data: {
+                    ...update,
+                    contact_numbers: contact
+                }
             })
-            dispatch(setSelectedSt(res.data))
+
+            dispatch(setSelectedSt(res))
             toast.success("Student updated successfully")
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong');

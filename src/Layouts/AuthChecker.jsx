@@ -11,13 +11,17 @@ const AuthChecker = ({ children }) => {
     const token = Cookie.get('token-camiru');
     const [loading, setLoading] = React.useState(false);
     const dispatch = useDispatch();
+    
     useEffect(() => {
         (
             async () => {
                 try {
                     setLoading(true);
-                    const res = await api.get('/center/me');
-                    dispatch(setCurrentUser(res.data));
+                    const res = await fetcher({
+                        url: '/center/me',
+                        method: 'GET',
+                    });
+                    dispatch(setCurrentUser(res));
                     setLoading(false);
                 } catch (error) {
                     setLoading(false);
@@ -28,7 +32,7 @@ const AuthChecker = ({ children }) => {
         if (token) {
             setLoading(false);
         }
-    }, [])
+    }, [token])
 
     if (loading) {
         return <Progress />

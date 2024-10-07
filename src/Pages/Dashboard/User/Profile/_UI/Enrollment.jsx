@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment/moment';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
-import api from '../../../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../../../Components/helper/axios.instance';
 import { setRefresh, setSelectedSt } from '../../../../../redux/child/childSlice';
 import { useDispatch } from 'react-redux';
 
@@ -65,8 +65,12 @@ const Enrollment = ({ edit }) => {
         try {
             const dt = update
             dt.enrollmentDate = new Date(date.year, date.month - 1, date.day)
-            const res = await api.put(`/student/${user?._id}`, dt)
-            dispatch(setSelectedSt(res.data))
+            const res = await fetcher({
+                url: `/student/${user?._id}`,
+                method: 'PUT',
+                data: dt
+            })
+            dispatch(setSelectedSt(res))
             toast.success("Student updated successfully")
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong');

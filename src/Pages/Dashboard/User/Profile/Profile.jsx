@@ -8,7 +8,7 @@ import Filter from '../../Checkin/Filter';
 import { useParams } from 'react-router-dom';
 import StaffProfileCard from './_UI/StaffProfileCard';
 import { useEffect } from 'react';
-import api from '../../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../../Components/helper/axios.instance';
 import { useDispatch } from 'react-redux';
 import { setSelectedSt } from '../../../../redux/child/childSlice';
 import { useSelector } from 'react-redux';
@@ -58,9 +58,12 @@ const Profile = () => {
             async () => {
                 try {
                     setLoading(true)
-                    const res = await api.get(`/student/${params.id}`)
+                    const res = await fetcher({
+                        url: `/student/${params.id}`,
+                        method: 'GET',
+                    })
                     setLoading(false)
-                    dispatch(setSelectedSt(res.data || []))
+                    dispatch(setSelectedSt(res || []))
                 }
                 catch (err) {
                     dispatch(setSelectedSt([]))

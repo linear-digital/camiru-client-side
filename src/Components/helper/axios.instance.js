@@ -6,19 +6,22 @@ const local = "http://localhost:4000/api"
 const server = 'https://server.camiru.com/api'
 const url = local
 export const api = axios.create({
-    baseURL: server,
+    baseURL: url,
     headers: {
         "Content-Type": "application/json",
         "token": Cookie.get('token-camiru')
     },
 });
 
+
 export const fetcher = async ({ url, method, data, headers }) => {
     try {
         const res = await api({
             url: url,
             method: method ? method : 'GET',
-            data: encrypt(data),
+            data: {
+                data: encrypt(data)
+            } ,
             headers
         });
         return decrypt(res.data)

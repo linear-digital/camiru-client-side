@@ -14,25 +14,8 @@ import Login from '../Pages/Public/Auth/Login';
 const UserLayout = () => {
     const location = useLocation();
     const { currentUser } = useSelector(state => state.user);
-    const [messages, setMessages] = useState([]);
-    const dispatch = useDispatch();
     const token = Cookie.get('token-camiru')
-
-    // useEffect(() => {
-    //     if (currentUser) {
-    //         const newSocket = io('http://localhost:4000', {
-    //             query: { userId: currentUser._id, role: "center" }
-    //         });
-
-    //         newSocket.on('chat message', (msg) => {
-    //             setMessages((prevMessages) => [...prevMessages, msg]);
-    //         });
-    //         return () => {
-    //             newSocket.disconnect();
-    //         };
-    //     }
-    // }, [currentUser]);
-
+    
     return (
         <main className='w-full h-screen flex lg:gap-6 bg-[#F1F6FA]'>
             <DefaultFetch />

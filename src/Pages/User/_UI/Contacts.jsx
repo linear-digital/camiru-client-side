@@ -11,7 +11,7 @@ import { Button } from '../../../Components/Buttons/Buttons';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../redux/user/userSlice';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import toast from 'react-hot-toast';
 
 const Contacts = () => {
@@ -29,9 +29,14 @@ const Contacts = () => {
         const data = Object.fromEntries(formData.entries())
 
         try {
-            const res = await api.put(`/center/${currentUser?._id}`, data)
-            dispatch(setCurrentUser(res.data.user))
-            toast.success(res.data.message)
+           
+            const res = await fetcher({
+                url: `/center/${currentUser?._id}`,
+                method: "PUT",
+                data
+            })
+            dispatch(setCurrentUser(res.user))
+            toast.success(res.message)
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')
         }
@@ -54,8 +59,13 @@ const Contacts = () => {
             return toast.error('New Password must be at least 6 characters')
         }
         try {
-            const res = await api.put(`/center/password/${currentUser?._id}`, password)
-            toast.success(res.data.message)
+           
+            const res = await fetcher({
+                url: `/center/password/${currentUser?._id}`,
+                method: "PUT",
+                data: password
+            })
+            toast.success(res.message)
             setPassword({ current: "", new: "", confirm: "" })
             setError("")
         } catch (error) {

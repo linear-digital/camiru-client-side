@@ -9,7 +9,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { Checkbox } from '@material-tailwind/react';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import api from '../../../Components/helper/axios.instance';
+import api, { fetcher } from '../../../Components/helper/axios.instance';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../../../redux/user/userSlice';
@@ -43,8 +43,12 @@ const Address = () => {
             return
         }
         try {
-            const res = await api.put(`/center/${currentUser._id}`, address)
-            dispatch(setCurrentUser(res.data.user))
+            const res = await fetcher({
+                url: `/center/${currentUser._id}`,
+                method: "PUT",
+                data: address
+            })
+            dispatch(setCurrentUser(res.user))
             toast.success("Address updated successfully")
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')

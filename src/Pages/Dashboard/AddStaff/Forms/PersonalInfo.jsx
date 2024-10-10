@@ -53,7 +53,12 @@ const PersonalInfo = ({ data, setData }) => {
         <Form className='bg-[#fff8f9] border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-2 gap-x-5'
             layout='vertical'
             onFinish={onFinish}
-
+            initialValues={{
+                ...data,
+                dob: dayjs(data.dob),
+                gender,
+                profilePic: data?.profilePic || ""
+            }}
         >
             <Form.Item label="First Name" name="firstName"
                 rules={[{ required: true, message: 'Please enter first name' }]}
@@ -82,6 +87,8 @@ const PersonalInfo = ({ data, setData }) => {
             </Form.Item>
             <Form.Item label="Date of Birth"
                 className=''
+                name="dob"
+                rules={[{ required: true, message: 'Please enter date of birth' }]}
             >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <div className='flex gap-3 enroll'>
@@ -120,7 +127,9 @@ const PersonalInfo = ({ data, setData }) => {
                         />
                     </div>
                 </LocalizationProvider>
-                <Form.Item label="Gender" className="flex  items-center gap-3 mt-3">
+                <Form.Item label="Gender" className="flex  items-center gap-3 mt-3" name="gender"
+                    rules={[{ required: true, message: 'Please select gender' }]}
+                >
                     <CheckBoxNew
                         onChange={() => setGender("boy")}
                         label={"Boy"}
@@ -138,7 +147,11 @@ const PersonalInfo = ({ data, setData }) => {
                     />
                 </Form.Item>
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+                name="profilePic"
+                className='col-span-2'
+                label="Profile Picture"
+            >
                 <label htmlFor='profile' className={`w-[130px] border h-[133px] ${data?.profilePic ? "" : "border-red-200"} flex justify-center items-end relative box rounded`}>
                     {
                         loading ?

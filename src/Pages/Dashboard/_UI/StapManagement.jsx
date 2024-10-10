@@ -8,6 +8,7 @@ import moment from 'moment';
 import { useEffect } from 'react';
 import { set } from 'react-hook-form';
 import { useState } from 'react';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const StapManagement = () => {
 
@@ -43,10 +44,11 @@ const StapManagement = () => {
                         <FontAwesomeIcon icon={faRotateRight} />
                     </button>
                     <div className=" text-zinc-800 text-xs font-bold ">Next Refresh: {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</div>
-                    <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs py-2 px-4 text-[10px] text-white'>
-                        View Staff
-                        <FontAwesomeIcon icon={faChevronDown} />
+                    <button className=' text-xs px-5 flex gap-3 items-center'>
+                        View Details
+                        <FontAwesomeIcon icon={faChevronRight} />
                     </button>
+
                 </div>
             </section>
             <div className="overflow-x-auto mt-5 ">

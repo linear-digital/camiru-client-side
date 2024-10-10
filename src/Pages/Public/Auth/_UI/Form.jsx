@@ -39,15 +39,13 @@ const Form = ({ mode }) => {
                 method: 'POST',
                 data
             })
-            Cookie.set('token-camiru', res.accessToken, { expires: new Date(Date.now() + 30 * 60 * 1000), path: '/' });
-            const expires = new Date(Date.now() + 30 * 60 * 1000);
-            Cookie.set("refreshToken", res.refreshToken, { expires: expires, path: '/' });
+            Cookie.set('token-camiru', res.accessToken, { expires: 30 });
             window.location.reload();
             setError('');
             setLoading(false);
         } catch (error) {
             setLoading(false);
-            setError(error?.response?.data?.message || 'Something went wrong');
+            setError(error?.response?.data?.message || error?.message || 'Something went wrong');
         }
 
         // navigate('/dashboard');

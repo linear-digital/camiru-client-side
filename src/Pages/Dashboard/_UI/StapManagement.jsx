@@ -4,8 +4,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card } from '@material-tailwind/react';
 import React from 'react';
 import Avater from '../../../Components/Card/Avater';
+import moment from 'moment';
+import { useEffect } from 'react';
+import { set } from 'react-hook-form';
+import { useState } from 'react';
 
 const StapManagement = () => {
+
+    const [timeLeft, setTimeLeft] = useState(10 * 60); // 10 minutes in seconds
+
+    useEffect(() => {
+        // Set up the interval to decrease the time left every second
+        const interval = setInterval(() => {
+            setTimeLeft(prevTime => {
+                if (prevTime <= 1) {
+                    return 10 * 60
+                }
+                return prevTime - 1; // Decrease by 1 second
+            });
+        }, 1000);
+
+        // Cleanup the interval when the component unmounts
+        return () => clearInterval(interval);
+    }, []);
+
+    // Convert the remaining time to minutes and seconds
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+
+
+
     return (
         <Card className='p-5 w-full h-full border border-[#C7F1FF] bg-[#F8FCFF] shadow-none'>
             <section className="flex items-center justify-between">
@@ -14,7 +42,7 @@ const StapManagement = () => {
                     <button className='text-red-500 text-xs'>
                         <FontAwesomeIcon icon={faRotateRight} />
                     </button>
-                    <div className=" text-zinc-800 text-[7px] font-bold ">Last Refresh: 11:48:16</div>
+                    <div className=" text-zinc-800 text-xs font-bold ">Next Refresh: {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</div>
                     <button className='btn gap-2 btn-secondary bg-[#96C82C] rounded-3xl btn-xs py-2 px-4 text-[10px] text-white'>
                         View Staff
                         <FontAwesomeIcon icon={faChevronDown} />

@@ -8,9 +8,12 @@ import { faCircleChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import WeekChart from './WeekChart';
 import WeekChart2 from './WeekChart2';
+import moment from 'moment';
 
 const Attendance = () => {
     const [type, setType] = React.useState('daily');
+    const [active, setActive] = React.useState(true);
+    const [date, setDate] = React.useState(new Date());
     return (
         <div>
             <div className='lg:p-5 p-3 mt-10 border border-[#C7F1FF] bg-[#F8FCFF] rounded-xl'>
@@ -47,7 +50,7 @@ const Attendance = () => {
                             desc={"81 Studnets"}
                         />
                         <AttCard
-                            bg={"bg-primary"}
+                            bg={"bg-[#ffbb3b]"}
                             title={"Present"}
                             desc={"51 Studnets"}
                         />
@@ -57,7 +60,7 @@ const Attendance = () => {
                             desc={"81 Studnets"}
                         />
                         <AttCard
-                            bg={"bg-pink-400"}
+                            bg={"bg-[#FB6EB0]"}
                             title={"Absent"}
                             desc={"51 Studnets"}
                         />
@@ -67,26 +70,32 @@ const Attendance = () => {
                     <AttCard
                         bg={"bg-primary"}
                         title={"Checked In"}
-                        desc={"81 Studnets"}
+                        desc={`${active?.checked_in} Studnets`}
                     />
                     <AttCard
-                        bg={"bg-primary"}
+                        bg={"bg-[#ffbb3b]"}
                         title={"Present"}
-                        desc={"51 Studnets"}
+                        desc={`${active?.checked_in} Studnets`}
                     />
                     <div className='flex flex-col justify-center  max-w-[200px] pl-5'>
                         <div className=''>
-                            <AttendanceChart height={190} width={250} />
+                            <AttendanceChart total={active?.total} height={190} width={250} />
                         </div>
-                        <div className="flex items-center gap-4 ml-4">
-                            <button className='w-4 '>
+                        <div className={`${type === 'monthly' ? 'flex' : 'hidden'} items-center gap-4 ml-4`}>
+                            <button className='w-4 '
+                            onClick={() => setDate(moment(date).subtract(1, 'month').toDate())}
+                            >
                                 <FontAwesomeIcon
                                     icon={faCircleChevronLeft}
                                     className='text-base'
                                 />
                             </button>
-                            <h1 className="  text-neutral-600 text-sm font-extrabold">January</h1>
-                            <button className='w-4 '>
+                            <h1 className="  text-neutral-600 text-sm font-extrabold">
+                                {moment(date).format('MMMM')}
+                            </h1>
+                            <button className='w-4 '
+                            onClick={() => setDate(moment(date).add(1, 'month').toDate())}
+                            >
                                 <FontAwesomeIcon
                                     icon={faCircleChevronRight}
                                     className='text-base'
@@ -100,18 +109,19 @@ const Attendance = () => {
                         desc={"81 Studnets"}
                     />
                     <AttCard
-                        bg={"bg-pink-400"}
+                        bg={"bg-[#FB6EB0]"}
                         title={"Absent"}
-                        desc={"51 Studnets"}
+                        desc={`${active?.absent} Studnets`}
                     />
                 </div>
-                <WeekChart />
+                <WeekChart type={type} selectedBar={active} setSelectedBar={setActive} month={date.getMonth()} year={date.getFullYear()}/>
             </div>
         </div>
     );
 };
 
 export default Attendance;
+
 
 const AttCard = ({ title, desc, active, onChange, bg }) => {
     return <div className='flex lg:flex-row flex-col items-start gap-3 lg:w-auto w-full'>

@@ -5,13 +5,15 @@ import { useDispatch } from 'react-redux';
 import { setClassRooms } from '../redux/classroom/classSlice';
 import { setCurrentUser } from '../redux/user/userSlice';
 import Cookie from 'js-cookie';
+import { isExpired } from 'react-jwt';
 
 const DefaultFetch = () => {
     const dispatch = useDispatch()
     const token = Cookie.get('token-camiru')
+    const isMyTokenExpired = isExpired(token);
     useEffect(() => {
         (async () => {
-            if (token) {
+            if (!isMyTokenExpired) {
                 try {
                     const res = await fetcher({
                         url: '/classroom',

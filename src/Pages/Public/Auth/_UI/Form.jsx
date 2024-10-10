@@ -14,7 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { api, fetcher } from '../../../../Components/helper/axios.instance';
 import Cookie from 'js-cookie';
 import { useEffect } from 'react';
-
+import { isExpired, decodeToken } from "react-jwt";
 const Form = ({ mode }) => {
     const [error, setError] = React.useState('');
     const [loading, setLoading] = React.useState(false);
@@ -39,7 +39,7 @@ const Form = ({ mode }) => {
                 method: 'POST',
                 data
             })
-            Cookie.set('token-camiru', res.accessToken, { expires: 30, path: '/' });
+            Cookie.set('token-camiru', res.accessToken, { expires: new Date(Date.now() + 30 * 60 * 1000), path: '/' });
             const expires = new Date(Date.now() + 30 * 60 * 1000);
             Cookie.set("refreshToken", res.refreshToken, { expires: expires, path: '/' });
             window.location.reload();
@@ -53,7 +53,7 @@ const Form = ({ mode }) => {
         // navigate('/dashboard');
     }
     useEffect(() => {
-        if (token) navigate('/dashboard')
+        if (token && !isExpired(token)) navigate('/dashboard')
     }, [token])
     return (
         <div className="lg:w-[457px] w-full h-auto p-5 flex flex-col justify-center">

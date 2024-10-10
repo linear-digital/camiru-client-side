@@ -14,11 +14,13 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BlankDIalog } from '../../Components/DIalog/BlankDIalog';
 import CreateClassRoom from './_UI/CreateClassRoom';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const { currentUser } = useSelector((state) => state.user)
     const [open, setOpen] = React.useState(false);
     const {classrooms} = useSelector(state => state.classroom)
+    const navigate = useNavigate()
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <BlankDIalog open={open} setOpen={setOpen} size={"sm"}>
@@ -48,10 +50,16 @@ const Dashboard = () => {
                 <div className="w-full">
                     <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-3">
                         <StatisticCard
+                        onClick={() => {
+                            navigate('/dashboard/rooms')
+                        }}
                             title={"Classrooms"}
                             value={classrooms?.length}
                         />
                         <StatisticCard
+                        onClick={() => {
+                            navigate('/dashboard/rooms-roster')
+                        }}
                             title={"Active Children"}
                             value={"50"}
                         />
@@ -60,7 +68,10 @@ const Dashboard = () => {
                             value={"10"}
                         />
                         <StatisticCard
-                            title={"Parents Per Children"}
+                        onClick={() => {
+                            navigate('/dashboard/contacts')
+                        }}
+                            title={"Parents Contract"}
                             value={"12/40"}
                         />
                     </div>

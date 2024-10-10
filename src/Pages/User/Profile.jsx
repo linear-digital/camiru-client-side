@@ -1,7 +1,7 @@
 import { Image } from 'antd';
 import React from 'react';
 import { Button } from '../../Components/Buttons/Buttons';
-import Element from '../../assets/profile-element.png'
+import Cookies from 'js-cookie';
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -46,7 +46,12 @@ const Profile = () => {
                         </h4>
                     </Link>
                 </section>
-                <Button variant={"error"} className={"mt-14"}> SignOut</Button>
+                <Button variant={"error"}
+                onClick={()=> {
+                    Cookies.remove("token-camiru")
+                    window.location.href = '/login'
+                }}
+                className={"mt-14"}> SignOut</Button>
                 <img src={'/profile-element.png'} alt=""
                     className='absolute bottom-0 right-[60px] max-w-[490px] opacity-80'
                 />

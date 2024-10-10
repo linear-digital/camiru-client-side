@@ -4,8 +4,8 @@ import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
 
 const data = [
-    { value: 10, color: "#fb6eb0" },
-    { value: 15, color: "#ffbb3b" },
+    { value: 10, color: "#FB6EB0" },
+    { value: 20, color: "#ffbb3b" },
     { value: 15, color: "#96c82c" },
     { value: 20, color: "#15acde" },
 ];
@@ -31,12 +31,12 @@ function PieCenterLabel({ children }) {
     );
 }
 
-export default function AttendanceChart({ height, width }) {
+export default function AttendanceChart({ height, width, total }) {
     return (
         <PieChart series={[{ data, innerRadius: '60%' }]}
             width={width} height={height} >
             <PieCenterLabel>
-                40
+                {total}
             </PieCenterLabel>
         </PieChart>
     );

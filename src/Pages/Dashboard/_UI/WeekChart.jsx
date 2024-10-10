@@ -1,80 +1,112 @@
 // ChartComponent.js
+import moment from 'moment/moment';
 import React from 'react';
 import { useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { Tooltip } from 'antd';
 
 
-const ChartComponent = () => {
-    const [data, setData] = React.useState([
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 6, name: 'Sat', value: 5, max: 10 },
-        { day: 0, name: 'Sun', value: 6, max: 10 },
-        { day: 1, name: 'Mon', value: 10, max: 10 },
-        { day: 2, name: 'Tue', value: 8, max: 10 },
-        { day: 3, name: 'Wed', value: 4, max: 10 },
-        { day: 4, name: 'Thu', value: 5, max: 10 },
-        { day: 5, name: 'Fri', value: 7, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-        { day: 55, name: '', value: 6, max: 10 },
-    ])
+const ChartComponent = ({ type, selectedBar, setSelectedBar , month, year}) => {
+
     const date = new Date();
+    const [sDate, setSDate] = React.useState(date);
+    const [days, setDays] = React.useState([]);
+    function getDaysOfMonth(year, month) {
+        // Create a new date object for the first day of the month
+        let selectedDate = new Date(year, month, 1);
 
-    const today = date.getDay();
+        // Create an empty array to store the days
+        let days = [];
+
+        // Loop through the days of the month
+        while (selectedDate.getMonth() === month) {
+            // Push the day number to the array
+            const checked_in = Math.floor(Math.random() * 120);
+            const absent = 120 - checked_in
+            const newDate = {
+                day: selectedDate,
+                active: date.getDate() === selectedDate.getDate(),
+                checked_in,
+                total: 120,
+                absent,
+                selected: false
+            }
+            if (date.getDate() === selectedDate.getDate()) {
+                setSelectedBar(newDate)
+            }
+
+            if (type === "daily") {
+                if (moment(newDate.day).isoWeek() === moment().isoWeek()) {
+                    newDate.selected = true
+                }
+            }
+            else if (type === "weekly") {
+                if (moment(newDate.day).isoWeek() === moment().isoWeek()) {
+                    newDate.selected = true
+                }
+            }
+            else if (type === "monthly") {
+                newDate.selected = true
+                // Move to the next day
+            }
+            days.push(newDate);
+            setDays(days);
+            selectedDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), selectedDate.getDate() + 1);
+        }
+
+        return days;
+    }
     useEffect(() => {
-        // setData(data.map((d) => {
-        //     if (d.day === today) {
-        //         d.value = d.max
-        //     }
-        //     return d
-        // }))
-    }, [])
+        if (selectedBar) {
+            const filterDays = days.map(day => {
+                return {
+                    ...day,
+                    active: selectedBar?.day === day.day
+                }
+            })
+            setDays(filterDays)
+        }
+    }, [selectedBar])
+    useEffect(() => {
+        if (type === "monthly") {
+            getDaysOfMonth(year, month)
+        }
+        else {
+            getDaysOfMonth(date.getFullYear(), date.getMonth())
+        }
+    }, [type, month, year])
     return (
-        <ResponsiveContainer width="100%" height={150} className={'mt-5'}>
-            <BarChart data={data} barCategoryGap={20}>
 
-                <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
-                <XAxis dataKey="name" tick={{ fill: '#888', fontSize: 12 }} tickLine={false} axisLine={false} />
-                <YAxis hide />
-                {/* <Tooltip cursor={{ fill: 'transparent' }} /> */}
-                <Bar
-                    background={{ fill: '#F2F6FC' }}
-                    dataKey="value"
-                    shape={({ x, y, width, day, height, fill }) => {
-                        let barFill = fill;
-                        if (day === today) {
-                            barFill = '#15ACDE';
-                        }
-                        else if (day === 55) {
-                            barFill = '#868B9526';
-                        }
-                        else {
-                            barFill = '#5CD9CA40';
-                        }
-                        // if (height === Math.max(...data.map((d) => d.value))) {
-                        //     barFill = '#3288bd';
-                        // } else if (height % 2 === 0) {
-                        //     barFill = '#66c2a5';
-                        // } else {
-                        //     barFill = fill
-                        // }
-                        return <rect x={x} y={y} width={8} height={height} fill={barFill} rx={2} ry={5} />;
-                    }}
-                />
-            </BarChart>
-        </ResponsiveContainer>
+        <section className='h-[110px] flex gap-1 justify-between mt-5'>
+            {
+                days.map((day, index) => (
+                    <Tooltip trigger="hover" placement="top" title={`Checked-in: ${day.checked_in} | Absent: ${day.absent}`} key={index}>
+                        <div onClick={() => setSelectedBar(day)} className='flex flex-col gap-1 items-center cursor-pointer justify-start'>
+                            <div className='h-[90px] w-[10px] bg-[#ecf1f8e4] rounded-lg relative overflow-hidden'>
+                                <div className={`absolute ${day.selected ? `${!day.active ? "bg-[#15acde67]" : "bg-[#15ACDE]"} ` : ''}  bottom-0`}
+                                    style={{
+                                        height: `${(day.checked_in / day.total) * 100}%`,
+                                        width: '100%'
+                                    }}
+                                />
+                                <div className={`absolute  ${day.selected ? `${!day.active ? 'bg-[#fb6eb067]' : 'bg-[#FB6EB0]'}` : ''} top-0`}
+                                    style={{
+                                        height: `${(day.absent / day.total) * 100}%`,
+                                        width: '100%'
+                                    }}
+                                />
+                            </div>
+                            {
+                                day.selected && <div className='flex justify-between items-center'>
+                                    <p className='text-gray-600 text-xs'>{moment(day.day).format('ddd')}</p>
+                                </div>
+                            }
+
+                        </div>
+                    </Tooltip>
+
+                ))
+            }
+        </section>
     );
 };
 

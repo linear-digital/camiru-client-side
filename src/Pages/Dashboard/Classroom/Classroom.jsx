@@ -35,7 +35,7 @@ const ClassRoom = () => {
         },
     })
     const [open, setOpen] = useState(false)
-    console.log(data);
+    console.log(classrooms);
     if (isLoading) {
         return <Loader />
     }
@@ -53,9 +53,7 @@ const ClassRoom = () => {
             <section className='flex flex-col lg:flex-row lg:justify-between lg:items-center'>
                 <div>
                     <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Classroom 
-                        <sup className='text-xs text-black'>{
-                            search ? classrooms.find(c => c._id === search).name : classrooms[0]?.name
-                            }</sup></h1>
+                        </h1>
                     <p className=" text-neutral-400 mt-2 font-normal text-sm">Select your class to checkout the reports</p>
                 </div>
                 <div className='flex gap-10 items-center mt-3 lg:mt-0'>
@@ -100,9 +98,6 @@ const ClassRoom = () => {
             <section className='flex justify-between items-center lg:mt-20 mt-10'>
                 <div>
                     <h1 className=" text-primary lg:text-2xl text-xl font-bold ">Stuff 
-                    <sup className='text-xs text-black'>{
-                            search ? classrooms.find(c => c._id === search).name : classrooms[0]?.name
-                            }</sup>
                     </h1>
                     <p className="text-neutral-400 mt-2 font-normal text-sm">Upcoming Student list donw bellow</p>
                 </div>

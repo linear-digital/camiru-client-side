@@ -2,6 +2,7 @@ import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Dropdown } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -27,12 +28,22 @@ const AttendanceNavigation = ({ state, setState }) => {
         <div className='flex gap-1'>
             {
                 links.map((link) => {
-                    return <AttCard key={link.id} title={link.title} path={link.path} active={state === link.path} onChange={(e) => setState(e)}/>
+                    return <AttCard key={link.id} title={link.title} path={link.path} active={state === link.path} onChange={(e) => setState(e)} />
                 })
             }
-            <button className='ml-5'>
-                <FontAwesomeIcon icon={faEllipsis}/>
-            </button>
+            <Dropdown trigger={['click']} menu={{
+                items: [
+                    {
+                        key: '1',
+                        label: <Button size='small'>Download Report</Button>
+                    }
+                ]
+            }} placement="bottomRight" arrow>
+                <button className='ml-5'>
+                    <FontAwesomeIcon icon={faEllipsis} />
+                </button>
+            </Dropdown>
+
         </div>
     );
 };

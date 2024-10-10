@@ -13,7 +13,8 @@ module.exports = withMT({
         'secondary': '#96C82C',
         'accent': '#96C82C',
         'accent2': '#F8AD47',
-        'error': "#F8234F"
+        'error': "#F8234F",
+        'staff-pc': "#F8AD47"
       }
     },
   },

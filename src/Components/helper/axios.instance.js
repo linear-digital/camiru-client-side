@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-catch */
 import axios from "axios";
 import Cookie from "js-cookie";
 import { decrypt, encrypt } from "./security";
@@ -41,7 +42,9 @@ export const imageUrl = (url) => {
     if (url === "/default-profile.png") {
         return url
     }
-    return `https://server.camiru.com/${url}`
+    const local = "http://localhost:4000"
+    const server = 'https://server.camiru.com'
+    return `${local}/${url}`
 }
 
 export default api

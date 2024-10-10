@@ -1,29 +1,26 @@
 
 
-import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Checkbox } from 'antd';
-import { Upload } from 'antd';
 
 import dayjs from 'dayjs';
-import React from 'react';
 import { useState } from 'react';
 import { CheckBoxNew, Row, RowWithChild } from './Common';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import Cookie from 'js-cookie';
 import toast from 'react-hot-toast';
-import { setChildFeilds, setProfilePic } from '../../../redux/child/childSlice';
+import { setChildFeilds } from '../../../redux/child/childSlice';
 import { imageUrl, upload } from '../../../Components/helper/axios.instance';
 import { Spinner } from '@material-tailwind/react';
-const Generalinfo = ({ setOpen, open }) => {
+import { decrypt } from '../../../Components/helper/security';
 
-    const [preview, setPreview] = useState("")
+const Generalinfo = ({ setOpen, open }) => {
 
     const [gender, setGender] = useState("boy")
 
-    const { childFeilds, profile } = useSelector(state => state.child)
+    const { childFeilds } = useSelector(state => state.child)
     const dispatch = useDispatch()
     const setData = (data) => {
         dispatch(setChildFeilds(data))
@@ -56,8 +53,9 @@ const Generalinfo = ({ setOpen, open }) => {
 
             const response = await upload.post('/upload/profile', formData)
             setLoading(false)
-            const data = response.data
 
+            const data = decrypt(response.data)
+            console.log(data);
             // Dispatch the URL and other metadata to the store
             dispatch(setChildFeilds({ profilePic: data?.file?.path }));
         } catch (error) {

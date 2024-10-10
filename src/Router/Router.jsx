@@ -50,6 +50,7 @@ import Reports from "../Pages/Dashboard/Reports/Reports";
 import AuthChecker from "../Layouts/AuthChecker";
 import App from "../App";
 import StudentLogin from "../Pages/Public/Auth/StudentLogin";
+import AddStaff from "../Pages/Dashboard/AddStaff/AddStaff";
 
 
 
@@ -173,6 +174,9 @@ const router = createBrowserRouter([
                     {
                         path: "add-student",
                         element: <AddStudent />
+                    },{
+                        path: "add-staff",
+                        element: <AddStaff />
                     },
                     {
                         path: "config",

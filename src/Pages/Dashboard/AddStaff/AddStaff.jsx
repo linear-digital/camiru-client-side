@@ -6,6 +6,7 @@ import PersonalInfo from './Forms/PersonalInfo';
 import { useNavigate } from 'react-router-dom';
 import Education from './Forms/Education';
 import Enrollment from './Forms/Enrollment';
+import Records from './Forms/Records';
 
 const AddStaff = () => {
     const steps = [
@@ -71,6 +72,9 @@ const AddStaff = () => {
                 }
                 {
                     steps[currentStep].step === 3 && <Enrollment data={allData} setData={setAllData} />
+                }
+                {
+                    steps[currentStep].step === 4 && <Records data={allData} setData={setAllData} />
                 }
             </div>
         </DB_Page_Layout>

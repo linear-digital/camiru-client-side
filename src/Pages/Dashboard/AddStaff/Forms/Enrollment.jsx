@@ -12,7 +12,7 @@ import { CheckBoxNew, CheckBoxWithLabel } from '../../AddStudent/Common';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useEffect } from 'react';
 
-const Enrollment = ({ data, setData }) => {
+const Enrollment = ({ setData }) => {
     const { classrooms } = useSelector(state => state.classroom)
     const today = new Date();
     const [date, setDate] = useState({

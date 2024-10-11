@@ -10,6 +10,8 @@ import { Spinner } from '@material-tailwind/react';
 import { decrypt } from '../../../../Components/helper/security';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { Checkbox } from 'antd';
+import { Link } from 'react-router-dom';
 
 const PersonalInfo = ({ data, setData }) => {
     const today = new Date();
@@ -50,7 +52,7 @@ const PersonalInfo = ({ data, setData }) => {
         setData((prev) => ({ ...prev, ...data }))
     }
     return (
-        <Form className='bg-[#fff8f9] border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-2 gap-x-5'
+        <Form className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-2 gap-x-5'
             layout='vertical'
             onFinish={onFinish}
             initialValues={{
@@ -80,7 +82,7 @@ const PersonalInfo = ({ data, setData }) => {
             >
                 <Input size='large' placeholder='Enter Last Phone' />
             </Form.Item>
-            <Form.Item label="Address" name="address" 
+            <Form.Item label="Address" name="address"
                 rules={[{ required: true, message: 'Please enter address' }]}
             >
                 <Input.TextArea size='large' placeholder='Enter your address here' rows={4} />
@@ -183,8 +185,27 @@ const PersonalInfo = ({ data, setData }) => {
                     />
                 }
             </Form.Item>
-            <Form.Item>
-                <Button type="primary" htmlType="submit" className="w-full">Submit</Button>
+            <Form.Item className='col-span-2'>
+                <div className='flex gap-2 items-center mt-2'>
+                    <Checkbox color="orange"
+                        size="xs"
+                        className=''
+                    />
+                    <h5 className="opacity-60  text-stone-600 text-base font-normal ">Permitted in photos & videos with other children</h5>
+                </div>
+            </Form.Item>
+            <Form.Item className='col-span-2'>
+                <div className="flex justify-center items-center gap-x-4">
+                    <Link to={'?step=1'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
+                        Previous
+                    </Link>
+                    <button
+                        type='submit'
+                        className='py-2 px-10 rounded-3xl mt-3 text-white  font-semibold bg-staff-pc border border-staff-pc text-lg'
+                    >
+                        Next
+                    </button>
+                </div>
             </Form.Item>
         </Form>
     );

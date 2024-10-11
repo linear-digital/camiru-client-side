@@ -25,7 +25,7 @@ body {
     overflow-y: auto;
     padding-bottom: 50px;
     /* z-index: 0; */
-    
+
 }
 
 .poppins {
@@ -107,6 +107,7 @@ body {
     height: 14px !important;
     color: #187A82 !important;
 }
+
 .enroll2 .MuiInputBase-root {
     height: 40px;
     font-size: 14px !important;
@@ -174,6 +175,7 @@ body {
 .enroll .MuiInputBase-root {
     border: none !important;
 }
+
 .enroll2 .MuiInputBase-root {
     border: none !important;
 }
@@ -188,15 +190,18 @@ input {
     font-weight: 500;
 }
 
-.peer{
+.peer {
     border: 1px solid rgba(0, 0, 0, 0.338);
 }
-.box{
+
+.box {
     cursor: pointer;
 }
+
 .box .overlay {
     display: none;
 }
+
 .box:hover .overlay {
     display: flex;
 }
@@ -207,7 +212,7 @@ input {
     outline: none !important;
 }
 
-.ant-picker-input {
+.statistic .ant-picker-input {
     display: none !important;
     width: 0px !important;
 }

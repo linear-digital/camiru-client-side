@@ -6,6 +6,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { SideDrawer } from './Drawer';
 import { useSelector } from 'react-redux';
 import nameDisplay from '../../util/nameDisplay';
+import moment from 'moment/moment';
 
 
 const Navbar = () => {
@@ -32,7 +33,12 @@ const Navbar = () => {
             >
                 <FontAwesomeIcon icon={faBars} />
             </button>
-            <Icons_panel />
+            <div className="flex items-center gap-x-5">
+                <h5 className='text-primary font-semibold text-sm'>
+                {moment().format('dddd Do MMM , YYYY')}
+                </h5>
+                <Icons_panel />
+            </div>
         </nav>
     );
 };

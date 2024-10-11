@@ -13,7 +13,7 @@ const DownloadCustomReport = () => {
     const [startDate, setStartDate] = React.useState( dayjs().subtract(1, 'month').format('YYYY-MM-DD'));
     const [endDate, setEndDate] = React.useState( dayjs().format('YYYY-MM-DD'));
     return (
-        <div className="w-full mt-10 py-4 lg:h-[89px] bg-slate-50 rounded-xl border border-[#C7F1FF] bg-[#F8FCFF] flex flex-col lg:flex-row items-center px-10 justify-between" >
+        <div className="w-full mt-10 py-4 lg:h-[89px] bg-slate-50 rounded-xl border border-[#C7F1FF] bg-[#F8FCFF] flex flex-col lg:flex-row items-center px-10 justify-between statistic" >
             <h3 className=" text-zinc-800 text-xs font-semibold ">Download a Custom Report</h3>
             <div className='flex lg:flex-row flex-col  gap-1 mt-2 lg:mt-0 items-center'>
                 <label htmlFor='startDate' className=" h-[22px] bg-orange-400 text-xs text-[#333333] rounded flex items-center gap-1 px-3 justify-center" >

@@ -14,7 +14,8 @@ module.exports = withMT({
         'accent': '#96C82C',
         'accent2': '#F8AD47',
         'error': "#F8234F",
-        'staff-pc': "#F8AD47"
+        'staff-pc': "#F8AD47",
+        'staff-bg': "#fff8f9"
       }
     },
   },

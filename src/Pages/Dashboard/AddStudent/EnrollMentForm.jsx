@@ -1,10 +1,10 @@
+/* eslint-disable no-unsafe-optional-chaining */
 
 
 import { DatePicker, DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 import dayjs from 'dayjs';
-import React from 'react';
 import { useState } from 'react';
 import { CheckBoxNew, CheckBoxWithLabel, Row, RowWithChild } from './Common';
 import { Select } from 'antd';
@@ -22,8 +22,8 @@ const EnrollmentForm = ({ setOpen, open }) => {
 
     const { classrooms } = useSelector(state => state.classroom)
 
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
-    const [selectedDays, setSelectedDays] = useState(["M", "Tu", "Wh", "T", "F", "Sa", "Su"]);
+    const days = ["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+    const [selectedDays, setSelectedDays] = useState(["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"]);
     const { childFeilds } = useSelector(state => state.child)
     const dispatch = useDispatch()
     const setData = (data) => {

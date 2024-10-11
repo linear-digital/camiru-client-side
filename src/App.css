@@ -108,6 +108,20 @@ body {
     color: #187A82 !important;
 }
 
+.enroll3 .MuiInputBase-root {
+    height: 40px;
+    font-size: 11px !important;
+    width: 118px;
+    border: #F8AD47 1px solid !important;
+    outline: none !important;
+}
+
+.enroll3 .MuiSvgIcon-root {
+    width: 14px !important;
+    height: 14px !important;
+    color: #F8AD47 !important;
+}
+
 .enroll2 .MuiInputBase-root {
     height: 40px;
     font-size: 14px !important;
@@ -174,6 +188,11 @@ body {
 
 .enroll .MuiInputBase-root {
     border: none !important;
+    outline: none !important;
+}
+.enroll3 .MuiInputBase-root {
+    border: none !important;
+   
 }
 
 .enroll2 .MuiInputBase-root {

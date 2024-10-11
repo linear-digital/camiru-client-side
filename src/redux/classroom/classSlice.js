@@ -2,7 +2,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export const classSlice = createSlice({
-    name: "user",
+    name: "class",
     initialState: {
         classrooms: [],
     },

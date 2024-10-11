@@ -22,5 +22,6 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'no-unused-vars': 'warn',
+    'no-unsafe-optional-chaining': 'off',
   },
 }

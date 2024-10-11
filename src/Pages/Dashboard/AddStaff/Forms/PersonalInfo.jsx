@@ -119,7 +119,6 @@ const PersonalInfo = ({ data, setData }) => {
                             label='Year'
                             defaultValue={dayjs()}
                             views={['year',]}
-                            maxDate={dayjs()}
                             onChange={(e) => {
                                 setDate({
                                     ...date,

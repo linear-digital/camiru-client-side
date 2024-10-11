@@ -1,57 +1,25 @@
-import { DesktopDatePicker, LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { Button, Input } from 'antd';
+
+import {  Input } from 'antd';
 import { Form } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
-import { CheckBoxNew } from '../../AddStudent/Common';
-import { imageUrl, upload } from '../../../../Components/helper/axios.instance';
-import { Spinner } from '@material-tailwind/react';
-import { decrypt } from '../../../../Components/helper/security';
-import { useEffect } from 'react';
 import { useState } from 'react';
-import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 import { DatePicker } from 'antd';
+import { PlusIcon } from '@heroicons/react/24/outline';
 
 const Education = ({ data, setData }) => {
-    const today = new Date();
-    const [date, setDate] = useState({
-        day: today.getDate(),
-        month: today.getMonth(),
-        year: today.getFullYear()
-    });
-    const [gender, setGender] = React.useState("boy")
-    const [loading, setLoading] = React.useState(false)
-    const updateState = (name, value) => {
-        setData({ ...data, [name]: value })
-    }
-    const uploadProfilePic = async (file) => {
-        try {
-            setLoading(true)
-            // Upload the file to a server or cloud storage
-            const formData = new FormData();
-            formData.append('image', file);
-
-            const response = await upload.post('/upload/profile', formData)
-            setLoading(false)
-
-            const data = decrypt(response.data)
-            // Dispatch the URL and other metadata to the store
-            updateState("profilePic", data?.file?.path);
-        } catch (error) {
-            setLoading(false)
-            console.error('Error uploading file:', error);
-        }
-    };
-    useEffect(() => {
-        updateState("gender", gender)
-        const d = new Date(date.year, date.month, date.day)
-        updateState("dob", d)
-    }, [gender, date])
     const onFinish = (data) => {
-        setData((prev) => ({ ...prev, ...data }))
+      
+        const educationGroup = Array.from({ length: Object.keys(data).length / 5 }, (_, i) => ({
+            university: data[`university_${i + 1}`],
+            degree: data[`degree_${i + 1}`],
+            startDate: new Date(data[`startDate_${i + 1}`]),
+            endDate: new Date(data[`endDate_${i + 1}`]),
+            cgpa: data[`cgpa_${i + 1}`],
+        }))
+        setData((prev) => ({ ...prev, education: educationGroup }))
     }
+    const [education, setEducation] = useState([1])
     return (
         <Form className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-6 gap-x-5'
             layout='vertical'
@@ -59,65 +27,77 @@ const Education = ({ data, setData }) => {
             initialValues={{
                 ...data,
                 dob: dayjs(data.dob),
-                gender,
-                profilePic: data?.profilePic || ""
             }}
         >
-            <Form.Item
-                label="University"
-                name="university"
-                className='col-span-3'
-                rules={[{ required: true, message: 'Please University Name' }]}
-            >
-                <Input size='large' placeholder='Enter University Name' />
-            </Form.Item>
-            <Form.Item
-                label="Degree"
-                name="degree"
-                className='col-span-3'
-                rules={[{ required: true, message: 'Please Degree Name' }]}
-            >
-                <Input size='large' placeholder='Enter Degree Name' />
-            </Form.Item>
-            <Form.Item
-                label="Start Date"
-                name="start-date"
-                className='col-span-2'
-                rules={[{ required: true, message: 'Enter Start Date' }]}
-            >
-                <DatePicker
-                    defaultValue={dayjs()}
-                    format={"YYYY/MM/DD"}
-                    className='w-full'
-                    size='large'
-                    needConfirm
-                />
-            </Form.Item>
-            <Form.Item
-                label="End Date"
-                name="end-date"
-                className='col-span-2'
-                rules={[{ required: true, message: 'Enter End Date' }]}
-            >
-                <DatePicker
-                    defaultValue={dayjs()}
-                    format={"YYYY/MM/DD"}
-                    className='w-full'
-                    size='large'
-                    needConfirm
-                />
-            </Form.Item>
-            <Form.Item
-                label="CGPA"
-                name="cgpa"
-                className='col-span-2'
-                rules={[{ required: true, message: '' }]}
-            >
-               <Input size='large' placeholder='E' />
+            {
+                education.map((i) => (
+                    <div key={i} className="grid grid-cols-6 gap-5 col-span-6">
+                        <Form.Item
+                            label="University"
+                            name={`university_${i}`}
+                            className='col-span-3'
+                            rules={[{ required: true, message: 'Please University Name' }]}
+                        >
+                            <Input size='large' placeholder='Enter University Name' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Degree"
+                            name={`degree_${i}`}
+                            className='col-span-3'
+                            rules={[{ required: true, message: 'Please Degree Name' }]}
+                        >
+                            <Input size='large' placeholder='Enter Degree Name' />
+                        </Form.Item>
+                        <Form.Item
+                            label="Start Date"
+                            name={`startDate_${i}`}
+                            className='col-span-2'
+                            rules={[{ required: true, message: 'Please Enter Start Date' }]}
+                        >
+                            <DatePicker
+                                format={"DD.MM.YYYY"}
+                                className='w-full'
+                                size='large'
+                                placeholder='Enter Start Date'
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="End Date"
+                            name={`endDate_${i}`}
+                            className='col-span-2'
+                            rules={[{ required: true, message: 'Please Enter End Date' }]}
+                        >
+                            <DatePicker
+                                 format={"DD.MM.YYYY"}
+                                className='w-full'
+                                size='large'
+                                placeholder='Enter End Date'
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            label="CGPA"
+                            name={`cgpa_${i}`}
+                            className='col-span-2'
+                            rules={[{ required: true, message: 'Please Enter CGPA' }]}
+                        >
+                            <Input size='large' placeholder='Enter CGPA' />
+                        </Form.Item>
+                    </div>
+                ))
+            }
+            <Form.Item className='col-span-6 mt-5'>
+                <div className='flex items-center border border-staff-pc py-2  rounded gap-x-3 text-base w-[190px] justify-center cursor-pointer'
+                onClick={() => setEducation([...education, education.length + 1])}
+                >
+                    <span>
+                        Add Education
+                    </span>
+                    <PlusIcon className='w-5 h-5' />
+                </div>
             </Form.Item>
             <Form.Item className='col-span-6'>
                 <div className="flex justify-center items-center gap-x-4">
-                    <Link to={'?step=1'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
+                    <Link to={'?step=0'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
                         Previous
                     </Link>
                     <button

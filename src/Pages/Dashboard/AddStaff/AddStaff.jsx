@@ -5,6 +5,7 @@ import Title from './Title';
 import PersonalInfo from './Forms/PersonalInfo';
 import { useNavigate } from 'react-router-dom';
 import Education from './Forms/Education';
+import Enrollment from './Forms/Enrollment';
 
 const AddStaff = () => {
     const steps = [
@@ -35,7 +36,11 @@ const AddStaff = () => {
         }
     ]
     const [current, setCurrent] = React.useState(0);
-    const [allData, setAllData] = React.useState({});
+    const [allData, setAllData] = React.useState({
+        status: "Active",
+        shifting: "Morning",
+        schedule: [],
+    });
     const navigate = useNavigate()
     const query = new URLSearchParams(window.location.search)
     const currentStep = query.get('step') || 0
@@ -63,6 +68,9 @@ const AddStaff = () => {
                 }
                 {
                     steps[currentStep].step === 2 && <Education data={allData} setData={setAllData} />
+                }
+                {
+                    steps[currentStep].step === 3 && <Enrollment data={allData} setData={setAllData} />
                 }
             </div>
         </DB_Page_Layout>

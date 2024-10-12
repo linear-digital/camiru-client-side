@@ -51,6 +51,7 @@ import AuthChecker from "../Layouts/AuthChecker";
 import App from "../App";
 import StudentLogin from "../Pages/Public/Auth/StudentLogin";
 import AddStaff from "../Pages/Dashboard/AddStaff/AddStaff";
+import StaffProfile from "../Pages/Dashboard/StaffProfile/StaffProfile";
 
 
 
@@ -205,7 +206,17 @@ const router = createBrowserRouter([
                         ]
                     },
                     {
-                        path: ":role/:id",
+                        path: "staff/:id",
+                        element: <Outlet />,
+                        children: [
+                            {
+                                path: "profile",
+                                element: <StaffProfile />
+                            }
+                        ]
+                    },
+                    {
+                        path: "student/:id",
                         element: <Outlet />,
                         children: [
                             {

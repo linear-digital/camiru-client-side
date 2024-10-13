@@ -1,3 +1,4 @@
+import { Typography } from 'antd';
 import { Table } from 'antd';
 import moment from 'moment';
 import React from 'react';
@@ -73,24 +74,53 @@ const TimeCardTable = () => {
                     className: 'text-primary2',
                     showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
                 }}
-                footer={() => <div className="grid grid-cols-7">
-                    <div className="text-[#187a82] text-sm font-semibold leading-normal text-center">Weekly  Total</div>
-                    <div className='col-span-2 text-[#187a82] text-sm font-semibold '>
-                        01.07.2024 - 06.07.2024
-                    </div>
-                    <div className="text-[#187a82] text-sm font-semibold  leading-normal col-span-1 text-start">
-                        ** Hours
-                    </div>
-                    <div className="text-[#187a82] text-sm font-semibold  leading-normal col-span-1 text-start">
-                        ** Hours
-                    </div>
+                summary={(pageData) => {
+                    let totalBorrow = 0;
+                    let totalRepayment = 0;
+                    pageData.forEach(({ borrow, repayment }) => {
+                        totalBorrow += borrow;
+                        totalRepayment += repayment;
+                    });
+                    return (
+                        <>
+                            <Table.Summary.Row>
+                                <Table.Summary.Cell index={0}>
 
-                    <div className="text-[#187a82] col-span-1 text-sm font-semibold  leading-normal text-start">
-                        ** Hours
-                    </div>
-                    <div className="text-[#187a82] text-sm font-semibold  leading-normal">* Minutes</div>
-                </div>
-                }
+                                </Table.Summary.Cell>
+                                <Table.Summary.Cell index={1} >
+                                    <div className="text-[#187a82] text-sm font-semibold leading-normal text-start">Weekly  Total</div>
+                                </Table.Summary.Cell>
+                                
+                                <Table.Summary.Cell index={2} colSpan={2}>
+                                    <div className=' text-[#187a82] text-sm font-semibold text-center'>
+                                        01.07.2024 - 06.07.2024
+                                    </div>
+                                </Table.Summary.Cell>
+                               
+                                <Table.Summary.Cell index={3} >
+                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                        ** Hours
+                                    </div>
+                                </Table.Summary.Cell>
+                                <Table.Summary.Cell index={4} >
+                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                        ** Hours
+                                    </div>
+                                </Table.Summary.Cell>
+                                <Table.Summary.Cell index={5} >
+                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                        ** Hours
+                                    </div>
+                                </Table.Summary.Cell>
+                                <Table.Summary.Cell index={6} >
+                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                        ** Hours
+                                    </div>
+                                </Table.Summary.Cell>
+                            </Table.Summary.Row>
+                        </>
+                    );
+                }}
             />
         </div>
     );

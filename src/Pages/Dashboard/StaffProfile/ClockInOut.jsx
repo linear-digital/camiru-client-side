@@ -2,6 +2,7 @@ import { Table } from 'antd';
 import moment from 'moment';
 import React from 'react';
 import { Printer } from './Navigation.icon';
+import { Typography } from 'antd';
 
 const ClockInOut = () => {
     const columns = [
@@ -52,7 +53,7 @@ const ClockInOut = () => {
         }),
     };
     return (
-        <div className='w-full bg-[#FFF8F9CC]'>
+        <div className='w-full bg-[#FFF8F9CC] clock-in-out'>
             <Table
                 rowSelection={{
                     type: 'checkbox',

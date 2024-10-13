@@ -58,7 +58,9 @@ const ClockInOut = () => {
                     type: 'checkbox',
                     ...rowSelection,
                 }}
-                rowClassName={'hover:bg-staff-bg'}
+                className='border border-staff-pc rounded-lg'
+
+                rowClassName={'hover:bg-staff-bg '}
                 columns={columns} dataSource={[{}, {}, {}, {}, {}, {}]}
                 pagination={{
                     className: 'text-primary2',

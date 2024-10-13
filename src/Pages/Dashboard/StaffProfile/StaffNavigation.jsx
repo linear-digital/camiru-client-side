@@ -11,7 +11,7 @@ const StaffNavigation = () => {
         <div
             className='pt-5 w-full  border-b-2 border-gray-200 relative mt-[70px] '>
             <div className="flex absolute bottom-[-2px] items-center gap-x-5 justify-between w-full ">
-                <Link to={'?nav=clock-in-out'} className={`border-b-2 pb-5  ${location.search.includes('clock-in-out') && "border-primary2 text-primary2"} text-base flex items-center gap-x-4 px-5`}>
+                <Link to={'?nav=clock-in-out'} className={`border-b-2 pb-5  ${(location.search.includes('clock-in-out') || !location.search) && "border-primary2 text-primary2"} text-base flex items-center gap-x-4 px-5`}>
                     <ClockInOut />  Clock In-Out
                 </Link>
                 <Link to={'?nav=address-contact'} className={`border-b-2 pb-5  ${location.search.includes('address-contact') && "border-primary2 text-primary2"} text-base flex items-center gap-x-4 px-5`}>

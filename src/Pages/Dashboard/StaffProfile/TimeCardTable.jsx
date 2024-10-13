@@ -7,10 +7,8 @@ const TimeCardTable = () => {
         {
             key: '1',
             title: 'Day',
-            dataIndex: 'date',
-
+            dataIndex: 'day',
             render: (date, index) => {
-                console.log(date);
                 return moment(date).format('dddd')
             },
         },
@@ -78,7 +76,7 @@ const TimeCardTable = () => {
                 footer={() => <div className="grid grid-cols-7">
                     <div className="text-[#187a82] text-sm font-semibold leading-normal text-center">Weekly  Total</div>
                     <div className='col-span-2 text-[#187a82] text-sm font-semibold '>
-                        01.07.2024-06.07.2024
+                        01.07.2024 - 06.07.2024
                     </div>
                     <div className="text-[#187a82] text-sm font-semibold  leading-normal col-span-1 text-start">
                         ** Hours

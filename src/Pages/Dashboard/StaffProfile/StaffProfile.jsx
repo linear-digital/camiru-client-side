@@ -93,7 +93,7 @@ const StaffProfile = () => {
             <StaffNavigation />
             <section className='mt-10 flex items-start gap-5 w-full'>
                 {
-                    location.search.includes('clock-in-out') && <ClockInOut />
+                    (location.search.includes('clock-in-out') || !location.search) && <ClockInOut />
                 } {
                     location.search.includes('address-contact') && <Address_Contact />
                 }

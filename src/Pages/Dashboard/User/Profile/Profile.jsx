@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import ProfileCard from '../../Checkin/ProfileCard';
 import Header from './Header';
@@ -6,7 +7,6 @@ import { Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Filter from '../../Checkin/Filter';
 import { useParams } from 'react-router-dom';
-import StaffProfileCard from './_UI/StaffProfileCard';
 import { useEffect } from 'react';
 import api, { fetcher } from '../../../../Components/helper/axios.instance';
 import { useDispatch } from 'react-redux';
@@ -81,12 +81,7 @@ const Profile = () => {
                 name={pageName}
                 desc={"Checkout Roxie Word and take your action !!"}
             />
-            {
-                params.role === "staff" ?
-                    <StaffProfileCard />
-                    :
-                    <ProfileCard user={selected} />
-            }
+            <ProfileCard user={selected} />
 
             <section className='mt-10 flex items-start gap-5 '>
                 {

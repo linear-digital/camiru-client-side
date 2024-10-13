@@ -9,11 +9,16 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 import toast from 'react-hot-toast';
-import StaffProfileCard from '../User/Profile/_UI/StaffProfileCard';
+
 import { fetcher } from '../../../Components/helper/axios.instance';
 import { setSelectedSt } from '../../../redux/child/childSlice';
-import Loader from '../../../Layouts/Loader';
+
 import Filter from './Filter';
+import StaffProfileCard from './StaffProfileCard';
+import StaffNavigation from './StaffNavigation';
+import ClockInOut from './ClockInOut';
+import Address_Contact from './Address_Contact';
+import Loader from '../../../Components/Loader';
 
 const StaffProfile = () => {
     const location = useLocation();
@@ -82,9 +87,13 @@ const StaffProfile = () => {
                 desc={"Select your class to checkout the reports"}
             />
             <StaffProfileCard />
-
-            <section className='mt-10 flex items-start gap-5 '>
-                <Outlet />
+            <StaffNavigation />
+            <section className='mt-10 flex items-start gap-5 w-full'>
+                {
+                    location.search.includes('clock-in-out') && <ClockInOut />
+                } {
+                    location.search.includes('address-contact') && <Address_Contact />
+                }
             </section>
         </div>
     );

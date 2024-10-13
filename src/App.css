@@ -235,3 +235,7 @@ input {
     display: none !important;
     width: 0px !important;
 }
+
+.clock-in-out .ant-table-thead {
+  background-color: transparent !important;
+}

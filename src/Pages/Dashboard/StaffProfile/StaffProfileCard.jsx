@@ -9,9 +9,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Image } from 'antd';
 import React from 'react';
 import { useState } from 'react';
-import { Bookmark, HasTag } from '../../../../../util/icons';
 import { useSelector } from 'react-redux';
-import nameDisplay from '../../../../../util/nameDisplay';
+import nameDisplay from '../../../util/nameDisplay';
+
 
 const StaffProfileCard = () => {
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
@@ -19,9 +19,9 @@ const StaffProfileCard = () => {
     const { selected: user, refreshChild } = useSelector(state => state.child)
     return (
         <section className='mt-10 p-5 w-full rounded-lg lg:flex items-start gap-10 justify-between bg-staff-bg'>
-            <div className="rounded-lg overflow-hidden min-w-[242px] max-w-[242px] h-[285px] ">
-                <Image
-                    className='rounded-lg overflow-hidden w-full h-full'
+            <div className="overflow-hidden min-w-[242px] max-w-[235px] min-h-[255px]  p-2 bg-white border border-staff-pc">
+                <img
+                    className='overflow-hidden object-fill max-h-[255px] w-full h-full'
                     src="https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"
                 />
             </div>
@@ -29,7 +29,9 @@ const StaffProfileCard = () => {
                 <div className="flex justify-between items-center">
                     <div className="">
                         <h1 className="text-black text-[20.89px] font-semibold leading-10 tracking-tight">
-                            {nameDisplay(user)}
+                            {nameDisplay(user)} <span className='text-sm text-green-500 font-normal'>
+                            (Active)
+                            </span>
                         </h1>
                         <p className="mt-1 text-cyan-700 text-xs font-semibold">
                             Infants

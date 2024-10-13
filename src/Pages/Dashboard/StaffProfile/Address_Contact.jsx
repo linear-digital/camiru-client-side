@@ -6,17 +6,20 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import nameDisplay from '../../../../../util/nameDisplay';
+
 import { useCountries } from 'use-react-countries';
 import { useEffect } from 'react';
-import api, { fetcher } from '../../../../../Components/helper/axios.instance';
-import { setSelectedSt } from '../../../../../redux/child/childSlice';
+
+
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { Form } from 'antd';
 import { Select } from 'antd';
 import { Input } from 'antd';
-import Loader from '../../../../../Components/Loader';
+import nameDisplay from '../../../util/nameDisplay';
+import { fetcher } from '../../../Components/helper/axios.instance';
+import { setSelectedSt } from '../../../redux/child/childSlice';
+import Loader from '../../../Layouts/Loader';
 
 const Address_Contact = ({ edit }) => {
     const location = useLocation();
@@ -98,12 +101,12 @@ const Address_Contact = ({ edit }) => {
         return <Loader />
     }
     return (
-        <div className='w-full border pl-5 py-[55px] rounded-xl poppins'>
-            <div className="lg:flex gap-10">
+        <div className='w-full border pl-5 py-[55px] rounded-xl poppins bg-staff-bg'>
+            <div className="lg:flex gap-10 justify-between px-10">
                 <h1 className="text-slate-900 lg:text-2xl text-xl mb-3 lg:mb-0 font-bold ">Address & Contact</h1>
                 {
                     !edit && <Link to={location.pathname.includes("edit") ? `${location.pathname}` : `${location.pathname}/edit`} className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
-                        Advance Edit Page
+                        Edit Page
                         <FontAwesomeIcon icon={faPen} className='text-[#FFBB3B]' />
                     </Link>
                 }
@@ -270,42 +273,6 @@ const Address_Contact = ({ edit }) => {
                     </div>
                     :
                     <div className='mt-10'>
-                        <div className="lg:grid grid-cols-4 gap-10 lg:mb-8 mb-5 items-start">
-                            <div className="col-span-1 lg:justify-end mb-3 lg:mb-0 flex items-center">
-                                <h4 className="text-zinc-700 text-sm font-semibold">
-                                    Parents
-                                </h4>
-                            </div>
-                            <div className="col-span-3 flex items-center gap-3">
-                            {
-                                    (selected?.contacts?.filter((s) => s.guardianType === "parent" || s.guardianType === "parents"))?.map((contact, index) => <Gurdian
-                                        key={index}
-                                        name={nameDisplay(contact)}
-                                        phone={contact.home}
-                                        other={contact.other}
-                                        email={contact.email}
-                                    />)
-                                }
-                            </div>
-                        </div>
-                        <div className="lg:grid grid-cols-4 gap-10 mb-8 items-start">
-                            <div className="col-span-1 lg:justify-end mb-3 lg:mb-0 flex items-center">
-                                <h4 className="text-zinc-700 text-sm font-semibold">
-                                    Guardians
-                                </h4>
-                            </div>
-                            <div className="col-span-3 flex flex-wrap items-center gap-3">
-                                {
-                                    (selected?.contacts?.filter((s) => s.guardianType === "guardian"))?.map((contact, index) => <Gurdian
-                                        key={index}
-                                        name={nameDisplay(contact)}
-                                        phone={contact.home}
-                                        other={contact.other}
-                                        email={contact.email}
-                                    />)
-                                }
-                            </div>
-                        </div>
                         <Row
 
                             title={"Address"}

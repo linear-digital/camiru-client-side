@@ -3,7 +3,8 @@ import Filter from './Filter';
 import { Image } from 'antd';
 import ProfileCard from './ProfileCard';
 import Table from './Table';
-import StaffProfileCard from '../User/Profile/_UI/StaffProfileCard';
+import StaffProfileCard from '../StaffProfile/StaffProfileCard';
+
 
 
 const Checkin = ({ page }) => {

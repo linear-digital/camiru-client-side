@@ -10,6 +10,7 @@ module.exports = withMT({
     extend: {
       colors: {
         'primary': '#15ACDE',
+        'primary2': '#187A82',
         'secondary': '#96C82C',
         'accent': '#96C82C',
         'accent2': '#F8AD47',

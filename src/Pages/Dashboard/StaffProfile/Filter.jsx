@@ -9,6 +9,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { DatePicker } from 'antd';
+import dayjs from 'dayjs';
 
 const Filter = ({ name, desc, color }) => {
     const { selected } = useSelector(state => state.child)
@@ -42,17 +44,22 @@ const Filter = ({ name, desc, color }) => {
             <div className='flex gap-5 items-center'>
                 <ClassRoomSelector rooms={classrooms} selected={selected} />
                 <div className="flex items-center gap-3">
-                    <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
-                        Nov 21 , 2024
-                        <FontAwesomeIcon icon={faChevronDown} />
-                    </button>
+                    
+                    <DatePicker
+                        format={'DD MMM, YYYY'}
+                        className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500"
+                        placeholder='Start Date'
+                        defaultValue={dayjs().subtract(7, 'day')}
+                    />
                     <div className='text-amber-500 text-sm'>
                         To
                     </div>
-                    <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500">
-                        Nov 21 , 2024
-                        <FontAwesomeIcon icon={faChevronDown} />
-                    </button>
+                    <DatePicker
+                        format={'DD MMM, YYYY'}
+                        className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white border border-amber-500 rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-xs text-amber-500"
+                        placeholder='End Date'
+                        defaultValue={dayjs()}
+                    />
                 </div>
 
                 <button className=" h-[47px] pl-[19px] pr-[18px] py-[12.59px] bg-white bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-lg text-amber-600 font-semibold">

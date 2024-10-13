@@ -19,6 +19,9 @@ import StaffNavigation from './StaffNavigation';
 import ClockInOut from './ClockInOut';
 import Address_Contact from './Address_Contact';
 import Loader from '../../../Components/Loader';
+import Enrollment from './Enrollment';
+import ScheduleTimeOff from './ScheduleTimeOff';
+import TimeCard from './TimeCard';
 
 const StaffProfile = () => {
     const location = useLocation();
@@ -93,6 +96,15 @@ const StaffProfile = () => {
                     location.search.includes('clock-in-out') && <ClockInOut />
                 } {
                     location.search.includes('address-contact') && <Address_Contact />
+                }
+                {
+                    location.search.includes('enrollment') && <Enrollment />
+                }
+                {
+                    location.search.includes('schedule-absence') && <ScheduleTimeOff />
+                }
+                {
+                    location.search.includes('time-card') && <TimeCard />
                 }
             </section>
         </div>

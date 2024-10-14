@@ -236,3 +236,13 @@ input {
     width: 0px !important;
 }
 
+.ant-pagination-item-active a {
+    color: var(--tw-text-opacity) !important;
+}
+.ant-pagination-item-active {
+    border-color: var(--tw-text-opacity) !important;
+}
+
+.ant-table-cell {
+    padding-left: 30px !important; /* Adjust this value as needed */
+}

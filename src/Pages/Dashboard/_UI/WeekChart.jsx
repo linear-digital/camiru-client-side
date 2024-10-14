@@ -76,12 +76,12 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar , month, year}) => {
     }, [type, month, year])
     return (
 
-        <section className='h-[110px] flex gap-1 justify-between mt-5'>
+        <section className='lg:h-[110px] h-[100px] flex gap-1 justify-between mt-5'>
             {
                 days.map((day, index) => (
                     <Tooltip trigger="hover" placement="top" title={`Checked-in: ${day.checked_in} | Absent: ${day.absent}`} key={index}>
                         <div onClick={() => setSelectedBar(day)} className='flex flex-col gap-1 items-center cursor-pointer justify-start'>
-                            <div className='h-[90px] w-[10px] bg-[#ecf1f8e4] rounded-lg relative overflow-hidden'>
+                            <div className='lg:h-[90px] h-[70px] lg:w-[10px] w-[5px] bg-[#ecf1f8e4] rounded-lg relative overflow-hidden'>
                                 <div className={`absolute ${day.selected ? `${!day.active ? "bg-[#15acde67]" : "bg-[#15ACDE]"} ` : ''}  bottom-0`}
                                     style={{
                                         height: `${(day.checked_in / day.total) * 100}%`,
@@ -97,7 +97,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar , month, year}) => {
                             </div>
                             {
                                 day.selected && <div className='flex justify-between items-center'>
-                                    <p className='text-gray-600 text-xs'>{moment(day.day).format('ddd')}</p>
+                                    <p className='text-gray-600 lg:text-xs text-[8px]'>{moment(day.day).format('ddd')}</p>
                                 </div>
                             }
 

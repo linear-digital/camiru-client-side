@@ -62,7 +62,7 @@ const FormPreview = ({ data, open, setOpen, setIndex }) => {
                 <Card title={"Gender"} value={data?.gender} />
                 <Card title={"Status"} value={data?.status} />
                 <Card title={"Rotation"} value={data?.rotation} />
-                <Card title={"Days"} value={data?.days.map(day => <span className="text-slate-900 text-xs font-semibold px-2">{day}</span>)} />
+                <Card title={"Days"} value={data?.days.map(day => <span key={day} className="text-slate-900 text-xs font-semibold px-2">{day}</span>)} />
 
                 <Card title={"Class Room"} value={className?.name} />
                 <Card title={"Address"} value={data?.address} />

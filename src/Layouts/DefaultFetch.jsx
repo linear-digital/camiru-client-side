@@ -6,6 +6,7 @@ import { setClassRooms } from '../redux/classroom/classSlice';
 import { setCurrentUser } from '../redux/user/userSlice';
 import Cookie from 'js-cookie';
 import { isExpired } from 'react-jwt';
+import { setBrowserWidth } from '../redux/setting/settingSlice';
 
 const DefaultFetch = () => {
     const dispatch = useDispatch()
@@ -31,6 +32,16 @@ const DefaultFetch = () => {
             }
         })()
     }, [token])
+
+    useEffect(() => {
+        const handleResize = () => {
+            dispatch(setBrowserWidth(window.innerWidth))
+        };
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
     return
 };
 

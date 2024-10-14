@@ -14,17 +14,23 @@ import Login from '../Pages/Public/Auth/Login';
 const UserLayout = () => {
     const location = useLocation();
     const { currentUser } = useSelector(state => state.user);
+    const { width } = useSelector(state => state.settings);
     const token = Cookie.get('token-camiru')
-    
+
     return (
         <main className='w-full h-screen flex lg:gap-6 bg-[#F1F6FA]'>
             <DefaultFetch />
             {
                 currentUser ?
                     <>
-                        <div className='hidden lg:block max-w-[250px]'>
-                            <Sidebar />
-                        </div>
+                        {
+                            !(width < 1200 && width > 1000) ?
+                                <div className="hidden lg:block max-w-[250px]">
+                                    <Sidebar />
+                                </div>
+                                :
+                                null
+                        }
                         <section className='w-full max-w-full h-full overflow-auto pb-20 lg:pb-5'>
                             <div className="container mx-auto">
                                 {(!location.pathname.includes('dashboard/profile') && !location.pathname.includes('dashboard/support')) && <Navbar />}
@@ -32,9 +38,9 @@ const UserLayout = () => {
                             </div>
                         </section>
                     </>
-                        : token ? <Loader /> : <Login />
+                    : token ? <Loader /> : <Login />
             }
-        </main>
+        </main >
     );
 };
 

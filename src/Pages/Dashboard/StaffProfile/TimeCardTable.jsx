@@ -61,59 +61,54 @@ const TimeCardTable = () => {
         }),
     };
     return (
-        <div>
+        <div className='custom-left-padding'>
             <Table
                 rowSelection={{
                     type: 'checkbox',
                     ...rowSelection,
                 }}
-                rowClassName={'hover:bg-staff-bg px-5'}
+                rowClassName={'hover:bg-staff-bg pl-6'} // Increase left padding here
                 columns={columns}
-                dataSource={[{}, {}, {}, {}, {}, {}, {}]}
+                
+                dataSource={[{key: '1'}, { key: '2'}, {}, {}, {}, {}, {}]}
                 pagination={{
                     className: 'text-primary2',
                     showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`,
                 }}
                 summary={(pageData) => {
-                    let totalBorrow = 0;
-                    let totalRepayment = 0;
-                    pageData.forEach(({ borrow, repayment }) => {
-                        totalBorrow += borrow;
-                        totalRepayment += repayment;
-                    });
                     return (
                         <>
                             <Table.Summary.Row>
-                                <Table.Summary.Cell index={0}>
+                                <Table.Summary.Cell index={0}></Table.Summary.Cell>
+                                <Table.Summary.Cell index={1}>
+                                    <div className="text-[#187a82] text-sm font-semibold leading-normal text-start">
+                                        Weekly Total
+                                    </div>
+                                </Table.Summary.Cell>
 
-                                </Table.Summary.Cell>
-                                <Table.Summary.Cell index={1} >
-                                    <div className="text-[#187a82] text-sm font-semibold leading-normal text-start">Weekly  Total</div>
-                                </Table.Summary.Cell>
-                                
                                 <Table.Summary.Cell index={2} colSpan={2}>
-                                    <div className=' text-[#187a82] text-sm font-semibold text-center'>
+                                    <div className="text-[#187a82] text-sm font-semibold text-center">
                                         01.07.2024 - 06.07.2024
                                     </div>
                                 </Table.Summary.Cell>
-                               
-                                <Table.Summary.Cell index={3} >
-                                    <div className=' text-[#187a82] text-sm font-semibold '>
+
+                                <Table.Summary.Cell index={3}>
+                                    <div className="text-[#187a82] text-sm font-semibold">
                                         ** Hours
                                     </div>
                                 </Table.Summary.Cell>
-                                <Table.Summary.Cell index={4} >
-                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                <Table.Summary.Cell index={4}>
+                                    <div className="text-[#187a82] text-sm font-semibold">
                                         ** Hours
                                     </div>
                                 </Table.Summary.Cell>
-                                <Table.Summary.Cell index={5} >
-                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                <Table.Summary.Cell index={5}>
+                                    <div className="text-[#187a82] text-sm font-semibold">
                                         ** Hours
                                     </div>
                                 </Table.Summary.Cell>
-                                <Table.Summary.Cell index={6} >
-                                    <div className=' text-[#187a82] text-sm font-semibold '>
+                                <Table.Summary.Cell index={6}>
+                                    <div className="text-[#187a82] text-sm font-semibold">
                                         ** Hours
                                     </div>
                                 </Table.Summary.Cell>

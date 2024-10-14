@@ -23,6 +23,7 @@ const Sidebar = ({ setOpen }) => {
     const [collapse, setCollapse] = React.useState(false);
     const { currentUser } = useSelector(state => state.user)
     const { classrooms } = useSelector(state => state.classroom)
+    const { width } = useSelector(state => state.settings)
     const [paths, setPaths] = React.useState([]);
     useEffect(() => {
         if (classrooms) {
@@ -41,7 +42,8 @@ const Sidebar = ({ setOpen }) => {
         if (search) {
             document.title = classrooms.find(c => c._id === search)?.name?.toUpperCase() || 'Classroom'
         }
-    },[search])
+    }, [search])
+
     return (
         <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-auto bg-white`}>
             <div>
@@ -52,8 +54,8 @@ const Sidebar = ({ setOpen }) => {
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
                         paths.map((link, index) => {
-                            return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path} 
-                            name={link.name }
+                            return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path}
+                                name={link.name}
                             />
                         })
                     }
@@ -84,7 +86,7 @@ const Sidebar = ({ setOpen }) => {
 
 export default Sidebar;
 
-export const NavigationCard = ({ link, active, onClick, isCollapse ,name}) => {
+export const NavigationCard = ({ link, active, onClick, isCollapse, name }) => {
     return <li className='mb-1 w-full'>
         {
             link?.children ?
@@ -99,7 +101,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse ,name}) => {
                         })
                     }
                 </ul>}>
-                    <button onClick={onClick}  className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
+                    <button onClick={onClick} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
                         {
                             active &&
                             <span className='float-left'>
@@ -161,7 +163,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse ,name}) => {
     </li>
 }
 
-const Icon = ({ }) => {
+const Icon = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="6" height="44" viewBox="0 0 6 44" fill="none">
         <path d="M0 0.416992C1.333 0.416992 2.61141 0.949235 3.55398 1.89663C4.49655 2.84403 5.02609 4.12898 5.02609 5.4688V38.3056C5.02609 39.6454 4.49655 40.9303 3.55398 41.8777C2.61141 42.8251 1.333 43.3574 0 43.3574H0V0.416992Z" fill="white" />
     </svg>

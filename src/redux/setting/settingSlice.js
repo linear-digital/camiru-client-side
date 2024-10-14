@@ -5,14 +5,18 @@ export const settingSlice = createSlice({
     name: "socket",
     initialState: {
         settings: {},
+        width: window.innerWidth
     },
     reducers: {
         setSettings: (state, action) => {
             state.settings = action.payload;
         },
+        setBrowserWidth: (state, action) => {
+            state.width = action.payload;
+        }
     },
 });
 
-export const { setSettings } = settingSlice.actions;
+export const { setSettings, setBrowserWidth } = settingSlice.actions;
 const settingReducer = settingSlice.reducer
 export default settingReducer;

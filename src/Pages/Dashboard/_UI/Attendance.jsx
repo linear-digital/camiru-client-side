@@ -15,7 +15,7 @@ const Attendance = () => {
     const [active, setActive] = React.useState(true);
     const [date, setDate] = React.useState(new Date());
     return (
-        <div>
+        <div className=''>
             <div className='lg:p-5 p-3 mt-10 border border-[#C7F1FF] bg-[#F8FCFF] rounded-xl'>
                 <div className="flex justify-between items-center">
                     <h2 className=" text-black lg:text-sm text-xs font-bold poppins">Attendance</h2>

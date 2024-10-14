@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { Tooltip } from 'antd';
 
 
-const ChartComponent = ({ type, selectedBar, setSelectedBar , month, year}) => {
+const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
 
     const date = new Date();
     const [sDate, setSDate] = React.useState(date);
@@ -81,7 +81,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar , month, year}) => {
                 days.map((day, index) => (
                     <Tooltip trigger="hover" placement="top" title={`Checked-in: ${day.checked_in} | Absent: ${day.absent}`} key={index}>
                         <div onClick={() => setSelectedBar(day)} className='flex flex-col gap-1 items-center cursor-pointer justify-start'>
-                            <div className='lg:h-[90px] h-[70px] lg:w-[10px] w-[5px] bg-[#ecf1f8e4] rounded-lg relative overflow-hidden'>
+                            <div className='lg:h-[90px] h-[70px] lg:w-[10px] w-[7px] bg-[#ecf1f8e4] rounded-lg relative overflow-hidden'>
                                 <div className={`absolute ${day.selected ? `${!day.active ? "bg-[#15acde67]" : "bg-[#15ACDE]"} ` : ''}  bottom-0`}
                                     style={{
                                         height: `${(day.checked_in / day.total) * 100}%`,
@@ -96,9 +96,14 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar , month, year}) => {
                                 />
                             </div>
                             {
-                                day.selected && <div className='flex justify-between items-center'>
-                                    <p className='text-gray-600 lg:text-xs text-[8px]'>{moment(day.day).format('ddd')}</p>
-                                </div>
+                                type === "monthly" ?
+                                    day.selected && <div className='flex justify-between items-center'>
+                                        <p className='text-gray-600 lg:text-xs text-[8px]'>{moment(day.day).format('D')}</p>
+                                    </div>
+                                    :
+                                    day.selected && <div className='flex justify-between items-center'>
+                                        <p className='text-gray-600 lg:text-xs text-[8px]'>{moment(day.day).format('ddd')}</p>
+                                    </div>
                             }
 
                         </div>

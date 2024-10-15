@@ -8,6 +8,7 @@ import Education from './Forms/Education';
 import Enrollment from './Forms/Enrollment';
 import Records from './Forms/Records';
 import Notes from './Forms/Notes';
+import { useLocation } from 'react-router-dom';
 
 const AddStaff = () => {
     const steps = [
@@ -37,14 +38,16 @@ const AddStaff = () => {
             full_desc: "Additional Notes",
         }
     ]
-    const [current, setCurrent] = React.useState(0);
     const [allData, setAllData] = React.useState({
         status: "Active",
         shifting: "Morning",
         schedule: [],
+        profilePic: ''
     });
-    const navigate = useNavigate()
-    const query = new URLSearchParams(window.location.search)
+    const location = useLocation()
+
+    const query = new URLSearchParams(location.search)
+    
     const currentStep = query.get('step') || 0
   
     return (
@@ -55,15 +58,11 @@ const AddStaff = () => {
             </div>
             <Steps
                 current={Number(currentStep)}
-                onChange={(e) => {
-                    setCurrent(e)
-                    navigate(`?step=${e}`)
-                }}
                 className='py-10'
                 labelPlacement="vertical"
                 items={steps}
             />
-            <Title active={steps[current]} />
+            <Title active={steps.find((_step, index)=> index === Number(currentStep))} />
             <div className="mt-5">
                 {
                     steps[currentStep].step === 1 && <PersonalInfo data={allData} setData={setAllData} />

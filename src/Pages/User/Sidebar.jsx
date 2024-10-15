@@ -12,6 +12,7 @@ import { imageUrl } from '../../Components/helper/axios.instance';
 import { Popover } from 'antd';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Avatar } from 'antd';
 
 const Sidebar = ({ setOpen }) => {
     const location = useLocation();
@@ -64,8 +65,9 @@ const Sidebar = ({ setOpen }) => {
             <div className='w-full bg-accent h-16 flex items-center pl-4 justify-between'>
                 <Link to={'/dashboard/profile'} className="flex items-center gap-4">
                     {/* <div className="w-10 h-10 bg-white rounded-full" /> */}
-                    <img src={imageUrl(currentUser?.profilePic)} alt=""
-                        className="w-10 h-10 bg-white rounded-full object-cover"
+                    <Avatar src={imageUrl(currentUser?.profilePic)}
+                        size={40}
+                        className='border-1 border-white'
                     />
                     {
                         !collapse && <div>

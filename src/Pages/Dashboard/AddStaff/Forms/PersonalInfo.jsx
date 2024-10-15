@@ -49,7 +49,7 @@ const PersonalInfo = ({ data, setData }) => {
     useEffect(() => {
         updateState("gender", gender)
         const d = new Date(date.year, date.month, date.day)
-        updateState("dob", d.toString())
+        updateState("dob", d.toISOString())
     }, [gender, date])
     const onFinish = (values) => {
         setData(values)
@@ -100,7 +100,7 @@ const PersonalInfo = ({ data, setData }) => {
                 rules={[{ required: true, message: 'Please enter date of birth' }]}
             >
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <div className='flex gap-3 enroll'>
+                    <div className='flex gap-3 enroll2 mt-1'>
                         <DesktopDatePicker views={['day',]}
                             label='Day'
                             defaultValue={dayjs()}
@@ -135,10 +135,10 @@ const PersonalInfo = ({ data, setData }) => {
                         />
                     </div>
                 </LocalizationProvider>
-                <Form.Item noStyle label="Gender" className="flex  items-center gap-3 mt-3" 
+                <Form.Item  label="Gender" className="flex  items-center gap-3 mt-3" 
                     rules={[{ required: true, message: 'Please select gender' }]}
                 >
-                    <div className="flex">
+                    <div className="flex ">
                         <CheckBoxNew
                             onChange={() => setGender("boy")}
                             label={"Boy"}

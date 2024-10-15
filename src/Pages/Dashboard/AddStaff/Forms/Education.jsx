@@ -6,50 +6,61 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DatePicker } from 'antd';
 import { PlusIcon } from '@heroicons/react/24/outline';
-import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Education = ({ data, setData }) => {
-    const naviageter = useNavigate()
-    const [form] = Form.useForm();
+    const navigate = useNavigate()
     const onFinish = (data) => {
 
         const educationGroup = Array.from({ length: Object.keys(data).length / 5 }, (_, i) => ({
             university: data[`university_${i + 1}`],
             degree: data[`degree_${i + 1}`],
-            startDate: new Date(data[`startDate_${i + 1}`]),
-            endDate: new Date(data[`endDate_${i + 1}`]),
+            startDate: new Date(data[`startDate_${i + 1}`]).toISOString(),
+            endDate: new Date(data[`endDate_${i + 1}`]).toISOString(),
             cgpa: data[`cgpa_${i + 1}`],
         }))
         setData({ education: educationGroup })
-        naviageter(`?step=${2}`)
-    }
-    const [initialValues, setInitialValues] = useState({})
-    const [education, setEducation] = useState([1])
-    const updateInitialValues = (name, value) => {
-        // setInitialValues((prev) => ({ ...prev, [name]: value }))
-        form.setFieldValue({ [name]: value })
-    }
-    useEffect(() => {
 
-        if (data.education) {
-            data?.education?.map((i, index) => {
-                updateInitialValues(`university_${index + 1}`, i.university)
-                updateInitialValues(`degree_${index + 1}`, i.degree)
-                updateInitialValues(`startDate_${index + 1}`, i.startDate)
-                updateInitialValues(`endDate_${index + 1}`, i.endDate)
-                updateInitialValues(`cgpa_${index + 1}`, i.cgpa)
+        navigate(`?step=${2}`)
+    }
+    const [education, setEducation] = useState([1])
+    const [initialValues, setInitialValues] = useState([])
+    useEffect(() => {
+        const initialVal = []
+        const eu = []
+        for (let i = 1; i <= data?.education?.length; i++) {
+            eu.push(i)
+            initialVal.push({
+                name: [`university_${i}`],
+                value: data?.education[i - 1]?.university
+            })
+            initialVal.push({
+                name: [`degree_${i}`],
+                value: data?.education[i - 1]?.degree
+            })
+            initialVal.push({
+                name: [`startDate_${i}`],
+                value: dayjs(data?.education[i - 1]?.startDate)
+            })
+            initialVal.push({
+                name: [`endDate_${i}`],
+                value: dayjs(data?.education[i - 1]?.endDate)
+            })
+            initialVal.push({
+                name: [`cgpa_${i}`],
+                value: data?.education[i - 1]?.cgpa
             })
         }
-    }, [data])
+        setInitialValues(initialVal)
+        setEducation(eu)
+    }, [])
     return (
-        <Form className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-6 gap-x-5'
+        <Form
+            className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-6 gap-x-5'
             layout='vertical'
+            fields={initialValues}
             onFinish={onFinish}
-            initialValues={{
-                ...initialValues,
-                dob: dayjs(data.dob),
-            }}
         >
             {
                 education.map((i) => (
@@ -81,7 +92,6 @@ const Education = ({ data, setData }) => {
                                 className='w-full'
                                 size='large'
                                 placeholder='Enter Start Date'
-                                needConfirm
                             />
                         </Form.Item>
                         <Form.Item
@@ -95,7 +105,6 @@ const Education = ({ data, setData }) => {
                                 className='w-full'
                                 size='large'
                                 placeholder='Enter End Date'
-                                needConfirm
                             />
                         </Form.Item>
                         <Form.Item

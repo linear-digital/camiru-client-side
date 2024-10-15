@@ -205,7 +205,7 @@ const Records = ({ data, setData }) => {
                     onClick={() => {
                         if (records.length > 0) {
                             setData((prev) => ({ ...prev, records }))
-                            navigate(`?step=${4}`)
+                            navigate(`?step=${2}`)
                         }
                         else {
                             toast.error("Please add records")

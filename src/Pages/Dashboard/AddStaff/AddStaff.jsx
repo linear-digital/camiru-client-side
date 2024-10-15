@@ -12,6 +12,7 @@ import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { setStaffvalues } from '../../../redux/staff/staffSlice';
+import { useEffect } from 'react';
 
 const AddStaff = () => {
     const steps = [
@@ -57,7 +58,9 @@ const AddStaff = () => {
     const location = useLocation()
 
     const query = new URLSearchParams(location.search)
-
+    useEffect(() => {
+       navigate(`?step=0`) 
+    },[])
     const currentStep = query.get('step') || 0
     const navigate = useNavigate();
     return (

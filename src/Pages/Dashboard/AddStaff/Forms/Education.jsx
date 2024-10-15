@@ -1,15 +1,19 @@
 
-import {  Input } from 'antd';
+import { Input } from 'antd';
 import { Form } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { DatePicker } from 'antd';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Education = ({ data, setData }) => {
+    const naviageter = useNavigate()
+    const [form] = Form.useForm();
     const onFinish = (data) => {
-      
+
         const educationGroup = Array.from({ length: Object.keys(data).length / 5 }, (_, i) => ({
             university: data[`university_${i + 1}`],
             degree: data[`degree_${i + 1}`],
@@ -17,15 +21,33 @@ const Education = ({ data, setData }) => {
             endDate: new Date(data[`endDate_${i + 1}`]),
             cgpa: data[`cgpa_${i + 1}`],
         }))
-        setData((prev) => ({ ...prev, education: educationGroup }))
+        setData({ education: educationGroup })
+        naviageter(`?step=${2}`)
     }
+    const [initialValues, setInitialValues] = useState({})
     const [education, setEducation] = useState([1])
+    const updateInitialValues = (name, value) => {
+        // setInitialValues((prev) => ({ ...prev, [name]: value }))
+        form.setFieldValue({ [name]: value })
+    }
+    useEffect(() => {
+
+        if (data.education) {
+            data?.education?.map((i, index) => {
+                updateInitialValues(`university_${index + 1}`, i.university)
+                updateInitialValues(`degree_${index + 1}`, i.degree)
+                updateInitialValues(`startDate_${index + 1}`, i.startDate)
+                updateInitialValues(`endDate_${index + 1}`, i.endDate)
+                updateInitialValues(`cgpa_${index + 1}`, i.cgpa)
+            })
+        }
+    }, [data])
     return (
         <Form className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5 grid lg:grid-cols-6 gap-x-5'
             layout='vertical'
             onFinish={onFinish}
             initialValues={{
-                ...data,
+                ...initialValues,
                 dob: dayjs(data.dob),
             }}
         >
@@ -59,6 +81,7 @@ const Education = ({ data, setData }) => {
                                 className='w-full'
                                 size='large'
                                 placeholder='Enter Start Date'
+                                needConfirm
                             />
                         </Form.Item>
                         <Form.Item
@@ -68,10 +91,11 @@ const Education = ({ data, setData }) => {
                             rules={[{ required: true, message: 'Please Enter End Date' }]}
                         >
                             <DatePicker
-                                 format={"DD.MM.YYYY"}
+                                format={"DD.MM.YYYY"}
                                 className='w-full'
                                 size='large'
                                 placeholder='Enter End Date'
+                                needConfirm
                             />
                         </Form.Item>
                         <Form.Item
@@ -87,7 +111,7 @@ const Education = ({ data, setData }) => {
             }
             <Form.Item className='col-span-6 mt-5'>
                 <div className='flex items-center border border-staff-pc py-2  rounded gap-x-3 text-base w-[190px] justify-center cursor-pointer'
-                onClick={() => setEducation([...education, education.length + 1])}
+                    onClick={() => setEducation([...education, education.length + 1])}
                 >
                     <span>
                         Add Education

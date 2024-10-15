@@ -9,6 +9,9 @@ import Enrollment from './Forms/Enrollment';
 import Records from './Forms/Records';
 import Notes from './Forms/Notes';
 import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { setStaffvalues } from '../../../redux/staff/staffSlice';
 
 const AddStaff = () => {
     const steps = [
@@ -38,18 +41,25 @@ const AddStaff = () => {
             full_desc: "Additional Notes",
         }
     ]
-    const [allData, setAllData] = React.useState({
-        status: "Active",
-        shifting: "Morning",
-        schedule: [],
-        profilePic: ''
-    });
+    // const [allData, setAllData] = React.useState({
+    //     status: "Active",
+    //     shifting: "Morning",
+    //     schedule: [],
+    //     profilePic: ''
+    // });
+    const dispatch = useDispatch()
+    const { staffValues: allData } = useSelector(state => state.staff)
+    const setAllData = (data) => {
+        dispatch(setStaffvalues(data))
+    }
+
+    console.log(allData);
     const location = useLocation()
 
     const query = new URLSearchParams(location.search)
-    
+
     const currentStep = query.get('step') || 0
-  
+    const navigate = useNavigate();
     return (
         <DB_Page_Layout>
             <div>
@@ -59,10 +69,15 @@ const AddStaff = () => {
             <Steps
                 current={Number(currentStep)}
                 className='py-10'
+                onChange={(value) => {
+                    if (value < currentStep) {
+                        navigate(`?step=${value}`)
+                    }
+                }}
                 labelPlacement="vertical"
                 items={steps}
             />
-            <Title active={steps.find((_step, index)=> index === Number(currentStep))} />
+            <Title active={steps.find((_step, index) => index === Number(currentStep))} />
             <div className="mt-5">
                 {
                     steps[currentStep].step === 1 && <PersonalInfo data={allData} setData={setAllData} />

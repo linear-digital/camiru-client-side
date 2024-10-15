@@ -11,8 +11,9 @@ import { Link } from 'react-router-dom';
 import { CheckBoxNew, CheckBoxWithLabel } from '../../AddStudent/Common';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Enrollment = ({ setData }) => {
+const Enrollment = ({ setData,data }) => {
     const { classrooms } = useSelector(state => state.classroom)
     const today = new Date();
     const [date, setDate] = useState({
@@ -25,8 +26,10 @@ const Enrollment = ({ setData }) => {
     const days = ["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"];
     const [classList, setclassList] = useState([1]);
     const [allformData, setAllformData] = useState({})
+    const navigate = useNavigate()
     const onfinish = (data) => {
         setAllformData((prev) => ({ ...prev, ...data }))
+        navigate(`?step=${3}`)
     }
 
     const updateDataSate = (name, value) => {
@@ -58,18 +61,12 @@ const Enrollment = ({ setData }) => {
             }
         })
     }, [classList, allformData])
+    console.log(data);
     return (
         <div className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5'>
             <Form className='grid lg:grid-cols-2 gap-x-4'
                 layout='vertical'
                 onFinish={onfinish}
-                initialValues={{
-                    classroom_1: '',
-                    classroom_2: '',
-                    classroom_3: ''
-
-
-                }}
             >
                 {
                     classList.map((i) => (

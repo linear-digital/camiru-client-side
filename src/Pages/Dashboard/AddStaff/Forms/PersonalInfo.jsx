@@ -180,7 +180,7 @@ const PersonalInfo = ({ data, setData }) => {
             </Form.Item>
             <Form.Item className='col-span-2'>
                 <div className="flex justify-center items-center gap-x-4">
-                    <Link to={'?step=1'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
+                    <Link to={'?step=0'}  className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
                         Previous
                     </Link>
                     <button

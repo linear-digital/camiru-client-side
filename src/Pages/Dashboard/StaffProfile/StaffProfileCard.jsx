@@ -11,18 +11,20 @@ import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import nameDisplay from '../../../util/nameDisplay';
+import { imageUrl } from '../../../Components/helper/axios.instance';
 
 
 const StaffProfileCard = () => {
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
-    const { selected: user, refreshChild } = useSelector(state => state.child)
+    const { staff: user } = useSelector(state => state.staff)
+    // const { selected: user, refreshChild } = useSelector(state => state.child)
     return (
         <section className='mt-10 p-5 w-full rounded-lg lg:flex items-start gap-10 justify-between bg-staff-bg'>
             <div className="overflow-hidden min-w-[242px] max-w-[235px] min-h-[255px]  p-2 bg-white border border-staff-pc">
                 <img
                     className='overflow-hidden object-fill max-h-[255px] w-full h-full'
-                    src="https://upload.wikimedia.org/wikipedia/commons/4/48/Outdoors-man-portrait_%28cropped%29.jpg"
+                    src={imageUrl(user?.profilePic)}
                 />
             </div>
             <section>
@@ -54,20 +56,22 @@ const StaffProfileCard = () => {
                             <Row
                                 title={<FontAwesomeIcon icon={faPhone} />}
                             >
-                                <h4 className="text-blue-950 text-xs font-semibold leading-3">+62 124 2123 8925</h4>
+                                <h4 className="text-blue-950 text-xs font-semibold leading-3">{user?.phone}</h4>
                             </Row>
                             <Row
                                 title={<FontAwesomeIcon icon={faHome} />}
                             >
                                 <p className=" text-xs font-medium leading-3 w-40 ">
-                                    4517 Washington Ave. Manchester,
-                                    Kentucky 39495
+                                    {user?.address}
                                 </p>
                             </Row>
                             <Row
                                 title={<FontAwesomeIcon icon={faEnvelope} />}
+                                center={true}
                             >
-                                <h4 className="text-blue-950 text-xs font-semibold leading-3">alvertflore925@gmail.com</h4>
+                                <h4 className="text-blue-950 text-xs font-semibold leading-3">
+                                    {user?.email}
+                                </h4>
                             </Row>
                         </div>
                         <button className='text-cyan-700 bg-[#5CD9CA40]  py-2 text-xs px-4 mt-4 font-semibold rounded'>

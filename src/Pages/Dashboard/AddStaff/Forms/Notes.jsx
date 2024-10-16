@@ -3,14 +3,34 @@ import { Input } from 'antd';
 import { Modal } from 'antd';
 import React from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetcher } from '../../../../Components/helper/axios.instance';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Notes = ({ data, setData }) => {
     const [notes, setNotes] = React.useState([]);
     const [note, setNote] = React.useState('');
     const [show, setShow] = React.useState(false);
-    const onNext = () => {
-        setData({ notes })
+    const { currentUser } = useSelector(state => state.user)
+    const navigate = useNavigate();
+    const onNext = async () => {
+        try {
+            const res = await fetcher({
+                url: '/staff',
+                method: 'POST',
+                data: {
+                    notes,
+                    ...data,
+                    center: currentUser._id
+                }
+            })
+            toast.success("Staff added successfully")
+            navigate(`/dashboard/staff/${res._id}/profile`)
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong');
+        }
     }
     useEffect(() => {
         setNotes(data.notes || [])
@@ -54,14 +74,15 @@ const Notes = ({ data, setData }) => {
                 {
 
                     notes.map((note, index) => (
-                        <li key={index}>
+                        <li key={index} className='mb-2'>
                             <button className='text-red-500'
                                 onClick={() => {
                                     setNotes(notes.filter((item, i) => i !== index))
                                 }}
                             >
                                 <TrashIcon className='w-4 h-4' />
-                            </button> <p className='text-[#7F7F7F] text-sm'>
+                            </button>
+                            <p className='text-[#7F7F7F] lg:text-sm text-xs'>
                                 {note?.note}
                             </p>
                         </li>
@@ -85,7 +106,7 @@ const Notes = ({ data, setData }) => {
                     onClick={onNext}
                     className='py-2 px-10 rounded-3xl mt-3 text-white  font-semibold bg-staff-pc border border-staff-pc text-lg'
                 >
-                    Next
+                    Save
                 </button>
             </div>
         </div>

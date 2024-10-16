@@ -65,7 +65,7 @@ const Education = ({ data, setData }) => {
         >
             {
                 education.map((i) => (
-                    <div key={i} className="grid grid-cols-6 gap-5 col-span-6">
+                    <div key={i} className="lg:grid grid-cols-6 gap-5 col-span-6">
                         <Form.Item
                             label="University"
                             name={`university_${i}`}

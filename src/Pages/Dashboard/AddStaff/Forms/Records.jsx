@@ -210,7 +210,7 @@ const Records = ({ data, setData }) => {
                 <PlusIcon className='w-5 h-5' />
             </div>
             <div className="flex justify-center items-center gap-x-4 mt-10">
-                <Link to={'?step=3'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
+                <Link to={'?step=2'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
                     Previous
                 </Link>
                 <button

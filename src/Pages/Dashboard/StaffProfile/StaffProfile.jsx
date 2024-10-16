@@ -22,6 +22,7 @@ import Loader from '../../../Components/Loader';
 import Enrollment from './Enrollment';
 import ScheduleTimeOff from './ScheduleTimeOff';
 import TimeCard from './TimeCard';
+import { setStaff } from '../../../redux/staff/staffSlice';
 
 const StaffProfile = () => {
     const location = useLocation();
@@ -59,7 +60,7 @@ const StaffProfile = () => {
     }, [location.pathname])
     const params = useParams();
     const dispatch = useDispatch();
-    const { selected, refreshChild } = useSelector(state => state.child)
+    const { staff } = useSelector(state => state.staff)
     const [loading, setLoading] = React.useState(false);
     useEffect(() => {
         (
@@ -67,20 +68,22 @@ const StaffProfile = () => {
                 try {
                     setLoading(true)
                     const res = await fetcher({
-                        url: `/student/${params.id}`,
+                        url: `/staff/${params.id}`,
                         method: 'GET',
                     })
                     setLoading(false)
-                    dispatch(setSelectedSt(res || []))
+                    dispatch(setStaff(res || {}))
                 }
                 catch (err) {
-                    dispatch(setSelectedSt([]))
-                    toast.error(err?.response?.data?.message || 'Something went wrong');
+                    setLoading(false)
+                    dispatch(setStaff({}))
+                    console.error(err)
+                    
                 }
             }
         )()
-    }, [params, refreshChild])
-    if (!selected || loading) {
+    }, [params.id])
+    if (!staff || loading) {
         return <Loader />
     }
     return (

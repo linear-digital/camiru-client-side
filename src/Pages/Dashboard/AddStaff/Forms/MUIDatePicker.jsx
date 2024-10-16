@@ -5,7 +5,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const MUIDatePicker = ({ name, updater, defaultValue }) => {
+const MUIDatePicker = ({  updater, defaultValue }) => {
 
     const [date, setDate] = useState({
         day: new Date().getDate(),

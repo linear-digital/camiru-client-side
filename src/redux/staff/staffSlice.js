@@ -5,9 +5,10 @@ const initialState = {
         status: "Active",
         shifting: "Morning",
         schedule: [],
-        profilePic: '',
+        profilePic: '/default-profile.png',
         dob: new Date().toISOString(),
     },
+    staff: {},
 };
 
 export const staffSlice = createSlice({
@@ -17,9 +18,12 @@ export const staffSlice = createSlice({
         setStaffvalues: (state, action) => {
             state.staffValues = { ...state.staffValues, ...action.payload };
         },
+        setStaff: (state, action) => {
+            state.staff = action.payload;
+        },
     },
 });
 
-export const { setStaffvalues } = staffSlice.actions;
+export const { setStaffvalues, setStaff } = staffSlice.actions;
 const staffReducer = staffSlice.reducer;
 export default staffReducer;

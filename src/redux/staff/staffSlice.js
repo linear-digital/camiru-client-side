@@ -5,7 +5,8 @@ const initialState = {
         status: "Active",
         shifting: "Morning",
         schedule: [],
-        profilePic: ''
+        profilePic: '',
+        dob: new Date().toISOString(),
     },
 };
 

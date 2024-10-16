@@ -54,7 +54,6 @@ const AddStaff = () => {
         dispatch(setStaffvalues(data))
     }
 
-    console.log(allData);
     const location = useLocation()
 
     const query = new URLSearchParams(location.search)

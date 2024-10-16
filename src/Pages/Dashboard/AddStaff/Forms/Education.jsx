@@ -28,9 +28,10 @@ const Education = ({ data, setData }) => {
     const [initialValues, setInitialValues] = useState([])
     useEffect(() => {
         const initialVal = []
-        const eu = []
+        const eu = education
+
         for (let i = 1; i <= data?.education?.length; i++) {
-            eu.push(i)
+            education.length > i &&  eu.push(i + 1)
             initialVal.push({
                 name: [`university_${i}`],
                 value: data?.education[i - 1]?.university
@@ -92,6 +93,7 @@ const Education = ({ data, setData }) => {
                                 className='w-full'
                                 size='large'
                                 placeholder='Enter Start Date'
+                                needConfirm
                             />
                         </Form.Item>
                         <Form.Item
@@ -105,6 +107,7 @@ const Education = ({ data, setData }) => {
                                 className='w-full'
                                 size='large'
                                 placeholder='Enter End Date'
+                                needConfirm
                             />
                         </Form.Item>
                         <Form.Item

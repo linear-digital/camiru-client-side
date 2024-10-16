@@ -13,12 +13,16 @@ import { Dropdown } from 'antd';
 import { Popconfirm } from 'antd';
 import { Popover } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Records = ({ data, setData }) => {
     const [add, setAdd] = useState(false);
     const [dragActive, setDragActive] = useState(false);
     const [loading, setLoading] = useState(false);
     const [records, setRecords] = useState([])
+    useEffect(() => {
+        setRecords(data.records || [])
+    }, [])
     const [title, setTitle] = useState('')
     const uploadFile = async (e) => {
         const file = e.target.files[0]
@@ -71,6 +75,14 @@ const Records = ({ data, setData }) => {
         document.getElementById('record').click();
     };
     const navigate = useNavigate()
+    const onNext = () => {
+        if (records.length === 0) {
+            toast.error("Please add record")
+            return
+        }
+        setData({ records })
+        navigate(`?step=${4}`)
+    }
     return (
         <div className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5'>
             {
@@ -198,14 +210,14 @@ const Records = ({ data, setData }) => {
                 <PlusIcon className='w-5 h-5' />
             </div>
             <div className="flex justify-center items-center gap-x-4 mt-10">
-                <Link to={'?step=1'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
+                <Link to={'?step=3'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
                     Previous
                 </Link>
                 <button
                     onClick={() => {
                         if (records.length > 0) {
-                            setData((prev) => ({ ...prev, records }))
-                            navigate(`?step=${2}`)
+                            setData({ records })
+                            navigate(`?step=${4}`)
                         }
                         else {
                             toast.error("Please add records")

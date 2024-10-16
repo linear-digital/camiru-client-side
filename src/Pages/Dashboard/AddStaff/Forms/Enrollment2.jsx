@@ -12,8 +12,6 @@ import { CheckBoxNew, CheckBoxWithLabel } from '../../AddStudent/Common';
 import { PlusIcon } from '@heroicons/react/24/outline';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MUIDatePicker from './MUIDatePicker';
-import toast from 'react-hot-toast';
 
 const Enrollment = ({ setData, data }) => {
     const { classrooms } = useSelector(state => state.classroom)
@@ -27,54 +25,40 @@ const Enrollment = ({ setData, data }) => {
     const status = ["Active", "Not Active"]
     const days = ["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"];
     const [classList, setclassList] = useState([1]);
-    const [allformData, setAllformData] = useState({
-        classroom_1: "",
-        startDate_1: new Date(),
-        shifting_1: rotations[0],
-        status_1: status[0],
-        schedule_1: [...days]
-    })
+    const [allformData, setAllformData] = useState({})
     const navigate = useNavigate()
     const onfinish = (data) => {
-        // setAllformData((prev) => ({ ...prev, ...data }))
-
-        const educationGroup = Array.from({ length: classList.length }, (_, i) => ({
-            classroom: allformData[`classroom_${i + 1}`],
-            startDate: new Date(allformData[`startDate_${i + 1}`] || new Date()).toISOString(),
-            shifting: allformData[`shifting_${i + 1}`],
-            status: allformData[`status_${i + 1}`],
-            schedule: allformData[`schedule_${i + 1}`] || days
-        }))
-        setData({ enrollment: educationGroup })
-        const isall = educationGroup.every((i) => i.classroom && i.startDate && i.shifting && i.status && i.schedule)
-        if (isall){
-            navigate(`?step=${3}`)
-        }
-        else {
-            toast.error("Please fill all the fields")
-        }
+        setAllformData((prev) => ({ ...prev, ...data }))
+        navigate(`?step=${3}`)
     }
 
     const updateDataSate = (name, value) => {
         setAllformData((prev) => ({ ...prev, [name]: value }))
     }
-    // console.log(allformData, "allformData");
     useEffect(() => {
-        if (data?.enrollment) {
-            const initialVal = {}
-            const eu = classList
-            for (let i = 1; i <= data?.enrollment?.length; i++) {
-                classList.length < i && eu.push(i)
-                initialVal[`classroom_${i}`] = data?.enrollment[i - 1]?.classroom
-                initialVal[`startDate_${i}`] = data?.enrollment[i - 1]?.startDate
-                initialVal[`shifting_${i}`] = data?.enrollment[i - 1]?.shifting
-                initialVal[`status_${i}`] = data?.enrollment[i - 1]?.status
-                initialVal[`schedule_${i}`] = data?.enrollment[i - 1]?.schedule
-            }
-            setclassList(eu)
-            setAllformData(initialVal)
+        
+    }, [allformData, classList])
+
+
+    useEffect(() => {
+        if (!data?.enrollment?.length) {
+            classList.map((i) => {
+                if (!allformData[`startDate_${i}`]) {
+                    updateDataSate(`startDate_${i}`, new Date())
+                }
+                if (!allformData[`status_${i}`]) {
+                    updateDataSate(`status_${i}`, status[0])
+                }
+                if (!allformData[`shifting_${i}`]) {
+                    updateDataSate(`shifting_${i}`, rotations[0])
+                }
+                if (!allformData[`schedule_${i}`]) {
+                    updateDataSate(`schedule_${i}`, days)
+                }
+            })
         }
-    }, [data])
+    }, [classList, allformData])
+
     return (
         <div className='bg-staff-bg border-staff-pc border rounded-lg w-full lg:p-[53px] p-5'>
             <Form className='grid lg:grid-cols-2 gap-x-4'
@@ -85,6 +69,7 @@ const Enrollment = ({ setData, data }) => {
                     classList.map((i) => (
                         <div className="grid lg:grid-cols-2 gap-x-5 col-span-2" key={i}>
                             <Form.Item
+
                                 label="Classroom"
                                 rules={[{ required: true, message: 'Please select a classroom' }]}
                             >
@@ -94,6 +79,7 @@ const Enrollment = ({ setData, data }) => {
                                     }}
                                     value={allformData[`classroom_${i}`]}
                                     size='large'
+                                    
                                     options={[
                                         { value: '', label: 'Select Classroom' },
                                         ...classrooms?.map(item => ({ value: item._id, label: item.name })) || []
@@ -102,18 +88,49 @@ const Enrollment = ({ setData, data }) => {
                             </Form.Item>
                             <Form.Item
                                 label="Start Date"
-                                name={`startDate_${i}`}
                             >
-                                <MUIDatePicker
-                                    updater={(e) => {
-                                        updateDataSate(`startDate_${i}`, e)
-                                    }}
-                                    name={`startDate_${i}`}
-                                    defaultValue={new Date(allformData[`startDate_${i}`]) || new Date()} />
+                                <LocalizationProvider dateAdapter={AdapterDayjs} >
+                                    <div className='flex gap-3 enroll3'>
+                                        <DesktopDatePicker views={['day',]}
+                                            label='Day'
+                                            defaultValue={dayjs()}
+                                            onChange={(e) => {
+                                                setDate({
+                                                    ...date,
+                                                    day: e.$d.getDate(),
+                                                })
+                                                updateDataSate(`startDate_${i}`, new Date(date.year, date.month, e.$d.getDate()))
+                                            }}
+                                        />
+                                        <DesktopDatePicker
+                                            label='Month'
+                                            defaultValue={dayjs()}
+                                            views={['month',]}
+                                            onChange={(e) => {
+                                                setDate({
+                                                    ...date,
+                                                    month: e.$M,
+                                                })
+                                                updateDataSate(`startDate_${i}`, new Date(date.year, e.$M, date.day))
+                                            }}
+                                        />
+                                        <DesktopDatePicker
+                                            label='Year'
+                                            defaultValue={dayjs()}
+                                            views={['year',]}
+                                            onChange={(e) => {
+                                                setDate({
+                                                    ...date,
+                                                    year: e.$y,
+                                                })
+                                                updateDataSate(`startDate_${i}`, new Date(e.$y, date.month, date.day))
+                                            }}
+                                        />
+                                    </div>
+                                </LocalizationProvider>
                             </Form.Item>
                             <Form.Item
                                 label="Shifting"
-                                name={`shifting_${i}`}
                             >
                                 <div className="flex flex-wrap  items-center gap-3 pb-2">
                                     {
@@ -131,7 +148,6 @@ const Enrollment = ({ setData, data }) => {
                             </Form.Item>
                             <Form.Item
                                 label="Status"
-                                name={`status_${i}`}
                             >
                                 <div className="flex flex-wrap  items-center gap-3 pb-2">
                                     {
@@ -148,7 +164,6 @@ const Enrollment = ({ setData, data }) => {
                             </Form.Item>
                             <Form.Item
                                 label="Schedule"
-                                name={`schedule_${i}`}
                             >
                                 <div className="flex flex-wrap items-center gap-3 pb-2" >
                                     {
@@ -190,14 +205,6 @@ const Enrollment = ({ setData, data }) => {
                     <div className='flex items-center border border-staff-pc py-2  rounded gap-x-3 text-base w-[190px] justify-center cursor-pointer'
                         onClick={() => {
                             setclassList([...classList, classList.length + 1])
-                            setAllformData({
-                                ...allformData,
-                                [`classroom_${classList.length + 1}`]: '',
-                                [`startDate_${classList.length + 1}`]: new Date(),
-                                [`shifting_${classList.length + 1}`]: rotations[0],
-                                [`status_${classList.length + 1}`]: status[0],
-                                [`schedule_${classList.length + 1}`]: [...days],
-                            })
                         }}
                     >
                         <span>

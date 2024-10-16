@@ -13,6 +13,7 @@ import { useState } from 'react';
 import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import MUIDatePicker from './MUIDatePicker';
 
 const PersonalInfo = ({ data, setData }) => {
     const today = new Date();
@@ -48,9 +49,10 @@ const PersonalInfo = ({ data, setData }) => {
     };
     useEffect(() => {
         updateState("gender", gender)
-        const d = new Date(date.year, date.month, date.day)
-        updateState("dob", d.toISOString())
     }, [gender, date])
+    useEffect(() => {
+        setGender(data?.gender || "boy")
+    }, [])
     const onFinish = (values) => {
         setData(values)
         navigate(`?step=${1}`)
@@ -99,43 +101,13 @@ const PersonalInfo = ({ data, setData }) => {
                 className=''
                 rules={[{ required: true, message: 'Please enter date of birth' }]}
             >
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <div className='flex gap-3 enroll2 mt-1'>
-                        <DesktopDatePicker views={['day',]}
-                            label='Day'
-                            defaultValue={dayjs()}
-                            onChange={(e) => {
-                                setDate({
-                                    ...date,
-                                    day: e.$d.getDate(),
-                                })
-                            }}
-                        />
-                        <DesktopDatePicker
-                            label='Month'
-                            defaultValue={dayjs()}
-                            views={['month',]}
-                            onChange={(e) => {
-                                setDate({
-                                    ...date,
-                                    month: e.$M,
-                                })
-                            }}
-                        />
-                        <DesktopDatePicker
-                            label='Year'
-                            defaultValue={dayjs()}
-                            views={['year',]}
-                            onChange={(e) => {
-                                setDate({
-                                    ...date,
-                                    year: e.$y,
-                                })
-                            }}
-                        />
-                    </div>
-                </LocalizationProvider>
-                <Form.Item  label="Gender" className="flex  items-center gap-3 mt-3" 
+                <MUIDatePicker
+                    updater={(e) => {
+                        updateState("dob", e)
+                    }}
+                    name={`dob`}
+                    defaultValue={new Date(data.dob)} />
+                <Form.Item label="Gender" className="flex  items-center gap-3 mt-3"
                     rules={[{ required: true, message: 'Please select gender' }]}
                 >
                     <div className="flex ">
@@ -161,41 +133,41 @@ const PersonalInfo = ({ data, setData }) => {
                 className='col-span-2'
                 label="Profile Picture"
             >
-               <div>
-               <label htmlFor='profile' className={`w-[130px] p-2 border h-[133px] ${data?.profilePic ? "" : "border-red-100"} flex justify-center items-end relative box rounded`}>
-                    {
-                        loading ?
-                            <div className='flex justify-center items-center w-full h-full'>
-                                <Spinner />
+                <div>
+                    <label htmlFor='profile' className={`w-[130px] p-2 border h-[133px] ${data?.profilePic ? "" : "border-red-100"} flex justify-center items-end relative box rounded`}>
+                        {
+                            loading ?
+                                <div className='flex justify-center items-center w-full h-full'>
+                                    <Spinner />
+                                </div>
+                                :
+                                <div
+                                    style={{
+                                        backgroundImage: `url(${data?.profilePic ? imageUrl(data?.profilePic) : "/default-profile.png"})`
+                                    }}
+                                    className='w-full bg-cover bg-center h-full'
+                                />
+                        }
+                        {
+                            data?.profilePic ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white bottom-0  items-center justify-center'
+                                onClick={() => updateState("profilePic", null)}
+                            >
+                                Remove
                             </div>
-                            :
-                            <div
-                                style={{
-                                    backgroundImage: `url(${data?.profilePic ? imageUrl(data?.profilePic) : "/default-profile.png"})`
-                                }}
-                                className='w-full bg-cover bg-center h-full'
-                            />
-                    }
+                                :
+                                <div className='absolute bottom-0 overlay text-xs font-semibold text-[#0095FF] w-full h-[25px] bg-[#BDE4FF]  items-center justify-center'>
+                                    Upload Image
+                                </div>
+                        }
+                    </label>
                     {
-                        data?.profilePic ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white bottom-0  items-center justify-center'
-                            onClick={() => updateState("profilePic", null)}
-                        >
-                            Remove
-                        </div>
-                            :
-                            <div className='absolute bottom-0 overlay text-xs font-semibold text-[#0095FF] w-full h-[25px] bg-[#BDE4FF]  items-center justify-center'>
-                                Upload Image
-                            </div>
+                        !data?.profilePic && <input type="file" style={{ display: "none" }} id='profile'
+                            onChange={(e) => {
+                                uploadProfilePic(e.target.files[0])
+                            }}
+                        />
                     }
-                </label>
-                {
-                    !data?.profilePic && <input type="file" style={{ display: "none" }} id='profile'
-                        onChange={(e) => {
-                            uploadProfilePic(e.target.files[0])
-                        }}
-                    />
-                }
-               </div>
+                </div>
             </Form.Item>
             <Form.Item className='col-span-2'>
                 <div className='flex gap-2 items-center mt-2'>

@@ -14,19 +14,18 @@ import { Checkbox } from 'antd';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import MUIDatePicker from './MUIDatePicker';
+import { Select } from 'antd';
+import { useCountries } from 'use-react-countries';
 
 const PersonalInfo = ({ data, setData }) => {
-    const today = new Date();
-    const [date, setDate] = useState({
-        day: today.getDate(),
-        month: today.getMonth(),
-        year: today.getFullYear()
-    });
+    const { countries } = useCountries();
+
     const [gender, setGender] = React.useState("boy")
     const [loading, setLoading] = React.useState(false)
     const updateState = (name, value) => {
         setData({ [name]: value })
     }
+
     const navigate = useNavigate()
     const uploadProfilePic = async (file) => {
         try {
@@ -49,7 +48,7 @@ const PersonalInfo = ({ data, setData }) => {
     };
     useEffect(() => {
         updateState("gender", gender)
-    }, [gender, date])
+    }, [gender])
     useEffect(() => {
         setGender(data?.gender || "boy")
     }, [])
@@ -130,6 +129,47 @@ const PersonalInfo = ({ data, setData }) => {
                 </Form.Item>
             </Form.Item>
             <Form.Item
+                label="Country"
+                name="country"
+                rules={[{ required: true, message: 'Please enter country' }]}
+            >
+                <Select
+                    size='large'
+                    showSearch
+                    placeholder="Select a country"
+                    filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    }
+                    options={[
+                        ...countries.map((country) => ({
+                            value: country.name,
+                            label: country.name
+                        }))
+                    ]}
+                />
+            </Form.Item>
+            <Form.Item
+                label="City"
+                name="city"
+                rules={[{ required: true, message: 'Please  enter city' }]}
+            >
+                <Input size='large' placeholder='Enter City' />
+            </Form.Item>
+            <Form.Item
+                label="State of Province"
+                name="state"
+                rules={[{ required: true, message: 'Please  enter state' }]}
+            >
+                <Input size='large' placeholder='Enter State' />
+            </Form.Item>
+            <Form.Item
+                label="Zip Code"
+                name="zip"
+                rules={[{ required: true, message: 'Please  enter zip' }]}
+            >
+                <Input size='large' placeholder='Enter zip' />
+            </Form.Item>
+            <Form.Item
                 className='col-span-2'
                 label="Profile Picture"
             >
@@ -150,7 +190,7 @@ const PersonalInfo = ({ data, setData }) => {
                         }
                         {
                             data?.profilePic ? <div className='absolute overlay text-xs font-semibold text-red-500 w-full h-[25px] bg-red-50 hover:bg-red-500 hover:text-white bottom-0  items-center justify-center'
-                                onClick={() => updateState("profilePic", null)}
+                                onClick={() => updateState("profilePic", "")}
                             >
                                 Remove
                             </div>
@@ -180,7 +220,7 @@ const PersonalInfo = ({ data, setData }) => {
             </Form.Item>
             <Form.Item className='col-span-2'>
                 <div className="flex justify-center items-center gap-x-4">
-                    <Link to={'?step=0'}  className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
+                    <Link to={'?step=0'} className='py-2 px-10 rounded-3xl mt-3 text-black/40  font-semibold bg-transparent border border-staff-pc text-lg hover:text-staff-pc'>
                         Previous
                     </Link>
                     <button

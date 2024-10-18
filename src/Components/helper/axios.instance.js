@@ -44,7 +44,7 @@ export const imageUrl = (url) => {
     }
     const local = "http://localhost:4000"
     const server = 'https://server.camiru.com'
-    return `${server}/${url}`
+    return `${local}/${url}`
 }
 
 export default api

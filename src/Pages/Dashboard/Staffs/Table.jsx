@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-tailwind/react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import api, { fetcher } from "../../../Components/helper/axios.instance";
+import api, { fetcher, imageUrl } from "../../../Components/helper/axios.instance";
 import nameDisplay from "../../../util/nameDisplay";
 const TABLE_HEAD = ["Members", "Enrolled", "Class", "Schedule", "Action"];
 
@@ -33,13 +33,14 @@ export default function Table() {
         queryKey: ['All_students 2', currentUser?._id],
         queryFn: async () => {
             const res = await fetcher({
-                url: `/student/center/${currentUser?._id}`,
+                url: `/staff/center/${currentUser?._id}`,
                 method: "get",
             })
             return res
         }
     })
     const [selected, setSelected] = useState([]);
+
     if (isLoading) {
         return <Loader />
     }
@@ -74,7 +75,7 @@ export default function Table() {
                 </thead>
                 <tbody className="">
                     {data?.map((user, index) => {
-                        const isLast = index === contacts.length - 1;
+                        const isLast = index === data.length - 1;
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
@@ -88,7 +89,7 @@ export default function Table() {
                                 </td>
                                 <td className={classes}>
                                     <div className="flex items-center gap-2">
-                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                        <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"
                                         />
                                         <Typography

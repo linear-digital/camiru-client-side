@@ -22,10 +22,9 @@ const Enrollment = ({ edit }) => {
 
     const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
     const [status, setStatus] = useState("Active");
-    const { selected: user } = useSelector(state => state.child)
+    const { staff: user } = useSelector(state => state.staff)
     const dispatch = useDispatch()
     const { classrooms } = useSelector(state => state.classroom)
-
     const [date, setDate] = useState({
         day: 0,
         month: 0,
@@ -333,52 +332,52 @@ const Enrollment = ({ edit }) => {
         <div className='w-full border p-10 rounded-xl poppins bg-staff-bg border-staff-pc'>
             <div className="grid grid-cols-4">
                 <div className='col-span-1 flex justify-end'>
-                <h1 className="text-[#3A3D47] lg:text-2xl text-xl font-bold ">
-                    Enrollment
-                </h1>
+                    <h1 className="text-[#3A3D47] lg:text-2xl text-xl font-bold ">
+                        Enrollment
+                    </h1>
                 </div>
             </div>
 
-            <div className='mt-10'>
-                <Row
-                    title={"Classroom"}
-                    desc={user?.classRoom?.name}
-                />
-                <Row
-                    title={"Status"}
-                    desc={<span className='capitalize'>
-                        {user?.status}
-                    </span>}
-                />
-                <Row
-                    title={"Enrollment Date"}
-                    desc={moment(user?.enrollmentDate).format("DD MMM YYYY")}
-                />
-                <Row
-                    title={"Graduation Date"}
-                    desc={"Not Set"}
-                />
-                <Row
-                    title={"Rotation"}
-                    desc={<span className='capitalize'>
-                        {user?.rotation}
-                    </span>}
-                />
-                <div className="grid grid-cols-4 lg:gap-10 gap-5 mb-8">
-                    <div className="col-span-1 justify-end flex items-center">
-                        <h4 className="text-[#3A3D47] text-sm font-semibold">
-                            Schedule
-                        </h4>
+            {
+                user?.enrollment?.map((enrollment, index) => <div className={`mt-10 ${user?.enrollment?.length !== index + 1 && "border-b-2"}`}
+                    key={index}
+                >
+                    <Row
+                        title={"Classroom"}
+                        desc={enrollment.classroom?.name}
+                    />
+                    <Row
+                        title={"Status"}
+                        desc={<span className='capitalize'>
+                            {enrollment?.status}
+                        </span>}
+                    />
+                    <Row
+                        title={"Start Date"}
+                        desc={moment(enrollment?.startDate).format("DD MMM YYYY")}
+                    />
+                    <Row
+                        title={"Shift"}
+                        desc={<span className='capitalize'>
+                            {enrollment?.shifting}
+                        </span>}
+                    />
+                    <div className="grid grid-cols-4 lg:gap-10 gap-5 mb-8">
+                        <div className="col-span-1 justify-end flex items-center">
+                            <h4 className="text-[#3A3D47] text-sm font-semibold">
+                                Schedule
+                            </h4>
+                        </div>
+                        <div className="lg:col-span-3 col-span-5 flex items-center flex-wrap gap-2">
+                            {
+                                days?.map((day, index) => <button key={index} className={`text-[11px] ${enrollment?.schedule?.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
+                                    {day}
+                                </button>)
+                            }
+                        </div>
                     </div>
-                    <div className="lg:col-span-3 col-span-5 flex items-center flex-wrap gap-2">
-                        {
-                            days?.map((day, index) => <button key={index} className={`text-[11px] ${user?.days?.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
-                                {day}
-                            </button>)
-                        }
-                    </div>
-                </div>
-            </div>
+                </div>)
+            }
         </div >
     );
 };

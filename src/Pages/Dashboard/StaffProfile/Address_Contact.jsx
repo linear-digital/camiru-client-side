@@ -23,7 +23,7 @@ import Loader from '../../../Layouts/Loader';
 
 const Address_Contact = ({ edit }) => {
     const location = useLocation();
-    const { selected } = useSelector((state) => state.child)
+    const { staff: selected } = useSelector((state) => state.staff)
     const { countries } = useCountries();
     const [update, setUpdate] = useState({
         address: "",

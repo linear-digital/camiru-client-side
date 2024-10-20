@@ -6,7 +6,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
-        token: Cookie.get('token-camiru'),
+        token: Cookie.get('token-camiru2'),
     },
     reducers: {
 

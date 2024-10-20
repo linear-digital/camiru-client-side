@@ -21,7 +21,7 @@ const Form = ({ mode }) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const navigate = useNavigate();
     const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const token = Cookie.get('token-camiru');
+    const token = Cookie.get('token-camiru2');
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
@@ -39,7 +39,7 @@ const Form = ({ mode }) => {
                 method: 'POST',
                 data
             })
-            Cookie.set('token-camiru', res.accessToken, { expires: 30 });
+            Cookie.set('token-camiru2', res.accessToken, { expires: 30 });
             window.location.reload();
             setError('');
             setLoading(false);

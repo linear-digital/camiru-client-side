@@ -10,7 +10,7 @@ import { setBrowserWidth } from '../redux/setting/settingSlice';
 
 const DefaultFetch = () => {
     const dispatch = useDispatch()
-    const token = Cookie.get('token-camiru')
+    const token = Cookie.get('token-camiru2')
     const isMyTokenExpired = isExpired(token);
     useEffect(() => {
         (async () => {

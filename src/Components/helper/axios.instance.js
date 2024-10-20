@@ -10,7 +10,7 @@ export const api = axios.create({
     baseURL: url,
     headers: {
         "Content-Type": "application/json",
-        "token": Cookie.get('token-camiru')
+        "token": Cookie.get('token-camiru2')
     },
 });
 
@@ -34,7 +34,7 @@ export const fetcher = async ({ url, method, data, headers }) => {
 export const upload = axios.create({
     baseURL: url,
     headers: {
-        "token": Cookie.get('token-camiru')
+        "token": Cookie.get('token-camiru2')
     },
 });
 

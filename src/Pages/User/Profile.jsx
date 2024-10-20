@@ -48,7 +48,7 @@ const Profile = () => {
                 </section>
                 <Button variant={"error"}
                 onClick={()=> {
-                    Cookies.remove("token-camiru")
+                    Cookies.remove("token-camiru2")
                     window.location.href = '/login'
                 }}
                 className={"mt-14"}> SignOut</Button>

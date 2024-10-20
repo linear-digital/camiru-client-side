@@ -15,7 +15,7 @@ const UserLayout = () => {
     const location = useLocation();
     const { currentUser } = useSelector(state => state.user);
     const { width } = useSelector(state => state.settings);
-    const token = Cookie.get('token-camiru')
+    const token = Cookie.get('token-camiru2')
 
     return (
         <main className='w-full h-screen flex lg:gap-6 bg-[#F1F6FA]'>

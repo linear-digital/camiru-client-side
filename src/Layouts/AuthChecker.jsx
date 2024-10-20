@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../redux/user/userSlice';
 import { isExpired, decodeToken } from "react-jwt";
 const AuthChecker = ({ children }) => {
-    const token = Cookie.get('token-camiru');
+    const token = Cookie.get('token-camiru2');
     const [loading, setLoading] = React.useState(false);
     const dispatch = useDispatch();
     const myDecodedToken = decodeToken(token);

@@ -1,113 +1,31 @@
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card } from '@material-tailwind/react';
+import { Add } from '@mui/icons-material';
 import React from 'react';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-
-import { useCountries } from 'use-react-countries';
-import { useEffect } from 'react';
+import Address_Contact_Form from './Forms/Address_Contact_Form';
 
 
-import toast from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
-import { Form } from 'antd';
-import { Select } from 'antd';
-import { Input } from 'antd';
-import nameDisplay from '../../../util/nameDisplay';
-import { fetcher } from '../../../Components/helper/axios.instance';
-import { setSelectedSt } from '../../../redux/child/childSlice';
-import Loader from '../../../Layouts/Loader';
-
-const Address_Contact = ({ edit }) => {
+const Address_Contact = () => {
     const location = useLocation();
     const { staff: selected } = useSelector((state) => state.staff)
-    const { countries } = useCountries();
-    const [update, setUpdate] = useState({
-        address: "",
-        city: "",
-        country: "",
-        zip: "",
-        state: ""
-    })
-    const [contact, setContact] = useState({
-        father: {
-            name: "",
-            email: "",
-            phone: "",
-        },
-        mother: {
-            name: "",
-            email: "",
-            phone: "",
-        }
-    })
-    useEffect(() => {
-        if (selected) {
-            setUpdate({
-                address: selected.address,
-                city: selected.city,
-                country: selected.country,
-                zip: selected.zip,
-                state: selected.state
-            })
-            setContact({
-                ...contact,
-                ...selected?.contact_numbers
-            } || {
-                father: {
-                    name: "",
-                    email: "",
-                    phone: "",
-                },
-                mother: {
-                    name: "",
-                    email: "",
-                    phone: "",
-                }
-            })
-        }
-    }, [selected])
-    const dispatch = useDispatch();
-    const updateHandler = async () => {
-        try {
-
-            const res = await fetcher({
-                url: `/student/${selected?._id}`,
-                method: 'PATCH',
-                data: {
-                    ...update,
-                    contact_numbers: contact
-                }
-            })
-
-            dispatch(setSelectedSt(res))
-            toast.success("Student updated successfully")
-        } catch (error) {
-            toast.error(error?.response?.data?.message || 'Something went wrong');
-        }
-    }
-    const [parentType, setParentType] = useState("father")
-    const [l, setL] = useState(false)
-    useEffect(() => {
-        setL(true)
-        setTimeout(() => {
-            setL(false)
-        }, 200)
-    }, [parentType])
-    if (l) {
-        return <Loader />
+    const [edit, setEdit] = useState(false)
+    if (edit) {
+        return <Address_Contact_Form onClose={() => setEdit(!edit)} />
     }
     return (
         <div className='w-full border border-staff-pc p-10 rounded-xl poppins bg-staff-bg'>
             <div className="flex justify-end">
                 {
-                    !edit && <Link to={location.pathname.includes("edit") ? `${location.pathname}` : `${location.pathname}/edit`} className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
+                    <button
+                        onClick={() => setEdit(!edit)}
+                        className='btn btn-sm bg-[#FFBB3B33] text-[#A0A0A0] text-xs font-normal px-5'>
                         Edit Page
                         <FontAwesomeIcon icon={faPen} className='text-[#FFBB3B]' />
-                    </Link>
+                    </button>
                 }
             </div>
             <div className="grid grid-cols-4">

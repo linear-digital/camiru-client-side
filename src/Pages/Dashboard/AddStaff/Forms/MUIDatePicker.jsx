@@ -5,7 +5,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
-const MUIDatePicker = ({  updater, defaultValue }) => {
+const MUIDatePicker = ({ updater, defaultValue }) => {
 
     const [date, setDate] = useState({
         day: new Date().getDate(),
@@ -21,7 +21,7 @@ const MUIDatePicker = ({  updater, defaultValue }) => {
             <div className='flex gap-3 enroll3'>
                 <DesktopDatePicker views={['day',]}
                     label='Day'
-                    
+
                     value={dayjs(defaultValue)}
                     onChange={(e) => {
                         setDate({

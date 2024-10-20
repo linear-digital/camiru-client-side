@@ -108,7 +108,7 @@ body {
     color: #187A82 !important;
 }
 
-.enroll3 .MuiInputBase-root {
+.enroll4 .MuiInputBase-root {
     height: 40px;
     font-size: 11px !important;
     width: 118px;
@@ -116,10 +116,13 @@ body {
     outline: none !important;
 }
 
-.enroll3 .MuiSvgIcon-root {
+.enroll4 .MuiSvgIcon-root {
     width: 14px !important;
     height: 14px !important;
-    color: #F8AD47 !important;
+    color: #187A82 !important;
+}
+.enroll4 .MuiInputBase-root {
+    border: none !important;
 }
 
 .enroll2 .MuiInputBase-root {
@@ -190,10 +193,7 @@ body {
     border: none !important;
     outline: none !important;
 }
-.enroll3 .MuiInputBase-root {
-    border: none !important;
-   
-}
+
 
 .enroll2 .MuiInputBase-root {
     border: none !important;

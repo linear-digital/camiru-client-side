@@ -23,7 +23,7 @@ const PersonalData = () => {
 
         try {
             const res = await fetcher({
-                url: `/user/${currentUser?._id}`,
+                url: `/center/${currentUser?._id}`,
                 method: 'PUT',
                 body: data
             })

@@ -5,7 +5,7 @@ import { decrypt, encrypt } from "./security";
 
 const local = "http://localhost:4000/api"
 const server = 'https://server.camiru.com/api'
-const url = local
+const url = server
 export const api = axios.create({
     baseURL: url,
     headers: {
@@ -44,7 +44,7 @@ export const imageUrl = (url) => {
     }
     const local = "http://localhost:4000"
     const server = 'https://server.camiru.com'
-    return `${local}/${url}`
+    return `${server}/${url}`
 }
 
 export default api

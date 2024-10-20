@@ -246,3 +246,7 @@ input {
 .ant-table-cell {
     padding-left: 30px !important; /* Adjust this value as needed */
 }
+
+.card-0 .ant-card-body {
+    padding: 0px !important;
+}

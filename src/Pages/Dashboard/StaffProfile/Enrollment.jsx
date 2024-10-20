@@ -14,7 +14,7 @@ const Enrollment = () => {
     const days = ["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"];
     const { staff: user } = useSelector(state => state.staff)
     if (edit) {
-        return <EnrollmentForm />
+        return <EnrollmentForm onClose={() => setEdit(!edit)}/>
     }
     return (
         <div className='w-full border p-10 rounded-xl poppins bg-staff-bg border-staff-pc'>

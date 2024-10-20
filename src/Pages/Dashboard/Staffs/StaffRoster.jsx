@@ -14,7 +14,7 @@ const StaffRoster = () => {
             <div className="mt-10">
                 <Table
                     rows={[
-                        "Members", "Enrolled", "Class", "Schedule", "Action"
+                        "Members", "Enrolled", "Classes", "Schedule", "Action"
                     ]}
                     class_name={"After Schooler"}
                 />

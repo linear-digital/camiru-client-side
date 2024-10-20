@@ -18,25 +18,20 @@ import { Button } from "@material-tailwind/react";
 import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import api, { fetcher } from "../../../Components/helper/axios.instance";
+import api, { fetcher, imageUrl } from "../../../Components/helper/axios.instance";
 import nameDisplay from "../../../util/nameDisplay";
 const TABLE_HEAD = ["Members", "Enrolled", "Age", "Schedule", "Action"];
 
 
 export default function Table({ rows, class_name }) {
-    const [contacts, setContacts] = useState([]);
     const { currentUser } = useSelector(state => state.user)
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setContacts(res.data))
-    }, [])
+
     const { data, isLoading } = useQuery({
-        queryKey: ['All_students 2', currentUser?._id],
+        queryKey: ['all Staffs r', currentUser?._id],
         queryFn: async () => {
-       
             const res = await fetcher({
-                url: `/student/center/${currentUser?._id}`,
-                method: "GET",
+                url: `/staff/center/${currentUser?._id}`,
+                method: "get",
             })
             return res
         }
@@ -78,8 +73,8 @@ export default function Table({ rows, class_name }) {
                     </tr>
                 </thead>
                 <tbody className="">
-                    {  data.map((user, index) => {
-                        const isLast = index === contacts.length - 1;
+                    {data.map((user, index) => {
+                        const isLast = index === data.length - 1;
                         const classes = isLast ? "p-3" : "p-3 border-b border-blue-gray-50  ";
 
                         return (
@@ -93,7 +88,7 @@ export default function Table({ rows, class_name }) {
                                 </td>
                                 <td className={classes}>
                                     <div className="flex items-center gap-2">
-                                        <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt=""
+                                        <img src={imageUrl(user?.profilePic)} alt=""
                                             className="w-[45.16px] h-[45.16px] rounded-full object-cover"
                                         />
                                         <Typography
@@ -111,7 +106,7 @@ export default function Table({ rows, class_name }) {
                                         color="blue-gray"
                                         className="font-normal text-xs"
                                     >
-                                        {moment(user?.enrollmentDate).format('MMMM Do YYYY hh:mm a')}
+                                        {moment(user?.createdAt).format('MMMM Do YYYY hh:mm a')}
                                     </Typography>
                                 </td>
                                 <td className={classes}>
@@ -122,8 +117,7 @@ export default function Table({ rows, class_name }) {
                                                 color="blue-gray"
                                                 className="font-semibold text-xs text-[#FF3636]"
                                             >
-                                                {
-                                                    user?.classRoom?.name
+                                                {user?.enrollment?.map((item, index) => <span key={index}>{item?.classroom?.name} {user?.enrollment?.length - 1 !== index ? ", " : ""}</span>)
                                                 }
                                             </Typography>
                                             :
@@ -147,7 +141,7 @@ export default function Table({ rows, class_name }) {
                                     </div>
                                 </td>
                                 <td className={classes}>
-                                    <ActionButton user={user}/>
+                                    <ActionButton user={user} />
                                 </td>
                             </tr>
                         );
@@ -191,7 +185,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/staff/323/profile/timecard'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
                             className={`${option === "Reports" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
@@ -204,7 +198,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/staff/323/profile/schedule-absence'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
                             className={`${option === "Schedule Absence" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
@@ -217,7 +211,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/staff/323/profile/deactive'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
                             className={`${option === "Graduate" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <h5 className="text-red-600 flex items-center gap-1">

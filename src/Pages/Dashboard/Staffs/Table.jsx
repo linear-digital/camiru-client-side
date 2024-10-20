@@ -23,14 +23,10 @@ const TABLE_HEAD = ["Members", "Enrolled", "Class", "Schedule", "Action"];
 
 
 export default function Table() {
-    const [contacts, setContacts] = useState([]);
+
     const { currentUser } = useSelector(state => state.user)
-    useEffect(() => {
-        axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(res => setContacts(res.data))
-    }, [])
     const { data, isLoading } = useQuery({
-        queryKey: ['All_students 2', currentUser?._id],
+        queryKey: ['Staffs', currentUser?._id],
         queryFn: async () => {
             const res = await fetcher({
                 url: `/staff/center/${currentUser?._id}`,

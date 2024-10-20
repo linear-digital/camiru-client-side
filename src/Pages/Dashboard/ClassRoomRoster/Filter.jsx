@@ -75,7 +75,7 @@ const Filter = ({ name, desc }) => {
                         <FontAwesomeIcon icon={faChevronDown} />
                     </button>
                 </Dropdown>
-                <Link to="/dashboard/add-student" className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px]  bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-600 font-semibold">
+                <Link to="/dashboard/add-staff" className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px]  bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-600 font-semibold">
                     Add People
                 </Link>
             </div>

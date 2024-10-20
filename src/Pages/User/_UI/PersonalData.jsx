@@ -20,15 +20,15 @@ const PersonalData = () => {
         const formData = new FormData(e.target)
         const data = Object.fromEntries(formData.entries())
         data.dob = new Date(data.dob)
-
+        console.log(data);
         try {
             const res = await fetcher({
                 url: `/center/${currentUser?._id}`,
                 method: 'PUT',
-                body: data
+                data: data
             })
-            dispatch(setCurrentUser(res.user))
-            toast.success(res.message)
+            dispatch(setCurrentUser(res))
+            toast.success("Data updated successfully")
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')
         }

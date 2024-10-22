@@ -13,6 +13,7 @@ import { Popover } from 'antd';
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Avatar } from 'antd';
+import { Menu } from 'antd';
 
 const Sidebar = ({ setOpen }) => {
     const location = useLocation();
@@ -89,49 +90,49 @@ const Sidebar = ({ setOpen }) => {
 export default Sidebar;
 
 export const NavigationCard = ({ link, active, onClick, isCollapse, name }) => {
+    const menu = [
+        {
+            key: link.path,
+            label: <span className={`${active && "text-white"}`}>{link.name}</span>,
+            icon: link.isIcon ?
+                <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
+                :
+                <span className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`}>
+                    <link.icon />
+                </span>
+            ,
+            children: link.children?.map(item => {
+                return {
+                    key: item._id,
+                    label: <Link to={`${link.path}?id=${item._id}`}  >
+                        {item.name}
+                    </Link>,
+                }
+            }),
+        }
+    ]
+
     return <li className='mb-1 w-full'>
         {
             link?.children ?
-                <Popover trigger={'click'} placement='right' content={<ul className='w-[200px] flex flex-col gap-y-2' >
+
+
+                <div onClick={onClick} className={`py-2 ${active && "bg-primary active"} w-full flex items-center text-sm  relative  rounded `}>
                     {
-                        link?.children?.map((item, index) => {
-                            return <li key={index}>
-                                <Link to={`${link.path}?id=${item._id}`}  >
-                                    {item.name}
-                                </Link>
-                            </li>
-                        })
+                        active &&
+                        <span className='float-left'>
+                            <Icon />
+                        </span>
                     }
-                </ul>}>
-                    <button onClick={onClick} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
-                        {
-                            active &&
-                            <span className='float-left'>
-                                <Icon />
-                            </span>
-                        }
-                        <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
-                            {link.icon &&
-                                <span>
-                                    {
-                                        link.isIcon ?
-                                            <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
-                                            :
-                                            <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
-                                    }
-                                </span>
-                            }
-                            {
-                                !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{name}</p>
-                            }
-                        </div>
-                        {
-                            !active && <span className='absolute right-7 text-blue-gray-600'>
-                                <FontAwesomeIcon icon={faChevronRight} height={24} />
-                            </span>
-                        }
-                    </button>
-                </Popover>
+                    <div className={`flex w-full items-center`}>
+
+                        <Menu
+                            className={`${!active ? "text-current" : "text-white"} text-xs font-normal bg-transparent`}
+                            mode="inline"
+                            items={menu}
+                        />
+                    </div>
+                </div>
                 :
                 <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
                     {

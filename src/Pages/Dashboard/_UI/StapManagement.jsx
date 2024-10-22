@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { set } from 'react-hook-form';
 import { useState } from 'react';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 const StapManagement = () => {
 
@@ -44,10 +45,10 @@ const StapManagement = () => {
                         <FontAwesomeIcon icon={faRotateRight} />
                     </button>
                     <div className=" text-zinc-800 text-xs font-bold ">Next Refresh: {`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`}</div>
-                    <button className=' text-xs px-5 flex gap-3 items-center'>
-                        View Details
+                    <Link to={'/dashboard/staffs'} className=' text-xs px-5 flex gap-3 items-center'>
+                        View Staff
                         <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
+                    </Link>
 
                 </div>
             </section>

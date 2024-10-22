@@ -250,3 +250,16 @@ input {
 .card-0 .ant-card-body {
     padding: 0px !important;
 }
+
+:where(.css-dev-only-do-not-override-18i7g3).ant-menu-light .ant-menu-submenu-selected >.ant-menu-submenu-title,
+:where(.css-dev-only-do-not-override-18i7g3).ant-menu-light .ant-menu-submenu-title:hover {
+    color: currentColor !important;
+}
+
+:where(.css-dev-only-do-not-override-18i7g3).ant-menu-light .ant-menu-item, :where(.css-dev-only-do-not-override-18i7g3).ant-menu-light>.ant-menu .ant-menu-item, :where(.css-dev-only-do-not-override-18i7g3).ant-menu-light .ant-menu-submenu-title, :where(.css-dev-only-do-not-override-18i7g3).ant-menu-light>.ant-menu .ant-menu-submenu-title {
+    color: currentColor !important;
+}
+
+.active .ant-menu-title-content {
+    color: black !important;
+}

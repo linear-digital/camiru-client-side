@@ -11,14 +11,14 @@ const Sidebar = () => {
             <Contacts />
             <div className="mt-10 text-cyan-700 text-xs font-semibold ">Chats</div>
             <div className='mt-5 h-full'>
-                {/* <RecentChatCard />
+                <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
                 <RecentChatCard />
 
-                <RecentChatCard /> */}
+                <RecentChatCard />
                 <h2 className="text-gray-500 text-lg font-normal">No Chats Found</h2>
             </div>
         </div>

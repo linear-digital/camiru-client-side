@@ -9,6 +9,9 @@ import { Provider } from 'react-redux';
 import { Toaster } from 'react-hot-toast';
 import store from './redux/store';
 import { ConfigProvider } from 'antd';
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const App = () => {
   return (

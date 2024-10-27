@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import axios from "axios"
 import { useState } from "react";
 import moment from 'moment';
-import { Checkbox } from "antd";
+import { Button, Checkbox } from "antd";
 import { Dropdown } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -14,132 +14,177 @@ import { faCalendarDays } from "@fortawesome/free-regular-svg-icons";
 import { faGraduationCap } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import nameDisplay from "../../../util/nameDisplay";
-import { imageUrl } from "../../../Components/helper/axios.instance";
+import { fetcher, imageUrl } from "../../../Components/helper/axios.instance";
 import calculateAge from "../../../util/ageCalculator";
 import { useNavigate } from "react-router-dom";
-const TABLE_HEAD = ["Members", "Enrolled", "ClassRoom", "Age", "Schedule", "Action"];
+import { Table as AntTable } from 'antd'
+import toast from "react-hot-toast";
+import { Spin } from "antd";
 
+export default function Table({ data, refetch }) {
+    const [loading, setLoading] = useState(false)
+    const [countTime, setCountTime] = useState('0s')
+    const clockIn = async (id) => {
+        try {
+            setLoading(true)
+            const res = await fetcher({
+                url: `/student/student/checkin/${id}`,
+                method: 'PUT',
+                data: {
+                    time: new Date()
+                }
+            })
+            refetch()
+            setLoading(false)
 
-export default function Table({ data }) {
-    const navigate = useNavigate()
-    const [selected, setSelected] = useState([]);
-    const navigateProfile = (id) => {
-        navigate(`/dashboard/student/${id}/profile/enrollment`)
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong');
+            setLoading(false)
+        }
+    }
+    const clockOut = async (id) => {
+        try {
+            setLoading(true)
+            const res = await fetcher({
+                url: `/student/student/checkout/${id}`,
+                method: 'PUT',
+                data: {
+                    time: new Date()
+                }
+            })
+            refetch()
+            setLoading(false)
+
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong');
+            setLoading(false)
+        }
     }
     return (
         <Card className="h-full w-full overflow-auto rounded-none shadow-none">
-            <table className="w-full min-w-max table-auto text-left">
-                <thead>
-                    <tr>
-                        <th
-                            className="border-b border-blue-gray-100  p-3"
+            <AntTable
+                columns={[
+                    {
+                        title: 'Name',
+                        dataIndex: 'name',
+                        key: 'name',
+                        render: (_, record) => <Link to={`/dashboard/student/${record?._id}/profile/enrollment`} className="flex items-center gap-2">
+                            <img src={imageUrl(record?.profilePic)} alt=""
+                                className="w-[45.16px] h-[45.16px] rounded-full object-cover"
+                            />
+                            <span className="text-sm font-normal">{nameDisplay(record)}</span>
+                        </Link>
+                    },
+                    {
+                        title: 'Enrolled',
+                        dataIndex: 'enrolled',
+                        key: 'enrolled',
+                        render: (_, record) => <span className="text-sm font-normal">{moment(record?.createdAt).format('MMMM Do YYYY')}</span>
+                    },
+                    {
+                        title: 'Status',
+                        dataIndex: 'status',
+                        key: 'status',
+                        render: (_, record) => <span className="text-sm font-normal">{record?.report?.status}</span>
+                    },
+                    {
+                        title: 'Age',
+                        dataIndex: 'age',
+                        key: 'age',
+                        render: (_, record) => <Typography
+                            variant="small"
+                            color="blue-gray"
+                            className="font-normal text-xs"
                         >
-                            <Checkbox className=""
+                            {calculateAge(record?.birthDate)}
+                        </Typography>
+                    },
+                    {
+                        title: <span>
+                            Schedule <Spin size="small" spinning={loading} />
+                        </span>,
+                        dataIndex: 'schedule',
+                        key: 'schedule',
+                        render: (_, record) => {
+                            if (record?.report?.status === "Not Assigned") {
+                                return <button
+                                    disabled={loading}
+                                    onClick={() => clockIn(record?._id)}
+                                    className="btn btn-sm btn-secondary text-[10px] px-5 text-white ">
+                                    Check in
+                                </button>
+                            }
+                            else if (record?.report?.status === "Present") {
+                                return <div className="flex flex-col gap-3 items-start">
+                                    <TimeCounter time={record?.report?.start} />
+                                    <Button
+                                        onClick={() => clockOut(record?._id)}
+                                        danger
+                                        size="small"
+                                    >
+                                        Check out
+                                    </Button>
+                                </div>
+                            }
+                            return <TimeCounter time={record?.report?.start} end={record?.report?.end}/>
+                        }
+                    },
+                    {
+                        title: 'Action',
+                        dataIndex: 'action',
+                        key: 'action',
+                        render: (_, record) => <ActionButton user={record} />
+                    }
+                ]}
+                dataSource={data}
+                rowKey={(user) => user._id}
+            />
+            {/* <Checkbox className=""
                                 checked={selected.length === data?.length}
                                 onChange={(e) => setSelected(e.target.checked ? data?.map((user) => user._id) : [])}
-                            />
-                        </th>
-                        {TABLE_HEAD.map((head) => (
-                            <th
-                                key={head}
-                                className="border-b border-blue-gray-100  p-3"
-                            >
-                                <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70 text-start text-sm"
-                                >
-                                    {head}
-                                </Typography>
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody className="">
-                    {data?.map((user, index) => {
-                        const isLast = index === data?.length - 1;
-                        const classes = isLast ? "p-3 cursor-pointer" : "p-3 border-b border-blue-gray-50  cursor-pointer";
-
-                        return (
-                            <tr key={user._id}
-                                className={`${selected.includes(user._id) && "shadow-lg border-l-4 border-primary "} hover:bg-gray-50`}
-                            >
-                                <td className={classes}
-
-                                >
-                                    <Checkbox checked={selected.includes(user._id)}
-                                        onChange={(e) => setSelected(e.target.checked ? [...selected, user._id] : selected.filter((item) => item !== user._id))}
-                                    />
-                                </td>
-                                <td className={classes}
-                                    onClick={() => navigateProfile(user?._id)}
-                                >
-                                    <div className="flex items-center gap-2">
-                                        <img src={imageUrl(user?.profilePic)} alt=""
-                                            className="w-[45.16px] h-[45.16px] rounded-full object-cover"
-                                        />
-                                        <Typography
-                                            variant="small"
-                                            color="blue-gray"
-                                            className="font-normal text-xs"
-                                        >
-                                            {
-                                                nameDisplay(user)
-                                            }
-                                        </Typography>
-                                    </div>
-                                </td>
-                                <td className={classes}
-                                    onClick={() => navigateProfile(user?._id)}
-                                >
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        {moment(user?.
-                                            enrollmentDate).format('MMMM Do YYYY hh:mm a')}
-                                    </Typography>
-                                </td>
-
-                                <td className={classes}
-                                // onClick={() => navigateProfile(user?._id)}
-                                >
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        {user?.classRoom?.name}
-                                    </Typography>
-                                </td>
-                                <td className={classes}
-                                    onClick={() => navigateProfile(user?._id)}
-                                >
-                                    <Typography
-                                        variant="small"
-                                        color="blue-gray"
-                                        className="font-normal text-xs"
-                                    >
-                                        {calculateAge(user?.birthDate)}
-                                    </Typography>
-                                </td>
-                                <td className={classes}>
-                                    <button className="btn btn-sm btn-secondary text-[10px] px-5 text-white">
-                                        Check in
-                                    </button>
-                                </td>
-                                <td className={classes}>
-                                    <ActionButton user={user} />
-                                </td>
-                            </tr>
-                        );
-                    })}
-                </tbody>
-            </table>
+                            /> */}
         </Card>
     );
 }
+
+export const TimeCounter = ({ time, end }) => {
+    const [count, setCount] = useState('');
+
+    useEffect(() => {
+        const start = new Date(time);
+
+        if (end) {
+            const now = new Date(end);
+            const diffInSeconds = Math.floor((now - start) / 1000);
+
+            // Calculate hours, minutes, and seconds
+            const hours = Math.floor(diffInSeconds / 3600);
+            const minutes = Math.floor((diffInSeconds % 3600) / 60);
+            const seconds = diffInSeconds % 60;
+
+            setCount(`${hours > 0 ? `${hours}h ` : ''}${minutes}m ${seconds}s`);
+        }
+        else {
+            const interval = setInterval(() => {
+                const now = new Date();
+                const diffInSeconds = Math.floor((now - start) / 1000);
+
+                // Calculate hours, minutes, and seconds
+                const hours = Math.floor(diffInSeconds / 3600);
+                const minutes = Math.floor((diffInSeconds % 3600) / 60);
+                const seconds = diffInSeconds % 60;
+
+                setCount(`${hours > 0 ? `${hours}h ` : ''}${minutes}m ${seconds}s`);
+            }, 1000);
+
+            return () => clearInterval(interval);
+        }
+    }, [time]);
+
+    return (
+        <span className="text-sm font-normal">{count}</span>
+    );
+};
 
 const ActionButton = ({ user }) => {
     const [option, setOption] = useState("Check in");
@@ -149,10 +194,10 @@ const ActionButton = ({ user }) => {
             menu={{
                 items: [
                     {
-                        label: <Link to={'/dashboard/checkin'}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/details`}
                             className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                         >
-                            <CheckIn />  Check in
+                            <CheckIn />  Contact Guardian
                         </Link>,
                         key: '1',
                     },

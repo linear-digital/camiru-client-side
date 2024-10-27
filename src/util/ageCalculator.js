@@ -23,6 +23,9 @@ function calculateAge(birthdate, year) {
     if (year) {
        return years 
     }
+    if (years === 0) {
+        return `${months} Month${months > 1 ? "s" : ""}`;
+    }
     return `${years}Y ${months}M`;
   }
   

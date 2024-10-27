@@ -44,6 +44,7 @@ const StudentList = ({ id, refetch: refetchList }) => {
             refetchList()
             setLoading(false)
         } catch (error) {
+            console.log(error);
             toast.error(error?.response?.data?.message || 'Something went wrong')
             setLoading(false)
         }
@@ -94,7 +95,9 @@ const StudentList = ({ id, refetch: refetchList }) => {
     }
     return (
         <div className='mt-10'>
-            <Table columns={columns} dataSource={data} />
+            <Table rowKey={data => {
+                return data._id
+            }} columns={columns} dataSource={data} />
         </div>
     );
 };

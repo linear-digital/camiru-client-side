@@ -13,7 +13,9 @@ const Contacts = () => {
         {
             label: <button
                 onClick={() => setSelected('1')}
-            >Parant Message</button>,
+            >
+                Parant Message
+            </button>,
             key: '0',
         },
         {
@@ -22,7 +24,9 @@ const Contacts = () => {
         {
             label: <button
                 onClick={() => setSelected('1')}
-            >Staff Message</button>,
+            >
+                Staff Message
+            </button>,
             key: '1',
         },
     ];

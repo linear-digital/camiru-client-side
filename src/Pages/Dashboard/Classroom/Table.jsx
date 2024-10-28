@@ -277,13 +277,17 @@ const ActionButton = ({ user, refetch }) => {
                         },
                         {
                             label: <button
-                                disabled={user?.report?.status === "Absent"}
+                                disabled={user?.report?.checkedIn}
                                 onClick={() => {
                                     setOption("Absence Today")
                                     setShow(!show)
                                 }}
 
-                                className={`${option === "Absence Today" ? "text-amber-500" : "text-red-500"} w-full flex items-center gap-2  text-start`}
+                                className={`${user?.report?.checkedIn ?
+                                    'text-red-100'
+                                    :
+                                    "text-red-500"
+                                    } w-full flex items-center gap-2  text-start`}
                             >
                                 <LoginOutlined />  Absence Today
                             </button>,

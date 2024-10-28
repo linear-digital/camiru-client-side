@@ -127,9 +127,10 @@ export const NavigationCard = ({ link, active, onClick, isCollapse, name }) => {
                     <div className={`flex w-full items-center`}>
 
                         <Menu
+                            
                             className={`${!active ? "text-current" : "text-white"} text-xs font-normal bg-transparent w-full`}
                             mode="vertical"
-                            
+                            triggerSubMenuAction='click'
                             items={menu}
                         />
                     </div>

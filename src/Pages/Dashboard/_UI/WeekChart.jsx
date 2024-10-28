@@ -35,7 +35,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
             }
 
             if (type === "daily") {
-                if (moment(newDate.day).isoWeek() === moment().isoWeek()) {
+                if (newDate.day === new Date()) {
                     newDate.selected = true
                 }
             }
@@ -60,7 +60,8 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
             const filterDays = days.map(day => {
                 return {
                     ...day,
-                    active: selectedBar?.day === day.day
+                    active: selectedBar?.day === day.day,
+                    selected: type === "daily" ? selectedBar?.day === day.day : day?.selected
                 }
             })
             setDays(filterDays)
@@ -96,8 +97,8 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
                                 />
                             </div>
                             {
-                                type === "monthly" ?
-                                    day.selected && <div className='flex justify-between items-center'>
+                                (type === "monthly" || type === "daily") ?
+                                     <div className='flex justify-between items-center'>
                                         <p className='text-gray-600 lg:text-xs text-[8px]'>{moment(day.day).format('D')}</p>
                                     </div>
                                     :

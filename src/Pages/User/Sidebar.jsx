@@ -117,7 +117,7 @@ export const NavigationCard = ({ link, active, onClick, isCollapse, name }) => {
             link?.children ?
 
 
-                <div onClick={onClick} className={`py-2 ${active && "bg-primary active"} w-full flex items-center text-sm  relative  rounded `}>
+                <div onClick={onClick} className={`py-2 ${active ? "bg-primary active" : "pl-2"} w-full flex items-center  text-sm  relative  rounded `}>
                     {
                         active &&
                         <span className='float-left'>
@@ -127,8 +127,9 @@ export const NavigationCard = ({ link, active, onClick, isCollapse, name }) => {
                     <div className={`flex w-full items-center`}>
 
                         <Menu
-                            className={`${!active ? "text-current" : "text-white"} text-xs font-normal bg-transparent`}
-                            mode="inline"
+                            className={`${!active ? "text-current" : "text-white"} text-xs font-normal bg-transparent w-full`}
+                            mode="vertical"
+                            
                             items={menu}
                         />
                     </div>

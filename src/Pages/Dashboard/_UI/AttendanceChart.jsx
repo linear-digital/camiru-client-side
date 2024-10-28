@@ -3,12 +3,7 @@ import { PieChart } from '@mui/x-charts/PieChart';
 import { useDrawingArea } from '@mui/x-charts/hooks';
 import { styled } from '@mui/material/styles';
 
-const data = [
-    { value: 10, color: "#FB6EB0" },
-    { value: 20, color: "#ffbb3b" },
-    { value: 15, color: "#96c82c" },
-    { value: 20, color: "#15acde" },
-];
+
 
 
 const StyledText = styled('text')(({ theme }) => ({
@@ -31,12 +26,21 @@ function PieCenterLabel({ children }) {
     );
 }
 
-export default function AttendanceChart({ height, width, total }) {
+export default function AttendanceChart({ height, width, total, statistics }) {
     return (
-        <PieChart series={[{ data, innerRadius: '60%' }]}
-            width={width} height={height} >
-            <PieCenterLabel>
-                {total}
+        <PieChart series={[{
+            data: [
+                { value: statistics?.absent, color: "#FB6EB0", label: "Absent" },
+                { value: statistics?.present, color: "#ffbb3b", label: "Present" },
+                { value: statistics?.checkedOut, color: "#96c82c", label: "Checked Out" },
+                { value: statistics?.checkedIn, color: "#15acde", label: "Checked In" },
+                { value: statistics?.pending, color: "red", label: "Not Assigned" },
+            ], innerRadius: '60%'
+        }]}
+            width={width} height={height}
+        >
+            <PieCenterLabel >
+                {statistics?.total}
             </PieCenterLabel>
         </PieChart>
     );

@@ -9,11 +9,45 @@ import { faCircleChevronRight } from '@fortawesome/free-solid-svg-icons';
 import WeekChart from './WeekChart';
 import WeekChart2 from './WeekChart2';
 import moment from 'moment';
+import { useQuery } from '@tanstack/react-query';
+import { fetcher } from '../../../Components/helper/axios.instance';
+import { useSelector } from 'react-redux';
+import Loader from '../../../Components/Loader';
+import { Spin } from 'antd';
+import { useEffect } from 'react';
 
 const Attendance = () => {
     const [type, setType] = React.useState('daily');
     const [active, setActive] = React.useState(true);
     const [date, setDate] = React.useState(new Date());
+    const { currentUser } = useSelector((state) => state.user);
+    const [data, setData] = React.useState({
+        checkedIn: 0,
+        checkedOut: 0,
+        total: 0,
+        absent: 0,
+        pending: 0,
+        present: 0
+    });
+    const { data: statistics, isLoading } = useQuery({
+        queryKey: ["attendance", currentUser?._id, active.day],
+        queryFn: () => {
+            return fetcher({
+                url: `/student/statistics`,
+                method: "POST",
+                data: {
+                    id: currentUser?._id,
+                    date: active.day
+                }
+            })
+        },
+        enabled: !!currentUser || !!active
+    })
+    useEffect(() => {
+        if (statistics) {
+            setData(statistics)
+        }
+    }, [statistics])
     return (
         <div className=''>
             <div className='lg:p-5 p-3 mt-10 border border-[#C7F1FF] bg-[#F8FCFF] rounded-xl'>
@@ -21,10 +55,11 @@ const Attendance = () => {
                     <h2 className=" text-black lg:text-sm text-xs font-bold poppins">Attendance</h2>
                     <AttendanceNavigation state={type} setState={setType} />
                 </div>
+
                 <div className='flex flex-col items-center mt-5 lg:hidden'>
                     <div className='flex flex-col justify-center  max-w-[200px] pl-10'>
                         <div className='pl-2'>
-                            <AttendanceChart width={200} height={100} />
+                            <AttendanceChart width={200} height={100} statistics={data} total={data?.total} />
                         </div>
                         <div className="flex items-center gap-4 mt-3">
                             <button className='w-4 '>
@@ -47,22 +82,22 @@ const Attendance = () => {
                         <AttCard
                             bg={"bg-primary"}
                             title={"Checked In"}
-                            desc={"81 Studnets"}
+                            desc={`${data?.checkedIn} Studnets`}
                         />
                         <AttCard
                             bg={"bg-[#ffbb3b]"}
                             title={"Present"}
-                            desc={"51 Studnets"}
+                            desc={`${data?.present} Studnets`}
                         />
                         <AttCard
                             bg={"bg-secondary"}
                             title={"Checked Out"}
-                            desc={"81 Studnets"}
+                            desc={`${data?.checkedOut} Studnets`}
                         />
                         <AttCard
                             bg={"bg-[#FB6EB0]"}
                             title={"Absent"}
-                            desc={"51 Studnets"}
+                            desc={`${data?.absent} Studnets`}
                         />
                     </div>
                 </div>
@@ -70,20 +105,20 @@ const Attendance = () => {
                     <AttCard
                         bg={"bg-primary"}
                         title={"Checked In"}
-                        desc={`${active?.checked_in} Studnets`}
+                        desc={`${data?.checkedIn} Studnets`}
                     />
                     <AttCard
                         bg={"bg-[#ffbb3b]"}
                         title={"Present"}
-                        desc={`${active?.checked_in} Studnets`}
+                        desc={`${data?.present} Studnets`}
                     />
                     <div className='flex flex-col justify-center  max-w-[200px] pl-5'>
                         <div className=''>
-                            <AttendanceChart total={active?.total} height={190} width={250} />
+                            <AttendanceChart statistics={data} total={data?.total} height={190} width={250} />
                         </div>
                         <div className={`${type === 'monthly' ? 'flex' : 'hidden'} items-center gap-4 ml-4`}>
                             <button className='w-4 '
-                            onClick={() => setDate(moment(date).subtract(1, 'month').toDate())}
+                                onClick={() => setDate(moment(date).subtract(1, 'month').toDate())}
                             >
                                 <FontAwesomeIcon
                                     icon={faCircleChevronLeft}
@@ -94,7 +129,7 @@ const Attendance = () => {
                                 {moment(date).format('MMMM')}
                             </h1>
                             <button className='w-4 '
-                            onClick={() => setDate(moment(date).add(1, 'month').toDate())}
+                                onClick={() => setDate(moment(date).add(1, 'month').toDate())}
                             >
                                 <FontAwesomeIcon
                                     icon={faCircleChevronRight}
@@ -106,15 +141,15 @@ const Attendance = () => {
                     <AttCard
                         bg={"bg-secondary"}
                         title={"Checked Out"}
-                        desc={"81 Studnets"}
+                        desc={`${data?.checkedOut} Studnets`}
                     />
                     <AttCard
                         bg={"bg-[#FB6EB0]"}
                         title={"Absent"}
-                        desc={`${active?.absent} Studnets`}
+                        desc={`${data?.absent} Studnets`}
                     />
                 </div>
-                <WeekChart type={type} selectedBar={active} setSelectedBar={setActive} month={date.getMonth()} year={date.getFullYear()}/>
+                <WeekChart type={type} selectedBar={active} setSelectedBar={setActive} month={date.getMonth()} year={date.getFullYear()} />
             </div>
         </div>
     );

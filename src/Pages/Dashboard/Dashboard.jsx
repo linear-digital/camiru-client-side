@@ -64,7 +64,7 @@ const Dashboard = () => {
                             value={"50"}
                         />
                         <StatisticCard
-                            title={"Children Per Class"}
+                            title={"Total Staff"}
                             value={"10"}
                         />
                         <StatisticCard

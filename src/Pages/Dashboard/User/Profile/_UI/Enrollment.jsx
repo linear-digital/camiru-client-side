@@ -19,7 +19,7 @@ import { useDispatch } from 'react-redux';
 
 const Enrollment = ({ edit }) => {
 
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const [status, setStatus] = useState("Active");
     const { selected: user } = useSelector(state => state.child)
     const dispatch = useDispatch()
@@ -38,14 +38,28 @@ const Enrollment = ({ edit }) => {
     const [update, setUpdate] = useState({
         classRoom: "",
         status: "",
-        enrollmentDate: "",
-        graduationDate: "",
+        enrollmentDate: new Date(),
+        graduationDate: new Date(),
         graduate: false,
         rotation: "",
         days: []
     })
     useEffect(() => {
+        setUpdate({
+            ...update,
+            enrollmentDate: new Date(date.year, date.month - 1, date.day),
+            graduationDate: new Date(grDate.year, grDate.month - 1, grDate.day)
+        })
+    },[date, grDate])
+    useEffect(() => {
         const date = dayjs(user?.enrollmentDate);
+        const grDate = dayjs(user?.graduationDate || new Date());
+
+        setGrDate({
+            day: grDate.date(),
+            month: grDate.month() + 1,
+            year: grDate.year()
+        })
         setDate({
             day: date.date(),
             month: date.month() + 1,
@@ -76,7 +90,7 @@ const Enrollment = ({ edit }) => {
             toast.error(error?.response?.data?.message || 'Something went wrong');
         }
     }
-    
+
     if (edit) {
         return <div className='w-full border lg:pl-[84px] pl-5 py-[55px] rounded-xl poppins'>
             <h1 className="text-slate-900 text-2xl font-bold ">
@@ -140,7 +154,7 @@ const Enrollment = ({ edit }) => {
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <div className='flex gap-3 enroll'>
                             <DesktopDatePicker views={['day',]}
-                                defaultValue={dayjs(user?.enrollmentDate)}
+                                value={dayjs(new Date(date.year, date.month - 1, date.day))}
                                 onChange={(e) => {
                                     setDate({
                                         ...date,
@@ -149,7 +163,7 @@ const Enrollment = ({ edit }) => {
                                 }}
                             />
                             <DesktopDatePicker
-                                defaultValue={dayjs(user?.enrollmentDate)}
+                                value={dayjs(new Date(date.year, date.month - 1, date.day))}
                                 views={['month',]}
                                 onChange={(e) => {
                                     setDate({
@@ -159,7 +173,7 @@ const Enrollment = ({ edit }) => {
                                 }}
                             />
                             <DesktopDatePicker
-                                defaultValue={dayjs(user?.enrollmentDate)}
+                                value={dayjs(new Date(date.year, date.month - 1, date.day))}
                                 views={['year',]}
                                 onChange={(e) => {
                                     setDate({
@@ -178,7 +192,7 @@ const Enrollment = ({ edit }) => {
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <div className='flex gap-3 enroll'>
                                 <DesktopDatePicker views={['day',]}
-                                    defaultValue={dayjs(user?.graduationDate)}
+                                    value={dayjs(new Date(grDate.year, grDate.month - 1, grDate.day))}
                                     onChange={(e) => {
                                         setGrDate({
                                             ...grDate,
@@ -187,7 +201,7 @@ const Enrollment = ({ edit }) => {
                                     }}
                                 />
                                 <DesktopDatePicker
-                                    defaultValue={dayjs(user?.graduationDate)}
+                                    value={dayjs(new Date(grDate.year, grDate.month - 1, grDate.day))}
                                     views={['month',]}
                                     onChange={(e) => {
                                         setGrDate({
@@ -197,7 +211,7 @@ const Enrollment = ({ edit }) => {
                                     }}
                                 />
                                 <DesktopDatePicker
-                                    defaultValue={dayjs(user?.graduationDate)}
+                                    value={dayjs(new Date(grDate.year, grDate.month - 1, grDate.day))}
                                     views={['year',]}
                                     onChange={(e) => {
                                         setGrDate({
@@ -208,7 +222,7 @@ const Enrollment = ({ edit }) => {
                                 />
                             </div>
                         </LocalizationProvider>
-                        <button className='text-[#187A82] text-xs mt-2'>Skip</button>
+                        {/* <button className='text-[#187A82] text-xs mt-2'>Skip</button> */}
                     </div>
                 </RowEdit>
                 <RowEdit

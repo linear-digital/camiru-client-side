@@ -102,7 +102,7 @@ export const ClassRoomSelector = ({ rooms, selected, setSelected }) => {
     >
         <button className=" lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#187A8229] text-[#187A82] border-[#187A82] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
             <span className=" text-xs font-medium tracking-tight">
-                {selected?.classRoom?.name}
+                {selected?.name}
             </span>
             <FontAwesomeIcon icon={faChevronDown} />
         </button>

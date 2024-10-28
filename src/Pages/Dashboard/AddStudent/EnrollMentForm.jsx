@@ -22,8 +22,8 @@ const EnrollmentForm = ({ setOpen, open }) => {
 
     const { classrooms } = useSelector(state => state.classroom)
 
-    const days = ["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"];
-    const [selectedDays, setSelectedDays] = useState(["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"]);
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const [selectedDays, setSelectedDays] = useState(["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]);
     const { childFeilds } = useSelector(state => state.child)
     const dispatch = useDispatch()
     const setData = (data) => {

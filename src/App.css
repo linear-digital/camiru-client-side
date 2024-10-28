@@ -263,3 +263,8 @@ input {
 .active .ant-menu-title-content {
     color: black !important;
 }
+
+
+.disabled{
+    color: rgba(128, 128, 128, 0.765) !important;
+}

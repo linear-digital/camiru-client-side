@@ -10,8 +10,7 @@ import nameDisplay from '../../../util/nameDisplay';
 import calculateAge from '../../../util/ageCalculator';
 
 const ProfileCard = ({ user }) => {
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
-    const [selected, setSelected] = useState(["M", "Tu", "Wh"]);
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     return (
         <section className='mt-10 lg:p-10 p-5 border w-full rounded-lg lg:flex items-start gap-10 justify-between'>
             <div className="rounded-full overflow-hidden min-w-[150px] max-w-[150px] h-[150px] bg-gray-100 flex justify-center items-center">
@@ -77,7 +76,7 @@ const ProfileCard = ({ user }) => {
                         <button className='btn-link text-primary text-xs'>Report History</button>
                         <div className="flex gap-[5px]">
                             {
-                                days.map((day, index) => <button key={index} className={`text-[11px] ${selected.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
+                                days.map((day, index) => <button key={index} className={`text-[11px] ${user?.days.includes(day) ? "bg-amber-50 text-amber-500" : "bg-gray-100 text-gray-600"} w-[30px] rounded flex justify-center items-center px-3 py-1 `}>
                                     {day}
                                 </button>)
                             }

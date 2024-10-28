@@ -28,7 +28,7 @@ export default function Table({ rows, class_name, data, selectedClass }) {
     const navigateProfile = (id) => {
         navigate(`/dashboard/student/${id}/profile/enrollment`)
     }
-    const days = ["M", "Tu", "Wh", "T", "F", "Sa", "Su"];
+    const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
     return (
         <Card className="h-full w-full overflow-auto rounded-none shadow-none">

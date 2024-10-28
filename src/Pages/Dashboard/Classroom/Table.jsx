@@ -23,7 +23,7 @@ import { Spin } from "antd";
 
 export default function Table({ data, refetch }) {
     const [loading, setLoading] = useState(false)
-    const [countTime, setCountTime] = useState('0s')
+
     const clockIn = async (id) => {
         try {
             setLoading(true)
@@ -60,15 +60,22 @@ export default function Table({ data, refetch }) {
             setLoading(false)
         }
     }
+
+    const isDisabled = (record) => {
+        const today = moment().format('ddd')
+        return record?.days?.includes(today) ? false : true
+        
+    }
     return (
         <Card className="h-full w-full overflow-auto rounded-none shadow-none">
             <AntTable
+                pagination={false}
                 columns={[
                     {
                         title: 'Name',
                         dataIndex: 'name',
                         key: 'name',
-                        render: (_, record) => <Link to={`/dashboard/student/${record?._id}/profile/enrollment`} className="flex items-center gap-2">
+                        render: (_, record) => <Link to={`/dashboard/student/${record?._id}/profile/enrollment`} className={`flex items-center gap-2 ${isDisabled(record) && 'opacity-50'}`}>
                             <img src={imageUrl(record?.profilePic)} alt=""
                                 className="w-[45.16px] h-[45.16px] rounded-full object-cover"
                             />
@@ -79,13 +86,14 @@ export default function Table({ data, refetch }) {
                         title: 'Enrolled',
                         dataIndex: 'enrolled',
                         key: 'enrolled',
-                        render: (_, record) => <span className="text-sm font-normal">{moment(record?.createdAt).format('MMMM Do YYYY')}</span>
+                        disabled: true,
+                        render: (_, record) => <span className={`text-sm font-normal ${isDisabled(record) && 'opacity-50'}`}>{moment(record?.createdAt).format('MMMM Do YYYY')}</span>
                     },
                     {
                         title: 'Status',
                         dataIndex: 'status',
                         key: 'status',
-                        render: (_, record) => <span className="text-sm font-normal">{record?.report?.status}</span>
+                        render: (_, record) => <span className={`text-sm font-normal ${isDisabled(record) && 'opacity-50'}`}>{record?.report?.status}</span>
                     },
                     {
                         title: 'Age',
@@ -94,7 +102,7 @@ export default function Table({ data, refetch }) {
                         render: (_, record) => <Typography
                             variant="small"
                             color="blue-gray"
-                            className="font-normal text-xs"
+                            className={`font-normal text-xs ${isDisabled(record) && 'opacity-50'}`}
                         >
                             {calculateAge(record?.birthDate)}
                         </Typography>
@@ -106,7 +114,14 @@ export default function Table({ data, refetch }) {
                         dataIndex: 'schedule',
                         key: 'schedule',
                         render: (_, record) => {
-                            if (record?.report?.status === "Not Assigned") {
+                            if (isDisabled(record)) {
+                                return <button
+                                disabled
+                                className="btn btn-sm bg-secondary/40 text-[10px] px-5 text-white ">
+                                Check in
+                            </button>
+                            }
+                            else if (record?.report?.status === "Not Assigned") {
                                 return <button
                                     disabled={loading}
                                     onClick={() => clockIn(record?._id)}
@@ -126,7 +141,7 @@ export default function Table({ data, refetch }) {
                                     </Button>
                                 </div>
                             }
-                            return <TimeCounter time={record?.report?.start} end={record?.report?.end}/>
+                            return <TimeCounter time={record?.report?.start} end={record?.report?.end} />
                         }
                     },
                     {
@@ -190,6 +205,7 @@ const ActionButton = ({ user }) => {
     const [option, setOption] = useState("Check in");
     return (
         <Dropdown
+
             className='option-classroom'
             menu={{
                 items: [
@@ -205,7 +221,7 @@ const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={`/dashboard/student/${user?._id}/profile`}
+                        label: <Link to={`/dashboard/student/${user?._id}/profile/enrollment`}
                             className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <FontAwesomeIcon icon={faUser} />

@@ -14,7 +14,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MUIDatePicker from './MUIDatePicker';
 import toast from 'react-hot-toast';
-
+export const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const Enrollment = ({ setData, data }) => {
     const { classrooms } = useSelector(state => state.classroom)
     const today = new Date();
@@ -25,7 +25,7 @@ const Enrollment = ({ setData, data }) => {
     });
     const rotations = ["Morning", "Afternoon", "Evening"]
     const status = ["Active", "Not Active"]
-    const days = ["Mon", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+   
     const [classList, setclassList] = useState([1]);
     const [allformData, setAllformData] = useState({
         classroom_1: "",

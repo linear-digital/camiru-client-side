@@ -16,10 +16,13 @@ import { Link } from "react-router-dom";
 import nameDisplay from "../../../util/nameDisplay";
 import { fetcher, imageUrl } from "../../../Components/helper/axios.instance";
 import calculateAge from "../../../util/ageCalculator";
-import { useNavigate } from "react-router-dom";
 import { Table as AntTable } from 'antd'
 import toast from "react-hot-toast";
 import { Spin } from "antd";
+import { LoginOutlined } from "@ant-design/icons";
+import { Modal } from "antd";
+import { Input } from "antd";
+import { Popover } from "antd";
 
 export default function Table({ data, refetch }) {
     const [loading, setLoading] = useState(false)
@@ -64,7 +67,7 @@ export default function Table({ data, refetch }) {
     const isDisabled = (record) => {
         const today = moment().format('ddd')
         return record?.days?.includes(today) ? false : true
-        
+
     }
     return (
         <Card className="h-full w-full overflow-auto rounded-none shadow-none">
@@ -116,10 +119,10 @@ export default function Table({ data, refetch }) {
                         render: (_, record) => {
                             if (isDisabled(record)) {
                                 return <button
-                                disabled
-                                className="btn btn-sm bg-secondary/40 text-[10px] px-5 text-white ">
-                                Check in
-                            </button>
+                                    disabled
+                                    className="btn btn-sm bg-secondary/40 text-[10px] px-5 text-white ">
+                                    Check in
+                                </button>
                             }
                             else if (record?.report?.status === "Not Assigned") {
                                 return <button
@@ -141,6 +144,22 @@ export default function Table({ data, refetch }) {
                                     </Button>
                                 </div>
                             }
+                            else if (record?.report?.status === "Absent") {
+                                return <Popover content={
+                                    <div>
+                                        <h3 className="font-medium">Reason</h3>
+                                        <h3>{record?.report?.reason}</h3>
+                                    </div>
+                                }>
+                                    <Button
+
+                                        danger
+                                        size="medium"
+                                    >
+                                        Absent
+                                    </Button>
+                                </Popover>
+                            }
                             return <TimeCounter time={record?.report?.start} end={record?.report?.end} />
                         }
                     },
@@ -148,7 +167,9 @@ export default function Table({ data, refetch }) {
                         title: 'Action',
                         dataIndex: 'action',
                         key: 'action',
-                        render: (_, record) => <ActionButton user={record} />
+                        render: (_, record) => <ActionButton user={record}
+                            refetch={refetch}
+                        />
                     }
                 ]}
                 dataSource={data}
@@ -201,83 +222,135 @@ export const TimeCounter = ({ time, end }) => {
     );
 };
 
-const ActionButton = ({ user }) => {
+const ActionButton = ({ user, refetch }) => {
     const [option, setOption] = useState("Check in");
+    const [show, setShow] = useState(false);
+    const [reason, setReason] = useState("");
+    const markAbsent = async (id) => {
+        try {
+
+            const res = await fetcher({
+                url: `/student/student/absent/${user?._id}`,
+                method: 'PUT',
+                data: {
+                    reason
+                }
+            })
+            refetch()
+            setShow(false)
+
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong');
+        }
+    }
     return (
-        <Dropdown
+        <div>
+            <Modal footer={null} open={show} onCancel={() => setShow(!show)} title="Why?">
+                <Input.TextArea
+                    onChange={(e) => setReason(e.target.value)}
+                    value={reason}
+                    className="mt-4"
+                    placeholder="Reason"
+                    rows={4}
+                />
+                <Button
+                    className="mt-4"
+                    size="large"
+                    danger
+                    onClick={() => markAbsent()}
+                >
+                    Submit
+                </Button>
+            </Modal>
+            <Dropdown
 
-            className='option-classroom'
-            menu={{
-                items: [
-                    {
-                        label: <Link to={`/dashboard/student/${user?._id}/profile/details`}
-                            className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                        >
-                            <CheckIn />  Contact Guardian
-                        </Link>,
-                        key: '1',
-                    },
-                    {
-                        type: 'divider',
-                    },
-                    {
-                        label: <Link to={`/dashboard/student/${user?._id}/profile/enrollment`}
-                            className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                        >
-                            <FontAwesomeIcon icon={faUser} />
-                            View User
-                        </Link>,
-                        key: '2',
-                    },
-                    {
-                        type: 'divider',
-                    },
-                    {
-                        label: <Link to={`/dashboard/student/${user?._id}/profile/report`}
-                            className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
-                        >
-                            <ReportIcon />
-                            Reports
-                        </Link>,
-                        key: '3',
-                    },
-                    {
-                        type: 'divider',
-                    },
-                    {
-                        label: <Link to={`/dashboard/student/${user?._id}/profile/schedule-absence`}
-                            className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                className='option-classroom'
+                menu={{
+                    items: [
+                        {
+                            label: <Link to={`/dashboard/student/${user?._id}/profile/details`}
+                                className={`${option === "Check in" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            >
+                                <CheckIn />  Contact Guardian
+                            </Link>,
+                            key: '1',
+                        },
+                        {
+                            label: <button
+                                disabled={user?.report?.status === "Absent"}
+                                onClick={() => {
+                                    setOption("Absence Today")
+                                    setShow(!show)
+                                }}
 
-                        >
-                            <FontAwesomeIcon icon={faCalendarDays} />
-                            Schedule Absence
-                        </Link>,
-                        key: '4',
-                    },
-                    {
-                        type: 'divider',
-                    },
-                    {
-                        label: <Link to={`/dashboard/student/${user?._id}/profile/graduate`}
-                        >
-                            <h5 className={` w-full flex items-center gap-2  text-start text-green-700`}>
-                                <FontAwesomeIcon icon={faGraduationCap} />
-                                Graduate
-                            </h5>
-                        </Link>,
-                        key: '4',
-                    },
-                ],
-            }}
-            trigger={['click']}
-        >
-            <button className="btn btn-yellow btn-sm">
-                <span className="text-[10px] font-medium tracking-tight">
-                    Action
-                </span>
-                <FontAwesomeIcon icon={faChevronDown} className="text-[12px]" />
-            </button>
-        </Dropdown>
+                                className={`${option === "Absence Today" ? "text-amber-500" : "text-red-500"} w-full flex items-center gap-2  text-start`}
+                            >
+                                <LoginOutlined />  Absence Today
+                            </button>,
+                            key: '146',
+                        },
+                        {
+                            type: 'divider',
+                        },
+                        {
+                            label: <Link to={`/dashboard/student/${user?._id}/profile/enrollment`}
+                                className={`${option === "View User" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            >
+                                <FontAwesomeIcon icon={faUser} />
+                                View User
+                            </Link>,
+                            key: '2',
+                        },
+                        {
+                            type: 'divider',
+                        },
+                        {
+                            label: <Link to={`/dashboard/student/${user?._id}/profile/report`}
+                                className={`${option === "Reports" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+                            >
+                                <ReportIcon />
+                                Reports
+                            </Link>,
+                            key: '3',
+                        },
+                        {
+                            type: 'divider',
+                        },
+                        {
+                            label: <Link to={`/dashboard/student/${user?._id}/profile/schedule-absence`}
+                                className={`${option === "Schedule Absence" ? "text-amber-500" : ""} w-full flex items-center gap-2  text-start`}
+
+                            >
+                                <FontAwesomeIcon icon={faCalendarDays} />
+                                Schedule Absence
+                            </Link>,
+                            key: '4',
+                        },
+                        {
+                            type: 'divider',
+                        },
+                        {
+                            label: <Link to={`/dashboard/student/${user?._id}/profile/graduate`}
+                            >
+                                <h5 className={` w-full flex items-center gap-2  text-start text-green-700`}>
+                                    <FontAwesomeIcon icon={faGraduationCap} />
+                                    Graduate
+                                </h5>
+                            </Link>,
+                            key: '4',
+                        },
+                    ],
+                }}
+                trigger={['click']}
+            >
+                <button className="btn btn-yellow btn-sm">
+                    <span className="text-[10px] font-medium tracking-tight">
+                        Action
+                    </span>
+                    <FontAwesomeIcon icon={faChevronDown} className="text-[12px]" />
+                </button>
+            </Dropdown>
+        </div>
 
     );
 }

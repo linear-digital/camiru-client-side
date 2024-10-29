@@ -7,9 +7,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import ImportPeople from './ImportPeople';
 
-const Filter = ({ name, desc, show, refetch }) => {
+const Filter = ({ name, desc, show }) => {
     const [reportType, setReportType] = useState("Daily Reports");
     const { classrooms } = useSelector(state => state.classroom)
     const searchPa = useSearchParams()
@@ -26,33 +25,33 @@ const Filter = ({ name, desc, show, refetch }) => {
             {
                 show === 'false' ? "" :
                     <div className='flex flex-wrap mt-5 lg:mt-0 gap-5 items-center'>
-                        <Dropdown
-                            className='option-classroom'
-                            menu={{
-                                items: [
-                                    ...classrooms?.map((item, index) => {
-                                        return {
-                                            label: <button
-                                                className={`${search === item ? "text-primary" : ""} w-full   text-start`}
-                                                onClick={() => {
-                                                    navigate('/dashboard/rooms-roster?id=' + item?._id)
-                                                }}>
-                                                {item?.name}
-                                            </button>,
-                                            key: index,
-                                        }
-                                    })
-                                ],
-                            }}
-                            trigger={['click']}
-                        >
-                            <button className="w-auto lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
-                                <span className=" text-xs font-medium tracking-tight">
-                                    {search ? classrooms?.find(c => c._id === search)?.name : classrooms[0]?.name}
-                                </span>
-                                <FontAwesomeIcon icon={faChevronDown} />
-                            </button>
-                        </Dropdown>
+                        {/* <Dropdown
+                        className='option-classroom'
+                        menu={{
+                            items: [
+                                ...classrooms?.map((item, index) => {
+                                    return {
+                                        label: <button
+                                            className={`${search === item ? "text-primary" : ""} w-full   text-start`}
+                                            onClick={() => {
+                                                navigate('/dashboard/rooms-roster?id=' + item?._id)
+                                            }}>
+                                            {item?.name}
+                                        </button>,
+                                        key: index,
+                                    }
+                                })
+                            ],
+                        }}
+                        trigger={['click']}
+                    >
+                        <button className="w-auto lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px] bg-[#15acde40] text-[#15ACDE] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-sm font-bold">
+                            <span className=" text-xs font-medium tracking-tight">
+                                {search ? classrooms?.find(c => c._id === search)?.name : classrooms[0]?.name}
+                            </span>
+                            <FontAwesomeIcon icon={faChevronDown} />
+                        </button>
+                    </Dropdown> */}
                         <Dropdown
                             className='option-classroom'
                             menu={{
@@ -109,8 +108,9 @@ const Filter = ({ name, desc, show, refetch }) => {
                                 <FontAwesomeIcon icon={faChevronDown} />
                             </button>
                         </Dropdown>
-                       
-                        <ImportPeople page={"roster"} refetch={refetch}/>
+                        <Link to="/dashboard/add-staff" className="lg:h-[47px] h-[35px] pl-[19px] pr-[18px] py-[12.59px]  bg-[#ffbb3b33] rounded-[11.02px] justify-center items-center gap-[11.02px] inline-flex text-[10px] text-amber-600 font-semibold">
+                            Add People
+                        </Link>
                     </div>
             }
         </section>

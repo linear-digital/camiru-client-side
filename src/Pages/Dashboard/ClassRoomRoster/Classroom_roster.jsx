@@ -16,10 +16,10 @@ const Classroom_roster = () => {
     const searchPa = useSearchParams()
     const search = searchPa[0]?.get('id')
     const { classrooms } = useSelector(state => state.classroom)
-    const { data, isLoading } = useQuery({
+    const { data, isLoading, refetch } = useQuery({
         queryKey: ['students-r', currentUser?._id, search],
         queryFn: async () => {
-         
+
             const res = await fetcher({
                 url: `/student/center/${currentUser?._id}?classroom=${search || classrooms[0]?._id}`,
                 method: 'GET',
@@ -33,7 +33,7 @@ const Classroom_roster = () => {
     return (
         <main className='lg:p-10 p-5 bg-white rounded-lg poppins'>
             <Filter
-
+                refetch={refetch}
                 name={"Classroom Rosters"}
                 desc={"Select your class to checkout the reports"}
             />
@@ -41,7 +41,7 @@ const Classroom_roster = () => {
                 <Table data={data} />
             </section>
             <Filter
-
+                show={"false"}
                 name={"Upcoming"}
                 desc={"Upcoming Student list down bellow"}
             />
@@ -49,7 +49,7 @@ const Classroom_roster = () => {
                 <h1 className='text-2xl font-semibold text-gray-500 text-center'>No data</h1>
             </section>
             <Filter
-
+                show={"false"}
                 name={"Graduated"}
                 desc={"Graduated Student list down bellow"}
             />

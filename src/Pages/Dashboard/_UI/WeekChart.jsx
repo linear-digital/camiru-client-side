@@ -94,17 +94,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
         setDays(attandance)
         if (attandance) {
             attandance?.find(day => {
-                if (type === "daily") {
-                    if (day.day === new Date()) {
-                        setSelectedBar(day)
-                    }
-                }
-                else if (type === "weekly") {
-                    if (moment(day.day).isoWeek() === moment().isoWeek()) {
-                        setSelectedBar(day)
-                    }
-                }
-                else if (type === "monthly") {
+                if (day.active) {
                     setSelectedBar(day)
                 }
             })
@@ -112,7 +102,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
     }, [type, month, year, attandance])
     if (isLoading) {
         return <div className='flex justify-center items-center h-[200px]'>
-            <Spin size='large'/>
+            <Spin size='large' />
         </div>
     }
     return (
@@ -121,7 +111,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
             {
                 days?.map((day, index) => (
                     <Tooltip trigger="hover" placement="top" key={index}
-                    title={`Checked-in: ${day.checked_in} | Absent: ${day.absent} | Total: ${day.total}`} 
+                        title={`Checked-in: ${day.checked_in} | Absent: ${day.absent} | Total: ${day.total}`}
                     >
                         <div onClick={() => setSelectedBar(day)} className='flex flex-col gap-1 items-center cursor-pointer justify-start'>
                             <div className='lg:h-[90px] h-[70px] lg:w-[10px] w-[7px] bg-[#ecf1f8e4] rounded-lg relative overflow-hidden'>
@@ -131,7 +121,7 @@ const ChartComponent = ({ type, selectedBar, setSelectedBar, month, year }) => {
                                         width: '100%'
                                     }}
                                 />
-                                
+
                                 <div className={`absolute  ${day.selected ? `${!day.active ? 'bg-[#fb6eb067]' : 'bg-[#FB6EB0]'}` : ''} top-0`}
                                     style={{
                                         height: `${(day.absent / day.total) * 100}%`,

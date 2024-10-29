@@ -160,7 +160,7 @@ export const ActionButton = ({ user }) => {
             menu={{
                 items: [
                     {
-                        label: <Link to={'/dashboard/checkin-staff'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=clock-in-out`}
                             className={`${option === "Check in" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
@@ -172,7 +172,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=enrollment`}
                             className={`${option === "View User" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
@@ -185,7 +185,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=time-card`}
                             className={`${option === "Reports" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
@@ -198,7 +198,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=schedule-absence`}
                             className={`${option === "Schedule Absence" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >
@@ -211,7 +211,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
+                        label: <Link to={'/dashboard/staff/323/profile/deactive'}
                             className={`${option === "Graduate" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                         >
                             <h5 className="text-red-600 flex items-center gap-1">

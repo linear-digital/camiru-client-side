@@ -115,26 +115,53 @@ export const NavigationCard = ({ link, active, onClick, isCollapse, name }) => {
     return <li className='mb-1 w-full'>
         {
             link?.children ?
-
-
-                <div onClick={onClick} className={`py-2 ${active ? "bg-primary active" : "pl-2"} w-full flex items-center  text-sm  relative  rounded `}>
+                <Link onClick={onClick} to={`${link.path}?id=${link?.children[0]?._id}`} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
                     {
                         active &&
                         <span className='float-left'>
                             <Icon />
                         </span>
                     }
-                    <div className={`flex w-full items-center`}>
-
-                        <Menu
-                            
-                            className={`${!active ? "text-current" : "text-white"} text-xs font-normal bg-transparent w-full`}
-                            mode="vertical"
-                            triggerSubMenuAction='click'
-                            items={menu}
-                        />
+                    <div className={`flex w-full items-center gap-4 ${!active && "pl-7"}`}>
+                        {link.icon &&
+                            <span>
+                                {
+                                    link.isIcon ?
+                                        <FontAwesomeIcon icon={link.icon} className={`${!active ? "text-[#7F7F7F]" : "text-white"} text-[22px]`} />
+                                        :
+                                        <link.icon className={`text-sm ${!active ? "text-[#7F7F7F]" : "text-white"}`} />
+                                }
+                            </span>
+                        }
+                        {
+                            !isCollapse && <p className={` ${active ? "text-white" : "text-black"} text-xs font-normal `}>{name}</p>
+                        }
                     </div>
-                </div>
+                    {
+                        !active && <span className='absolute right-7 text-blue-gray-600'>
+                            <FontAwesomeIcon icon={faChevronRight} height={24} />
+                        </span>
+                    }
+                </Link>
+
+                // <div onClick={onClick} className={`py-2 ${active ? "bg-primary active" : "pl-2"} w-full flex items-center  text-sm  relative  rounded `}>
+                //     {
+                //         active &&
+                //         <span className='float-left'>
+                //             <Icon />
+                //         </span>
+                //     }
+                //     <div className={`flex w-full items-center`}>
+
+                //         <Menu
+
+                //             className={`${!active ? "text-current" : "text-white"} text-xs font-normal bg-transparent w-full`}
+                //             mode="vertical"
+                //             triggerSubMenuAction='click'
+                //             items={menu}
+                //         />
+                //     </div>
+                // </div>
                 :
                 <Link onClick={onClick} to={link.path} className={`py-2 ${active && "bg-primary"} w-full flex items-center text-sm gap-6 relative h-[55px] rounded `}>
                     {

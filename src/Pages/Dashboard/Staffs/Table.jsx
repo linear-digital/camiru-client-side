@@ -107,7 +107,10 @@ export default function Table() {
                                     </Typography>
                                 </td>
                                 <td className={classes}>
-                                    <div className=" text-red-500 text-xs font-medium leading-normal">{user?.classRoom?.name}</div>
+                                    <div className=" text-red-500 text-xs font-medium leading-normal">
+                                        {user?.enrollment?.map((item, index) => <span key={index}>{item?.classroom?.name} {user?.enrollment?.length - 1 !== index ? ", " : ""}</span>)
+                                        }
+                                    </div>
                                 </td>
                                 <td className={classes}>
                                     <button className="py-2 border-[#187A82] bg-[#5CD9CA40] border text-xs font-medium rounded-lg px-5 text-[#187A82]">
@@ -135,7 +138,7 @@ export const ActionButton = ({ user }) => {
             menu={{
                 items: [
                     {
-                        label: <Link to={'/dashboard/checkin-staff'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=clock-in-out`}
                             className={`${option === "Check in" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Check in")}
                         >
@@ -147,7 +150,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={`/dashboard/staff/${user?._id}/profile`}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=enrollment`}
                             className={`${option === "View User" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("View User")}
                         >
@@ -160,7 +163,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/staff/323/profile/timecard'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=time-card`}
                             className={`${option === "Reports" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Reports")}
                         >
@@ -173,7 +176,7 @@ export const ActionButton = ({ user }) => {
                         type: 'divider',
                     },
                     {
-                        label: <Link to={'/dashboard/staff/323/profile/schedule-absence'}
+                        label: <Link to={`/dashboard/staff/${user?._id}/profile?nav=schedule-absence`}
                             className={`${option === "Schedule Absence" ? "text-[#187A82]" : ""} w-full flex items-center gap-2  text-start`}
                             onClick={() => setOption("Schedule Absence")}
                         >

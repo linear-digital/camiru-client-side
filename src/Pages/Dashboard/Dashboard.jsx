@@ -21,6 +21,7 @@ import { useState } from 'react';
 
 const Dashboard = () => {
     const { currentUser } = useSelector((state) => state.user)
+    const { classrooms } = useSelector(state => state.classroom)
     const [open, setOpen] = React.useState(false);
     const navigate = useNavigate()
     const [data, setData] = useState({
@@ -50,6 +51,7 @@ const Dashboard = () => {
             })
         }
     }, [db])
+
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <BlankDIalog open={open} setOpen={setOpen} size={"sm"}>
@@ -80,7 +82,7 @@ const Dashboard = () => {
                     <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-3">
                         <StatisticCard
                             onClick={() => {
-                                navigate('/dashboard/rooms')
+                                navigate(`/dashboard/rooms?id=${classrooms[0]?._id}`)
                             }}
                             title={"Classrooms"}
                             value={data?.classRooms}

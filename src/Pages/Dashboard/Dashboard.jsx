@@ -15,16 +15,45 @@ import { Link } from 'react-router-dom';
 import { BlankDIalog } from '../../Components/DIalog/BlankDIalog';
 import CreateClassRoom from './_UI/CreateClassRoom';
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { fetcher } from '../../Components/helper/axios.instance';
+import { useState } from 'react';
 
 const Dashboard = () => {
     const { currentUser } = useSelector((state) => state.user)
     const [open, setOpen] = React.useState(false);
-    const {classrooms} = useSelector(state => state.classroom)
     const navigate = useNavigate()
+    const [data, setData] = useState({
+        classRooms: 0,
+        students: 0,
+        staffs: 0,
+        withcontact: 0
+    })
+    const { data: db } = useQuery({
+        queryKey: ["Dashboard"],
+        queryFn: async () => {
+            const res = await fetcher({
+                url: `/student/dashboard?center=${currentUser?._id}`,
+                method: 'GET',
+            })
+            return res
+        }
+    })
+
+    React.useEffect(() => {
+        if (db) {
+            setData({
+                classRooms: db?.classRooms,
+                students: db?.students,
+                staffs: db?.staffs,
+                withcontact: db?.withcontact
+            })
+        }
+    }, [db])
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <BlankDIalog open={open} setOpen={setOpen} size={"sm"}>
-                <CreateClassRoom  open={open} setOpen={setOpen}/>
+                <CreateClassRoom open={open} setOpen={setOpen} />
             </BlankDIalog>
             <section className='lg:flex justify-between items-center'>
                 <div>
@@ -50,29 +79,32 @@ const Dashboard = () => {
                 <div className="w-full">
                     <div className="grid lg:grid-cols-4 grid-cols-2 lg:gap-5 gap-3">
                         <StatisticCard
-                        onClick={() => {
-                            navigate('/dashboard/rooms')
-                        }}
+                            onClick={() => {
+                                navigate('/dashboard/rooms')
+                            }}
                             title={"Classrooms"}
-                            value={classrooms?.length}
+                            value={data?.classRooms}
                         />
                         <StatisticCard
-                        onClick={() => {
-                            navigate('/dashboard/rooms-roster')
-                        }}
+                            onClick={() => {
+                                navigate('/dashboard/rooms-roster')
+                            }}
                             title={"Active Children"}
-                            value={"50"}
+                            value={data?.students}
                         />
                         <StatisticCard
+                            onClick={() => {
+                                navigate('/dashboard/staffs')
+                            }}
                             title={"Total Staff"}
-                            value={"10"}
+                            value={data?.staffs}
                         />
                         <StatisticCard
-                        onClick={() => {
-                            navigate('/dashboard/contacts')
-                        }}
+                            onClick={() => {
+                                navigate('/dashboard/contacts')
+                            }}
                             title={"Parents Contract"}
-                            value={"12/40"}
+                            value={`${data?.withcontact}/${data?.students}`}
                         />
                     </div>
                     <Attendance />

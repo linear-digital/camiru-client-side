@@ -263,7 +263,6 @@ const ActionButton = ({ user, refetch }) => {
                 </Button>
             </Modal>
             <Dropdown
-
                 className='option-classroom'
                 menu={{
                     items: [
@@ -277,13 +276,12 @@ const ActionButton = ({ user, refetch }) => {
                         },
                         {
                             label: <button
-                                disabled={user?.report?.checkedIn}
+                                disabled={(user?.report?.checkedIn || user?.report?.status === "Sceduled Absence")}
                                 onClick={() => {
                                     setOption("Absence Today")
                                     setShow(!show)
                                 }}
-
-                                className={`${user?.report?.checkedIn ?
+                                className={`${(user?.report?.checkedIn || user?.report?.status === "Sceduled Absence")?
                                     'text-red-100'
                                     :
                                     "text-red-500"

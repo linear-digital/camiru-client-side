@@ -8,8 +8,8 @@ import { set } from 'react-hook-form';
 
 const ChatBox = ({ target }) => {
     const { message, user } = useRootContext()
-    const [oldMessages, setOldMessages] = React.useState([])
-    const { data, isLoading } = useQuery({
+    const [allMessages, setOldMessages] = React.useState([])
+    const { data, isLoading , refetch} = useQuery({
         queryKey: ['messages', target],
         queryFn: async () => {
             const res = await fetcher({
@@ -23,16 +23,26 @@ const ChatBox = ({ target }) => {
     })
     useEffect(() => {
         if (message) {
-            setOldMessages([...oldMessages, message])
+            setOldMessages([...allMessages, message])
         }
     }, [message])
+    const getTimeDifferenceInMinutes = (date1, date2) => {
+        const created = new Date(date1);
+        const updated = new Date(date2);
+        const differenceInMinutes = (updated - created) / (1000 * 60); // Milliseconds to minutes
+        return differenceInMinutes > 2 ? true : false
+    };
     return (
         <div className='p-5 w-full flex flex-col gap-[10px] overflow-y-auto h-full'>
             {
-                oldMessages?.map((item, index) => <MessageCard
+                allMessages?.map((item, index) => <MessageCard
                     key={index}
+                    refetch={refetch}
+                    message={item}
                     position={user?._id === item?.sender ? "right" : "left"}
                     text={item?.message}
+                    isLast={index === allMessages?.length - 1 ? true : getTimeDifferenceInMinutes(item?.createdAt, allMessages[index + 1]?.createdAt)}
+                    date={item?.createdAt}
                 />)
             }
             {/* <MessageCard position={"left"}

@@ -11,6 +11,7 @@ export const RootProvider = ({ children }) => {
     const { currentUser } = useSelector((state) => state.user);
     const [socket, setSocket] = useState(null)
     const [message, setMessage] = useState(null)
+    const [refetchContact, setRefetchContact] = useState(null)
     useEffect(() => {
         if (currentUser) {
             const newSocket = io('http://localhost:4000', {
@@ -45,7 +46,9 @@ export const RootProvider = ({ children }) => {
             value={{
                 socket,
                 message,
-                user: currentUser
+                user: currentUser,
+                refetchContact,
+                setRefetchContact
             }}
         >
             {children}

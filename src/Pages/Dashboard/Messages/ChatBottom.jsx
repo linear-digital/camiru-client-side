@@ -31,9 +31,9 @@ const ChatBottom = ({target}) => {
                     placeholder='Write your message...'
                 />
                 <div className="flex items-center gap-3">
-                    <button>
+                    <div>
                         <PaperClip />
-                    </button>
+                    </div>
                     <button type='submit' className='w-20 h-10 bg-[#F8D124] text-white text-xs rounded-2xl flex items-center gap-1 justify-center cursor-pointer'>
                         Send <Send />
                     </button>

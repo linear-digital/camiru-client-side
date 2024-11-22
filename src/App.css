@@ -272,3 +272,7 @@ input {
 .MuiChartsLegend-root {
     display: none !important;
 }
+
+.action-list li {
+    margin-bottom: 10px;
+}

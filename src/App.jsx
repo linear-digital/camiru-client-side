@@ -12,14 +12,17 @@ import { ConfigProvider } from 'antd';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { RootProvider } from './Pages/Dashboard/RootContext';
 
 const App = () => {
   return (
     <ConfigProvider theme={{ token: { colorPrimary: '#239bd6' } }}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <Toaster />
-          <Outlet />
+          <RootProvider>
+            <Toaster />
+            <Outlet />
+          </RootProvider>
         </QueryClientProvider>
       </Provider>
     </ConfigProvider>

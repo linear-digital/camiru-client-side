@@ -7,12 +7,14 @@ import { useSelector } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Spin } from 'antd';
 import { useState } from 'react';
-const Contacts = () => {
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+const Contacts = ({ refetch }) => {
     const [selected, setSelected] = useState('1')
     const items = [
         {
             label: <button
-                onClick={() => setSelected('1')}
+                onClick={() => setSelected('0')}
             >
                 Parant Message
             </button>,
@@ -36,14 +38,37 @@ const Contacts = () => {
         queryKey: ['contacts', selected, currentUser?._id],
         queryFn: async () => {
             const res = await fetcher({
-                url: selected === '0' ? `/parent/center/${currentUser?._id}` : `/staff/center/${currentUser?._id}`,
+                url: selected === '0' ? `/student/center/${currentUser?._id}` : `/staff/center/${currentUser?._id}`,
                 method: "get",
             })
             return res
         },
         enabled: !!currentUser
     })
-    console.log(selected);
+    const router = useNavigate()
+    const getChat = async (id) => {
+        try {
+            const newChat = {
+                owner: {
+                    id: currentUser?._id,
+                    model: "Center",
+                },
+                user: {
+                    id: id, // Student ID
+                    model: selected === '0' ? 'Student' : "Staff",
+                },
+            }
+            const res = await fetcher({
+                url: "/message/chat",
+                method: "POST",
+                data: newChat
+            })
+            router(`?chat=${res?._id}`)
+            refetch()
+        } catch (error) {
+            toast.error(error?.response?.data?.message || 'Something went wrong')
+        }
+    }
     if (isLoading) {
         return <Spin size='large' />
     }
@@ -68,6 +93,7 @@ const Contacts = () => {
                             data?.map((item, i) =>
                                 <SwiperSlide key={i}>
                                     <UserAvater
+                                        onClick={() => getChat(item?._id)}
                                         url={imageUrl(item?.profilePic)}
                                         key={i}
                                         className={"rounded-xl overflow-hidden min-w-11 h-11 "}

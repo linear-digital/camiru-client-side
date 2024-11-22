@@ -11,9 +11,9 @@ const Avater = ({src}) => {
 
 export default Avater;
 
-export const UserAvater = ({ className, url }) => {
+export const UserAvater = ({ className, url, onClick }) => {
     return (
-        <div className={`avatar overflow-hidden ${className}`}>
+        <div onClick={onClick} className={`avatar overflow-hidden ${className}`}>
             <div
                 className="h-full w-full">
                 <Avatar src={url}

@@ -5,17 +5,20 @@ import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faVideo } from '@fortawesome/free-solid-svg-icons';
 import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
 import { useSelector } from 'react-redux';
+import nameDisplay from '../../../util/nameDisplay';
+import { imageUrl } from '../../../Components/helper/axios.instance';
 
-const Topbar = () => {
+const Topbar = ({ user }) => {
     const { currentUser } = useSelector(state => state.user)
     return (
         <div className='w-full p-5 border-b flex items-center justify-between'>
             <div className='flex gap-3'>
                 <UserAvater
-                    className={"rounded-xl overflow-hidden lg:min-w-11 min-w-9 lg:h-11 h-9"}
+                    url={imageUrl(user?.user?.id?.profilePic)}
+                    className={"rounded-xl overflow-hidden lg:min-w-11 min-w-9 max-w-11 lg:h-11 h-9"}
                 />
                 <div>
-                    <h4 className="text-slate-900 lg:text-base text-xs font-bold ">Samantha WIlliam</h4>
+                    <h4 className="text-slate-900 lg:text-base text-xs font-bold ">{nameDisplay(user?.user?.id)}</h4>
                     <p className="flex items-center lg:mt-1">
                         <FontAwesomeIcon icon={faCircle}
                             className='text-green-500 text-[10px] font-normal'

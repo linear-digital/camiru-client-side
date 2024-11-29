@@ -15,7 +15,7 @@ export const RootProvider = ({ children }) => {
     const [connection, setConnection] = useState("")
     useEffect(() => {
         if (currentUser) {
-            const newSocket = io('https://server.camiru.com', {
+            const newSocket = io('http://localhost:4000', {
                 query: { userId: currentUser._id },
                 autoConnect: false,
             });

@@ -48,6 +48,7 @@ const MessageCard = ({
             toast.success("Message updated successfully")
             refetch()
             setRefetchContact(Math.random())
+            setEdit(false)
         } catch (error) {
             toast.error(error?.response?.data?.message || 'Something went wrong')
         }

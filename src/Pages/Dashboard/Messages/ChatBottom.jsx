@@ -2,8 +2,10 @@ import React from 'react';
 import { PaperClip, Send } from '../../../util/icons';
 import { useRootContext } from '../RootContext';
 import { useSearchParams } from 'react-router-dom';
+import { upload } from '../../../Components/helper/axios.instance';
+import { decrypt } from '../../../Components/helper/security';
 
-const ChatBottom = ({target}) => {
+const ChatBottom = ({ target }) => {
     const { socket, user, message } = useRootContext()
     const searchParams = useSearchParams()
     const search = searchParams[0]?.get('chat')
@@ -21,6 +23,34 @@ const ChatBottom = ({target}) => {
             e.target.reset()
         }
     }
+    const uploadFile = async (e) => {
+        e.preventDefault()
+        if (e.target.files.length === 0) {
+            return 
+        }
+        const files = e.target.files
+        try {
+            const formData = new FormData()
+
+            for (let i = 0; i < files.length; i++) {
+                formData.append('image', files[i])
+            }
+
+            const res = await upload.post('/upload/image', formData)
+            const data = decrypt(res.data)
+            console.log(data);
+            const newMessage = {
+                sender: user._id,
+                receiver: target.user?.id._id,
+                chat: search,
+                image: data?.map(item => item._id)
+            }
+            console.log(newMessage);
+            socket.emit('message', newMessage)
+        } catch (error) {
+            console.error(error);
+        }
+    }
     // console.log(message);
     return (
         <div className='lg:pt-5 pt-2 border-t lg:px-5 p-1'>
@@ -31,9 +61,10 @@ const ChatBottom = ({target}) => {
                     placeholder='Write your message...'
                 />
                 <div className="flex items-center gap-3">
-                    <div>
+                    <label htmlFor='file'>
                         <PaperClip />
-                    </div>
+                        <input multiple type="file" id='file' className='hidden' onChange={uploadFile} />
+                    </label>
                     <button type='submit' className='w-20 h-10 bg-[#F8D124] text-white text-xs rounded-2xl flex items-center gap-1 justify-center cursor-pointer'>
                         Send <Send />
                     </button>

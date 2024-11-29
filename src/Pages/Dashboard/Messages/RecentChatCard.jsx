@@ -33,10 +33,10 @@ const RecentChatCard = ({ user }) => {
                     {
                         user?.message === null ? <del className='text-red-500'>
                             Deleted message
-                        </del> : user?.message?.message.slice(0, 20)
+                        </del> : user?.message?.message?.slice(0, 20) || user?.images && "Image"
                     }
                     {
-                        user?.message?.message.length > 20 && " ...."
+                        user?.message?.message?.length > 20 && " ...."
                     }
                 </div>
             </div>

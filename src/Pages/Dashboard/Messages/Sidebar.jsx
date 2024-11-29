@@ -10,12 +10,15 @@ import { Spin } from 'antd';
 import { useRootContext } from '../RootContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
     const { currentUser } = useSelector((state) => state.user);
-    const { message, refetchContact } = useRootContext()
+    const { message, refetchContact, connection } = useRootContext()
     const [contacts, setContacts] = useState([])
-
+    const searchParams = useSearchParams()
+    const search = searchParams[0]?.get('chat')
     useEffect(() => {
         if (message?._id) {
             const msg = contacts.map(item => {
@@ -27,8 +30,9 @@ const Sidebar = () => {
             setContacts(msg)
         }
     }, [message])
+    
     const { data, isLoading, refetch } = useQuery({
-        queryKey: ['chat-list', currentUser?._id, refetchContact],
+        queryKey: ['chat-list', currentUser?._id, refetchContact, connection],
         queryFn: async () => {
             const res = await fetcher({
                 url: `/message/chat/user/${currentUser?._id}`,
@@ -43,6 +47,15 @@ const Sidebar = () => {
             setContacts(data)
         }
     }, [data])
+    const navigate = useNavigate()
+    
+    useEffect(() => {
+            if(!search){
+                if (data) {
+                    navigate(`/dashboard/messages?chat=${data[0]?._id}`)
+                }
+            }
+    },[search])
     return (
         <div className='min-w-[347px] hidden lg:block max-w-[347px] h-full p-5 shadow overflow-hidden'>
             <h3 className="text-black/70 text-base font-bold">Messages</h3>

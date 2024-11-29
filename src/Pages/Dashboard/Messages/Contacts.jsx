@@ -92,12 +92,17 @@ const Contacts = ({ refetch }) => {
                         data?.length ?
                             data?.map((item, i) =>
                                 <SwiperSlide key={i}>
-                                    <UserAvater
+                                   <div className='flex flex-col items-center'>
+                                   <UserAvater
                                         onClick={() => getChat(item?._id)}
                                         url={imageUrl(item?.profilePic)}
                                         key={i}
                                         className={"rounded-xl overflow-hidden min-w-11 h-11 "}
                                     />
+                                    <p className='text-[8px] text-center'>
+                                        {item?.firstName}
+                                    </p>
+                                   </div>
                                 </SwiperSlide>
                             )
                             :

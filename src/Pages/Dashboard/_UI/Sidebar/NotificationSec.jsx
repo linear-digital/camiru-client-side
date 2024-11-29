@@ -6,10 +6,9 @@ const NotificationSec = () => {
         <div className='poppins w-full py-5'>
             <h1 className=" text-primary text-lg font-bold leading-[17.09px]">Notificaion</h1>
             <div className='mt-8 grid'>
-
                 <NotificationRow
                     title={"New Message"}
-                    number={10}
+                    number={0}
                 />
                 <NotificationRow
                     title={"Reports"}

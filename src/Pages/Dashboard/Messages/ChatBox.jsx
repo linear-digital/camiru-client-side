@@ -8,6 +8,12 @@ import { set } from 'react-hook-form';
 
 const ChatBox = ({ target }) => {
     const { message, user } = useRootContext()
+    const scrollBottmRef = React.useRef(null);
+    const handleScroll = () => {
+        if (scrollBottmRef.current) {
+            scrollBottmRef.current.scrollTop = scrollBottmRef.current.scrollHeight;
+        }
+    }
     const [allMessages, setOldMessages] = React.useState([])
     const { data, isLoading , refetch} = useQuery({
         queryKey: ['messages', target],
@@ -17,6 +23,7 @@ const ChatBox = ({ target }) => {
                 method: 'GET',
             })
             setOldMessages(res)
+            handleScroll()
             return res
         },
 
@@ -24,6 +31,7 @@ const ChatBox = ({ target }) => {
     useEffect(() => {
         if (message) {
             setOldMessages([...allMessages, message])
+            handleScroll()
         }
     }, [message])
     const getTimeDifferenceInMinutes = (date1, date2) => {
@@ -33,8 +41,8 @@ const ChatBox = ({ target }) => {
         return differenceInMinutes > 2 ? true : false
     };
     return (
-        <div className='p-5 w-full flex flex-col gap-[10px] overflow-y-auto h-full'>
-            {
+        <div ref={scrollBottmRef} className='px-5 w-full flex flex-col gap-[10px] overflow-y-auto h-full pt-5 pb-20'>
+             {
                 allMessages?.map((item, index) => <MessageCard
                     key={index}
                     refetch={refetch}

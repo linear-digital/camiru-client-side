@@ -13,9 +13,9 @@ import { useRootContext } from '../RootContext';
 const Messages = () => {
     const searchParams = useSearchParams()
     const search = searchParams[0]?.get('chat')
-    const { socket } = useRootContext()
+    const { connection } = useRootContext()
     const { data, isLoading, refetch } = useQuery({
-        queryKey: ['chat', search],
+        queryKey: ['chat', search, connection],
         queryFn: async () => {
             const res = await fetcher({
                 url: `/message/chat/${search}`,
@@ -42,8 +42,8 @@ const Messages = () => {
                         :
                         <section className='h-full w-full flex flex-col justify-between'>
                             <Topbar user={data} />
-                            <ChatBox target={data} refetch={refetch}/>
-                            <ChatBottom target={data}/>
+                            <ChatBox target={data} refetch={refetch} />
+                            <ChatBottom target={data} />
                         </section>
             }
 

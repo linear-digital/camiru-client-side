@@ -12,6 +12,7 @@ export const RootProvider = ({ children }) => {
     const [socket, setSocket] = useState(null)
     const [message, setMessage] = useState(null)
     const [refetchContact, setRefetchContact] = useState(null)
+    const [connection, setConnection] = useState("")
     useEffect(() => {
         if (currentUser) {
             const newSocket = io('http://localhost:4000', {
@@ -34,7 +35,9 @@ export const RootProvider = ({ children }) => {
             };
 
             socket.on('message', handleMessage);
-
+            socket.on('userConnected', (data) => {
+                setConnection(data)
+            })
             // Cleanup
             return () => {
                 socket.off('message', handleMessage);
@@ -48,7 +51,8 @@ export const RootProvider = ({ children }) => {
                 message,
                 user: currentUser,
                 refetchContact,
-                setRefetchContact
+                setRefetchContact,
+                connection
             }}
         >
             {children}

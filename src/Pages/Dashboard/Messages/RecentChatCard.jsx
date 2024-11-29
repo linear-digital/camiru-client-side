@@ -14,14 +14,18 @@ const RecentChatCard = ({ user }) => {
             />
             <div className='w-full'>
                 <div className="flex justify-between w-full items-center">
-                    <h5 className=" text-slate-900 text-xs font-bold ">{nameDisplay(user?.user?.id)} <sup>{user?.user?.model}</sup></h5>
+                    <h5 className=" text-slate-900 text-xs font-bold ">{nameDisplay(user?.user?.id)}
+                        <sup>
+                            {user?.user?.model}
+                        </sup>
+                    </h5>
                     <p className=" text-cyan-700 text-xs font-normal ">
                         {/* 12:45 PM */}
                         {
                             user?.user?.id?.active ?
-                            <span className="text-green-700 text-xs font-normal ">Active</span>
-                            :
-                            <span className="text-red-700 text-xs font-normal ">Offline</span>
+                                <span className="text-green-700 text-xs font-normal ">Active</span>
+                                :
+                                <span className="text-red-700 text-xs font-normal ">Offline</span>
                         }
                     </p>
                 </div>

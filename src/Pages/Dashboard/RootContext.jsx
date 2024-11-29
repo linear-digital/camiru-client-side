@@ -15,12 +15,13 @@ export const RootProvider = ({ children }) => {
     const [connection, setConnection] = useState("")
     useEffect(() => {
         if (currentUser) {
-            const newSocket = io('http://localhost:4000', {
+            const newSocket = io('https://server.camiru.com', {
                 query: { userId: currentUser._id },
+                transports: ['websocket'], // Force WebSocket transport
                 autoConnect: false,
             });
             setSocket(newSocket);
-            // newSocket.connect();
+            newSocket.connect();
 
             return () => {
                 newSocket.disconnect();

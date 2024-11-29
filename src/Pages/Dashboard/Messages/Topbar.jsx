@@ -20,10 +20,22 @@ const Topbar = ({ user }) => {
                 <div>
                     <h4 className="text-slate-900 lg:text-base text-xs font-bold ">{nameDisplay(user?.user?.id)}</h4>
                     <p className="flex items-center lg:mt-1">
-                        <FontAwesomeIcon icon={faCircle}
-                            className='text-green-500 text-[10px] font-normal'
-                        />
-                        <span className=" text-cyan-700 text-xs font-normal ml-2">Online</span>
+                        {
+                            user?.user?.id?.active ?
+                                <>
+                                    <FontAwesomeIcon icon={faCircle}
+                                        className='text-green-500 text-[10px] font-normal'
+                                    />
+                                    <span className=" text-cyan-700 text-xs font-normal ml-2">Online</span>
+                                </>
+                                :
+                                <>
+                                    <FontAwesomeIcon icon={faCircle}
+                                        className='text-red-500 text-[10px] font-normal'
+                                    />
+                                    <span className=" text-red-700 text-xs font-normal ml-2">Offline</span>
+                                </>
+                        }
                     </p>
                 </div>
             </div>

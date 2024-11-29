@@ -17,14 +17,22 @@ const RecentChatCard = ({ user }) => {
                     <h5 className=" text-slate-900 text-xs font-bold ">{nameDisplay(user?.user?.id)} <sup>{user?.user?.model}</sup></h5>
                     <p className=" text-cyan-700 text-xs font-normal ">
                         {/* 12:45 PM */}
-                        <span className="text-green-700 text-xs font-normal ">Active</span>
+                        {
+                            user?.user?.id?.active ?
+                            <span className="text-green-700 text-xs font-normal ">Active</span>
+                            :
+                            <span className="text-red-700 text-xs font-normal ">Offline</span>
+                        }
                     </p>
                 </div>
                 <div className="w-44 h-6 text-cyan-700 text-xs font-normal mt-1">
                     {
                         user?.message === null ? <del className='text-red-500'>
                             Deleted message
-                        </del> : user?.message?.message
+                        </del> : user?.message?.message.slice(0, 20)
+                    }
+                    {
+                        user?.message?.message.length > 20 && " ...."
                     }
                 </div>
             </div>

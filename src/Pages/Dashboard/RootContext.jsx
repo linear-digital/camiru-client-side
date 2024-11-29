@@ -20,7 +20,7 @@ export const RootProvider = ({ children }) => {
                 autoConnect: false,
             });
             setSocket(newSocket);
-            newSocket.connect();
+            // newSocket.connect();
 
             return () => {
                 newSocket.disconnect();

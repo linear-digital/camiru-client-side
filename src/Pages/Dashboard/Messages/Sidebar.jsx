@@ -30,7 +30,7 @@ const Sidebar = () => {
             setContacts(msg)
         }
     }, [message])
-    
+
     const { data, isLoading, refetch } = useQuery({
         queryKey: ['chat-list', currentUser?._id, refetchContact, connection],
         queryFn: async () => {
@@ -48,18 +48,22 @@ const Sidebar = () => {
         }
     }, [data])
     const navigate = useNavigate()
-    
+
     useEffect(() => {
-            if(!search){
-                if (data) {
-                    navigate(`/dashboard/messages?chat=${data[0]?._id}`)
-                }
+        if (!search) {
+            if (data) {
+                navigate(`/dashboard/messages?chat=${data[0]?._id}`)
             }
-    },[search])
+        }
+    }, [search])
+    const [searchValue, setSearchValue] = useState('')
     return (
         <div className='min-w-[347px] hidden lg:block max-w-[347px] h-full p-5 shadow overflow-hidden'>
             <h3 className="text-black/70 text-base font-bold">Messages</h3>
-            <SearchBar />
+            <SearchBar
+                state={searchValue}
+                setState={setSearchValue}
+            />
             <Contacts refetch={refetch} />
             <div className="mt-10 text-cyan-700 text-xs font-semibold ">
                 Chats
@@ -67,9 +71,15 @@ const Sidebar = () => {
             <div className='mt-5 h-[500px] overflow-y-auto w-full'>
                 {
                     contacts?.length > 0 ?
-                        contacts?.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))?.map((item, index) => <RecentChatCard key={index} user={item} />)
-                        :
-                        <h2 className="text-gray-500 text-lg font-normal">No Chats Found</h2>
+                        contacts
+                            ?.filter(item =>
+                                item?.user?.id?.firstName?.toLowerCase().includes(searchValue?.toLowerCase()) ||
+                                item?.user?.id?.lastName?.toLowerCase().includes(searchValue?.toLowerCase())
+                            )
+                            .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
+                            .map(item => <RecentChatCard key={item?.user?.id} user={item} />)
+                :
+                <h2 className="text-gray-500 text-lg font-normal">No Chats Found</h2>
                 }
 
             </div>

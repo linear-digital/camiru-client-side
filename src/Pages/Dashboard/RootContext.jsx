@@ -13,18 +13,23 @@ export const RootProvider = ({ children }) => {
     const [message, setMessage] = useState(null)
     const [refetchContact, setRefetchContact] = useState(null)
     const [connection, setConnection] = useState("")
+    const [connected, setConnected] = useState(false)
     useEffect(() => {
         if (currentUser) {
             const newSocket = io('https://server.camiru.com', {
                 query: { userId: currentUser._id },
-                transports: ['websocket'], // Force WebSocket transport
+                transports: ['websocket'], 
                 autoConnect: false,
             });
             setSocket(newSocket);
             newSocket.connect();
+            newSocket.on('connect', () => {
+                setConnected(true);
+            });
 
             return () => {
                 newSocket.disconnect();
+                setConnected(false);
             };
         }
     }, [currentUser]);
@@ -53,7 +58,8 @@ export const RootProvider = ({ children }) => {
                 user: currentUser,
                 refetchContact,
                 setRefetchContact,
-                connection
+                connection,
+                connected
             }}
         >
             {children}

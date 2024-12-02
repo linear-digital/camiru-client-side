@@ -276,3 +276,7 @@ input {
 .action-list li {
     margin-bottom: 10px;
 }
+
+:where(.call-ui).ant-modal .ant-modal-content {
+    background: black !important;
+}

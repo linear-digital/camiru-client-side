@@ -14,9 +14,10 @@ export const RootProvider = ({ children }) => {
     const [refetchContact, setRefetchContact] = useState(null)
     const [connection, setConnection] = useState("")
     const [connected, setConnected] = useState(false)
+    const [incomming, setIncomming] = useState(null);
     useEffect(() => {
         if (currentUser) {
-            const newSocket = io('https://server.camiru.com', {
+            const newSocket = io('http://localhost:4000', {
                 query: { userId: currentUser._id },
                 transports: ['websocket'], 
                 autoConnect: false,
@@ -44,6 +45,10 @@ export const RootProvider = ({ children }) => {
             socket.on('userConnected', (data) => {
                 setConnection(data)
             })
+            socket.on('offer', (data) => {
+                setIncomming(data)
+                console.log(data);
+            })
             // Cleanup
             return () => {
                 socket.off('message', handleMessage);
@@ -59,7 +64,9 @@ export const RootProvider = ({ children }) => {
                 refetchContact,
                 setRefetchContact,
                 connection,
-                connected
+                connected,
+                incomming,
+                setIncomming
             }}
         >
             {children}

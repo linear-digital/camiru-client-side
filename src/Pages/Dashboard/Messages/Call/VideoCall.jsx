@@ -1,66 +1,57 @@
-import React from "react";
-
 import {
+  ControlBar,
+  GridLayout,
   LiveKitRoom,
-  PreJoin,
-  useToken,
-  VideoConference,
-  formatChatMessageLinks,
+  ParticipantTile,
+  RoomAudioRenderer,
+  useTracks,
 } from '@livekit/components-react';
-import { LogLevel, VideoPresets } from 'livekit-client';
-import "@livekit/components-styles";
-import { useMemo } from "react";
-import DebugMode from "./lib/Debug";
 
-const VideoCall = ({ token }) => {
-  const roomOptions = useMemo(() => {
-    return {
-      videoCaptureDefaults: {
-        deviceId:  undefined,
-        resolution:  VideoPresets.h720,
-      },
-      publishDefaults: {
-        videoSimulcastLayers:
-        [VideoPresets.h540, VideoPresets.h216]
-      },
-      audioCaptureDefaults: {
-        deviceId:  undefined,
-      },
-      adaptiveStream: { pixelDensity: 'screen' },
-      dynacast: true,
-    };
-  }, []);
+import '@livekit/components-styles';
+
+import { Track } from 'livekit-client';
+
+const serverUrl = 'wss://meet-genzit-tg68oj7z.livekit.cloud';
+
+
+export default function VideoCall({token}) {
+  
   return (
-    <div>
-      {/* <LiveKitRoom
-        video={true}
-        audio={true}
-        token={token}
-        serverUrl={"wss://meet-genzit-tg68oj7z.livekit.cloud"}
-        // Use the default LiveKit theme for nice styles.
-        data-lk-theme="default"
-        
-      >
-        <VideoConference
-          chatMessageFormatter={formatChatMessageLinks}
-          SettingsComponent={undefined}
-        />
-        <RoomAudioRenderer />
-        <ControlBar />
-      </LiveKitRoom> */}
-      <LiveKitRoom
-          token={token}
-          serverUrl={"wss://meet-genzit-tg68oj7z.livekit.cloud"}
-          options={roomOptions}
-          video={true}
-          audio={true}
-          // onDisconnected={onLeave}
-        >
-          <VideoConference chatMessageFormatter={formatChatMessageLinks} />
-          <DebugMode logLevel={LogLevel.info} />
-        </LiveKitRoom>
-    </div>
+    <LiveKitRoom
+      video={true}
+      audio={true}
+      token={token}
+      serverUrl={serverUrl}
+      // Use the default LiveKit theme for nice styles.
+      data-lk-theme="default"
+      style={{ height: '500px' }}
+    >
+      {/* Your custom component with basic video conferencing functionality. */}
+      <MyVideoConference />
+      {/* The RoomAudioRenderer takes care of room-wide audio for you. */}
+      <RoomAudioRenderer />
+      {/* Controls for the user to start/stop audio, video, and screen
+      share tracks and to leave the room. */}
+      <ControlBar />
+    </LiveKitRoom>
   );
-};
+}
 
-export default VideoCall;
+function MyVideoConference() {
+  // `useTracks` returns all camera and screen share tracks. If a user
+  // joins without a published camera track, a placeholder track is returned.
+  const tracks = useTracks(
+    [
+      { source: Track.Source.Camera, withPlaceholder: true },
+      { source: Track.Source.ScreenShare, withPlaceholder: false },
+    ],
+    { onlySubscribed: false },
+  );
+  return (
+    <GridLayout tracks={tracks} style={{ height: 'calc(100vh - var(--lk-control-bar-height))' }}>
+      {/* The GridLayout accepts zero or one child. The child is used
+      as a template to render all passed in tracks. */}
+      <ParticipantTile />
+    </GridLayout>
+  );
+}

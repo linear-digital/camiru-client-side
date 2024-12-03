@@ -9,10 +9,23 @@ import nameDisplay from "../../../util/nameDisplay";
 import { imageUrl } from "../../../Components/helper/axios.instance";
 import { Modal } from "antd";
 import CallUi from "./Call/CallUi";
+import { useRootContext } from "../RootContext";
+import { useEffect } from "react";
 
 const Topbar = ({ user }) => {
   const { currentUser } = useSelector((state) => state.user);
+  const { incomming, setIncomming , socket} = useRootContext();
   const [showCall, setShowCall] = React.useState(false);
+  useEffect(() => {
+    if (incomming) {
+      setShowCall(true);
+    }
+  }, [incomming]);
+  const handleCancel = () => {
+    socket.emit('end', {target: user._id})
+    setShowCall(false);
+    setIncomming(null);
+  }
   return (
     <div className="w-full p-5 border-b flex items-center justify-between">
       <div className="flex gap-3">
@@ -54,9 +67,10 @@ const Topbar = ({ user }) => {
       <div className="flex items-center gap-6">
         {showCall && (
           <CallUi
-            showCall={showCall}
-            setShowCall={setShowCall}
+            showCall={showCall || incomming}
+            setShowCall={handleCancel}
             user={user?.user?.id}
+            chat={user}
           />
         )}
         <button className="text-red-500" onClick={() => setShowCall(!showCall)}>

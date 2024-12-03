@@ -16,8 +16,10 @@ import { Spin } from "antd";
 import VideoCall from "./VideoCall";
 
 const CallUi = ({ showCall, setShowCall, user, chat }) => {
-  const room = "quickstart-room";
-  const name = nameDisplay(user);
+  const { socket, incomming, accepted } = useRootContext();
+  const { user: currentUser } = useRootContext();
+  const room = chat?._id;
+  const name = nameDisplay(currentUser);
   const [token, setToken] = useState("");
   useEffect(() => {
     (async () => {
@@ -27,12 +29,25 @@ const CallUi = ({ showCall, setShowCall, user, chat }) => {
           method: "GET",
         });
         setToken(resp.token);
+        if (!incomming) {
+          callUser(resp.token);
+        }
       } catch (e) {
         console.error(e);
       }
     })();
-  }, []);
-
+  }, [socket]);
+  const callUser = (token) => {
+    socket.emit("offer", {
+      room,
+      token,
+      target: user._id,
+      profilePic: user?.profilePic,
+    });
+  };
+  const acceptCall = () => {
+    socket.emit("accept", { room, target: user._id });
+  };
   return (
     <div className="call-ui">
       <Modal
@@ -55,25 +70,37 @@ const CallUi = ({ showCall, setShowCall, user, chat }) => {
           <div className="w-full h-[500px]   mt-5 flex justify-center items-center relative">
             <Spin size="large" />
           </div>
+        ) : incomming ? (
+          <div className="w-full h-[500px]   mt-5 flex justify-center items-center relative">
+            <div className="flex flex-col items-center">
+              <Avatar
+                size={100}
+                src={imageUrl(user?.profilePic)}
+                className="border"
+              >
+                {incomming.sub?.slice(0, 1)}
+              </Avatar>
+              <h2 className="text-xl font-semibold mt-2">{incomming.sub}</h2>
+              <p className="text-gray-600 mt-1">Incomming Call</p>
+            </div>
+          </div>
         ) : (
-          <VideoCall token={token}/>
-          // <div className="w-full h-[500px]   mt-5 flex justify-center items-center relative">
-          //   <div className="flex flex-col items-center">
-          //     <Avatar size={100} src={imageUrl(user?.profilePic)} />
-          //     <h2 className="text-xl font-semibold mt-2">
-          //       {nameDisplay(user)}
-          //     </h2>
-          //     <p className="text-gray-600 mt-1">Calling...</p>
-          //   </div>
-          //   <video
-          //     // ref={myVideoRef}
-          //     autoPlay
-          //     playsInline
-          //     muted
-          //     style={{ width: "300px" }}
-          //     className="absolute bottom-0 right-0 border border-gray-300 rounded-md"
-          //   />
-          // </div>
+          // <VideoCall token={token}/>
+          <div className="w-full h-[500px]   mt-5 flex justify-center items-center relative">
+            <div className="flex flex-col items-center">
+              <Avatar
+                size={100}
+                src={imageUrl(user?.profilePic)}
+                className="border"
+              >
+                {user?.firstName?.slice(0, 1)}
+              </Avatar>
+              <h2 className="text-xl font-semibold mt-2">
+                {nameDisplay(user)} {user._id}
+              </h2>
+              <p className="text-gray-600 mt-1">Calling...</p>
+            </div>
+          </div>
         )}
       </Modal>
     </div>

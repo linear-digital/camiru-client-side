@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 const Topbar = ({ user }) => {
   const { currentUser } = useSelector((state) => state.user);
-  const { incomming, setIncomming , socket} = useRootContext();
+  const { incomming, setIncomming , socket, } = useRootContext();
   const [showCall, setShowCall] = React.useState(false);
   useEffect(() => {
     if (incomming) {

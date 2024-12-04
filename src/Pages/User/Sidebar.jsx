@@ -4,7 +4,7 @@ import { links } from '../../util/links';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { Bell } from '../../util/icons';
+import { Bell, Messaging } from '../../util/icons';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import nameDisplay from '../../util/nameDisplay';
@@ -55,7 +55,20 @@ const Sidebar = ({ setOpen }) => {
                 </div>
                 <ul className='mt-3 w-full max-h-[70vh] overflow-y-auto'>
                     {
+                        currentUser?.role === "center" 
+                        ?
                         paths.map((link, index) => {
+                            return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path}
+                                name={link.name}
+                            />
+                        })
+                        :
+                        [{
+                            id: 10,
+                            name: 'Messaging',
+                            path: '/dashboard/messages',
+                            icon: Messaging
+                        }].map((link, index) => {
                             return <NavigationCard isCollapse={collapse} isIcon={link.isIcon} onClick={closeSidebar} link={link} key={index} active={location.pathname === link.path}
                                 name={link.name}
                             />

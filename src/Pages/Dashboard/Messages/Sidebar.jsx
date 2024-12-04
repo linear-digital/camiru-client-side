@@ -6,7 +6,6 @@ import RecentChatCard from './RecentChatCard';
 import { useSelector } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 import { fetcher } from '../../../Components/helper/axios.instance';
-import { Spin } from 'antd';
 import { useRootContext } from '../RootContext';
 import { useState } from 'react';
 import { useEffect } from 'react';
@@ -19,10 +18,11 @@ const Sidebar = () => {
     const [contacts, setContacts] = useState([])
     const searchParams = useSearchParams()
     const search = searchParams[0]?.get('chat')
+
     useEffect(() => {
         if (message?._id) {
             const msg = contacts.map(item => {
-                if (item._id === message?.chat) {
+                if ((item.owner.id === message?.receiver || item.owner.id === message?.sender) || item.user.id === message?.receiver || item.user.id === message?.sender) {
                     return { ...item, message: message, updatedAt: new Date() }
                 }
                 return item

@@ -1,4 +1,4 @@
-import { Avatar, Button } from "antd";
+import { Avatar } from "antd";
 import { Modal } from "antd";
 import React from "react";
 import {
@@ -8,19 +8,18 @@ import {
 import nameDisplay from "../../../../util/nameDisplay";
 import CallEndIcon from "@mui/icons-material/CallEnd";
 import { useRootContext } from "../../RootContext";
-import { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 
 import { Spin } from "antd";
-import VideoCall from "./VideoCall";
 
 const CallUi = ({ showCall, setShowCall, user, chat }) => {
-  const { socket, incomming, accepted } = useRootContext();
+  const { socket, incomming, accepted, onGoing } = useRootContext();
   const { user: currentUser } = useRootContext();
   const room = chat?._id;
   const name = nameDisplay(currentUser);
   const [token, setToken] = useState("");
+
   useEffect(() => {
     (async () => {
       try {
@@ -96,9 +95,13 @@ const CallUi = ({ showCall, setShowCall, user, chat }) => {
                 {user?.firstName?.slice(0, 1)}
               </Avatar>
               <h2 className="text-xl font-semibold mt-2">
-                {nameDisplay(user)} {user._id}
+                {nameDisplay(user)}
               </h2>
-              <p className="text-gray-600 mt-1">Calling...</p>
+              <p className="text-gray-600 mt-1">
+                {
+                  onGoing ? "Loading" : "Calling..."
+                }
+                </p>
             </div>
           </div>
         )}

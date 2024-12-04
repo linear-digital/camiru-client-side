@@ -7,15 +7,19 @@ export const userSlice = createSlice({
     initialState: {
         currentUser: null,
         token: Cookie.get('token-camiru2'),
+        loading: false
     },
     reducers: {
 
         setCurrentUser: (state, action) => {
             state.currentUser = action.payload;
         },
+        setLoading: (state, action) => {
+            state.loading = action.payload;
+        },
     },
 });
 
-export const { setCurrentUser } = userSlice.actions;
+export const { setCurrentUser, setLoading } = userSlice.actions;
 const userReducer = userSlice.reducer
 export default userReducer;

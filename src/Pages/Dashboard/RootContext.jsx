@@ -15,6 +15,7 @@ export const RootProvider = ({ children }) => {
     const [connection, setConnection] = useState("")
     const [connected, setConnected] = useState(false)
     const [incomming, setIncomming] = useState(null);
+    const [onGoing, setOnGoing] = useState(null);
     useEffect(() => {
         if (currentUser) {
             const newSocket = io('http://localhost:4000', {
@@ -49,6 +50,9 @@ export const RootProvider = ({ children }) => {
                 setIncomming(data)
                 console.log(data);
             })
+            socket.on('ongoing', (data) => {
+                setOnGoing(data)
+            })
             // Cleanup
             return () => {
                 socket.off('message', handleMessage);
@@ -66,7 +70,8 @@ export const RootProvider = ({ children }) => {
                 connection,
                 connected,
                 incomming,
-                setIncomming
+                setIncomming,
+                onGoing
             }}
         >
             {children}

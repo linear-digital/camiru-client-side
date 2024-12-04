@@ -34,6 +34,7 @@ const ChatBox = ({ target }) => {
             handleScroll()
         }
     }, [message])
+    
     const getTimeDifferenceInMinutes = (date1, date2) => {
         const created = new Date(date1);
         const updated = new Date(date2);

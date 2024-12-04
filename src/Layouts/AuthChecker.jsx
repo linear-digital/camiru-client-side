@@ -6,6 +6,7 @@ import { Progress } from 'antd';
 import { useDispatch } from 'react-redux';
 import { setCurrentUser } from '../redux/user/userSlice';
 import { isExpired, decodeToken } from "react-jwt";
+import { fetcher } from '../Components/helper/axios.instance';
 const AuthChecker = ({ children }) => {
     const token = Cookie.get('token-camiru2');
     const [loading, setLoading] = React.useState(false);

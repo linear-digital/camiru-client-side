@@ -18,6 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetcher } from '../../Components/helper/axios.instance';
 import { useState } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Dashboard = () => {
     const { currentUser } = useSelector((state) => state.user)
@@ -51,7 +53,15 @@ const Dashboard = () => {
             })
         }
     }, [db])
-
+    const location = useLocation();
+    useEffect(() => {
+        if (currentUser) {
+            if (currentUser?.role === "student") {
+              location.pathname === '/dashboard' &&  navigate(`/dashboard/messages`)
+            }
+        }
+    }, [currentUser])
+   
     return (
         <Card className='w-full bg-white h-auto inter px-5 pt-5 pb-10  min-h-[80vh] '>
             <BlankDIalog open={open} setOpen={setOpen} size={"sm"}>

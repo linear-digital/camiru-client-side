@@ -16,6 +16,7 @@ export const RootProvider = ({ children }) => {
     const [connected, setConnected] = useState(false)
     const [incomming, setIncomming] = useState(null);
     const [onGoing, setOnGoing] = useState(null);
+    const [onseen, setOnseen] = useState(null)
     useEffect(() => {
         if (currentUser) {
             const newSocket = io('http://localhost:4000', {
@@ -41,7 +42,10 @@ export const RootProvider = ({ children }) => {
             const handleMessage = (data) => {
                 setMessage(data);
             };
-
+            socket.on('seen', (data) => {
+                setOnseen(data)
+                console.log(data);
+            })
             socket.on('message', handleMessage);
             socket.on('userConnected', (data) => {
                 setConnection(data)
@@ -71,7 +75,8 @@ export const RootProvider = ({ children }) => {
                 connected,
                 incomming,
                 setIncomming,
-                onGoing
+                onGoing,
+                onseen
             }}
         >
             {children}

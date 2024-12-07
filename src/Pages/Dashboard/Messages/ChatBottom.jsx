@@ -38,14 +38,13 @@ const ChatBottom = ({ target }) => {
 
             const res = await upload.post('/upload/image', formData)
             const data = decrypt(res.data)
-            console.log(data);
+
             const newMessage = {
                 sender: user._id,
                 receiver: target.user?.id._id,
                 chat: search,
                 image: data?.map(item => item._id)
             }
-            console.log(newMessage);
             socket.emit('message', newMessage)
         } catch (error) {
             console.error(error);

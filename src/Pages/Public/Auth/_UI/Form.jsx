@@ -68,9 +68,9 @@ const Form = ({ mode }) => {
 
     // navigate('/dashboard');
   };
-  useEffect(() => {
-    if (token && !isExpired(token)) navigate("/dashboard");
-  }, [token]);
+  // useEffect(() => {
+  //   if (token && !isExpired(token)) navigate("/dashboard");
+  // }, [token]);
   return (
     <div className="lg:w-[457px] w-full h-auto p-5 flex flex-col justify-center">
       {mode === "reset" ? (

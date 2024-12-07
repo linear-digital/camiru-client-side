@@ -77,7 +77,7 @@ const Sidebar = () => {
                                 item?.user?.id?.lastName?.toLowerCase().includes(searchValue?.toLowerCase())
                             )
                             .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt))
-                            .map(item => <RecentChatCard key={item?.user?.id} user={item} />)
+                            .map((item, index) => <RecentChatCard key={index} user={item} />)
                 :
                 <h2 className="text-gray-500 text-lg font-normal">No Chats Found</h2>
                 }

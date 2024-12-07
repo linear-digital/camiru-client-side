@@ -17,8 +17,8 @@ export const UserAvater = ({ className, url, onClick }) => {
             <div
                 className="h-full w-full">
                 <Avatar src={url}
-                
-                    className='w-full h-full object-cover border'
+                    
+                    className='w-full max-w-[50px] h-full object-cover border'
                 />
             </div>
         </div>

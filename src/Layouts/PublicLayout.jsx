@@ -2,8 +2,17 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { LogoWhite } from '../Components/Logo/Logo';
 import { Link } from 'react-router-dom';
-
+import { useEffect } from 'react';
+import Cookie from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 const PublicLayout = () => {
+    const token = Cookie.get('token-camiru2')
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (token) {
+            navigate('/dashboard')
+        }
+    }, [token])
     return (
         <div className='lg:grid grid-cols-12 h-screen poppins font-medium'>
             {/* Authentication Page Right Side  */}

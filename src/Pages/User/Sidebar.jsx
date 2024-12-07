@@ -45,7 +45,6 @@ const Sidebar = ({ setOpen }) => {
             document.title = classrooms.find(c => c._id === search)?.name?.toUpperCase() || 'Classroom'
         }
     }, [search])
-
     return (
         <div className={`${collapse ? 'max-w-[70px]' : 'min-w-[260px]'} w-full h-full shadow-lg pt-5 flex flex-col justify-between overflow-auto bg-white`}>
             <div>

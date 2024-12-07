@@ -36,7 +36,7 @@ const RecentChatCard = ({ user }) => {
                         </del> : user?.message?.message?.slice(0, 20) || user?.images && "Image"
                     }
                     {
-                        user?.message?.message?.length > 20 && " ...."
+                     user?.message?.message ?   user?.message?.message?.length > 20 && " ...." : "Image"
                     }
                 </div>
             </div>

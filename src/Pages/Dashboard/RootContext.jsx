@@ -74,6 +74,7 @@ export const RootProvider = ({ children }) => {
       socket.on("offer", (data) => {
         setIncomming(data);
         setShowCall(true);
+        setAccepted(null);
       });
       socket.on("ongoing", (data) => {
         setOnGoing(data);

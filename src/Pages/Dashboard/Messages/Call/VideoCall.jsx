@@ -5,18 +5,17 @@ import {
   ParticipantTile,
   RoomAudioRenderer,
   useTracks,
-} from '@livekit/components-react';
+} from "@livekit/components-react";
 
-import '@livekit/components-styles';
+import "@livekit/components-styles";
 
-import { Track } from 'livekit-client';
-import { useRootContext } from '../../RootContext';
+import { Track } from "livekit-client";
+import { useRootContext } from "../../RootContext";
 
-const serverUrl = 'wss://meet-genzit-tg68oj7z.livekit.cloud';
+const serverUrl = "wss://meet-genzit-tg68oj7z.livekit.cloud";
 
-
-export default function VideoCall({token, }) {
-  const {endCall} = useRootContext();
+export default function VideoCall({ token }) {
+  const { endCall } = useRootContext();
   return (
     <LiveKitRoom
       video={true}
@@ -25,8 +24,10 @@ export default function VideoCall({token, }) {
       serverUrl={serverUrl}
       // Use the default LiveKit theme for nice styles.
       data-lk-theme="default"
-      style={{ height: '500px' }}
-      onEnded={endCall}
+      style={{ height: "500px" }}
+      onDisconnected={() => {
+        endCall();
+      }}
     >
       {/* Your custom component with basic video conferencing functionality. */}
       <MyVideoConference />
@@ -47,10 +48,13 @@ function MyVideoConference() {
       { source: Track.Source.Camera, withPlaceholder: true },
       { source: Track.Source.ScreenShare, withPlaceholder: false },
     ],
-    { onlySubscribed: false },
+    { onlySubscribed: false }
   );
   return (
-    <GridLayout tracks={tracks} style={{ height: 'calc(100vh - var(--lk-control-bar-height))' }}>
+    <GridLayout
+      tracks={tracks}
+      style={{ height: "calc(100vh - var(--lk-control-bar-height))" }}
+    >
       {/* The GridLayout accepts zero or one child. The child is used
       as a template to render all passed in tracks. */}
       <ParticipantTile />

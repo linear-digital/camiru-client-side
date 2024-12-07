@@ -5,91 +5,117 @@ import { io } from "socket.io-client";
 // Create the context
 const RootContext = createContext();
 
-
 // Create a provider component
 export const RootProvider = ({ children }) => {
-    const { currentUser } = useSelector((state) => state.user);
-    const [socket, setSocket] = useState(null)
-    const [message, setMessage] = useState(null)
-    const [refetchContact, setRefetchContact] = useState(null)
-    const [connection, setConnection] = useState("")
-    const [connected, setConnected] = useState(false)
-    const [incomming, setIncomming] = useState(null);
-    const [onGoing, setOnGoing] = useState(null);
-    const [onseen, setOnseen] = useState(null)
-    useEffect(() => {
-        if (currentUser) {
-            const newSocket = io('http://localhost:4000', {
-                query: { userId: currentUser._id },
-                transports: ['websocket'], 
-                autoConnect: false,
-            });
-            setSocket(newSocket);
-            newSocket.connect();
-            newSocket.on('connect', () => {
-                setConnected(true);
-            });
+  const { currentUser } = useSelector((state) => state.user);
+  const [socket, setSocket] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [refetchContact, setRefetchContact] = useState(null);
+  const [connection, setConnection] = useState("");
+  const [connected, setConnected] = useState(false);
+  const [incomming, setIncomming] = useState(null);
+  const [onGoing, setOnGoing] = useState(null);
+  const [onseen, setOnseen] = useState(null);
+  const [showCall, setShowCall] = useState(false);
+  const [accepted, setAccepted] = useState(null);
+  const endCall = () => {
+    if (incomming) {
+      socket.emit("end", { target: [incomming.caller, incomming.target] });
+      setShowCall(false);
+      setIncomming(null);
+      setAccepted(null);
+    }
+  };
+  const acceptcall = () => {
+    if (incomming) {
+      socket.emit("accept", { target: [incomming.caller, incomming.target], room: incomming.room });
+    }
+  }
+  useEffect(() => {
+    if (currentUser) {
+      const newSocket = io("http://localhost:4000", {
+        query: { userId: currentUser._id },
+        transports: ["websocket"],
+        autoConnect: false,
+      });
+      setSocket(newSocket);
+      newSocket.connect();
+      newSocket.on("connect", () => {
+        setConnected(true);
+      });
 
-            return () => {
-                newSocket.disconnect();
-                setConnected(false);
-            };
-        }
-    }, [currentUser]);
+      return () => {
+        newSocket.disconnect();
+        setConnected(false);
+      };
+    }
+  }, [currentUser]);
 
-    useEffect(() => {
-        if (socket) {
-            const handleMessage = (data) => {
-                setMessage(data);
-            };
-            socket.on('seen', (data) => {
-                setOnseen(data)
-                console.log(data);
-            })
-            socket.on('message', handleMessage);
-            socket.on('userConnected', (data) => {
-                setConnection(data)
-            })
-            socket.on('offer', (data) => {
-                setIncomming(data)
-                console.log(data);
-            })
-            socket.on('ongoing', (data) => {
-                setOnGoing(data)
-            })
-            // Cleanup
-            return () => {
-                socket.off('message', handleMessage);
-            };
-        }
-    }, [socket]);
-    return (
-        <RootContext.Provider
-            value={{
-                socket,
-                message,
-                user: currentUser,
-                refetchContact,
-                setRefetchContact,
-                connection,
-                connected,
-                incomming,
-                setIncomming,
-                onGoing,
-                onseen
-            }}
-        >
-            {children}
-        </RootContext.Provider>
-    );
+  useEffect(() => {
+    if (socket) {
+      const handleMessage = (data) => {
+        setMessage(data);
+      };
+      socket.on("end", () => {
+        setShowCall(false);
+      });
+      socket.on("seen", (data) => {
+        setOnseen(data);
+      });
+      socket.on("message", handleMessage);
+
+      socket.on("accept", (data) => {
+        setAccepted(true);
+        console.log(data.room);
+      })
+      socket.on("userConnected", (data) => {
+        setConnection(data);
+      });
+      socket.on("offer", (data) => {
+        setIncomming(data);
+        setShowCall(true);
+      });
+      socket.on("ongoing", (data) => {
+        setOnGoing(data);
+      });
+      // Cleanup
+      return () => {
+        socket.off("message", handleMessage);
+      };
+    }
+  }, [socket]);
+  return (
+    <RootContext.Provider
+      value={{
+        socket,
+        message,
+        user: currentUser,
+        refetchContact,
+        setRefetchContact,
+        connection,
+        connected,
+        incomming,
+        setIncomming,
+        onGoing,
+        onseen,
+        showCall,
+        setShowCall,
+        endCall,
+        acceptcall,
+        accepted
+      }}
+    >
+      {children}
+    </RootContext.Provider>
+  );
 };
 
 // Custom hook to use the context
 // eslint-disable-next-line react-refresh/only-export-components
 export const useRootContext = () => {
-    const context = useContext(RootContext);
-    if (!context) {
-        throw new Error("useAppContext must be used within an AppProvider");
-    }
-    return context;
+  const context = useContext(RootContext);
+  if (!context) {
+    throw new Error("useAppContext must be used within an AppProvider");
+  }
+  return context;
 };

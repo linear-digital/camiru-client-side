@@ -279,4 +279,5 @@ input {
 
 :where(.call-ui).ant-modal .ant-modal-content {
     background: black !important;
+    height: 100px;
 }

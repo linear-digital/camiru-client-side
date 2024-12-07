@@ -10,12 +10,13 @@ import {
 import '@livekit/components-styles';
 
 import { Track } from 'livekit-client';
+import { useRootContext } from '../../RootContext';
 
 const serverUrl = 'wss://meet-genzit-tg68oj7z.livekit.cloud';
 
 
-export default function VideoCall({token}) {
-  
+export default function VideoCall({token, }) {
+  const {endCall} = useRootContext();
   return (
     <LiveKitRoom
       video={true}
@@ -25,6 +26,7 @@ export default function VideoCall({token}) {
       // Use the default LiveKit theme for nice styles.
       data-lk-theme="default"
       style={{ height: '500px' }}
+      onEnded={endCall}
     >
       {/* Your custom component with basic video conferencing functionality. */}
       <MyVideoConference />

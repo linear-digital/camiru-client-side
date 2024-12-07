@@ -14,18 +14,9 @@ import { useEffect } from "react";
 
 const Topbar = ({ user }) => {
   const { currentUser } = useSelector((state) => state.user);
-  const { incomming, setIncomming , socket, } = useRootContext();
-  const [showCall, setShowCall] = React.useState(false);
-  useEffect(() => {
-    if (incomming) {
-      setShowCall(true);
-    }
-  }, [incomming]);
-  const handleCancel = () => {
-    socket.emit('end', {target: user._id})
-    setShowCall(false);
-    setIncomming(null);
-  }
+  const { incomming, setIncomming, socket, showCall, setShowCall } =
+    useRootContext();
+  
   return (
     <div className="w-full p-5 border-b flex items-center justify-between">
       <div className="flex gap-3">
@@ -68,7 +59,7 @@ const Topbar = ({ user }) => {
         {showCall && (
           <CallUi
             showCall={showCall || incomming}
-            setShowCall={handleCancel}
+            setShowCall={setShowCall}
             user={user?.user?.id}
             chat={user}
           />

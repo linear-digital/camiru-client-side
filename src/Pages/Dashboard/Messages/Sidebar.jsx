@@ -22,7 +22,7 @@ const Sidebar = () => {
     useEffect(() => {
         if (message?._id) {
             const msg = contacts.map(item => {
-                if ((item.owner.id === message?.receiver || item.owner.id === message?.sender) || item.user.id === message?.receiver || item.user.id === message?.sender) {
+                if ((item.user.id === message?.receiver) || item?._id === message?.chat) {
                     return { ...item, message: message, updatedAt: new Date() }
                 }
                 return item

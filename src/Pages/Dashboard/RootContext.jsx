@@ -33,7 +33,7 @@ export const RootProvider = ({ children }) => {
   }
   useEffect(() => {
     if (currentUser) {
-      const newSocket = io("http://localhost:4000", {
+      const newSocket = io("https://server.camiru.com", {
         query: { userId: currentUser._id },
         transports: ["websocket"],
         autoConnect: false,
@@ -66,7 +66,6 @@ export const RootProvider = ({ children }) => {
 
       socket.on("accept", (data) => {
         setAccepted(true);
-        console.log(data.room);
       })
       socket.on("userConnected", (data) => {
         setConnection(data);

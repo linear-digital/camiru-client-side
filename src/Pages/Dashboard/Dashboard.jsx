@@ -40,7 +40,8 @@ const Dashboard = () => {
                 method: 'GET',
             })
             return res
-        }
+        },
+        enabled: !!currentUser
     })
 
     React.useEffect(() => {

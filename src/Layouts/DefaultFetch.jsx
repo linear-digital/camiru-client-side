@@ -19,17 +19,21 @@ const DefaultFetch = () => {
         (async () => {
             if (!isMyTokenExpired && decode.role === 'center') {
                 try {
-                    const res = await fetcher({
-                        url: '/classroom',
-                        method: 'GET'
-                    })
+                   
                     // dispatch(setLoading(true))
                     const user = await fetcher({
                         url: '/center/me',
                         method: 'GET',
                     });
+                    if (user) {
+                        const res = await fetcher({
+                            url: `/classroom/center/${user._id}`,
+                            method: 'GET'
+                        })
+                        dispatch(setClassRooms(res))
+                    }
                     dispatch(setLoading(false))
-                    dispatch(setClassRooms(res))
+                   
                     dispatch(setCurrentUser(user))
                 } catch (error) {
                     console.log(error)
@@ -43,15 +47,25 @@ const DefaultFetch = () => {
     useEffect(() => {
 
         (async () => {
-            if (!isMyTokenExpired && decode.role === 'student') {
+            if (!isMyTokenExpired && decode.role !== 'admin') {
                 try {
                     // dispatch(setLoading(true))
-                    const user = await fetcher({
-                        url: '/student/me',
-                        method: 'GET',
-                    });
+                    if (decode.role === "student") {
+                        const user = await fetcher({
+                            url: `/${decode.role}/me`,
+                            method: 'GET',
+                        });
+                        dispatch(setCurrentUser(user))
+                    }
+                    else {
+                        const user = await fetcher({
+                            url: `/staff/current/me`,
+                            method: 'GET',
+                        });
+                        dispatch(setCurrentUser(user))
+                    }
                     dispatch(setLoading(false))
-                    dispatch(setCurrentUser(user))
+                   
                 } catch (error) {
                     console.log(error)
                     dispatch(setLoading(false))

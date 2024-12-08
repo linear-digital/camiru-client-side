@@ -18,22 +18,30 @@ export const RootProvider = ({ children }) => {
   const [onseen, setOnseen] = useState(null);
   const [showCall, setShowCall] = useState(false);
   const [accepted, setAccepted] = useState(null);
+  const [callBetween, setCallBetween] = useState(null);
+  useEffect(() => {
+    setTimeout(() => {
+      if (!accepted) {
+        endCall();
+      }
+    }, 60000);
+  },[callBetween])
   const endCall = () => {
-    if (incomming) {
-      socket.emit("end", { target: [incomming.caller, incomming.target] });
-      setShowCall(false);
-      setIncomming(null);
-      setAccepted(null);
-    }
+    socket.emit("end", {
+      target: callBetween || [incomming.caller, incomming.target],
+    });
   };
   const acceptcall = () => {
     if (incomming) {
-      socket.emit("accept", { target: [incomming.caller, incomming.target], room: incomming.room });
+      socket.emit("accept", {
+        target: [incomming.caller, incomming.target],
+        room: incomming.room,
+      });
     }
-  }
+  };
   useEffect(() => {
     if (currentUser) {
-      const newSocket = io("https://server.camiru.com", {
+      const newSocket = io("http://localhost:4000", {
         query: { userId: currentUser._id },
         transports: ["websocket"],
         autoConnect: false,
@@ -58,6 +66,9 @@ export const RootProvider = ({ children }) => {
       };
       socket.on("end", () => {
         setShowCall(false);
+        setIncomming(null);
+        setAccepted(null);
+        setCallBetween(null);
       });
       socket.on("seen", (data) => {
         setOnseen(data);
@@ -66,7 +77,7 @@ export const RootProvider = ({ children }) => {
 
       socket.on("accept", (data) => {
         setAccepted(true);
-      })
+      });
       socket.on("userConnected", (data) => {
         setConnection(data);
       });
@@ -102,7 +113,8 @@ export const RootProvider = ({ children }) => {
         setShowCall,
         endCall,
         acceptcall,
-        accepted
+        accepted,
+        setCallBetween,
       }}
     >
       {children}

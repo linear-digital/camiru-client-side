@@ -52,6 +52,7 @@ import App from "../App";
 import StudentLogin from "../Pages/Public/Auth/StudentLogin";
 import AddStaff from "../Pages/Dashboard/AddStaff/AddStaff";
 import StaffProfile from "../Pages/Dashboard/StaffProfile/StaffProfile";
+import StaffLogin from "../Pages/Public/Auth/StaffLogin";
 
 
 
@@ -75,6 +76,9 @@ const router = createBrowserRouter([
                     {
                         path: "login/student",
                         element: <StudentLogin />
+                    },{
+                        path: "login/staff",
+                        element: <StaffLogin />
                     },
                     {
                         path: "signup",

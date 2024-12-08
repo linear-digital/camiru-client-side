@@ -52,6 +52,12 @@ const Form = ({ mode }) => {
           method: "POST",
           data,
         });
+      } else if (mode === "staff") {
+        res = await fetcher({
+          url: "/staff/login",
+          method: "POST",
+          data,
+        });
       }
       Cookie.set("token-camiru2", res.accessToken, { expires: 30 });
       window.location.reload();
@@ -81,9 +87,11 @@ const Form = ({ mode }) => {
         <h1 className="text-neutral-800 lg:text-2xl text-xl font-medium  leading-loose">
           {mode === "student"
             ? "Student Login"
+            : mode === "staff"
+            ? "Staff Login"
             : mode === "signup"
-            ? "Create an account to Cuboid"
-            : "Sign in to Cuboid"}{" "}
+            ? "Create an account to Camiru"
+            : "Sign in to Camiru"}{" "}
         </h1>
       )}
 

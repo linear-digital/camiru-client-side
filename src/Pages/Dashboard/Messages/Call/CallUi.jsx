@@ -25,7 +25,8 @@ const CallUi = ({ user, chat }) => {
     accepted,
     onGoing,
     endCall,
-    acceptcall
+    acceptcall,
+    setCallBetween
   } = useRootContext();
 
   const room = incomming?.room || chat?._id;
@@ -63,13 +64,14 @@ const CallUi = ({ user, chat }) => {
       profilePic: user?.profilePic,
       caller: currentUser._id,
     });
+    setCallBetween([user._id, currentUser._id]);
+    
   };
   return (
     <div className="call-ui">
       <Modal
         open={showCall}
         onCancel={() => {
-          setShowCall(false);
           endCall();
         }}
         footer={

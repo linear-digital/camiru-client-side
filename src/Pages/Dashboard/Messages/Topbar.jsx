@@ -12,7 +12,7 @@ import CallUi from "./Call/CallUi";
 import { useRootContext } from "../RootContext";
 import { useEffect } from "react";
 
-const Topbar = ({ user }) => {
+const Topbar = ({ user, setOpen }) => {
   const { currentUser } = useSelector((state) => state.user);
   const { incomming, setIncomming, socket, showCall, setShowCall } =
     useRootContext();
@@ -67,7 +67,11 @@ const Topbar = ({ user }) => {
         <button className="text-red-500" onClick={() => setShowCall(!showCall)}>
           <FontAwesomeIcon icon={faVideo} />
         </button>
-        <button>
+        <button
+        onClick={() => {
+          setOpen((prev) => !prev);
+        }}
+        >
           <FontAwesomeIcon icon={faEllipsisH} />
         </button>
       </div>

@@ -7,7 +7,7 @@ const OtherLogin = () => {
       <Link to={"/login/student"} className="font-normal text-sm hover:text-secondary">
         Parent Login
       </Link>
-      <Link to={"/login"} className="font-normal text-sm hover:text-secondary">
+      <Link to={"/login/staff"} className="font-normal text-sm hover:text-secondary">
         Staff Login
       </Link>
     </div>

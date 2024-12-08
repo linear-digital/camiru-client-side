@@ -82,7 +82,7 @@ const Contacts = ({ refetch }) => {
                 </Dropdown>
 
             </div>
-            <div className="flex mt-5 gap-[10px]">
+            <div className="flex mt-5 gap-[10px] ">
                 <Swiper
                     slidesPerView={6}
                     spaceBetween={30}
@@ -92,7 +92,7 @@ const Contacts = ({ refetch }) => {
                         data?.length ?
                             data?.map((item, i) =>
                                 <SwiperSlide key={i}>
-                                   <div className='flex flex-col items-center'>
+                                   <div className='flex flex-col items-center ml-4'>
                                    <UserAvater
                                         onClick={() => getChat(item?._id)}
                                         url={imageUrl(item?.profilePic)}
